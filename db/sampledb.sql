@@ -1,9 +1,6 @@
-
-CREATE DATABASE  IF NOT EXISTS `graphreport` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `graphreport`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: graphreport
+-- Host: localhost    Database: graphreport
 -- ------------------------------------------------------
 -- Server version	8.0.19
 
@@ -26,9 +23,9 @@ DROP TABLE IF EXISTS `area`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `area` (
-  `id_area` int NOT NULL,
+  `id` int NOT NULL,
   `nome` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_area`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,18 +46,18 @@ DROP TABLE IF EXISTS `dato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dato` (
-  `id_dato` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `id_utente` int NOT NULL,
   `id_area` int NOT NULL,
   `id_tag` int NOT NULL,
   `valore` float NOT NULL,
-  PRIMARY KEY (`id_dato`),
+  PRIMARY KEY (`id`),
   KEY `fk_utente_idx` (`id_utente`),
   KEY `area_idx` (`id_area`),
   KEY `tag_idx` (`id_tag`),
-  CONSTRAINT `area` FOREIGN KEY (`id_area`) REFERENCES `area` (`id_area`),
-  CONSTRAINT `tag` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id_tag`),
-  CONSTRAINT `utente` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`)
+  CONSTRAINT `area` FOREIGN KEY (`id_area`) REFERENCES `area` (`id`),
+  CONSTRAINT `tag` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id`),
+  CONSTRAINT `utente` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,9 +78,9 @@ DROP TABLE IF EXISTS `tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tag` (
-  `id_tag` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_tag`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -109,7 +106,7 @@ CREATE TABLE `user` (
   `password` varchar(32) NOT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +115,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('admin','ADMIN','admin',1),('user','USER','user',2);
+INSERT INTO `user` VALUES ('admin','ADMIN','admin',1),('user','USER','user',2),('piero','user','piero',4),('riccardo','USer','riccardo',5);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,13 +127,13 @@ DROP TABLE IF EXISTS `utente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `utente` (
-  `id_utente` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
   `cognome` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `citta` varchar(200) NOT NULL,
   `nazione` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_utente`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -158,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-03 12:44:11
+-- Dump completed on 2020-03-03 17:52:38
