@@ -69,7 +69,7 @@ public class ConnectionSingleton {
 
             
             } catch (Exception e) {
-        
+            	
             }
         }
         // restituisco in output la connessione al database
