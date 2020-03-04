@@ -19,6 +19,7 @@ public class TagDAO {
 	private final String QUERY_READ = "SELECT * FROM tag WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE tag SET nome=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM tag WHERE id=?";
+	private final String QUERY_ID = "SELECT id FROM tag WHERE nome=?";
 	
 	public TagDAO() {
 		connection= ConnectionSingleton.getInstance();
@@ -111,6 +112,18 @@ public class TagDAO {
 		} catch (SQLException e) {
 		}
 		return false;
+	}
+	
+	public Integer getId(String nome) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ID);
+			preparedStatement.setString(1, nome);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			return resultSet.getInt("id");
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 
 }
