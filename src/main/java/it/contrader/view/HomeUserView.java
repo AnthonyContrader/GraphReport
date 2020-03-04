@@ -17,8 +17,8 @@ public class HomeUserView extends AbstractView{
 
 	@Override
 	public void showOptions() {
-		System.out.println("-------------MENU------------\n");
-		System.out.println("[D]Gestisci i DataSet [P]Gestisci le info personali [E]Esci\n");
+		System.out.println("-------------MENU UTENTE------------\n");
+		System.out.println("[D]Gestisci i DataSet [A]Visualizza Area [T]Visualizza Tag [P]Gestisci le info personali [E]Esci\n");
 		
 		choice = this.getInput();
 
@@ -32,6 +32,16 @@ public class HomeUserView extends AbstractView{
 		this.request.put("choice", choice);
 		
 		switch (choice) {
+		
+		case "a":
+			this.request.put("mode", "GETCHOICE");
+        	MainDispatcher.getInstance().callAction("Area", "doControl", request);
+			break;
+			
+		case "t":
+			this.request.put("mode", "GETCHOICE");
+        	MainDispatcher.getInstance().callAction("Tag", "doControl", request);
+			break;
 		
 		case "d":
 			this.request.put("mode", "GETCHOICE");
