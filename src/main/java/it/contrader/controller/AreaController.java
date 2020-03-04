@@ -110,6 +110,10 @@ public class AreaController implements Controller {
 					//toUpperCase() mette in maiuscolo la scelta
 			switch (choice.toUpperCase()) {
 			
+			case "A":
+				MainDispatcher.getInstance().callView("UserArea", null);
+				break;
+				
 			case "L":
 				MainDispatcher.getInstance().callView(sub_package + "AreaRead", null);
 				break;
@@ -131,7 +135,7 @@ public class AreaController implements Controller {
 				break;
 
 			case "B":
-				MainDispatcher.getInstance().callView("HomeAdmin", null);
+				MainDispatcher.getInstance().callView("HomeUser", null);
 				break;
 				
 			default:
