@@ -9,9 +9,9 @@ public class DatoDTO {
 
 	private Integer idUtente;
 	
-	private Integer idArea;
+	private String area;
 	
-	private Integer idTag;
+	private String tag;
 	
 	private Float valore;
 
@@ -22,18 +22,18 @@ public class DatoDTO {
 		
 	}
 
-	public DatoDTO (int idutente, int idarea, int idtag, float valore) {
+	public DatoDTO (int idutente, String area, String tag, float valore) {
 		this.idUtente = idutente;
-		this.idArea = idarea;
-		this.idTag = idtag;
+		this.area = area;
+		this.tag = tag;
 		this.valore = valore;
 	}
 
-	public DatoDTO (int id, int idutente, int idarea, int idtag, float valore) {
+	public DatoDTO (int id, Integer idutente, String area, String tag, float valore) {
 		this.id = id;
 		this.idUtente = idutente;
-		this.idArea = idarea;
-		this.idTag = idtag;
+		this.area = area;
+		this.tag = tag;
 		this.valore = valore;
 	}
 
@@ -47,29 +47,29 @@ public class DatoDTO {
 		this.id = id;
 	}
 
-	public int getIdUtente() {
+	public Integer getUtente() {
 		return this.idUtente;
 	}
 
-	public void setIdUtente(int idutente) {
-		this.idUtente = idutente;
+	public void setUtente(Integer utente) {
+		this.idUtente = utente;
 	}
 
 
-	public int getIdArea() {
-		return this.idArea;
+	public String getArea() {
+		return this.area;
 	}
 
-	public void setIdArea(int idarea) {
-		this.idArea = idarea;
+	public void setArea(String area) {
+		this.area = area;
 	}
 
-	public void setIdTag(int idtag) {
-		this.idTag = idtag;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
-	public int getIdTag() {
-		return this.idTag;
+	public String getTag() {
+		return this.tag;
 	}
 	
 	public void setValore(float valore) {
@@ -83,7 +83,7 @@ public class DatoDTO {
 	//Trasforma un oggetto in una stringa
 	@Override
 	public String toString() {
-		return "id: " + id + "\t idUtente: "  + idUtente +"\t\t idArea: " +   idArea + "\t\t idTag: " + idTag + "\t\t Valore: " + valore;
+		return "id: " + id + "\t idUtente: "  + idUtente +"\t\t idArea: " +   area + "\t\t idTag: " + tag + "\t\t Valore: " + valore;
 	}
 
 	

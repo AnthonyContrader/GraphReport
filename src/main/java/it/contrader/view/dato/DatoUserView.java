@@ -1,10 +1,11 @@
-package it.contrader.view;
+package it.contrader.view.dato;
 
 
 import it.contrader.controller.Request;
+import it.contrader.view.AbstractView;
 import it.contrader.main.MainDispatcher;
 
-public class HomeUserView extends AbstractView{
+public class DatoUserView extends AbstractView{
 
 	private String choice;
 	
@@ -17,8 +18,9 @@ public class HomeUserView extends AbstractView{
 
 	@Override
 	public void showOptions() {
-		System.out.println("-------------MENU------------\n");
-		System.out.println("[D]Gestisci i DataSet [P]Gestisci le info personali [E]Esci\n");
+		System.out.println("-------------MENU DATASET------------\n");
+		System.out.println("[L]Leggi [N]Aggiungi nuovo set [D]Aggiungui dati a set esistente");
+		System.out.println("[M]Modifica  [C]Cancella [B]Back [E]Esci");
 		
 		choice = this.getInput();
 
