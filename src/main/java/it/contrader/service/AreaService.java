@@ -35,6 +35,10 @@ public class AreaService {
 		// Ottiene un'entità e la restituisce convertendola in DTO
 		return areaConverter.toDTO(areaDAO.read(id));
 	}
+	
+	public Integer id(String nome) {
+		return areaDAO.getId(nome);
+	}
 
 
 	public boolean insert(AreaDTO dto) {
