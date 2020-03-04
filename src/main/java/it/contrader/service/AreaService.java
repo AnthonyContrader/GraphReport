@@ -36,7 +36,7 @@ public class AreaService {
 		return areaConverter.toDTO(areaDAO.read(id));
 	}
 	
-	public Integer id(String nome) {
+	public Integer getId(String nome) {
 		return areaDAO.getId(nome);
 	}
 

@@ -102,12 +102,12 @@ public class DatoController implements Controller {
 			break;
 			
 		//Arriva qui dalla DatoView Invoca il Service e invia alla DatoView il risultato da mostrare 
-		case "USERLIST":
-			List<DatoDTO> datiDTO = datoService.getAll();
+		//case "USERLIST":
+		//	List<DatoDTO> datiDTO = datoService.getAll();
 			//Impacchetta la request con la lista dei dati
-			request.put("dati", datiDTO);
-			MainDispatcher.getInstance().callView("Dato", request);
-			break;
+		//	request.put("dati", datiDTO);
+		//	MainDispatcher.getInstance().callView("Dato", request);
+		//	break;
 			
 		//Esegue uno switch sulla base del comando inserito del dato e reindirizza tramite il Dispatcher alla View specifica per ogni operazione
 		//con REQUEST NULL (vedi una View specifica)

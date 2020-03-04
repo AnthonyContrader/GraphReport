@@ -11,22 +11,23 @@ public class DatoConverter   {
 	/**
 	 * Crea un oggetto di tipo DatoDTO e lo riempie con i campi del parametro user di tipo Dato.
 	 */
-	public DatoDTO toDTO(Dato dato) {
-		DatoDTO datoDTO = new DatoDTO(dato.getId(), dato.getIdUtente(), dato.getIdArea(), dato.getIdTag(), dato.getValore());
+	public DatoDTO toDTO(Dato dato,String area,String tag) {
+		
+		DatoDTO datoDTO = new DatoDTO(dato.getId(), dato.getIdUtente(), area, tag, dato.getValore());
 		return datoDTO;
 	}
 
 	/**
 	 * Crea un oggetto di tipo Dato e lo riempie con i campi del parametro dato di tipo DatoDTO.
 	 */
-	public Dato toEntity(DatoDTO datoDTO) {
-		Dato dato = new Dato(datoDTO.getId(), datoDTO.getIdUtente(), datoDTO.getIdArea(), datoDTO.getIdTag(), datoDTO.getValore());
+	public Dato toEntity(DatoDTO datoDTO,Integer tag,Integer area) {
+		Dato dato = new Dato(datoDTO.getId(), datoDTO.getUtente(), area, tag, datoDTO.getValore());
 		return dato;
 	}
 	
 	/**
 	 * Metodo per convertire le liste di User.
-	 */
+	 *
 	public List<DatoDTO> toDTOList(List<Dato> datoList) {
 		//Crea una lista vuota.
 		List<DatoDTO> datoDTOList = new ArrayList<DatoDTO>();
@@ -39,6 +40,7 @@ public class DatoConverter   {
 		}
 		return datoDTOList;
 	}
+	*/
 
 			
 }
