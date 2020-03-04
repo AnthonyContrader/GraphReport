@@ -56,8 +56,8 @@ public class UtenteDAO {
 			preparedStatement.setString(1, utenteToInsert.getNome());
 			preparedStatement.setString(2, utenteToInsert.getCognome());
 			preparedStatement.setString(3, utenteToInsert.getEmail());
-			preparedStatement.setString(3, utenteToInsert.getCitta());
-			preparedStatement.setString(3, utenteToInsert.getNazione());
+			preparedStatement.setString(4, utenteToInsert.getCitta());
+			preparedStatement.setString(5, utenteToInsert.getNazione());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

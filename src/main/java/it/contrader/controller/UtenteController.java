@@ -139,7 +139,7 @@ public class UtenteController implements Controller {
 				break;
 				
 			case "P":
-				MainDispatcher.getInstance().callView("UtenteView", null);
+				MainDispatcher.getInstance().callView("Utente", null);
 				break;
 				
 			case "E":
