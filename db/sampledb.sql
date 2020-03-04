@@ -27,7 +27,8 @@ DROP TABLE IF EXISTS `area`;
 CREATE TABLE `area` (
   `id` int NOT NULL,
   `nome` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nome_UNIQUE` (`nome`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,7 +83,8 @@ DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nome_UNIQUE` (`nome`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -117,7 +119,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('admin','ADMIN','admin',1),('user','USER','user',2),('piero','user','piero',4),('riccardo','USer','riccardo',5);
+INSERT INTO `user` VALUES ('admin','ADMIN','admin',1),('user','USER','user',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +137,8 @@ CREATE TABLE `utente` (
   `email` varchar(200) NOT NULL,
   `citta` varchar(200) NOT NULL,
   `nazione` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -157,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-03 17:52:38
+-- Dump completed on 2020-03-04 11:16:06
