@@ -19,7 +19,7 @@ public class DatoDAO {
 	}
 
 	public List<Dato> getAll() {
-		List<Dato> usersList = new ArrayList<>();
+		List<Dato> datiList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			Statement statement = connection.createStatement();
@@ -33,12 +33,12 @@ public class DatoDAO {
 				float valore = resultSet.getFloat("valore");
 				dato = new Dato(id, idUtente, idArea, idTag, valore);
 				dato.setId(id);
-				usersList.add(dato);
+				datiList.add(dato);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return usersList;
+		return datiList;
 	}
 
 	public boolean insert(Dato userToInsert) {
