@@ -18,7 +18,7 @@ public class HomeUserView extends AbstractView{
 	@Override
 	public void showOptions() {
 		System.out.println("-------------MENU UTENTE------------\n");
-		System.out.println("[D]Gestisci i DataSet [A]Visualizza Area [T]Visualizza Tag [P]Gestisci le info personali [E]Esci\n");
+		System.out.println("[D]Gestisci i DataSet [A]Gestione Area [T]Gestione Tag [P]Gestisci le info personali [E]Esci\n");
 		
 		choice = this.getInput();
 
