@@ -52,12 +52,12 @@ CREATE TABLE `dato` (
   `id_tag` int(11) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_utente_idx` (`id_utente`),
   KEY `tag_idx` (`id_tag`),
   KEY `area_idx` (`id_area`),
+  KEY `user_idx` (`id_utente`),
   CONSTRAINT `area` FOREIGN KEY (`id_area`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tag` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id`),
-  CONSTRAINT `utente` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`)
+  CONSTRAINT `user` FOREIGN KEY (`id_utente`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -158,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-05 10:42:26
+-- Dump completed on 2020-03-05 14:44:01

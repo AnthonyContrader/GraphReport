@@ -61,7 +61,7 @@ public class AdminAreaView extends AbstractView {
 		request = new Request();
 		request.put("choice", choice);
 		request.put("mode", "GETCHOICE");
-		MainDispatcher.getInstance().callAction("Area", "doControl", this.request);
+		MainDispatcher.getInstance().callAction("Admin", "doControl", this.request);
 	}
 
 }

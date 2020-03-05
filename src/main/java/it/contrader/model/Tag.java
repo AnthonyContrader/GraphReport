@@ -2,9 +2,11 @@ package it.contrader.model;
 
 public class Tag {
 	
+	//-------------------ATTRIBUTI-------------------
 	private int id;
 	private String nomeTag;
 	
+	//-------------------COSTRUTORI-------------------
 	public Tag() {
 		
 	}
@@ -18,6 +20,7 @@ public class Tag {
 		this.nomeTag = nomeTag;
 	}
 
+	//-------------------GETTER E SETTER-------------------
 	public int getId() {
 		return id;
 	}
@@ -34,6 +37,7 @@ public class Tag {
 		this.nomeTag = nomeTag;
 	}
 
+	//-------------------equals E toString-------------------
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

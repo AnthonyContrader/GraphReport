@@ -34,8 +34,7 @@ public class TagDAO {
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
 				String nome = resultSet.getString("nome");
-				tag = new Tag(nome);
-				tag.setId(id);
+				tag = new Tag(id,nome);
 				tagList.add(tag);
 			}
 		} catch (SQLException e) {
