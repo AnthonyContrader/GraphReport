@@ -14,7 +14,7 @@ import it.contrader.view.AbstractView;
  */
 public class UtenteReadView extends AbstractView {
 
-	private int id;
+	private int iduser;
 	private Request request;
 	private final String mode = "READ";
 
@@ -45,7 +45,7 @@ public class UtenteReadView extends AbstractView {
 	@Override
 	public void showOptions() {
 		System.out.println("Inserisci l'ID dell'utente:");
-		id = Integer.parseInt(getInput());
+		iduser = Integer.parseInt(getInput());
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class UtenteReadView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("id", id);
+		request.put("iduser", iduser);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Utente", "doControl", request);
 	}

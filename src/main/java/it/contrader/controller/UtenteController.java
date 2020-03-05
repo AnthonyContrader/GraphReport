@@ -58,9 +58,9 @@ public class UtenteController implements Controller {
 		
 		// Arriva qui dalla UserReadView. Invoca il Service con il parametro id e invia alla UserReadView uno user da mostrare 
 		case "READ":
-			id = Integer.parseInt(request.get("id").toString());
+			//id = Integer.parseInt(request.get("id").toString());
 			iduser = Integer.parseInt(request.get("iduser").toString());
-			UtenteDTO utenteDTO = utenteService.read(id);
+			UtenteDTO utenteDTO = utenteService.read(iduser);
 			request.put("utente", utenteDTO);
 			MainDispatcher.getInstance().callView(sub_package + "UtenteRead", request);
 			break;

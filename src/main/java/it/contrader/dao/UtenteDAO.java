@@ -16,7 +16,7 @@ public class UtenteDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM utente";
 	private final String QUERY_CREATE = "INSERT INTO utente (nome, cognome, email, citta, nazione, iduser) VALUES (?,?,?,?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM utente WHERE id=?";
+	private final String QUERY_READ = "SELECT * FROM utente WHERE iduser=?";
 	private final String QUERY_UPDATE = "UPDATE utente SET nome=?, cognome=?, email=?, citta=?, nazione=?, iduser=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM utente WHERE id=?";
 
