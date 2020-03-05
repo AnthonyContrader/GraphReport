@@ -45,6 +45,7 @@ public class UserAreaView extends AbstractView {
 	 */
 	@Override
 	public void showOptions() {
+		System.out.println("----------MENU AREE----------:");
 		System.out.println("          Scegli l'operazione da effettuare:");
 		System.out.println("[D]isponibili [I]nserisci [B]ack [E]sci");
 
