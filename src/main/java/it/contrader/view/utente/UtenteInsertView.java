@@ -12,6 +12,7 @@ public class UtenteInsertView extends AbstractView{
 	private String email;
 	private String citta;
 	private String nazione;
+	private String iduser;
 	private final String mode = "INSERT";
 
 	public UtenteInsertView() {
@@ -44,6 +45,8 @@ public class UtenteInsertView extends AbstractView{
 			citta = getInput();
 			System.out.println("Inserisci la nazione:");
 			nazione = getInput();
+			System.out.println("Inserisci l'id user:");
+			iduser = getInput();
 	}
 
 	/**
@@ -57,6 +60,7 @@ public class UtenteInsertView extends AbstractView{
 		request.put("email", email);
 		request.put("citta", citta);
 		request.put("nazione", nazione);
+		request.put("iduser", iduser);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Utente", "doControl", request);
 	}

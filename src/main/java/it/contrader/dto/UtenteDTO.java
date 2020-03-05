@@ -22,27 +22,31 @@ public class UtenteDTO {
 	private String citta;
 
 	private String nazione;
+	
+	private int iduser;
 
 	
 	public UtenteDTO() {
 		
 	}
 
-	public UtenteDTO (String nome, String cognome, String email, String citta, String nazione) {
+	public UtenteDTO (String nome, String cognome, String email, String citta, String nazione, int iduser) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
 		this.citta = citta;
 		this.nazione = nazione;
+		this.iduser= iduser;
 	}
 
-	public UtenteDTO (int id, String nome, String cognome, String email, String citta, String nazione) {
+	public UtenteDTO (int id, String nome, String cognome, String email, String citta, String nazione, int iduser) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
 		this.citta = citta;
 		this.nazione = nazione;
+		this.iduser=iduser;
 	}
 
 	public int getId() {
@@ -92,8 +96,14 @@ public class UtenteDTO {
 		this.nazione = nazione;
 	}
 	
+	public int getIdUser() {
+		return this.iduser;
+	}
+	public void setIdUser(int iduser) {
+		this.iduser = iduser;
+	}
 	@Override
 	public String toString() {
-		return  id + "\t"  + nome + "\t\t" + cognome + "\t\t" + email + "\t\t" + citta + "\t\t" + nazione;
+		return  id + "\t"  + nome + "\t\t" + cognome + "\t\t" + email + "\t\t" + citta + "\t\t" + nazione + "\t\t" + iduser;
 	}
 }

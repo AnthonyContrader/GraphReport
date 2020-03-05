@@ -19,8 +19,8 @@ public class DatoUserView extends AbstractView{
 	@Override
 	public void showOptions() {
 		System.out.println("-------------MENU DATASET------------\n");
-		System.out.println("[L]Leggi [N]Aggiungi nuovo set [D]Aggiungui dati a set esistente");
-		System.out.println("[M]Modifica  [C]Cancella [B]Back [E]Esci");
+		System.out.println("[L]Leggi [N]Aggiungi nuovo set [M]Modifica  [C]Cancella ");
+		System.out.println("[B]Back [E]Esci");
 		
 		choice = this.getInput();
 
@@ -35,23 +35,39 @@ public class DatoUserView extends AbstractView{
 		
 		switch (choice) {
 		
-		case "d":
+		case "l":
 			this.request.put("mode", "GETCHOICE");
         	MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 			break;
 			
-		case "p":
+		case "n":
 			this.request.put("mode", "GETCHOICE");
-        	MainDispatcher.getInstance().callAction("Utente", "doControl", request);
+			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 			break;
-
+		
+		case "m":
+			this.request.put("mode", "GETCHOICE");
+			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
+			break;
+			
+		case "c":
+			this.request.put("mode", "GETCHOICE");
+			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
+			break;
+			
+		case "b":
+			this.request.put("mode", "GETCHOICE");
+			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
+			break;
+			
 		case "e":
-			MainDispatcher.getInstance().callAction("Login", "doControl", null);
+			this.request.put("mode", "GETCHOICE");
+			MainDispatcher.getInstance().callAction("Login", "doControl", request);
 			break;
+		
 
 		default:
-			System.out.println("Scelta non consentita!");
-			MainDispatcher.getInstance().callAction("Login", "doControl", null);
+			MainDispatcher.getInstance().callAction("Dato", "doControl", null);
 		}
 	}
 

@@ -15,9 +15,9 @@ import it.contrader.model.Utente;
 public class UtenteDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM utente";
-	private final String QUERY_CREATE = "INSERT INTO utente (nome, cognome, email, citta, nazione) VALUES (?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO utente (nome, cognome, email, citta, nazione, iduser) VALUES (?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM utente WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE utente SET nome=?, cognome=?, email=?, citta=?, nazione=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE utente SET nome=?, cognome=?, email=?, citta=?, nazione=?, iduser=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM utente WHERE id=?";
 
 	public UtenteDAO() {
@@ -38,8 +38,9 @@ public class UtenteDAO {
 				String email = resultSet.getString("email");
 				String citta = resultSet.getString("citta");
 				String nazione = resultSet.getString("nazione");
+				int iduser = resultSet.getInt("iduser");
 
-				utente = new Utente(nome, cognome, email, citta, nazione);
+				utente = new Utente(nome, cognome, email, citta, nazione,iduser);
 				utente.setId(id);
 				utentiList.add(utente);
 			}
@@ -58,6 +59,7 @@ public class UtenteDAO {
 			preparedStatement.setString(3, utenteToInsert.getEmail());
 			preparedStatement.setString(4, utenteToInsert.getCitta());
 			preparedStatement.setString(5, utenteToInsert.getNazione());
+			preparedStatement.setInt(6, utenteToInsert.getIdUser());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -76,13 +78,15 @@ public class UtenteDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			String nome, cognome, email, citta, nazione;
+			int iduser;
 
 			nome = resultSet.getString("nome");
 			cognome = resultSet.getString("cognome");
 			email = resultSet.getString("email");
 			citta = resultSet.getString("citta");
 			nazione = resultSet.getString("nazione");
-			Utente utente = new Utente(nome, cognome, email, citta, nazione);
+			iduser = resultSet.getInt("iduser");
+			Utente utente = new Utente(nome, cognome, email, citta, nazione, iduser);
 			utente.setId(resultSet.getInt("id"));
 
 			return utente;
@@ -98,6 +102,9 @@ public class UtenteDAO {
 		// Check if id is present
 		if (utenteToUpdate.getId() == 0)
 			return false;
+		if (utenteToUpdate.getIdUser() == 0)
+			return false;
+		
 
 		Utente utenteRead = read(utenteToUpdate.getId());
 		if (!utenteRead.equals(utenteToUpdate)) {
@@ -118,7 +125,6 @@ public class UtenteDAO {
 				if (utenteToUpdate.getNazione() == null || utenteToUpdate.getNazione().equals("")) {
 					utenteToUpdate.setNazione(utenteRead.getNazione());
 				}
-				
 
 				// Update the utente
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);

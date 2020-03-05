@@ -28,7 +28,7 @@ public class UtenteView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			System.out.println("\n------------------- Gestione profilo utente ----------------\n");
-			System.out.println("ID\tNome\tCognome\tEmail\\tCitta\\tNazione");
+			System.out.println("ID\tNome\tCognome\tEmail\\tCitta\\tNazione\\tIdUser");
 			System.out.println("----------------------------------------------------\n");
 			
 			@SuppressWarnings("unchecked")

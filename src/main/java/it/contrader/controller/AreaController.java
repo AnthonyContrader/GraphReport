@@ -139,7 +139,7 @@ public class AreaController implements Controller {
 				break;
 				
 			default:
-				MainDispatcher.getInstance().callView("Login", null);
+				MainDispatcher.getInstance().callView("UserArea", null);
 			}
 			
 		default:

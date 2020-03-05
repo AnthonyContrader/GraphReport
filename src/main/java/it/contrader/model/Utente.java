@@ -18,29 +18,33 @@ public class Utente {
 	private String citta;
 
 	private String nazione;
+	
+	private int iduser;
 
 	/**
-	 * Definisco i due costruttori, uno vuoto e uno con cinque parametri per costrire oggetti di tipo User
+	 * Definisco i due costruttori, uno vuoto e uno con sei parametri per costrire oggetti di tipo User
 	 */
 	public Utente() {
 		
 	}
 
-	public Utente (String nome, String cognome, String email, String citta, String nazione) {
+	public Utente (String nome, String cognome, String email, String citta, String nazione, int iduser) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
 		this.citta = citta;
 		this.nazione = nazione;
+		this.iduser = iduser;
 	}
 
-	public Utente (int id, String nome, String cognome, String email, String citta, String nazione) {
+	public Utente (int id, String nome, String cognome, String email, String citta, String nazione, int iduser) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
 		this.citta = citta;
 		this.nazione = nazione;
+		this.iduser = iduser;
 	}
 
 	/**
@@ -88,14 +92,23 @@ public class Utente {
 	public String getNazione() {
 		return this.nazione;
 	}
-
+	
 	public void setNazione(String nazione) {
 		this.nazione = nazione;
 	}
+	
+	public int getIdUser() {
+		return this.iduser;
+	}
+	public void setIdUser(int iduser) {
+		this.iduser = iduser;
+	}
+
+	
 	//Trasforma un oggetto in una stringa
 	@Override
 	public String toString() {
-		return  id + "\t"  + nome + "\t\t" + cognome + "\t\t" + email + "\t\t" + citta + "\t\t" + nazione;
+		return  id + "\t"  + nome + "\t\t" + cognome + "\t\t" + email + "\t\t" + citta + "\t\t" + nazione + "\t\t" + iduser;
 	}
 
 	//Metodo per il confronto degli oggetti
@@ -134,6 +147,8 @@ public class Utente {
 			if (other.nazione != null)
 				return false;
 		} else if (!nazione.equals(other.nazione))
+			return false;
+		if (iduser != other.iduser)
 			return false;
 		
 		return true;

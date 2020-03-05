@@ -1,7 +1,9 @@
 package it.contrader.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import it.contrader.controller.Request;
 import it.contrader.converter.DatoConverter;
 import it.contrader.dao.DatoDAO;
 import it.contrader.dto.DatoDTO;
@@ -24,10 +26,27 @@ public class DatoService {
 	}
 	
 
-	//public List<DatoDTO> getAll() {
+	public List<DatoDTO> getAll(int idUtente) {
 		// Ottiene una lista di entità e le restituisce convertendole in DTO
-	//	return datoConverter.toDTOList(datoDAO.getAll());
-	//}
+		Request request = new Request();
+		AreaService areaService = new AreaService();
+		TagService tagService = new TagService();
+		
+		List<Dato> listaDato = datoDAO.getAll(idUtente);
+		
+		List<String> area = new ArrayList<>(), tag = new ArrayList<>();
+		
+		for(Dato dato : listaDato) {
+			area.add(areaService.read(dato.getIdArea()).getNome());
+			tag.add(tagService.read(dato.getIdTag()).getNomeTag());
+		}
+
+		request.put("model", listaDato);
+		request.put("area", area);
+		request.put("tag", tag);
+		
+		return datoConverter.toDTOList(request);
+	}
 
 
 	public DatoDTO read(int id) {
