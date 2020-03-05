@@ -7,7 +7,7 @@ public class Utente {
 	/**
 	 * Qui sotto definisco gli attributi di User. 
 	 */
-	private int id;
+	private Integer id;
 
 	private String nome;
 	
@@ -37,7 +37,7 @@ public class Utente {
 		this.iduser = iduser;
 	}
 
-	public Utente (int id, String nome, String cognome, String email, String citta, String nazione, int iduser) {
+	public Utente (Integer id, String nome, String cognome, String email, String citta, String nazione, int iduser) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;

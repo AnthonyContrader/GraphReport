@@ -11,7 +11,7 @@ package it.contrader.dto;
  */
 public class UtenteDTO {
 
-	private int id;
+	private Integer id;
 
 	private String nome;
 	
@@ -39,7 +39,7 @@ public class UtenteDTO {
 		this.iduser= iduser;
 	}
 
-	public UtenteDTO (int id, String nome, String cognome, String email, String citta, String nazione, int iduser) {
+	public UtenteDTO (Integer id, String nome, String cognome, String email, String citta, String nazione, int iduser) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -49,7 +49,7 @@ public class UtenteDTO {
 		this.iduser=iduser;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 	public void setId(int id) {

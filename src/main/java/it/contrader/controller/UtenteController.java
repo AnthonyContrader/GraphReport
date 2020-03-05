@@ -95,17 +95,16 @@ public class UtenteController implements Controller {
 		
 		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
-			id = Integer.parseInt(request.get("id").toString());
+			iduser = Integer.parseInt(request.get("iduser").toString());
 			nome = request.get("nome").toString();
 			cognome = request.get("cognome").toString();
 			email = request.get("email").toString();
 			citta = request.get("citta").toString();
 			nazione = request.get("nazione").toString();
-			iduser = Integer.parseInt(request.get("iduser").toString());		
-
 			UtenteDTO utentetoupdate = new UtenteDTO(nome,cognome,email,citta,nazione,iduser);
-			utentetoupdate.setId(id);
+			
 			utenteService.update(utentetoupdate);
+			
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "UtenteUpdate", request);

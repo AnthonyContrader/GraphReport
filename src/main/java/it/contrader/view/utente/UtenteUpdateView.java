@@ -8,7 +8,7 @@ import it.contrader.view.AbstractView;
 public class UtenteUpdateView extends AbstractView {
 	private Request request;
 
-	private int id;
+	private int iduser;
 	private String nome;
 	private String cognome;
 	private String email;
@@ -37,8 +37,8 @@ public class UtenteUpdateView extends AbstractView {
 	@Override
 	public void showOptions() {
 		try {
-			System.out.println("Inserisci id dell'utente:");
-			id = Integer.parseInt(getInput());
+			//System.out.println("Inserisci id dell'utente:");
+			//iduser = Integer.parseInt(getInput());
 			System.out.println("Inserisci il nome:");
 			nome = getInput();
 			System.out.println("Inserisci il cognome:");
@@ -49,6 +49,8 @@ public class UtenteUpdateView extends AbstractView {
 			citta = getInput();
 			System.out.println("Inserisci la nazione:");
 			nazione = getInput();
+			System.out.println("Inserisci l'id user:");
+			iduser = Integer.parseInt(getInput());
 		} catch (Exception e) {
 
 		}
@@ -61,12 +63,12 @@ public class UtenteUpdateView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("id", id);
 		request.put("nome", nome);
 		request.put("cognome", cognome);
 		request.put("email", email);
 		request.put("citta", citta);
 		request.put("nazione", nazione);
+		request.put("iduser", iduser);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Utente", "doControl", request);
 	}

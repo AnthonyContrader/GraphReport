@@ -17,8 +17,8 @@ public class UtenteDAO {
 	private final String QUERY_ALL = "SELECT * FROM utente";
 	private final String QUERY_CREATE = "INSERT INTO utente (nome, cognome, email, citta, nazione, iduser) VALUES (?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM utente WHERE iduser=?";
-	private final String QUERY_UPDATE = "UPDATE utente SET nome=?, cognome=?, email=?, citta=?, nazione=?, iduser=? WHERE id=?";
-	private final String QUERY_DELETE = "DELETE FROM utente WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE utente SET nome=?, cognome=?, email=?, citta=?, nazione=? WHERE iduser=?";
+	private final String QUERY_DELETE = "DELETE FROM utente WHERE iduser=?";
 
 	public UtenteDAO() {
 
@@ -100,13 +100,11 @@ public class UtenteDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present
-		if (utenteToUpdate.getId() == 0)
-			return false;
 		if (utenteToUpdate.getIdUser() == 0)
 			return false;
 		
 
-		Utente utenteRead = read(utenteToUpdate.getId());
+		Utente utenteRead = read(utenteToUpdate.getIdUser());
 		if (!utenteRead.equals(utenteToUpdate)) {
 			try {
 				// Fill the utenteToUpdate object
@@ -125,6 +123,7 @@ public class UtenteDAO {
 				if (utenteToUpdate.getNazione() == null || utenteToUpdate.getNazione().equals("")) {
 					utenteToUpdate.setNazione(utenteRead.getNazione());
 				}
+				
 
 				// Update the utente
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
@@ -133,13 +132,9 @@ public class UtenteDAO {
 				preparedStatement.setString(3, utenteToUpdate.getEmail());
 				preparedStatement.setString(4, utenteToUpdate.getCitta());
 				preparedStatement.setString(5, utenteToUpdate.getNazione());
-				preparedStatement.setInt(6, utenteToUpdate.getId());
+				preparedStatement.setInt(6, utenteToUpdate.getIdUser());
 				int a = preparedStatement.executeUpdate();
-				if (a > 0)
-					return true;
-				else
-					return false;
-
+				
 			} catch (SQLException e) {
 				return false;
 			}
