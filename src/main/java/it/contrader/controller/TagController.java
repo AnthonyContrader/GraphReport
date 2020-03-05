@@ -2,6 +2,7 @@ package it.contrader.controller;
 
 import java.util.List;
 
+import it.contrader.dto.AreaDTO;
 import it.contrader.dto.TagDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.service.TagService;
@@ -25,8 +26,7 @@ public class TagController implements Controller {
 
 		switch (mode) {
 			case "READ":
-				id = Integer.parseInt(request.get("id").toString());
-				TagDTO tagDTO = tagService.read(id);
+				List <TagDTO> tagDTO = tagService.getAll();
 				request.put("tag", tagDTO);
 				MainDispatcher.getInstance().callView(sub_package + "TagRead", request);
 				break;
@@ -65,7 +65,7 @@ public class TagController implements Controller {
 				case "T":
 					MainDispatcher.getInstance().callView("UserTag", null);
 					break;
-				case "L":
+				case "D":
 					MainDispatcher.getInstance().callView(sub_package + "TagRead", null);
 					break;
 				case "I":
@@ -81,14 +81,14 @@ public class TagController implements Controller {
 					MainDispatcher.getInstance().callView("Login", null);
 					break;
 				case "B":
-					MainDispatcher.getInstance().callView("HomeAdmin", null);
+					MainDispatcher.getInstance().callView("HomeUser", null);
 					break;
 				default:
 					System.out.println("scelta non permersa. Ritentare");
 					MainDispatcher.getInstance().callView("UserTag", null);
 				}
 			default:
-				MainDispatcher.getInstance().callView("Login", null);
+				MainDispatcher.getInstance().callView("UserTag", null);
 		}
 	}
 

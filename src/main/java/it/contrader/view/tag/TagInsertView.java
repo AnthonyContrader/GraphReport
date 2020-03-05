@@ -31,7 +31,7 @@ public class TagInsertView extends AbstractView{
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("username", nome);
+		request.put("nome", nome);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Tag", "doControl", request);
 	}

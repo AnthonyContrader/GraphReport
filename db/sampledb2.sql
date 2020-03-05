@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS graphreport;
-USE graphreport;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: graphreport
@@ -28,7 +26,7 @@ CREATE TABLE `area` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +35,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
+INSERT INTO `area` VALUES (1,'nin'),(2,'ihgrv');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +82,7 @@ CREATE TABLE `tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,6 +91,7 @@ CREATE TABLE `tag` (
 
 LOCK TABLES `tag` WRITE;
 /*!40000 ALTER TABLE `tag` DISABLE KEYS */;
+INSERT INTO `tag` VALUES (1,'metri');
 /*!40000 ALTER TABLE `tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,13 +130,14 @@ DROP TABLE IF EXISTS `utente`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `utente` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(200) NOT NULL,
-  `cognome` varchar(200) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `citta` varchar(200) NOT NULL,
-  `nazione` varchar(200) NOT NULL,
-  `iduser` int(11) DEFAULT NULL,
+  `nome` varchar(200) DEFAULT NULL,
+  `cognome` varchar(200) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `citta` varchar(200) DEFAULT NULL,
+  `nazione` varchar(200) DEFAULT NULL,
+  `iduser` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `iduser_UNIQUE` (`iduser`),
   KEY `fk_iduser_idx` (`iduser`),
   CONSTRAINT `fk_iduser` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -160,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-05 14:44:01
+-- Dump completed on 2020-03-05 17:03:22
