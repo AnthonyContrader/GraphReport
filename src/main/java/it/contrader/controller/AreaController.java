@@ -53,8 +53,7 @@ public class AreaController implements Controller {
 		
 		// Arriva qui dalla UserReadView. Invoca il Service con il parametro id e invia alla UserReadView uno user da mostrare 
 		case "READ":
-			id = Integer.parseInt(request.get("id").toString());
-			AreaDTO areaDTO = areaService.read(id);
+			List <AreaDTO> areaDTO = areaService.getAll();
 			request.put("area", areaDTO);
 			MainDispatcher.getInstance().callView(sub_package + "AreaRead", request);
 			break;
@@ -98,8 +97,7 @@ public class AreaController implements Controller {
 		//Arriva qui dalla UserView Invoca il Service e invia alla UserView il risultato da mostrare 
 		case "AREALIST":
 			List<AreaDTO> areeDTO = areaService.getAll();
-			//Impacchetta la request con la lista delle aree
-			request.put("area", areeDTO);
+			request.put("aree", areeDTO);
 			MainDispatcher.getInstance().callView("Area", request);
 			break;
 			
@@ -110,11 +108,7 @@ public class AreaController implements Controller {
 					//toUpperCase() mette in maiuscolo la scelta
 			switch (choice.toUpperCase()) {
 			
-			case "A":
-				MainDispatcher.getInstance().callView("UserArea", null);
-				break;
-				
-			case "L":
+			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "AreaRead", null);
 				break;
 				
@@ -143,7 +137,7 @@ public class AreaController implements Controller {
 			}
 			
 		default:
-			MainDispatcher.getInstance().callView("Login", null);
+			MainDispatcher.getInstance().callView("UserArea", null);
 		}
 	}
 }

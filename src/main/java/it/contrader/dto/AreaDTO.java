@@ -2,7 +2,6 @@ package it.contrader.dto;
 
 /**
  * 
- * @author Vittorio
  *
  *Il DTO è simile al Model ma può contenere meno attributi (ad esempio d dati sensibili
  *che non devono arrivare alla View). GLi oggetti vengono trasformati da oggetti del Model
