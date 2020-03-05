@@ -63,7 +63,7 @@ public class TagController implements Controller {
 			case "GETCHOICE":
 				switch (choice.toUpperCase()) {
 				case "T":
-					MainDispatcher.getInstance().callView("Tag", null);
+					MainDispatcher.getInstance().callView("UserTag", null);
 					break;
 				case "L":
 					MainDispatcher.getInstance().callView(sub_package + "TagRead", null);
@@ -85,7 +85,7 @@ public class TagController implements Controller {
 					break;
 				default:
 					System.out.println("scelta non permersa. Ritentare");
-					MainDispatcher.getInstance().callView("Tag", null);
+					MainDispatcher.getInstance().callView("UserTag", null);
 				}
 			default:
 				MainDispatcher.getInstance().callView("Login", null);
