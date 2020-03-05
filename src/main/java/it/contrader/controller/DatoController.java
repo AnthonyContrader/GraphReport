@@ -48,13 +48,13 @@ public class DatoController implements Controller {
 		String area;
 		String tag;
 		float valore;
-
+		
 		switch (mode) {
 		
 		// Arriva qui dalla DatoReadView. Invoca il Service con il parametro id e invia alla DatoReadView uno user da mostrare 
 		case "READ":
-			id = Integer.parseInt(request.get("id").toString());
-			DatoDTO datoDTO = datoService.read(id);
+			utente = Integer.parseInt(request.get("idUtente").toString());
+			List<DatoDTO> datoDTO = datoService.getAll(utente);
 			request.put("dato", datoDTO);
 			MainDispatcher.getInstance().callView(sub_package + "DatoRead", request);
 			break;
@@ -63,17 +63,17 @@ public class DatoController implements Controller {
 		case "INSERT":
 			tag = request.get("tag").toString();
 			area = request.get("area").toString();
-			utente = Integer.parseInt(request.get("utente").toString());
+			utente = Integer.parseInt(request.get("idUtente").toString());
 			valore = Float.parseFloat(request.get("valore").toString());
 			
 			//costruisce l'oggetto dato da inserire
 			DatoDTO datotoinsert = new DatoDTO(utente, area, tag, valore);
 			//invoca il service
-			datoService.insert(datotoinsert);
 			request = new Request();
 			request.put("mode", "mode");
+			datoService.insert(datotoinsert);
 			//Rimanda alla view con la risposta
-			MainDispatcher.getInstance().callView(sub_package + "DataInsert", request);
+			MainDispatcher.getInstance().callView(sub_package + "DatoInsert", request);
 			break;
 		
 		// Arriva qui dalla DatoDeleteView. Estrae l'id del dato da cancellare e lo passa al Service
@@ -89,10 +89,10 @@ public class DatoController implements Controller {
 		// Arriva qui dalla DatoUpdateView
 		case "UPDATE":
 			id = Integer.parseInt(request.get("id").toString());
-			utente = Integer.parseInt(request.get("utente").toString());
+			utente = Integer.parseInt(request.get("idUtente").toString());
 			tag = request.get("tag").toString();
 			area = request.get("area").toString();
-			valore = Float.parseFloat(request.get("area").toString());
+			valore = Float.parseFloat(request.get("valore").toString());
 			DatoDTO datotoupdate = new DatoDTO(utente, area, tag, valore);
 			datotoupdate.setId(id);
 			datoService.update(datotoupdate);
@@ -120,12 +120,12 @@ public class DatoController implements Controller {
 				MainDispatcher.getInstance().callView(sub_package + "DatoUser", null);
 				break;
 			
-			case "L":
-				MainDispatcher.getInstance().callView(sub_package + "DatoRead", null);
+			case "N":
+				MainDispatcher.getInstance().callView(sub_package + "DatoInsert", null);
 				break;
 				
-			case "I":
-				MainDispatcher.getInstance().callView(sub_package + "DatoInsert", null);
+			case "L":
+				MainDispatcher.getInstance().callView(sub_package + "DatoRead", null);
 				break;
 				
 			case "M":
@@ -145,13 +145,12 @@ public class DatoController implements Controller {
 				break;
 				
 			default:
-				System.out.println("Scelta non consentita!");
 				MainDispatcher.getInstance().callView("HomeUser", null);
 			}
 			
 		default:
-			System.out.println("Errore imprevisto!");
-			MainDispatcher.getInstance().callView("Login", null);
+			System.out.println("Scelta non consentita!");
+			MainDispatcher.getInstance().callView(sub_package+"DatoUser", null);
 		}
 	}
 }

@@ -9,6 +9,7 @@ import it.contrader.model.Dato;
 public class DatoDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM dato";
+	private final String QUERY_ALL_BY_USER = "SELECT * FROM dato WHERE id_utente=?";
 	private final String QUERY_CREATE = "INSERT INTO dato (id_utente, id_area, id_tag, valore) VALUES (?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM dato WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE dato SET id_utente=?, id_area=?, id_tag=?, valore=? WHERE id=?";
@@ -18,12 +19,13 @@ public class DatoDAO {
 
 	}
 
-	public List<Dato> getAll() {
+	public List<Dato> getAll(int user) {
 		List<Dato> datiList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
+			PreparedStatement statement = (PreparedStatement)connection.prepareStatement(QUERY_ALL_BY_USER);
+			statement.setInt(1,user);
+			ResultSet resultSet = statement.executeQuery();
 			Dato dato;
 			while (resultSet.next()) {
 				int id = resultSet.getInt("id");
@@ -62,7 +64,7 @@ public class DatoDAO {
 		try {
 
 
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
+			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_READ);
 			preparedStatement.setInt(1, id);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();

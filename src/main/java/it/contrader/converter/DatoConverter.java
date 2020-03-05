@@ -3,6 +3,7 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.contrader.controller.Request;
 import it.contrader.dto.DatoDTO;
 import it.contrader.model.Dato;
 
@@ -21,26 +22,33 @@ public class DatoConverter   {
 	 * Crea un oggetto di tipo Dato e lo riempie con i campi del parametro dato di tipo DatoDTO.
 	 */
 	public Dato toEntity(DatoDTO datoDTO,Integer tag,Integer area) {
-		Dato dato = new Dato(datoDTO.getId(), datoDTO.getUtente(), area, tag, datoDTO.getValore());
+		Dato dato = new Dato(datoDTO.getId(),datoDTO.getUtente(), area, tag, datoDTO.getValore());
 		return dato;
 	}
 	
 	/**
 	 * Metodo per convertire le liste di User.
-	 *
-	public List<DatoDTO> toDTOList(List<Dato> datoList) {
+	 */
+	public List<DatoDTO> toDTOList(Request request) {
+		
 		//Crea una lista vuota.
-		List<DatoDTO> datoDTOList = new ArrayList<DatoDTO>();
+		List<DatoDTO> datoDTOList = new ArrayList<>();
+		List<Dato> datoList = (List<Dato>) request.get("model");
+		List<String> areaList = (List<String>) request.get("area");
+		List<String> tagList = (List<String>) request.get("tag");
+		int index =0;
 		
 		//Cicla tutti gli elementi della lista e li converte uno a uno
 		for(Dato dato : datoList) {
 			//Utilizza il metodo toDTO per convertire ogni singolo elemento della lista
 			//e lo aggiunge adda lista di DTO
-			datoDTOList.add(toDTO(dato));
+			
+			datoDTOList.add(toDTO(dato,areaList.get(index).toString(),tagList.get(index).toString()));
+			index++;
 		}
 		return datoDTOList;
 	}
-	*/
+	
 
 			
 }

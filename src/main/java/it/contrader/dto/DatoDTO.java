@@ -40,7 +40,7 @@ public class DatoDTO {
 	/**
 	 * Getter e Setter: servono alle altre classi a recuperare e modificare gli attributi di Dato
 	 */
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 	public void setId(int id) {
@@ -83,7 +83,7 @@ public class DatoDTO {
 	//Trasforma un oggetto in una stringa
 	@Override
 	public String toString() {
-		return "id: " + id + "\t idUtente: "  + idUtente +"\t\t idArea: " +   area + "\t\t idTag: " + tag + "\t\t Valore: " + valore;
+		return "id: " + id +"\t\t idUtente: " + idUtente +"\t\t idArea: " +   area + "\t\t idTag: " + tag + "\t\t Valore: " + valore;
 	}
 
 	

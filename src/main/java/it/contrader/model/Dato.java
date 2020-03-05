@@ -29,7 +29,7 @@ public class Dato {
 		this.valore = valore;
 	}
 
-	public Dato (int id, int idutente, int idarea, int idtag, float valore) {
+	public Dato (Integer id, int idutente, int idarea, int idtag, float valore) {
 		this.id = id;
 		this.idUtente = idutente;
 		this.idArea = idarea;
