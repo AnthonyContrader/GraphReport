@@ -31,6 +31,7 @@ public class UserTagView extends AbstractView{
 
 	@Override
 	public void showOptions() {
+		System.out.println("\n-------------MENU UTENTE------------\n");
 		System.out.println("          Scegli l'operazione da effettuare:");
 		System.out.println("[D]isponibili [I]nserisci [B]ack [E]sci");
 		this.choice = getInput();
