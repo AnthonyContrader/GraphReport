@@ -52,12 +52,14 @@ public class UtenteController implements Controller {
 		String email;
 		String citta;
 		String nazione;
+		int iduser;
 
 		switch (mode) {
 		
 		// Arriva qui dalla UserReadView. Invoca il Service con il parametro id e invia alla UserReadView uno user da mostrare 
 		case "READ":
 			id = Integer.parseInt(request.get("id").toString());
+			iduser = Integer.parseInt(request.get("iduser").toString());
 			UtenteDTO utenteDTO = utenteService.read(id);
 			request.put("utente", utenteDTO);
 			MainDispatcher.getInstance().callView(sub_package + "UtenteRead", request);
@@ -70,9 +72,9 @@ public class UtenteController implements Controller {
 			email = request.get("email").toString();
 			citta = request.get("citta").toString();
 			nazione = request.get("nazione").toString();
-			
+			iduser = Integer.parseInt(request.get("iduser").toString());		
 			//costruisce l'oggetto user da inserire
-			UtenteDTO utentetoinsert = new UtenteDTO(nome,cognome,email,citta,nazione);
+			UtenteDTO utentetoinsert = new UtenteDTO(nome,cognome,email,citta,nazione,iduser);
 			//invoca il service
 			utenteService.insert(utentetoinsert);
 			request = new Request();
@@ -99,7 +101,9 @@ public class UtenteController implements Controller {
 			email = request.get("email").toString();
 			citta = request.get("citta").toString();
 			nazione = request.get("nazione").toString();
-			UtenteDTO utentetoupdate = new UtenteDTO(nome,cognome,email,citta,nazione);
+			iduser = Integer.parseInt(request.get("iduser").toString());		
+
+			UtenteDTO utentetoupdate = new UtenteDTO(nome,cognome,email,citta,nazione,iduser);
 			utentetoupdate.setId(id);
 			utenteService.update(utentetoupdate);
 			request = new Request();

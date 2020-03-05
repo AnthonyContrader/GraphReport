@@ -18,7 +18,7 @@ public class UtenteConverter   {
 	 * Notare l'uso del metodo get() per ottenere il valore dell'attributo-
 	 */
 	public UtenteDTO toDTO(Utente utente) {
-		UtenteDTO utenteDTO = new UtenteDTO(utente.getId(), utente.getNome(), utente.getCognome(), utente.getEmail(),utente.getCitta(),utente.getNazione());
+		UtenteDTO utenteDTO = new UtenteDTO(utente.getId(), utente.getNome(), utente.getCognome(), utente.getEmail(),utente.getCitta(),utente.getNazione(),utente.getIdUser());
 		return utenteDTO;
 	}
 
@@ -27,7 +27,7 @@ public class UtenteConverter   {
 	 * Notare l'uso del metodo get() per ottenere il valore dell'attributo-
 	 */
 	public Utente toEntity(UtenteDTO utenteDTO) {
-		Utente utente = new Utente(utenteDTO.getId(), utenteDTO.getNome(), utenteDTO.getCognome(), utenteDTO.getEmail(),utenteDTO.getCitta(),utenteDTO.getNazione());
+		Utente utente = new Utente(utenteDTO.getId(), utenteDTO.getNome(), utenteDTO.getCognome(), utenteDTO.getEmail(),utenteDTO.getCitta(),utenteDTO.getNazione(),utenteDTO.getIdUser());
 		return utente;
 	}
 	
