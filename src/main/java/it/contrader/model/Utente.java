@@ -25,7 +25,7 @@ public class Utente {
 	 * Definisco i due costruttori, uno vuoto e uno con sei parametri per costrire oggetti di tipo User
 	 */
 	public Utente() {
-		
+		id=null;
 	}
 
 	public Utente (String nome, String cognome, String email, String citta, String nazione, int iduser) {
@@ -50,10 +50,10 @@ public class Utente {
 	/**
 	 * Getter e Setter: servono alle altre classi a recuperare e modificare gli attributi di User
 	 */
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

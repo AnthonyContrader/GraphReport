@@ -1,23 +1,16 @@
 package it.contrader.view;
-
 import java.util.List;
 import it.contrader.controller.Request;
 import it.contrader.dto.UtenteDTO;
 import it.contrader.main.MainDispatcher;
 
+public class AdminUtenteView extends AbstractView {
 
-/**
- * 
- * @author Vittorio
- *
- * Si osservi che alla View arrivano solo oggetti di tipo DTO!
- */
-public class UtenteView extends AbstractView {
 
 	private Request request;
 	private String choice;
 
-	public UtenteView() {
+	public AdminUtenteView() {
 		
 	}
 
@@ -27,7 +20,7 @@ public class UtenteView extends AbstractView {
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
-			System.out.println("\n------------------- Gestione profilo utente ----------------\n");
+			System.out.println("\n------------------- Visualizza profilo utente ----------------\n");
 			System.out.println("ID\tNome\tCognome\tEmail\\tCitta\\tNazione\\tIdUser");
 			System.out.println("----------------------------------------------------\n");
 			
@@ -44,13 +37,15 @@ public class UtenteView extends AbstractView {
 	 * Mette la modalità GETCHOICE nella mode.
 	 */
 	@Override
-	public void showOptions() {
-		System.out.println("------------------Personal Info----------------:");
-		System.out.println("          Scegli l'operazione da effettuare:");
-		System.out.println("[L]eggi [I]nserisci [M]odifica [C]ancella [B]ack [E]sci");
+	public void showOptions(){
+		System.out.println("---------MENU ANAGRAFICA UTENTI ADMIN----------:");
+		System.out.println("       Scegli l'operazione da effettuare:");
+		System.out.println("       [L]eggi [C]ancella [B]ack [E]sci");
 
 		this.choice = getInput();
-		
+		if(this.choice.equalsIgnoreCase("B")) {
+			this.choice = "X";
+		}
 	}
 	
 	/**
@@ -61,7 +56,7 @@ public class UtenteView extends AbstractView {
 		request = new Request();
 		request.put("choice", choice);
 		request.put("mode", "GETCHOICE");
-		this.request.put("usertype", "");
+		this.request.put("usertype", "Admin");
 		MainDispatcher.getInstance().callAction("Utente", "doControl", this.request);
 	}
 

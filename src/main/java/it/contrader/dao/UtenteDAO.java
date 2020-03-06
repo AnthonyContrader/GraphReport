@@ -88,10 +88,9 @@ public class UtenteDAO {
 			iduser = resultSet.getInt("iduser");
 			Utente utente = new Utente(nome, cognome, email, citta, nazione, iduser);
 			utente.setId(resultSet.getInt("id"));
-
 			return utente;
 		} catch (SQLException e) {
-			return null;
+			return new Utente();
 		}
 
 	}

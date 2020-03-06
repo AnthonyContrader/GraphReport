@@ -102,7 +102,6 @@ public class UtenteController implements Controller {
 			citta = request.get("citta").toString();
 			nazione = request.get("nazione").toString();
 			UtenteDTO utentetoupdate = new UtenteDTO(nome,cognome,email,citta,nazione,iduser);
-			
 			utenteService.update(utentetoupdate);
 			
 			request = new Request();
@@ -152,13 +151,18 @@ public class UtenteController implements Controller {
 			case "B":
 				MainDispatcher.getInstance().callView("HomeUser", null);
 				break;
-				
+			case "X":
+				MainDispatcher.getInstance().callView("HomeAdmin", null);
+				break;
+			case "ADMIN":
+				MainDispatcher.getInstance().callView("AdminUtente", null);
+				break;
 			default:
-				MainDispatcher.getInstance().callView("Login", null);
+				MainDispatcher.getInstance().callView(request.get("usertype")+"Utente", null);
 			}
 			
 		default:
-			MainDispatcher.getInstance().callView("Login", null);
+			MainDispatcher.getInstance().callView(request.get("usertype")+"Utente", null);
 		}
 	}
 }

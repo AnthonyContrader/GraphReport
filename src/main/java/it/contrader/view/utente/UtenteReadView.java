@@ -33,8 +33,12 @@ public class UtenteReadView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			UtenteDTO utente = (UtenteDTO) request.get("utente");
-			System.out.println(utente);
-			MainDispatcher.getInstance().callView("Utente", null);
+			if(utente.getId()==null)
+				System.out.println("\n le informazioni dell'utente non sono presenti \n");
+			else
+				System.out.println(utente);
+			MainDispatcher.getInstance().callView(request.get("usertype").toString()+"Utente", null);
+			//nella view per aggiungere il tipo utente +request.get("usertype").toString()
 		}
 	}
 
