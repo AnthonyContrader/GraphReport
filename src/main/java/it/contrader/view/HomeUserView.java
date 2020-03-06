@@ -59,7 +59,7 @@ public class HomeUserView extends AbstractView{
 
 		default:
 			System.out.println("Scelta non consentita!");
-			MainDispatcher.getInstance().callAction("Login", "doControl", null);
+			MainDispatcher.getInstance().callView("HomeUser", null);
 		}
 	}
 
