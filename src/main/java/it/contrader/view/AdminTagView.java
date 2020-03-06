@@ -37,9 +37,9 @@ public class AdminTagView extends AbstractView{
 		System.out.println("----------MENU TAG ADMIN----------:");
 		System.out.println("            Scegli l'operazione da effettuare:");
 		System.out.println("[D]isponibili [I]nserisci [M]odifica [C]ancella [B]ack [E]sci");
-		this.choice = getInput();
-		if(this.choice.equalsIgnoreCase("B")) {
-			this.choice = "H";
+		choice = getInput();
+		if(choice.equalsIgnoreCase("B")) {
+			choice = "H";
 		}
 	}
 

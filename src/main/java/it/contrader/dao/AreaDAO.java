@@ -115,7 +115,7 @@ public class AreaDAO {
 				// Update the area
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, areaToUpdate.getNome());
-				preparedStatement.setInt(4, areaToUpdate.getId());
+				preparedStatement.setInt(2, areaToUpdate.getId());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;

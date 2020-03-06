@@ -26,9 +26,9 @@ public class TagUpdateView extends AbstractView{
 	@Override
 	public void showOptions() {
 		try {
-			System.out.println("Inserisci id dell'utente:");
+			System.out.println("Inserisci id del Tag:");
 			id = Integer.parseInt(getInput());
-			System.out.println("Inserisci username dell'utente:");
+			System.out.println("Inserisci il nome del Tag:");
 			nome = getInput();
 		} catch (Exception e) {
 
@@ -39,7 +39,7 @@ public class TagUpdateView extends AbstractView{
 	public void submit() {
 		request = new Request();
 		request.put("id", id);
-		request.put("username", nome);
+		request.put("nome", nome);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Tag", "doControl", request);
 	}

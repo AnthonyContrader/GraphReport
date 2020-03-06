@@ -42,7 +42,7 @@ public class UserTagView extends AbstractView{
 		request = new Request();
 		request.put("choice", choice);
 		request.put("mode", "GETCHOICE");
-		this.request.put("usertype", "User");
+		request.put("usertype", "User");
 		MainDispatcher.getInstance().callAction("Tag", "doControl", this.request);
 	}
 }
