@@ -28,7 +28,7 @@ public class UserView extends AbstractView {
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
-			System.out.println("\n------------------- Gestione utenti ----------------\n");
+			System.out.println("\n----------------- Gestione utenti ------------------\n");
 			System.out.println("ID\tUsername\tPassword\tTipo Utente");
 			System.out.println("----------------------------------------------------\n");
 			
@@ -46,6 +46,7 @@ public class UserView extends AbstractView {
 	 */
 	@Override
 	public void showOptions() {
+		System.out.println("-------------------------------------------------------------");
 		System.out.println("          Scegli l'operazione da effettuare:");
 		System.out.println("[L]eggi [I]nserisci [M]odifica [C]ancella [B]ack [E]sci");
 
