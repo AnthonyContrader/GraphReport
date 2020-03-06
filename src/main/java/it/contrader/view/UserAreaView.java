@@ -60,8 +60,9 @@ public class UserAreaView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("choice", choice);
-		request.put("mode", "GETCHOICE");
+		this.request.put("choice", choice);
+		this.request.put("mode", "GETCHOICE");
+		this.request.put("usertype", "User");
 		MainDispatcher.getInstance().callAction("Area", "doControl", this.request);
 	}
 

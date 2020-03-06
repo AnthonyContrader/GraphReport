@@ -108,6 +108,10 @@ public class AreaController implements Controller {
 					//toUpperCase() mette in maiuscolo la scelta
 			switch (choice.toUpperCase()) {
 			
+			case "ADMIN":
+				MainDispatcher.getInstance().callView("AdminArea", null);
+				break;
+			
 			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "AreaRead", null);
 				break;
@@ -132,12 +136,17 @@ public class AreaController implements Controller {
 				MainDispatcher.getInstance().callView("HomeUser", null);
 				break;
 				
+			case "H":
+				MainDispatcher.getInstance().callView("HomeAdmin", null);
+				break;
+				
 			default:
-				MainDispatcher.getInstance().callView("UserArea", null);
+				System.out.println("Scelta non consentita!");
+				MainDispatcher.getInstance().callView(request.get("usertype").toString()+"Area", null);
 			}
 			
 		default:
-			MainDispatcher.getInstance().callView("UserArea", null);
+			MainDispatcher.getInstance().callView(request.get("usertype").toString()+"Area", null);
 		}
 	}
 }
