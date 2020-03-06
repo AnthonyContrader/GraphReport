@@ -21,7 +21,7 @@ public class UtenteDeleteView extends AbstractView {
 	public void showResults(Request request) {
 		if (request!=null) {
 			System.out.println("Cancellazione andata a buon fine.\n");
-			MainDispatcher.getInstance().callView("Utente", null);
+			MainDispatcher.getInstance().callView(request.get("usertype").toString()+"Utente", null);
 		}
 	}
 
