@@ -164,7 +164,6 @@ public class DatoController implements Controller {
 			}
 			
 		default:
-			System.out.println("\nErrore imprevisto!\n");
 			MainDispatcher.getInstance().callView(sub_package+"Dato"+request.get("usertype").toString(), null);
 		}
 		

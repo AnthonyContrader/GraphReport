@@ -43,7 +43,7 @@ public class UserUpdateView extends AbstractView {
 			System.out.println("Inserisci password dell'utente:");
 			password = getInput();
 			System.out.println("Inserisci tipo dell'utente:");
-			usertype = getInput();
+			usertype = getInput().toString().toUpperCase();
 		} catch (Exception e) {
 
 		}
