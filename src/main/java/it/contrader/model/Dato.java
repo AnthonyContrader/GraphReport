@@ -19,7 +19,7 @@ public class Dato {
 	 * Definisco i due costruttori, uno vuoto e uno con tre parametri per costrire oggetti di tipo Dato
 	 */
 	public Dato() {
-		
+		this.id=null;
 	}
 
 	public Dato (int idutente, int idarea, int idtag, float valore) {
