@@ -31,9 +31,12 @@ public class DatoReadAllView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			List<DatoDTO> dati = (List<DatoDTO>) request.get("dato");
-			for(DatoDTO dato : dati) {
-				System.out.println(dato);
-			}
+			if(dati.size()>0) {
+				for(DatoDTO dato : dati) {
+					System.out.println(dato);
+				}
+			}else 
+				System.out.println("\nNon sono presenti DataSet!\n");
 			MainDispatcher.getInstance().callView("dato.DatoAdmin", null);
 		}
 	}

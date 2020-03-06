@@ -37,7 +37,7 @@ public class DatoDAO {
 				datiList.add(dato);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 		return datiList;
 	}
@@ -61,7 +61,7 @@ public class DatoDAO {
 				datiList.add(dato);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 		return datiList;
 	}
@@ -103,7 +103,7 @@ public class DatoDAO {
 
 			return dato;
 		} catch (SQLException e) {
-			return null;
+			return new Dato();
 		}
 
 	}
