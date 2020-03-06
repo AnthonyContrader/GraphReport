@@ -1,7 +1,6 @@
 package it.contrader.main;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;

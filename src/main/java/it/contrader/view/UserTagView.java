@@ -17,7 +17,7 @@ public class UserTagView extends AbstractView{
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
-			System.out.println("\n------------------- TAG ----------------\n");
+			System.out.println("\n------------------- GESTIONE TAG ----------------\n");
 			System.out.println("ID\tNome TAG");
 			System.out.println("----------------------------------------------------\n");
 			
@@ -42,6 +42,7 @@ public class UserTagView extends AbstractView{
 		request = new Request();
 		request.put("choice", choice);
 		request.put("mode", "GETCHOICE");
+		this.request.put("usertype", "User");
 		MainDispatcher.getInstance().callAction("Tag", "doControl", this.request);
 	}
 }
