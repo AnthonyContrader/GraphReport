@@ -17,6 +17,7 @@ public class DatoController implements Controller {
 	private static String sub_package = "dato.";
 	
 	private DatoService datoService;
+	
 	/**
 	 * Costruisce un oggetto di tipo DatoService per poterne usare i metodi
 	 */
@@ -54,9 +55,15 @@ public class DatoController implements Controller {
 		// Arriva qui dalla DatoReadView. Invoca il Service con il parametro id e invia alla DatoReadView uno user da mostrare 
 		case "READ":
 			utente = Integer.parseInt(request.get("idUtente").toString());
-			List<DatoDTO> datoDTO = datoService.getAll(utente);
+			List<DatoDTO> datoDTO = datoService.getAllByUtente(utente);
 			request.put("dato", datoDTO);
 			MainDispatcher.getInstance().callView(sub_package + "DatoRead", request);
+			break;
+			
+		case "READALL":
+			List<DatoDTO> datiDTO = datoService.getAll();
+			request.put("dato", datiDTO);
+			MainDispatcher.getInstance().callView(sub_package + "DatoReadAll", request);
 			break;
 		
 		// Arriva qui dalla DatoInsertView. Estrae i parametri da inserire e chiama il service per inserire un dato con questi parametri
@@ -115,7 +122,10 @@ public class DatoController implements Controller {
 					
 					//toUpperCase() mette in maiuscolo la scelta
 			switch (choice.toUpperCase()) {
-			
+			case "ADMIN":
+				MainDispatcher.getInstance().callView(sub_package + "DatoAdmin", null);
+				break;
+				
 			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "DatoUser", null);
 				break;
@@ -126,6 +136,10 @@ public class DatoController implements Controller {
 				
 			case "L":
 				MainDispatcher.getInstance().callView(sub_package + "DatoRead", null);
+				break;
+				
+			case "T":
+				MainDispatcher.getInstance().callView(sub_package + "DatoReadAll", null);
 				break;
 				
 			case "M":
@@ -141,16 +155,17 @@ public class DatoController implements Controller {
 				break;
 
 			case "B":
-				MainDispatcher.getInstance().callView("HomeUser", null);
+				MainDispatcher.getInstance().callView("Home"+request.get("usertype").toString(), null);
 				break;
 				
 			default:
-				MainDispatcher.getInstance().callView("HomeUser", null);
+				System.out.println("Scelta non consentita!");
+				MainDispatcher.getInstance().callView(sub_package+"Dato"+request.get("usertype").toString(), null);
 			}
 			
 		default:
-			System.out.println("Scelta non consentita!");
-			MainDispatcher.getInstance().callView(sub_package+"DatoUser", null);
+			MainDispatcher.getInstance().callView(sub_package+"Dato"+request.get("usertype").toString(), null);
 		}
+		
 	}
 }

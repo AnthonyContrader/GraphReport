@@ -26,13 +26,35 @@ public class DatoService {
 	}
 	
 
-	public List<DatoDTO> getAll(int idUtente) {
+	public List<DatoDTO> getAllByUtente(int idUtente) {
 		// Ottiene una lista di entità e le restituisce convertendole in DTO
 		Request request = new Request();
 		AreaService areaService = new AreaService();
 		TagService tagService = new TagService();
 		
-		List<Dato> listaDato = datoDAO.getAll(idUtente);
+		List<Dato> listaDato = datoDAO.getAllByUtente(idUtente);
+		
+		List<String> area = new ArrayList<>(), tag = new ArrayList<>();
+		
+		for(Dato dato : listaDato) {
+			area.add(areaService.read(dato.getIdArea()).getNome());
+			tag.add(tagService.read(dato.getIdTag()).getNomeTag());
+		}
+
+		request.put("model", listaDato);
+		request.put("area", area);
+		request.put("tag", tag);
+		
+		return datoConverter.toDTOList(request);
+	}
+
+	public List<DatoDTO> getAll() {
+		// Ottiene una lista di entità e le restituisce convertendole in DTO
+		Request request = new Request();
+		AreaService areaService = new AreaService();
+		TagService tagService = new TagService();
+		
+		List<Dato> listaDato = datoDAO.getAll();
 		
 		List<String> area = new ArrayList<>(), tag = new ArrayList<>();
 		

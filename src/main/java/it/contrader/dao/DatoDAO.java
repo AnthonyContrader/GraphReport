@@ -8,7 +8,7 @@ import it.contrader.model.Dato;
 
 public class DatoDAO {
 
-	private final String QUERY_ALL = "SELECT * FROM dato";
+	private final String QUERY_ALL = "SELECT * FROM dato ORDER BY id_utente";
 	private final String QUERY_ALL_BY_USER = "SELECT * FROM dato WHERE id_utente=?";
 	private final String QUERY_CREATE = "INSERT INTO dato (id_utente, id_area, id_tag, valore) VALUES (?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM dato WHERE id=?";
@@ -19,7 +19,30 @@ public class DatoDAO {
 
 	}
 
-	public List<Dato> getAll(int user) {
+	public List<Dato> getAll() {
+		List<Dato> datiList = new ArrayList<>();
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
+			Dato dato;
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				int idUtente = resultSet.getInt("id_utente");
+				int idArea = resultSet.getInt("id_area");
+				int idTag = resultSet.getInt("id_tag");
+				float valore = resultSet.getFloat("valore");
+				dato = new Dato(id, idUtente, idArea, idTag, valore);
+				dato.setId(id);
+				datiList.add(dato);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datiList;
+	}
+	
+	public List<Dato> getAllByUtente(int user) {
 		List<Dato> datiList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {

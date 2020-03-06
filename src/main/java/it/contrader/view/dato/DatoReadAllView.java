@@ -10,13 +10,13 @@ import java.util.List;
 /**
  *Si osservi che alla View arrivano solo oggetti di tipo DTO!
  */
-public class DatoReadView extends AbstractView {
+public class DatoReadAllView extends AbstractView {
 
 	private int idUtente;
 	private Request request;
-	private final String mode = "READ";
+	private final String mode = "READALL";
 
-	public DatoReadView() {
+	public DatoReadAllView() {
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class DatoReadView extends AbstractView {
 			for(DatoDTO dato : dati) {
 				System.out.println(dato);
 			}
-			MainDispatcher.getInstance().callView("dato.Dato"+request.get("usertype").toString(), null);
+			MainDispatcher.getInstance().callView("dato.DatoAdmin", null);
 		}
 	}
 
@@ -44,8 +44,6 @@ public class DatoReadView extends AbstractView {
 	 */
 	@Override
 	public void showOptions() {
-		System.out.println("Inserisci l'ID dell'utente:");
-		idUtente = Integer.parseInt(getInput());
 	}
 
 	/**
@@ -54,7 +52,6 @@ public class DatoReadView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idUtente", idUtente);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 	}

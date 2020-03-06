@@ -5,7 +5,7 @@ import it.contrader.controller.Request;
 import it.contrader.view.AbstractView;
 import it.contrader.main.MainDispatcher;
 
-public class DatoUserView extends AbstractView{
+public class DatoAdminView extends AbstractView{
 
 	private String choice;
 	
@@ -18,8 +18,8 @@ public class DatoUserView extends AbstractView{
 
 	@Override
 	public void showOptions() {
-		System.out.println("-------------MENU DATASET------------\n");
-		System.out.println("[L]Leggi [N]Aggiungi nuovo set [M]Modifica  [C]Cancella ");
+		System.out.println("-------------MENU DATASET ADMIN------------\n");
+		System.out.println("[T]Visualizza Tutti [U]Visualizza per Utente");
 		System.out.println("[B]Back [E]Esci");
 		
 		choice = this.getInput();
@@ -32,26 +32,18 @@ public class DatoUserView extends AbstractView{
 		request = new Request();
 		
 		this.request.put("choice", choice);
-		this.request.put("usertype", "User");
+		this.request.put("usertype", "Admin");
+		
 		
 		switch (choice) {
 		
-		case "l":
+		case "t":
 			this.request.put("mode", "GETCHOICE");
 			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 			break;
 			
-		case "n":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-		
-		case "m":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "c":
+		case "u":
+			this.request.put("choice", "l");
 			this.request.put("mode", "GETCHOICE");
 			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 			break;
@@ -68,7 +60,7 @@ public class DatoUserView extends AbstractView{
 		
 
 		default:
-			MainDispatcher.getInstance().callAction("Dato", "doControl", null);
+			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 		}
 	}
 
