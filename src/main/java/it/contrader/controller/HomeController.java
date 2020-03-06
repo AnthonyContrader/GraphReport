@@ -26,21 +26,27 @@ public class HomeController implements Controller {
 			// Qui invoca il Login Service
 			String usertype= loginService.login(username, password);
 			
-			// Reindirizza alla giusta view in base allo usertype
-			switch(usertype) {
-			
-			case "ADMIN":
-				MainDispatcher.getInstance().callView("HomeAdmin", request);
-				break;
+			if(usertype!=null) {
+				// Reindirizza alla giusta view in base allo usertype
+				switch(usertype) {
 				
-			case "USER": 
-				MainDispatcher.getInstance().callView("HomeUser", request);
-				break;
-			
-			default:
-				 MainDispatcher.getInstance().callView("Login", null);
-				 break;
+				case "ADMIN":
+					MainDispatcher.getInstance().callView("HomeAdmin", request);
+					break;
+					
+				case "USER": 
+					MainDispatcher.getInstance().callView("HomeUser", request);
+					break;
+				
+				default:
+					 MainDispatcher.getInstance().callView("Login", null);
+					 break;
+				}
+			}else{
+				System.out.println("\nAccount inesistente! \n");
+				MainDispatcher.getInstance().callView("Login", null);
 			}
+				
 		}
 		else MainDispatcher.getInstance().callView("Login", null);
 

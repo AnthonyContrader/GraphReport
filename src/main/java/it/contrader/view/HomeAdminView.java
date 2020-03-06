@@ -80,7 +80,7 @@ public class HomeAdminView extends AbstractView {
         	break;
         default:
         	
-            System.out.println("Scelta non consentita!");
+            System.out.println("\nScelta non consentita!\n");
         	MainDispatcher.getInstance().callView("HomeAdmin", null);
         }
     }

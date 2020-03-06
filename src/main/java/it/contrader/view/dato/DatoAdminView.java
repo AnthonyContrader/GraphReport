@@ -23,6 +23,8 @@ public class DatoAdminView extends AbstractView{
 		System.out.println("[B]Back [E]Esci");
 		
 		choice = this.getInput();
+		
+		
 
 	}
 
@@ -31,37 +33,16 @@ public class DatoAdminView extends AbstractView{
 		
 		request = new Request();
 		
-		this.request.put("choice", choice);
-		this.request.put("usertype", "Admin");
-		
-		
-		switch (choice) {
-		
-		case "t":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "u":
+		if(this.choice.equalsIgnoreCase("u"))
 			this.request.put("choice", "l");
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "b":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "e":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Login", "doControl", request);
-			break;
+		else
+			this.request.put("choice", this.choice);
 		
-
-		default:
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-		}
+		this.request.put("usertype", "Admin");
+		this.request.put("mode", "GETCHOICE");
+		
+		MainDispatcher.getInstance().callAction("Dato", "doControl", request);
+	
 	}
 
 }

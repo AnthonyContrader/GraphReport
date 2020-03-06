@@ -159,11 +159,12 @@ public class DatoController implements Controller {
 				break;
 				
 			default:
-				System.out.println("Scelta non consentita!");
+				System.out.println("\nScelta non consentita!\n");
 				MainDispatcher.getInstance().callView(sub_package+"Dato"+request.get("usertype").toString(), null);
 			}
 			
 		default:
+			System.out.println("\nErrore imprevisto!\n");
 			MainDispatcher.getInstance().callView(sub_package+"Dato"+request.get("usertype").toString(), null);
 		}
 		
