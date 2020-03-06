@@ -64,6 +64,9 @@ public class TagController implements Controller {
 				case "ADMIN":
 					MainDispatcher.getInstance().callView("AdminTag", null);
 					break;
+				case "T" :
+					MainDispatcher.getInstance().callView("UserTag", null);
+					break;
 				case "D":
 					MainDispatcher.getInstance().callView(sub_package + "TagRead", null);
 					break;
