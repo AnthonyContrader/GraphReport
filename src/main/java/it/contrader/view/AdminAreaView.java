@@ -45,11 +45,17 @@ public class AdminAreaView extends AbstractView {
 	 */
 	@Override
 	public void showOptions() {
-		System.out.println("          Scegli l'operazione da effettuare:");
-		System.out.println("[L]eggi [I]nserisci [M]odifica [C]ancella [B]ack [E]sci");
+		System.out.println("----------MENU AREE ADMIN----------:");
+		System.out.println(" Scegli l'operazione da effettuare:");
+		System.out.println("[D]isponibili [I]nserisci [M]odifica [C]ancella [B]ack [E]sci");
 
 		this.choice = getInput();
-
+		
+		if(this.choice.equalsIgnoreCase("B")) {
+			this.choice = "H";
+		}
+		
+				
 		
 	}
 	
@@ -58,10 +64,11 @@ public class AdminAreaView extends AbstractView {
 	 */
 	@Override
 	public void submit() {
-		request = new Request();
-		request.put("choice", choice);
-		request.put("mode", "GETCHOICE");
-		MainDispatcher.getInstance().callAction("Admin", "doControl", this.request);
+		this.request = new Request();
+		this.request.put("choice", choice);
+		this.request.put("mode", "GETCHOICE");
+		this.request.put("usertype", "Admin");
+		MainDispatcher.getInstance().callAction("Area", "doControl", this.request);
 	}
 
 }

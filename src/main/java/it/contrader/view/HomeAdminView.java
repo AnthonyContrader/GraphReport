@@ -32,7 +32,7 @@ public class HomeAdminView extends AbstractView {
      * Chiede all'utente di effettuare una scelta (da console)
      */
     public void showOptions() {
-        System.out.println("-------------MENU ADMIN------------\n");
+        System.out.println("-------------MENU ADMIN------------:");
         System.out.println(" Seleziona cosa vuoi gestire:");
         System.out.println("[U]tenti [I]Info Utenti [A]Gestione Aree");
         System.out.println("[T]Gestione Tag [D]Gestione DataSet [E]sci");
