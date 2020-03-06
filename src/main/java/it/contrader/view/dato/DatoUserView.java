@@ -33,43 +33,10 @@ public class DatoUserView extends AbstractView{
 		
 		this.request.put("choice", choice);
 		this.request.put("usertype", "User");
+		this.request.put("mode", "GETCHOICE");
 		
-		switch (choice) {
+		MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 		
-		case "l":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "n":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-		
-		case "m":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "c":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "b":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-			break;
-			
-		case "e":
-			this.request.put("mode", "GETCHOICE");
-			MainDispatcher.getInstance().callAction("Login", "doControl", request);
-			break;
-		
-
-		default:
-			MainDispatcher.getInstance().callAction("Dato", "doControl", null);
-		}
 	}
 
 }

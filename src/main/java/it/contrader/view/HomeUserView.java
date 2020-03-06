@@ -31,29 +31,29 @@ public class HomeUserView extends AbstractView{
 		
 		this.request.put("choice", choice);
 		
-		switch (choice) {
+		switch (choice.toUpperCase()) {
 		
-		case "a":
+		case "A":
 			this.request.put("mode", "GETCHOICE");
         	MainDispatcher.getInstance().callAction("Area", "doControl", request);
 			break;
 			
-		case "t":
+		case "T":
 			this.request.put("mode", "GETCHOICE");
         	MainDispatcher.getInstance().callAction("Tag", "doControl", request);
 			break;
 		
-		case "d":
+		case "D":
 			this.request.put("mode", "GETCHOICE");
         	MainDispatcher.getInstance().callAction("Dato", "doControl", request);
 			break;
 			
-		case "p":
+		case "P":
 			this.request.put("mode", "GETCHOICE");
         	MainDispatcher.getInstance().callAction("Utente", "doControl", request);
 			break;
 
-		case "e":
+		case "E":
 			MainDispatcher.getInstance().callAction("Login", "doControl", null);
 			break;
 
