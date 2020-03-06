@@ -78,7 +78,7 @@ public class HomeAdminView extends AbstractView {
         case "E":
         	MainDispatcher.getInstance().callAction("Login", "doControl", null);
         	break;
-        default:
+        default: case "ADMIN":
         	
             System.out.println("\nScelta non consentita!\n");
         	MainDispatcher.getInstance().callView("HomeAdmin", null);

@@ -53,11 +53,11 @@ public class HomeUserView extends AbstractView{
         	MainDispatcher.getInstance().callAction("Utente", "doControl", request);
 			break;
 
-		case "E":
+		case "E": 
 			MainDispatcher.getInstance().callAction("Login", "doControl", null);
 			break;
 
-		default:
+		default: case "ADMIN": 
 			System.out.println("\nScelta non consentita!\n");
 			MainDispatcher.getInstance().callView("HomeUser", null);
 		}
