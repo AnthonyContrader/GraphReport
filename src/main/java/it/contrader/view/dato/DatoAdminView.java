@@ -33,19 +33,18 @@ public class DatoAdminView extends AbstractView{
 		
 		request = new Request();
 		
-		if(this.choice.equalsIgnoreCase("u"))
-			this.request.put("choice", "l");
-		else
-			this.request.put("choice", this.choice);
-		
-		this.request.put("usertype", "Admin");
-		this.request.put("mode", "GETCHOICE");
-		
-		if(this.choice.equalsIgnoreCase("T") || this.choice.equalsIgnoreCase("U") || this.choice.equalsIgnoreCase("B") || this.choice.equalsIgnoreCase("E"))
+		if(this.choice.equalsIgnoreCase("T") || this.choice.equalsIgnoreCase("U") || this.choice.equalsIgnoreCase("B") || this.choice.equalsIgnoreCase("E")) {
+			if(this.choice.equalsIgnoreCase("u"))
+				this.request.put("choice", "l");
+			else
+				this.request.put("choice", this.choice);
+			
+			this.request.put("usertype", "Admin");
+			this.request.put("mode", "GETCHOICE");
 			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-		else {
+		}else {
 			System.out.println("\nScelta non consentita!\n");
-			MainDispatcher.getInstance().callView("DatoAdmin", null);
+			MainDispatcher.getInstance().callView("dato.DatoAdmin", null);
 		}
 	
 	}

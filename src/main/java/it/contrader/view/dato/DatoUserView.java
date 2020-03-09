@@ -31,15 +31,14 @@ public class DatoUserView extends AbstractView{
 		
 		request = new Request();
 		
-		this.request.put("choice", choice);
-		this.request.put("usertype", "User");
-		this.request.put("mode", "GETCHOICE");
-		
-		if(this.choice.equalsIgnoreCase("T") || this.choice.equalsIgnoreCase("U") || this.choice.equalsIgnoreCase("B") || this.choice.equalsIgnoreCase("E"))
+		if(this.choice.equalsIgnoreCase("L") || this.choice.equalsIgnoreCase("N") || this.choice.equalsIgnoreCase("M") || this.choice.equalsIgnoreCase("C") || this.choice.equalsIgnoreCase("B") || this.choice.equalsIgnoreCase("E")) {
+			this.request.put("choice", choice);
+			this.request.put("usertype", "User");
+			this.request.put("mode", "GETCHOICE");
 			MainDispatcher.getInstance().callAction("Dato", "doControl", request);
-		else {
+		}else {
 			System.out.println("\nScelta non consentita!\n");
-			MainDispatcher.getInstance().callView("DatoUser", null);
+			MainDispatcher.getInstance().callView("dato.DatoUser", null);
 			}
 		
 	}
