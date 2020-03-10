@@ -43,8 +43,14 @@ public class AdminUtenteView extends AbstractView {
 		System.out.println("       [L]eggi [C]ancella [B]ack [E]sci");
 
 		this.choice = getInput();
-		if(this.choice.equalsIgnoreCase("B")) {
-			this.choice = "X";
+		if(this.choice.equalsIgnoreCase("ADMIN") || this.choice.equalsIgnoreCase("I") || this.choice.equalsIgnoreCase("M")
+				|| this.choice.equalsIgnoreCase("P") || this.choice.equalsIgnoreCase("X")) {
+			System.out.println("\nScelta non consentita!\n");
+			MainDispatcher.getInstance().callView("AdminUtente", null);
+
+			if(this.choice.equalsIgnoreCase("B")) {
+				this.choice = "X";
+			}
 		}
 	}
 	

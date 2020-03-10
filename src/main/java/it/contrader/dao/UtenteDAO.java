@@ -132,7 +132,7 @@ public class UtenteDAO {
 				preparedStatement.setString(4, utenteToUpdate.getCitta());
 				preparedStatement.setString(5, utenteToUpdate.getNazione());
 				preparedStatement.setInt(6, utenteToUpdate.getIdUser());
-				int a = preparedStatement.executeUpdate();
+				preparedStatement.executeUpdate();
 				
 			} catch (SQLException e) {
 				return false;

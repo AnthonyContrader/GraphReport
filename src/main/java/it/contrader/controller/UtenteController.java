@@ -158,10 +158,12 @@ public class UtenteController implements Controller {
 				MainDispatcher.getInstance().callView("AdminUtente", null);
 				break;
 			default:
+				System.out.println("\nScelta non consentita!\n");
 				MainDispatcher.getInstance().callView(request.get("usertype")+"Utente", null);
 			}
 			
 		default:
+			System.out.println("\nScelta non consentita!\n");
 			MainDispatcher.getInstance().callView(request.get("usertype")+"Utente", null);
 		}
 	}
