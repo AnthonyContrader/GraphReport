@@ -50,6 +50,11 @@ public class UserAreaView extends AbstractView {
 		System.out.println("[D]isponibili [I]nserisci [B]ack [E]sci");
 
 		this.choice = getInput();
+		
+		if(this.choice.equalsIgnoreCase("M") || this.choice.equalsIgnoreCase("C") || 
+				this.choice.equalsIgnoreCase("H") || this.choice.equalsIgnoreCase("ADMIN")) {
+			this.choice = "B";
+		}
 
 		
 	}

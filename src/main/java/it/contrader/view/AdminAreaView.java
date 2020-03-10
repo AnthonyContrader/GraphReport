@@ -55,6 +55,10 @@ public class AdminAreaView extends AbstractView {
 			this.choice = "H";
 		}
 		
+		if (this.choice.equalsIgnoreCase("ADMIN")) {
+			this.choice = "H";
+		}
+		
 				
 		
 	}
