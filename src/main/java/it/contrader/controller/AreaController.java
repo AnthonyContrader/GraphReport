@@ -115,6 +115,10 @@ public class AreaController implements Controller {
 			case "D":
 				MainDispatcher.getInstance().callView(sub_package + "AreaRead", null);
 				break;
+			
+			case "A":
+				MainDispatcher.getInstance().callView("UserArea", null);
+				break;
 				
 			case "I":
 				MainDispatcher.getInstance().callView(sub_package + "AreaInsert", null);

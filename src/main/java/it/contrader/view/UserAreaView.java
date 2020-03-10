@@ -26,17 +26,6 @@ public class UserAreaView extends AbstractView {
 	 */
 	@Override
 	public void showResults(Request request) {
-		if (request != null) {
-			System.out.println("\n------------------- Gestione Aree ----------------\n");
-			System.out.println("ID\tNome");
-			System.out.println("----------------------------------------------------\n");
-			
-			@SuppressWarnings("unchecked")
-			List<AreaDTO> area = (List<AreaDTO>) request.get("area");
-			for (AreaDTO a: area)
-				System.out.println(a);
-			System.out.println();
-		}
 	}
 
 	/**
@@ -51,12 +40,6 @@ public class UserAreaView extends AbstractView {
 
 		this.choice = getInput();
 		
-		if(this.choice.equalsIgnoreCase("M") || this.choice.equalsIgnoreCase("C") || 
-				this.choice.equalsIgnoreCase("H") || this.choice.equalsIgnoreCase("ADMIN")) {
-			this.choice = "B";
-		}
-
-		
 	}
 	
 	/**
@@ -64,11 +47,18 @@ public class UserAreaView extends AbstractView {
 	 */
 	@Override
 	public void submit() {
-		request = new Request();
-		this.request.put("choice", choice);
-		this.request.put("mode", "GETCHOICE");
-		this.request.put("usertype", "User");
-		MainDispatcher.getInstance().callAction("Area", "doControl", this.request);
+		if(this.choice.equalsIgnoreCase("D") || this.choice.equalsIgnoreCase("I") || this.choice.equalsIgnoreCase("B") || this.choice.equalsIgnoreCase("E")) {
+			request = new Request();
+			this.request.put("choice", choice);
+			this.request.put("mode", "GETCHOICE");
+			this.request.put("usertype", "User");
+			MainDispatcher.getInstance().callAction("Area", "doControl", this.request);
+		}else {
+			System.out.println("\nScelta non consentita!\n");
+			MainDispatcher.getInstance().callView("UserArea", null);
+		}
+
+		
 	}
 
 }
