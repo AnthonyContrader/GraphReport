@@ -56,7 +56,8 @@ public class AdminAreaView extends AbstractView {
 		}
 		
 		if (this.choice.equalsIgnoreCase("ADMIN")) {
-			this.choice = "H";
+			System.out.println("Scelta non consentita!\n");
+			this.choice = "ADMIN";
 		}
 		
 				
