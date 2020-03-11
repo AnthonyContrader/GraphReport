@@ -64,5 +64,4 @@ public class UtenteView extends AbstractView {
 		this.request.put("usertype", "");
 		MainDispatcher.getInstance().callAction("Utente", "doControl", this.request);
 	}
-
 }

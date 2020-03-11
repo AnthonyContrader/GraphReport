@@ -60,7 +60,10 @@ public class UtenteReadView extends AbstractView {
 		request = new Request();
 		request.put("iduser", iduser);
 		request.put("mode", mode);
+		System.out.println("ID\tNome\tCognome\tEmail\tCitta\tNazione\tIdUser");
+		System.out.println("------------------------------------------------------");
 		MainDispatcher.getInstance().callAction("Utente", "doControl", request);
+		
 	}
 
 }

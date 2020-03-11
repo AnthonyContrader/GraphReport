@@ -163,7 +163,7 @@ public class UtenteController implements Controller {
 			}
 			
 		default:
-			System.out.println("\nScelta non consentita!\n");
+			//System.out.println("\nScelta non consentita!\n");
 			MainDispatcher.getInstance().callView(request.get("usertype")+"Utente", null);
 		}
 	}
