@@ -43,11 +43,11 @@ public class LoginDAO {
 			}
 
 			return null;
-		}
-		
-		catch (SQLException e) {
+			
+		}catch (SQLException e) {
 			
 			return null;
+			
 		}
 	}
 }
