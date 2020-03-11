@@ -80,7 +80,7 @@ public class UserDAO {
 
 			return user;
 		} catch (SQLException e) {
-			return null;
+			return new User(0,"","","");
 		}
 
 	}

@@ -33,7 +33,10 @@ public class UserReadView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			UserDTO user = (UserDTO) request.get("user");
-			System.out.println(user);
+			if(user.getId()>0)
+				System.out.println(user);
+			else
+				System.out.println("\nUtente inesistente!\n");
 			MainDispatcher.getInstance().callView("User", null);
 		}
 	}

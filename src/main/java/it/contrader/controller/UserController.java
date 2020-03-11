@@ -141,11 +141,11 @@ public class UserController implements Controller {
 				break;
 				
 			default:
-				MainDispatcher.getInstance().callView("Login", null);
+				MainDispatcher.getInstance().callView("User", null);
 			}
 			
 		default:
-			MainDispatcher.getInstance().callView("Login", null);
+			MainDispatcher.getInstance().callView("User", null);
 		}
 	}
 }
