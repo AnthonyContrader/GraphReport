@@ -6,7 +6,8 @@ import java.util.List;
 import it.contrader.dto.UnitaMisuraDTO;
 import it.contrader.model.UnitaMisura;
 
-public class UnitaMisuraConverter {
+
+public class UnitaMisuraConverter implements Converter<UnitaMisura, UnitaMisuraDTO>{
 
 	public UnitaMisuraDTO toDTO(UnitaMisura unitamisura) {
 		UnitaMisuraDTO unitamisuraDTO = new UnitaMisuraDTO(unitamisura.getId(), unitamisura.getNome());

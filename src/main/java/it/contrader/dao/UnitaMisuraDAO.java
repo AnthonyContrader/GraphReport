@@ -7,7 +7,7 @@ import java.util.List;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.UnitaMisura;
 
-public class UnitaMisuraDAO {
+public class UnitaMisuraDAO implements DAO<UnitaMisura> {
 	
 	private Connection connection ;
 	private final String QUERY_ALL = "SELECT * FROM unitamisura";

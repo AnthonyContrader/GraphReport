@@ -12,7 +12,7 @@ import it.contrader.model.Categoria;
  *
  *Per i dettagli della classe vedi Guida sez 6: DAO
  */
-public class CategoriaDAO {
+public class CategoriaDAO implements DAO<Categoria> {
 
 	private final String QUERY_ALL = "SELECT * FROM categoria";
 	private final String QUERY_CREATE = "INSERT INTO categoria (nome) VALUES (?)";

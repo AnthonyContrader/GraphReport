@@ -6,11 +6,12 @@ import java.util.List;
 import it.contrader.dto.CategoriaDTO;
 import it.contrader.model.Categoria;
 
+
 /**
  *  
  *
  */
-public class CategoriaConverter   {
+public class CategoriaConverter implements Converter<Categoria, CategoriaDTO> {  
 	
 	/**
 	 * Crea un oggetto di tipo UserDTO e lo riempie con i campi del parametro user di tipo Area.

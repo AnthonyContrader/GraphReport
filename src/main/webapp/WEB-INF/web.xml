@@ -41,5 +41,23 @@
   <servlet-mapping>
     <servlet-name>DataSetServlet</servlet-name>
     <url-pattern>/DataSetServlet</url-pattern>
+  </servlet-mapping> 
+  <servlet>
+  <servlet-name>CategoriaServlet</servlet-name>
+  <servlet-class>it.contrader.servlets.CategoriaServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>CategoriaServlet</servlet-name>
+  <url-pattern>/CategoriaServlet</url-pattern>
+  </servlet-mapping>
+    <servlet>
+  <servlet-name>UnitaMisuraServlet</servlet-name>
+  <servlet-class>it.contrader.servlets.UnitaMisuraServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>UnitaMisuraServlet</servlet-name>
+  <url-pattern>/UnitaMisuraServlet</url-pattern>
   </servlet-mapping>
 </web-app>

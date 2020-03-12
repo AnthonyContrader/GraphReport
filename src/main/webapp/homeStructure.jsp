@@ -15,10 +15,10 @@
 
 <div class="navbar" id="navbar">
   <a class="active" href="homeStructure.jsp" onclick="setActive(0)">Home</a>
-  <a href="UserServlet?mode=userlist" target="frameBody" onclick="setActive(1)">Users</a>
-  <a href="DataSetServlet?mode=userlist" target="frameBody" onclick="setActive(2)">DataSet</a>
-  <a href="CategoriaServlet?mode=userlist" target="frameBody" onclick="setActive(3)">Categorie</a>
-  <a href="UnitaMisuraServlet?mode=userlist" target="frameBody" onclick="setActive(4)">Unità di misura</a>
+  <a href="UserServlet?mode=list" target="frameBody" onclick="setActive(1)">Users</a>
+  <a href="DataSetServlet?mode=list" target="frameBody" onclick="setActive(2)">DataSet</a>
+  <a href="CategoriaServlet?mode=list" target="frameBody" onclick="setActive(3)">Categorie</a>
+  <a href="UnitaMisuraServlet?mode=list" target="frameBody" onclick="setActive(4)">Unità di misura</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 
