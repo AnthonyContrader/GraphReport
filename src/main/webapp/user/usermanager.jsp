@@ -5,17 +5,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>User Manager</title>
+<link type="text/css" rel="Stylesheet" href="css/vittoriostyle.css" />
+
 </head>
 <body>
-<%@ include file="../css/header.jsp" %>
 
-<div class="navbar">
-  <a  href="homeadmin.jsp">Home</a>
-  <a class="active" href="UserServlet?mode=userlist">Users</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
-</div>
 <div class="main">
 	<%
 		List<UserDTO> list = (List<UserDTO>) request.getAttribute("list");
@@ -86,7 +80,6 @@
 </form>
 
 </div>
-<br>
-<%@ include file="../css/footer.jsp" %>
+
 </body>
 </html>
