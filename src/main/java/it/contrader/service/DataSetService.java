@@ -13,7 +13,7 @@ import it.contrader.model.DataSet;
  *ereditare i metodi della clase AbstractService. Pertanto la classe risulta meno complicata
  *da scrivere, facendoci risparmiare tempo e fatica!
  */
-public class DataSetService {
+public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	
 	private DataSetDAO datoDAO;
 	private DataSetConverter datoConverter;
