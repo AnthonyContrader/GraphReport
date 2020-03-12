@@ -18,6 +18,16 @@ public class UserDTO {
 	private String password;
 	
 	private String usertype;
+	
+	private String nome;
+	
+	private String cognome;
+	
+	private String email;
+
+	private String citta;
+
+	private String nazione;
 
 	
 	public UserDTO() {
@@ -36,6 +46,30 @@ public class UserDTO {
 		this.password = password;
 		this.usertype = usertype;
 	}
+	
+	public UserDTO(String username, String password, String usertype, String nome, String cognome, String email, String citta, String nazione) {
+		this.username = username;
+		this.password = password;
+		this.usertype = usertype;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.citta = citta;
+		this.nazione = nazione;
+	}
+
+	public UserDTO(Integer id, String username, String password, String usertype, String nome, String cognome, String email, String citta, String nazione) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.usertype = usertype;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.citta = citta;
+		this.nazione = nazione;
+	}
+
 
 	public int getId() {
 		return this.id;
@@ -68,9 +102,45 @@ public class UserDTO {
 	public String getUsername() {
 		return username;
 	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return this.cognome;
+	}
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCitta() {
+		return this.citta;
+	}
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+	
+	public String getNazione() {
+		return this.nazione;
+	}
+	public void setNazione(String nazione) {
+		this.nazione = nazione;
+	}
+
 
 	@Override
 	public String toString() {
-		return  id + "\t"  + username +"\t\t" +   password + "\t\t" + usertype;
+		return  id + "\t"  + username +"\t\t" +   password + "\t\t" + usertype + nome + "\t\t" + cognome + "\t\t" + email + "\t\t" + citta + "\t\t" + nazione;
 	}
 }

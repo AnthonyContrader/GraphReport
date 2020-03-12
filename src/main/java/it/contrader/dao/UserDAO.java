@@ -16,9 +16,9 @@ import it.contrader.model.User;
 public class UserDAO implements DAO<User> {
 
 	private final String QUERY_ALL = "SELECT * FROM user";
-	private final String QUERY_CREATE = "INSERT INTO user (username, password, usertype) VALUES (?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO user (username, password, usertype, nome, cognome, email, citta, nazione) VALUES (?,?,?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM user WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, usertype=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, usertype=?, nome=?, cognome=?, email=?, citta=?, nazione=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE id=?";
 
 	public UserDAO() {
@@ -37,7 +37,12 @@ public class UserDAO implements DAO<User> {
 				String username = resultSet.getString("username");
 				String password = resultSet.getString("password");
 				String usertype = resultSet.getString("usertype");
-				user = new User(username, password, usertype);
+				String nome = resultSet.getString("nome");
+				String cognome = resultSet.getString("cognome");
+				String email = resultSet.getString("email");
+				String citta = resultSet.getString("citta");
+				String nazione = resultSet.getString("nazione");
+				user = new User(username, password, usertype, nome, cognome, email, citta, nazione);
 				user.setId(id);
 				usersList.add(user);
 			}
@@ -54,6 +59,11 @@ public class UserDAO implements DAO<User> {
 			preparedStatement.setString(1, userToInsert.getUsername());
 			preparedStatement.setString(2, userToInsert.getPassword());
 			preparedStatement.setString(3, userToInsert.getUsertype());
+			preparedStatement.setString(4, userToInsert.getNome());
+			preparedStatement.setString(5, userToInsert.getCognome());
+			preparedStatement.setString(6, userToInsert.getEmail());
+			preparedStatement.setString(7, userToInsert.getCitta());
+			preparedStatement.setString(8, userToInsert.getNazione());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -71,15 +81,22 @@ public class UserDAO implements DAO<User> {
 			preparedStatement.setInt(1, userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			String username, password, usertype;
+			String username, password, usertype, nome, cognome, email, citta, nazione;
 
 			username = resultSet.getString("username");
 			password = resultSet.getString("password");
 			usertype = resultSet.getString("usertype");
-			User user = new User(username, password, usertype);
+			nome = resultSet.getString("nome");
+			cognome = resultSet.getString("cognome");
+			email = resultSet.getString("email");
+			citta = resultSet.getString("citta");
+			nazione = resultSet.getString("nazione");
+			
+			User user = new User(username, password, usertype, nome, cognome, email, citta, nazione);
 			user.setId(resultSet.getInt("id"));
 
 			return user;
+			
 		} catch (SQLException e) {
 			return null;
 		}
@@ -108,13 +125,34 @@ public class UserDAO implements DAO<User> {
 				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) {
 					userToUpdate.setUsertype(userRead.getUsertype());
 				}
+				
+				if (userToUpdate.getNome() == null || userToUpdate.getNome().equals("")) {
+					userToUpdate.setNome(userRead.getNome());
+				}
+				if (userToUpdate.getCognome() == null || userToUpdate.getCognome().equals("")) {
+					userToUpdate.setCognome(userRead.getCognome());
+				}
+				if (userToUpdate.getEmail() == null || userToUpdate.getEmail().equals("")) {
+					userToUpdate.setEmail(userRead.getEmail());
+				}
+				if (userToUpdate.getCitta() == null || userToUpdate.getCitta().equals("")) {
+					userToUpdate.setCitta(userRead.getCitta());
+				}
+				if (userToUpdate.getNazione() == null || userToUpdate.getNazione().equals("")) {
+					userToUpdate.setNazione(userRead.getNazione());
+				}
 
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, userToUpdate.getUsername());
 				preparedStatement.setString(2, userToUpdate.getPassword());
 				preparedStatement.setString(3, userToUpdate.getUsertype());
-				preparedStatement.setInt(4, userToUpdate.getId());
+				preparedStatement.setString(4, userToUpdate.getNome());
+				preparedStatement.setString(5, userToUpdate.getCognome());
+				preparedStatement.setString(6, userToUpdate.getEmail());
+				preparedStatement.setString(7, userToUpdate.getCitta());
+				preparedStatement.setString(8, userToUpdate.getNazione());
+				preparedStatement.setInt(9, userToUpdate.getId());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
