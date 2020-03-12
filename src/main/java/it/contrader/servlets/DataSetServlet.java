@@ -34,6 +34,7 @@ public class DataSetServlet extends HttpServlet {
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("ok");
 		Service<DataSetDTO> service = new DataSetService();
 		String mode = request.getParameter("mode");
 		DataSetDTO dto;
