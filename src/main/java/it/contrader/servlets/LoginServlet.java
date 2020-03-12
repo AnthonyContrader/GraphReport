@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final HttpSession session = request.getSession();
-		session.setAttribute("utente", null);
+		session.setAttribute("userId", null);
 
 		LoginService service = new LoginService();
 
@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 			UserDTO dto = service.login(username, password);
 			if (dto != null) {
 				//se il login ha funzionato, salva l'utente nella sessione
-				session.setAttribute("user", dto);
+				session.setAttribute("userId", dto.getId());
 				getServletContext().getRequestDispatcher("/homeStructure.jsp").forward(request, response);
 			}else
 				//altrimenti torna alla pagina di login
