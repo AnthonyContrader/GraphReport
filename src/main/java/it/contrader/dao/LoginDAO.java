@@ -42,11 +42,11 @@ public class LoginDAO {
 				return user;
 			}
 
-			return null;
+			return new User();
 			
 		}catch (SQLException e) {
 			
-			return null;
+			return new User();
 			
 		}
 	}
