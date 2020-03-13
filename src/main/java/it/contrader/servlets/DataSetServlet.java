@@ -27,14 +27,13 @@ public class DataSetServlet extends HttpServlet {
 	public void updateList(HttpServletRequest request) {
 		DataSetService service = new DataSetService();
 		final HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("userId").toString());
+		//if()
 		List<DataSetDTO>listDTO = service.getAllByUtente(Integer.parseInt(session.getAttribute("userId").toString()));
 		request.setAttribute("list", listDTO);
 	}
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ok");
 		Service<DataSetDTO> service = new DataSetService();
 		String mode = request.getParameter("mode");
 		DataSetDTO dto;
@@ -43,7 +42,7 @@ public class DataSetServlet extends HttpServlet {
 
 		switch (mode.toUpperCase()) {
 
-		case "USERLIST":
+		case "LIST":
 			updateList(request);
 			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
 			break;
