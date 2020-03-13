@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home Admin</title>
+<title>GraphReport</title>
 <link href="css/vittoriostyle.css" rel="stylesheet">
 <script type="text/javascript" src="js/javascript.js"></script>
 </head>
