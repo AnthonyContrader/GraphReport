@@ -46,6 +46,24 @@ public class DataSetConverter   {
 		return datoDTOList;
 	}
 	
+public List<DataSetDTO> toDTOList(List<DataSet> datoList, String categoria, List<String> unitamisuraList) {
+		
+		//Crea una lista vuota.
+		List<DataSetDTO> datoDTOList = new ArrayList<>();
+		
+		int index =0;
+		
+		//Cicla tutti gli elementi della lista e li converte uno a uno
+		for(DataSet dato : datoList) {
+			//Utilizza il metodo toDTO per convertire ogni singolo elemento della lista
+			//e lo aggiunge adda lista di DTO
+			
+			datoDTOList.add(toDTO(dato,categoria,unitamisuraList.get(index).toString()));
+			index++;
+		}
+		return datoDTOList;
+	}
+	
 
 			
 }

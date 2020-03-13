@@ -10,6 +10,7 @@ public class DataSetDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM dataset ORDER BY id_user";
 	private final String QUERY_ALL_BY_USER = "SELECT * FROM dataset WHERE id_user=? ORDER BY id_categoria";
+	private final String QUERY_DATA_SET = "SELECT * FROM dataset WHERE id_user=? AND id_categoria=?";
 	private final String QUERY_CREATE = "INSERT INTO dataset (id_user, id_categoria, id_unitamisura, valore) VALUES (?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM dataset WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE dataset SET id_user=?, id_categoria=?, id_unitamisura=?, valore=? WHERE id=?";
@@ -185,6 +186,26 @@ public class DataSetDAO {
 			} catch (SQLException e) {
 			}
 			return false;
+	}
+
+	public List<DataSet> getDataSet(int id, int cat) {
+		List<DataSet> datiList = new ArrayList<>();
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement statement = (PreparedStatement)connection.prepareStatement(QUERY_DATA_SET);
+			statement.setInt(1,id);
+			statement.setInt(2,cat);
+			ResultSet resultSet = statement.executeQuery();
+			DataSet dato;
+			while (resultSet.next()) {
+				dato = new DataSet(resultSet.getInt("id"), resultSet.getInt("id_user"), resultSet.getInt("id_categoria"), resultSet.getInt("id_unitamisura"), resultSet.getString("valore"));
+				
+				datiList.add(dato);
+			}
+		} catch (SQLException e) {
+			
+		}
+		return datiList;
 	}
 
 

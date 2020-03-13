@@ -71,10 +71,12 @@ if(request.getAttribute("err")!=null){
 				cat=ds.getCategoria();
 			%>
 			<div class="newCat">
+				<% if(ds.getUser()==Integer.parseInt(session.getAttribute("userId").toString())){ %>
 				<div class="divCRUD" style="width:20%;">
-					<a href="" ><div class="linkCRUD">Modifica</div></a>
+					<a href="DataSetServlet?mode=read&cat=<%=cat%>" ><div class="linkCRUD">Modifica</div></a>
 					<a href="DataSetServlet?mode=delete&cat=<%=cat%>" ><div class="linkCRUD">Elimina</div></a>
 				</div>
+				<% } %>
 			<h1><%= cat %></h1>
 			<div class="center">
 			<% }

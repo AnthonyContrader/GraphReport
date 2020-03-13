@@ -45,10 +45,8 @@ public class DataSetServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSetService service = new DataSetService();
 		String mode = request.getParameter("mode");
-		DataSetDTO dto;
 		int id=Integer.parseInt(request.getSession().getAttribute("userId").toString());
-		boolean ans;
-
+		
 		switch (mode.toUpperCase()) {
 
 		case "LIST":
@@ -57,20 +55,13 @@ public class DataSetServlet extends HttpServlet {
 			break;
 
 		case "READ":
-			id = Integer.parseInt(request.getParameter("id"));
-			dto = service.read(id);
-			request.setAttribute("dto", dto);
-			
-			if (request.getParameter("update") == null) {
-				 getServletContext().getRequestDispatcher("/dataset/readuser.jsp").forward(request, response);
-				
-			}
-			
-			else getServletContext().getRequestDispatcher("/dataset/updateuser.jsp").forward(request, response);
-			
+			List<DataSetDTO> dataSet = service.readDataSet(id,request.getParameter("cat"));
+			request.setAttribute("dataset", dataSet);
+			getServletContext().getRequestDispatcher("/dataset/dsupdate.jsp").forward(request, response);
 			break;
 
 		case "INSERT":
+			DataSetDTO dto;
 			String categoria = request.getParameter("cc");
 			String unitUno = request.getParameter("cump");
 			String unitDue = request.getParameter("cums");
@@ -92,7 +83,7 @@ public class DataSetServlet extends HttpServlet {
 			//dto = new DataSetDTO (id,username, password, usertype);
 			//ans = service.update(dto);
 			//updateList(request);
-			//getServletContext().getRequestDispatcher("/user/usermanager.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
 			break;
 
 		case "DELETE":

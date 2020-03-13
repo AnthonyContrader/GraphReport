@@ -118,4 +118,20 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 		return datoDAO.exist(id,catService.getId(categoria));
 	}
 
+
+	public List<DataSetDTO> readDataSet(int id, String cat) {
+		CategoriaService catService = new CategoriaService();
+		UnitaMisuraService unitService = new UnitaMisuraService();
+		
+		List<DataSet> listaDato = datoDAO.getDataSet(id,catService.getId(cat));
+		
+		List<String> unitList = new ArrayList<>();
+		
+		for(DataSet dato : listaDato) {
+			unitList.add(unitService.read(dato.getIdUnitaMisura()).getNome());
+		}
+
+		return datoConverter.toDTOList(listaDato,cat,unitList);
+	}
+
 }
