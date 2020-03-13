@@ -43,6 +43,46 @@
 			</select>
     	</div>
   </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="user">Nome</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="nome" name="nome" value=<%=u.getNome()%>>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="user">Cognome</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="cognome" name="cognome" value=<%=u.getCognome()%>>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="user">Email</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="email" name="email" value=<%=u.getEmail()%>>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="user">Città</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="citta" name="citta" value=<%=u.getCitta()%>>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="user">Nazione</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="nazione" name="nazione" value=<%=u.getNazione()%>>
+    </div>
+  </div>
       <button type="submit" >Edit</button>
 </form>
 

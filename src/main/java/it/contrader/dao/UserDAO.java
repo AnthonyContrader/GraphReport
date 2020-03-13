@@ -20,6 +20,7 @@ public class UserDAO implements DAO<User> {
 	private final String QUERY_READ = "SELECT * FROM user WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, usertype=?, nome=?, cognome=?, email=?, citta=?, nazione=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE id=?";
+	private final static String QUERY_ID = "SELECT usertype FROM user WHERE id=?";
 
 	public UserDAO() {
 
@@ -33,7 +34,7 @@ public class UserDAO implements DAO<User> {
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			User user;
 			while (resultSet.next()) {
-				int id = resultSet.getInt("id");
+				Integer id = resultSet.getInt("id");
 				String username = resultSet.getString("username");
 				String password = resultSet.getString("password");
 				String usertype = resultSet.getString("usertype");
@@ -102,6 +103,22 @@ public class UserDAO implements DAO<User> {
 		}
 
 	}
+	
+	public static String getUsertype(int id) {
+		Connection connection = ConnectionSingleton.getInstance();
+		try {	
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ID);
+			preparedStatement.setInt(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			return resultSet.getString("usertype");
+		}
+		
+		catch (SQLException e) {
+			return null;
+		}
+	}
+	
 
 	public boolean update(User userToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
@@ -154,10 +171,10 @@ public class UserDAO implements DAO<User> {
 				preparedStatement.setString(8, userToUpdate.getNazione());
 				preparedStatement.setInt(9, userToUpdate.getId());
 				int a = preparedStatement.executeUpdate();
-				if (a > 0)
-					return true;
-				else
-					return false;
+//				if (a > 0)
+//					return true;
+//				else
+//					return false;
 
 			} catch (SQLException e) {
 				return false;

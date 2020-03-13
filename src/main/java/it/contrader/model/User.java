@@ -25,14 +25,11 @@ public class User {
 
 	private String nazione;
 	
-	/**
-	 * Definisco i due costruttori, uno vuoto e uno con tre parametri per costrire oggetti di tipo User
-	 */
 	public User() {
-		id=null;
+		this.id=null;
 	}
 	
-	public User(int id, String username, String password, String usertype) {
+	public User(Integer id, String username, String password, String usertype) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -71,7 +68,7 @@ public class User {
 	/**
 	 * Getter e Setter: servono alle altre classi a recuperare e modificare gli attributi di User
 	 */
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 	public void setId(int id) {

@@ -11,7 +11,7 @@ package it.contrader.dto;
  */
 public class UserDTO {
 	
-	private int id;
+	private Integer id;
 
 	private String username;
 	
@@ -40,7 +40,7 @@ public class UserDTO {
 		this.usertype = usertype;
 	}
 
-	public UserDTO (int id, String username, String password, String usertype) {
+	public UserDTO (Integer id, String username, String password, String usertype) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -71,7 +71,7 @@ public class UserDTO {
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 	public void setId(int id) {

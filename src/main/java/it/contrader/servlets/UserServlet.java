@@ -38,7 +38,7 @@ public class UserServlet extends HttpServlet {
 
 		switch (mode.toUpperCase()) {
 
-		case "USERLIST":
+		case "LIST":
 			updateList(request);
 			getServletContext().getRequestDispatcher("/user/usermanager.jsp").forward(request, response);
 			break;

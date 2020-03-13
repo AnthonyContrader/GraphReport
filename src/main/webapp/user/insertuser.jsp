@@ -1,60 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.UserDTO"%>
+    pageEncoding="ISO-8859-1" import="it.contrader.dto.UserDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link type="text/css" rel="Stylesheet" href="css/vittoriostyle.css" />
-
+<link href="css/vittoriostyle.css" rel="stylesheet">
+<title>Read User</title>
 </head>
 <body>
 
 <div class="main">
-	<%
-		List<UserDTO> list = (List<UserDTO>) request.getAttribute("list");
-	%>
+<%UserDTO u = (UserDTO) request.getAttribute("dto");%>
 
-<br>
-
-	<table>
-		<tr>
-			<th>Username</th>
-			<th>Password</th>
-			<th>Usertype</th>
-			<th>Nome</th>
-			<th>Cognome</th>
-			<th>Email</th>
-			<th>Città</th>
-			<th>Nazione</th>
-			<th></th>
-			<th></th>
-		</tr>
-		<%
-			for (UserDTO u : list) {
-		%>
-		<tr>
-			<td><a href=UserServlet?mode=read&id=>
-					<%=u.getUsername()%>
-			</a></td>
-			<td><%=u.getPassword()%></td>
-			<td><%=u.getUsertype()%></td>
-			<td><%=u.getNome()%></td>
-			<td><%=u.getCognome()%></td>
-			<td><%=u.getEmail()%></td>
-			<td><%=u.getCitta()%></td>
-			<td><%=u.getNazione()%></td>
-			<td><a href=UserServlet?mode=read&update=true&id=<%=u.getId()%>>Edit</a>
-			</td>
-			<td><a href=UserServlet?mode=delete&id=<%=u.getId()%>>Delete</a>
-			</td>
-
-		</tr>
-		<%
-			}
-		%>
-	</table>
-	<form id="floatright" action="UserServlet?mode=insert" method="post">
+	<form action="UserServlet?mode=insert" method="post">
 			<div class="row">
 				<div class="col-25">
 					<label for="user">Username</label>
@@ -133,6 +91,5 @@
 			<button type="submit">Insert</button>
 	</form>
 </div>
-
 </body>
 </html>

@@ -18,11 +18,21 @@
 		<th>Username</th>
 		<th>Password</th>
 		<th>Usertype</th>
+		<th>Nome</th>
+		<th>Cognome</th>
+		<th>Email</th>
+		<th>Città</th>
+		<th>Nazione</th>
 	</tr>
 	<tr>
-		<td><%=u.getUsername()%></td>
+		<td> <%=u.getUsername()%></td>
 		<td> <%=u.getPassword()%></td>
 		<td> <%=u.getUsertype()%></td>
+		<td> <%=u.getNome()%></td>
+		<td> <%=u.getCognome()%></td>
+		<td> <%=u.getEmail()%></td>
+		<td> <%=u.getCitta()%></td>
+		<td> <%=u.getNazione()%></td>
 	</tr>	
 </table>
 
