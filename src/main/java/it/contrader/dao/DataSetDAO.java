@@ -13,8 +13,9 @@ public class DataSetDAO {
 	private final String QUERY_CREATE = "INSERT INTO dataset (id_user, id_categoria, id_unitamisura, valore) VALUES (?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM dataset WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE dataset SET id_user=?, id_categoria=?, id_unitamisura=?, valore=? WHERE id=?";
-	private final String QUERY_DELETE = "DELETE FROM dataset WHERE id=?";
-
+	private final String QUERY_DELETE = "DELETE FROM dataset WHERE id_user=? AND id_categoria=?";
+	private final String QUERY_EXIST1 = "SELECT COUNT(*) AS conto FROM dataset WHERE id_user=? AND id_categoria=?";
+	
 	public DataSetDAO() {
 
 	}
@@ -155,11 +156,12 @@ public class DataSetDAO {
 
 	}
 
-	public boolean delete(int id) {
+	public boolean delete(int idu,int cat) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, idu);
+			preparedStatement.setInt(2, cat);
 			int n = preparedStatement.executeUpdate();
 			if (n != 0)
 				return true;
@@ -167,6 +169,22 @@ public class DataSetDAO {
 		} catch (SQLException e) {
 		}
 		return false;
+	}
+
+	public boolean exist(int id, Integer cat) {
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_EXIST1);
+			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(2, cat);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.last();
+			if (resultSet.getInt("conto") > 0)
+					return true;
+			
+			} catch (SQLException e) {
+			}
+			return false;
 	}
 
 

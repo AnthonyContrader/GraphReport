@@ -20,7 +20,7 @@ public class DataSetConverter   {
 	/**
 	 * Crea un oggetto di tipo Dato e lo riempie con i campi del parametro dato di tipo DatoDTO.
 	 */
-	public DataSet toEntity(DataSetDTO datoDTO,Integer cat, Integer unit) {
+	public DataSet toEntity(DataSetDTO datoDTO,int cat, int unit) {
 		DataSet dato = new DataSet(datoDTO.getId(),datoDTO.getUser(), cat, unit, datoDTO.getValore());
 		return dato;
 	}

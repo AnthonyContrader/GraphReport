@@ -5,7 +5,10 @@ import java.util.List;
 
 import it.contrader.converter.DataSetConverter;
 import it.contrader.dao.DataSetDAO;
+import it.contrader.dto.CategoriaDTO;
 import it.contrader.dto.DataSetDTO;
+import it.contrader.dto.UnitaMisuraDTO;
+import it.contrader.dto.UserDTO;
 import it.contrader.model.DataSet;
 
 /**
@@ -85,13 +88,34 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	}
 
 
-	public boolean delete(int id) {
-		// Questo mtodo chiama direttamente il DAO
-		return datoDAO.delete(id);
+	public boolean delete(int id,String cat) {	
+		CategoriaService catService = new CategoriaService();
+		return datoDAO.delete(id,catService.getId(cat));
 	}
 	
 	public static String getUsertype(int id) {
-		return 
+		return UserService.getUsertype(id);
+	}
+	
+	public static List<CategoriaDTO> getAllCategoria(){
+		CategoriaService catS = new CategoriaService();
+		return catS.getAll();
+	}
+	
+	public static List<UnitaMisuraDTO> getAllUnitaMisura(){
+		UnitaMisuraService unitS = new UnitaMisuraService();
+		return unitS.getAll();
+	}
+	
+	public static List<UserDTO> getAllUser(){
+		UserService userS = new UserService();
+		return userS.getAll();
+	}
+
+
+	public boolean existDataSet(int id, String categoria) {
+		CategoriaService catService = new CategoriaService();
+		return datoDAO.exist(id,catService.getId(categoria));
 	}
 
 }

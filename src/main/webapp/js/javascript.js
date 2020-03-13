@@ -1,4 +1,3 @@
-
 function setActive(index){
 	
 	var nav=document.getElementById('navbar');

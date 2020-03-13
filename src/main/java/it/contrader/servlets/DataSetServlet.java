@@ -27,23 +27,32 @@ public class DataSetServlet extends HttpServlet {
 	public void updateList(HttpServletRequest request) {
 		DataSetService service = new DataSetService();
 		final HttpSession session = request.getSession();
-		List<DataSetDTO> listDTO = service.getAllByUtente(Integer.parseInt(session.getAttribute("userId").toString()));
+		int visUt;
+		if(request.getParameter("idUtVis")!=null)
+			visUt=Integer.parseInt(request.getParameter("idUtVis"));
+		else
+			visUt=Integer.parseInt(session.getAttribute("userId").toString());
+		List<DataSetDTO> listDTO = service.getAllByUtente(visUt);
 		request.setAttribute("list", listDTO);
+		request.setAttribute("listCat", DataSetService.getAllCategoria());
+		request.setAttribute("listUnit", DataSetService.getAllUnitaMisura());
+		request.setAttribute("usertype",DataSetService.getUsertype(Integer.parseInt(request.getSession().getAttribute("userId").toString())));
+		if(request.getAttribute("usertype").toString().equalsIgnoreCase("admin"))
+			request.setAttribute("listUser", DataSetService.getAllUser());
 	}
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Service<DataSetDTO> service = new DataSetService();
+		DataSetService service = new DataSetService();
 		String mode = request.getParameter("mode");
 		DataSetDTO dto;
-		int id;
+		int id=Integer.parseInt(request.getSession().getAttribute("userId").toString());
 		boolean ans;
 
 		switch (mode.toUpperCase()) {
 
 		case "LIST":
 			updateList(request);
-			request.setAttribute("usertype",DataSetService.);
 			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
 			break;
 
@@ -62,33 +71,34 @@ public class DataSetServlet extends HttpServlet {
 			break;
 
 		case "INSERT":
-			String username = request.getParameter("username").toString();
-			String password = request.getParameter("password").toString();
-			String usertype = request.getParameter("usertype").toString();
-			dto = new DataSetDTO (); //passare parametri
-			ans = service.insert(dto);
-			request.setAttribute("ans", ans);
+			String categoria = request.getParameter("cc");
+			String unitUno = request.getParameter("cump");
+			String unitDue = request.getParameter("cums");
+			if(!service.existDataSet(id,categoria)) {
+				dto = new DataSetDTO (id,categoria,unitUno,""); 
+				service.insert(dto);
+				dto = new DataSetDTO (id,categoria,unitDue,""); 
+				service.insert(dto);
+			}else { request.setAttribute("err", "1"); }
 			updateList(request);
-			getServletContext().getRequestDispatcher("/user/usermanager.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
 			break;
 			
 		case "UPDATE":
-			username = request.getParameter("username");
-			password = request.getParameter("password");
-			usertype = request.getParameter("usertype");
-			id = Integer.parseInt(request.getParameter("id"));
-			dto = new DataSetDTO (id,username, password, usertype);
-			ans = service.update(dto);
-			updateList(request);
-			getServletContext().getRequestDispatcher("/user/usermanager.jsp").forward(request, response);
+			//username = request.getParameter("username");
+			//password = request.getParameter("password");
+			//usertype = request.getParameter("usertype");
+			//id = Integer.parseInt(request.getParameter("id"));
+			//dto = new DataSetDTO (id,username, password, usertype);
+			//ans = service.update(dto);
+			//updateList(request);
+			//getServletContext().getRequestDispatcher("/user/usermanager.jsp").forward(request, response);
 			break;
 
 		case "DELETE":
-			id = Integer.parseInt(request.getParameter("id"));
-			ans = service.delete(id);
-			request.setAttribute("ans", ans);
+			service.delete(id,request.getParameter("cat"));
 			updateList(request);
-			getServletContext().getRequestDispatcher("/user/usermanager.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
 			break;
 		}
 	}

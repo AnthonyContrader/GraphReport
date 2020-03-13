@@ -227,7 +227,7 @@ button:hover {
 	clear:both;
 }
 
-.center{
+div.center{
 	width: max-content;
 	margin: auto;
 }
@@ -261,3 +261,10 @@ button:hover {
 	right:0px;
 }
 
+form.center{
+	margin: auto;
+}
+
+p.center{
+	text-align:center;
+}
