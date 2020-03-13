@@ -34,7 +34,7 @@
 			for (UserDTO u : list) {
 		%>
 		<tr>
-			<td><a href=UserServlet?mode=read&id=>
+			<td><a href=UserServlet?mode=read&id=<%=u.getId()%>>
 					<%=u.getUsername()%>
 			</a></td>
 			<td><%=u.getPassword()%></td>
