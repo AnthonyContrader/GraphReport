@@ -21,7 +21,7 @@ public class UserService extends AbstractService<User, UserDTO> {
 		this.converter = new UserConverter();
 	}
 	
-	public String getUsertype(int id) {
+	public static String getUsertype(int id) {
 		return UserDAO.getUsertype(id);
 	}
 	

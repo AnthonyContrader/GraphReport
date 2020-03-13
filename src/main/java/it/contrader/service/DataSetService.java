@@ -90,5 +90,8 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 		return datoDAO.delete(id);
 	}
 	
+	public static String getUsertype(int id) {
+		return 
+	}
 
 }

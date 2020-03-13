@@ -43,6 +43,7 @@ public class DataSetServlet extends HttpServlet {
 
 		case "LIST":
 			updateList(request);
+			request.setAttribute("usertype",DataSetService.);
 			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
 			break;
 
