@@ -216,6 +216,7 @@ button:hover {
 .cols{
 	float:left;
 	min-width:100px;
+	position:relative;
 }
 
 .half{
@@ -250,12 +251,13 @@ button:hover {
 }
 
 .linkCRUD{
-	float: right;
-	margin: 10px 0px;
-	padding: 0px 10px;
+	float: left;
+	margin: 10px 10px 0px;
+	width:min-content;
 }
 
-.posCat{
-	left: 76px;
-	position: relative;
+.divCRUD{
+	position:absolute;
+	right:0px;
 }
+

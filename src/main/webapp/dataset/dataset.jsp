@@ -24,9 +24,11 @@
 				cat=ds.getCategoria();
 			%>
 			<div class="newCat">
-			<a href="" class="linkCRUD">Elimina</a>
-			<a href="" class="linkCRUD">Modifica</a>
-			<h1 class="posCat"><%= cat %></h1>
+				<div class="divCRUD" style="width:20%;">
+					<a href="" ><div class="linkCRUD">Modifica</div></a>
+					<a href="" ><div class="linkCRUD">Elimina</div></a>
+				</div>
+			<h1><%= cat %></h1>
 			<div class="center">
 			<% }
 			String[] valori = ds.getValore().split("_");
