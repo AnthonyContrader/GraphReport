@@ -74,7 +74,7 @@ if(request.getAttribute("err")!=null){
 				<% if(ds.getUser()==Integer.parseInt(session.getAttribute("userId").toString())){ %>
 				<div class="divCRUD" style="width:20%;">
 					<a href="DataSetServlet?mode=read&cat=<%=cat%>" ><div class="linkCRUD">Modifica</div></a>
-					<a href="DataSetServlet?mode=delete&cat=<%=cat%>" ><div class="linkCRUD">Elimina</div></a>
+					<a href="DataSetServlet?mode=delete&cat=<%=cat%>" onclick="return confDelDS()"><div class="linkCRUD">Elimina</div></a>
 				</div>
 				<% } %>
 			<h1><%= cat %></h1>

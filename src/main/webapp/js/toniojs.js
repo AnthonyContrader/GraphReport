@@ -10,3 +10,7 @@ function verificaCrea(){
 		return true;
 	}
 }
+
+function confDelDS(){
+	return confirm('\nAttenzione!\n\nStai per eliminare definitivamente questo DataSet\n\nVuoi proseguire?');
+}
