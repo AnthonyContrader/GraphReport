@@ -22,11 +22,6 @@
 			<th>Username</th>
 			<th>Password</th>
 			<th>Usertype</th>
-			<th>Nome</th>
-			<th>Cognome</th>
-			<th>Email</th>
-			<th>Città</th>
-			<th>Nazione</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -39,11 +34,6 @@
 			</a></td>
 			<td><%=u.getPassword()%></td>
 			<td><%=u.getUsertype()%></td>
-			<td><%=u.getNome()%></td>
-			<td><%=u.getCognome()%></td>
-			<td><%=u.getEmail()%></td>
-			<td><%=u.getCitta()%></td>
-			<td><%=u.getNazione()%></td>
 			<td><a href=UserServlet?mode=read&update=true&id=<%=u.getId()%>>Edit</a>
 			</td>
 			<td><a href=UserServlet?mode=delete&id=<%=u.getId()%>>Delete</a>
