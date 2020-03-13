@@ -27,8 +27,7 @@ public class DataSetServlet extends HttpServlet {
 	public void updateList(HttpServletRequest request) {
 		DataSetService service = new DataSetService();
 		final HttpSession session = request.getSession();
-		//if()
-		List<DataSetDTO>listDTO = service.getAllByUtente(Integer.parseInt(session.getAttribute("userId").toString()));
+		List<DataSetDTO> listDTO = service.getAllByUtente(Integer.parseInt(session.getAttribute("userId").toString()));
 		request.setAttribute("list", listDTO);
 	}
 

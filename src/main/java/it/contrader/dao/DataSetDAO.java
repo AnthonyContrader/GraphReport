@@ -9,7 +9,7 @@ import it.contrader.model.DataSet;
 public class DataSetDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM dataset ORDER BY id_user";
-	private final String QUERY_ALL_BY_USER = "SELECT * FROM dataset WHERE id_user=?";
+	private final String QUERY_ALL_BY_USER = "SELECT * FROM dataset WHERE id_user=? ORDER BY id_categoria";
 	private final String QUERY_CREATE = "INSERT INTO dataset (id_user, id_categoria, id_unitamisura, valore) VALUES (?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM dataset WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE dataset SET id_user=?, id_categoria=?, id_unitamisura=?, valore=? WHERE id=?";
