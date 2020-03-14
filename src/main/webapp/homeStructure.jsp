@@ -6,12 +6,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>GraphReport</title>
-<link href="css/vittoriostyle.css" rel="stylesheet">
+<link href="css/vittoriostyle.css" rel="stylesheet" />
 <script type="text/javascript" src="js/javascript.js"></script>
 </head>
 <body style="min-width:760px">
 <%@include file="css/header.jsp"%>
-
 
 <div class="navbar" id="navbar">
   <a class="active" href="homeStructure.jsp" onclick="setActive(0)">Home</a>

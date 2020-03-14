@@ -5,6 +5,8 @@ import java.util.List;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,11 +42,22 @@ public class DataSetServlet extends HttpServlet {
 		if(request.getAttribute("usertype").toString().equalsIgnoreCase("admin"))
 			request.setAttribute("listUser", DataSetService.getAllUser());
 	}
+	
+	public void updateView(HttpServletRequest request) {
+		DataSetService service = new DataSetService();
+		List<DataSetDTO> dataSet = service.readDataSet(Integer.parseInt(request.getSession().getAttribute("userId").toString()),request.getParameter("cat"));
+		request.setAttribute("listUnit", DataSetService.getAllUnitaMisura());
+		request.setAttribute("dataset", dataSet);
+	}
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSetService service = new DataSetService();
 		String mode = request.getParameter("mode");
+		DataSetDTO dto;
+		String categoria;
+		String unitUno;
+		String unitDue;
 		int id=Integer.parseInt(request.getSession().getAttribute("userId").toString());
 		
 		switch (mode.toUpperCase()) {
@@ -55,41 +68,68 @@ public class DataSetServlet extends HttpServlet {
 			break;
 
 		case "READ":
-			List<DataSetDTO> dataSet = service.readDataSet(id,request.getParameter("cat"));
-			request.setAttribute("dataset", dataSet);
+			updateView(request);
 			getServletContext().getRequestDispatcher("/dataset/dsupdate.jsp").forward(request, response);
 			break;
 
 		case "INSERT":
-			DataSetDTO dto;
-			String categoria = request.getParameter("cc");
-			String unitUno = request.getParameter("cump");
-			String unitDue = request.getParameter("cums");
+			categoria = request.getParameter("cc");
+			unitUno = request.getParameter("cump");
+			unitDue = request.getParameter("cums");
 			if(!service.existDataSet(id,categoria)) {
-				dto = new DataSetDTO (id,categoria,unitUno,""); 
+				dto = new DataSetDTO (id,categoria,unitUno," _"); 
 				service.insert(dto);
-				dto = new DataSetDTO (id,categoria,unitDue,""); 
+				dto = new DataSetDTO (id,categoria,unitDue," _");
 				service.insert(dto);
 			}else { request.setAttribute("err", "1"); }
 			updateList(request);
 			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
 			break;
 			
+		case "INSERTROW":
+			categoria = request.getParameter("cat");
+			unitUno = request.getParameter("unit");
+			String value="";
+			for(int i=0;i<Integer.parseInt(request.getParameter("n"));i++) {
+				value+=" _";
+			}
+			if(!service.existDataSet(id,categoria,unitUno)) {
+				dto = new DataSetDTO (id,categoria,unitUno,value); 
+				service.insert(dto);
+			}else { request.setAttribute("err", "1"); }
+			updateView(request);
+			getServletContext().getRequestDispatcher("/dataset/dsupdate.jsp").forward(request, response);
+			break;
+			
 		case "UPDATE":
-			//username = request.getParameter("username");
-			//password = request.getParameter("password");
-			//usertype = request.getParameter("usertype");
-			//id = Integer.parseInt(request.getParameter("id"));
-			//dto = new DataSetDTO (id,username, password, usertype);
-			//ans = service.update(dto);
-			//updateList(request);
-			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
+			categoria = request.getParameter("cat");
+			int n = Integer.parseInt(request.getParameter("dstot"));
+			String[] split;
+			
+			for(int i=0;i<n;i++) {
+				split=request.getParameter("ds"+i).split("!");
+				dto = new DataSetDTO (id,categoria, split[0], split[1]);
+				if(!service.update(dto))
+					request.setAttribute("err", "3");
+				
+			}
+		
+			updateView(request);
+			getServletContext().getRequestDispatcher("/dataset/dsupdate.jsp").forward(request, response);
 			break;
 
 		case "DELETE":
 			service.delete(id,request.getParameter("cat"));
 			updateList(request);
 			getServletContext().getRequestDispatcher("/dataset/dataset.jsp").forward(request, response);
+			break;
+			
+		case "DELETEROW":
+			if(!service.deleterow(Integer.parseInt(request.getParameter("id")))) {
+				request.setAttribute("err", "2");
+			}
+			updateView(request);
+			getServletContext().getRequestDispatcher("/dataset/dsupdate.jsp").forward(request, response);
 			break;
 		}
 	}

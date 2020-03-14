@@ -2,11 +2,11 @@ function setActive(index){
 	
 	var nav=document.getElementById('navbar');
 	
-	for(var i=0;i<nav.children.length-1;i++){
+	for(var i=0;i<nav.childElementCount-1;i++){
 		if(i!=index)
-			nav.children[i].classList.remove("active");
+			nav.children[i].className="";
 		else
-			nav.children[i].classList.add("active");
+			nav.children[i].className="active";
 	}
 	
 }

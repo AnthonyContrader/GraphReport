@@ -27,6 +27,7 @@ public class DataSetDTO {
 		this.categoria = categ;
 		this.unitamisura = unit;
 		this.valore = valore;
+		this.id=null;
 	}
 
 	public DataSetDTO (int id, Integer idutente, String categ, String unit, String valore) {

@@ -117,6 +117,12 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 		CategoriaService catService = new CategoriaService();
 		return datoDAO.exist(id,catService.getId(categoria));
 	}
+	
+	public boolean existDataSet(int id, String categoria, String unitamisura) {
+		CategoriaService catService = new CategoriaService();
+		UnitaMisuraService unitService = new UnitaMisuraService();
+		return datoDAO.exist(id,catService.getId(categoria),unitService.getId(unitamisura));
+	}
 
 
 	public List<DataSetDTO> readDataSet(int id, String cat) {
@@ -132,6 +138,11 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 		}
 
 		return datoConverter.toDTOList(listaDato,cat,unitList);
+	}
+
+
+	public boolean deleterow(int id) {
+		return datoDAO.deleterow(id);
 	}
 
 }

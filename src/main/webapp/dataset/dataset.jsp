@@ -19,7 +19,7 @@ if(request.getAttribute("err")!=null){
 	switch (Integer.parseInt(request.getAttribute("err").toString())){
 		case 1:
 		%>
-			DataSet esistente!<br>Si consiglia di modificare il quello esistente.
+			<strong>Impossibile creare nuovo:</strong> DataSet esistente!<br>Si consiglia di modificare quello esistente.
 		<%
 		break;
 	}
@@ -109,9 +109,9 @@ if(request.getAttribute("err")!=null){
 	<h1>Crea nuovo DataSet</h1>
 	<p class="center">In seguito alla creazione sarà possibile inserire nuovi valori e nuove tipologie di valori.</p>
 	<form class="center" action="DataSetServlet" style="min-width:270px" onsubmit="return verificaCrea()">
-		<label>Categoria</label>
+		<label><strong>Categoria</strong></label>
 		<select id="cc" name="cc">
-			<option value=""></option>
+			<option value="" style="color:grey">Scegli una categoria</option>
 			<%
 			for(CategoriaDTO c : listC){
 				%>
@@ -122,9 +122,10 @@ if(request.getAttribute("err")!=null){
 				}
 			%>
 		</select>
-		<label>Tipologia primo set di valori:</label>
+		<label><strong>Unità di misura:</strong></label>
+		<br>
 		<select id="cump" name="cump">
-			<option value=""></option>
+			<option value="" style="color:grey">Primo set di valori</option>
 			<%
 			for(UnitaMisuraDTO um : listUM){
 				%>
@@ -135,9 +136,8 @@ if(request.getAttribute("err")!=null){
 				}
 			%>
 		</select>
-		<label>Tipologia secondo set di valori:</label>
 		<select id="cums" name="cums">
-			<option value=""></option>
+			<option value="" style="color:grey">Secondo set di valori</option>
 			<%
 			for(UnitaMisuraDTO um : listUM){
 				%>

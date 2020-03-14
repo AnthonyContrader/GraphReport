@@ -13,9 +13,11 @@ public class DataSetDAO {
 	private final String QUERY_DATA_SET = "SELECT * FROM dataset WHERE id_user=? AND id_categoria=?";
 	private final String QUERY_CREATE = "INSERT INTO dataset (id_user, id_categoria, id_unitamisura, valore) VALUES (?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM dataset WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE dataset SET id_user=?, id_categoria=?, id_unitamisura=?, valore=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE dataset SET valore=? WHERE id_user=? AND id_categoria=? AND id_unitamisura=?";
 	private final String QUERY_DELETE = "DELETE FROM dataset WHERE id_user=? AND id_categoria=?";
+	private final String QUERY_DELETE_ROW = "DELETE FROM dataset WHERE id=?";
 	private final String QUERY_EXIST1 = "SELECT COUNT(*) AS conto FROM dataset WHERE id_user=? AND id_categoria=?";
+	private final String QUERY_EXIST2 = "SELECT COUNT(*) AS conto FROM dataset WHERE id_user=? AND id_categoria=? AND id_unitamisura=?";
 	
 	public DataSetDAO() {
 
@@ -111,50 +113,22 @@ public class DataSetDAO {
 	public boolean update(DataSet datoToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
-		// Check if id is present
-		if (datoToUpdate.getId() == 0)
-			return false;
-
-		DataSet datoRead = read(datoToUpdate.getId());
-		if (!datoRead.equals(datoToUpdate)) {
-			try {
-				// Fill the userToUpdate object
-				if (datoToUpdate.getIdUser() == null || datoToUpdate.getIdUser().equals("")) {
-					datoToUpdate.setIdUser(datoRead.getIdUser());
-				}
-
-				if (datoToUpdate.getIdCategoria() == null || datoToUpdate.getIdCategoria().equals("")) {
-					datoToUpdate.setIdCategoria(datoRead.getIdCategoria());
-				}
-
-				if (datoToUpdate.getIdUnitaMisura() == null || datoToUpdate.getIdUnitaMisura().equals("")) {
-					datoToUpdate.setIdUnitaMisura(datoRead.getIdUnitaMisura());
-				}
-				
-				if (datoToUpdate.getValore() == null || datoToUpdate.getValore().equals("")) {
-					datoToUpdate.setValore(datoRead.getValore());
-				}
-
-				// Update the user
-				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setInt(1, datoToUpdate.getIdUser());
-				preparedStatement.setInt(2, datoToUpdate.getIdCategoria());
-				preparedStatement.setInt(3, datoToUpdate.getIdUnitaMisura());
-				preparedStatement.setString(4, datoToUpdate.getValore());
-				preparedStatement.setInt(5, datoToUpdate.getId());
-				int a = preparedStatement.executeUpdate();
-				if (a > 0)
-					return true;
-				else
-					return false;
-
-			} catch (SQLException e) {
+		try {
+			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
+			preparedStatement.setString(1, datoToUpdate.getValore());
+			preparedStatement.setInt(2, datoToUpdate.getIdUser());
+			preparedStatement.setInt(3, datoToUpdate.getIdCategoria());
+			preparedStatement.setInt(4, datoToUpdate.getIdUnitaMisura());
+			int a = preparedStatement.executeUpdate();
+			if (a > 0)
+				return true;
+			else
 				return false;
-			}
+
+		} catch (SQLException e) {
+			return false;
 		}
-
-		return false;
-
+		
 	}
 
 	public boolean delete(int idu,int cat) {
@@ -187,6 +161,23 @@ public class DataSetDAO {
 			}
 			return false;
 	}
+	
+	public boolean exist(int id, Integer cat, Integer unita) {
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_EXIST2);
+			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(2, cat);
+			preparedStatement.setInt(3, unita);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.last();
+			if (resultSet.getInt("conto") > 0)
+					return true;
+			
+			} catch (SQLException e) {
+			}
+			return false;
+	}
 
 	public List<DataSet> getDataSet(int id, int cat) {
 		List<DataSet> datiList = new ArrayList<>();
@@ -206,6 +197,20 @@ public class DataSetDAO {
 			
 		}
 		return datiList;
+	}
+
+	public boolean deleterow(int id) {
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE_ROW);
+			preparedStatement.setInt(1, id);
+			int n = preparedStatement.executeUpdate();
+			if (n != 0)
+				return true;
+
+		} catch (SQLException e) {
+		}
+		return false;
 	}
 
 

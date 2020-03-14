@@ -1,12 +1,14 @@
 /* Main Layout */
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
+
 * {
 	font-family: sans-serif;
 }
-div.text{
-	clear:both;
+
+div.text {
+	clear: both;
 	margin-top: 3%;
 	margin-bottom: 3%;
 }
@@ -33,7 +35,6 @@ h2 {
 	font-family: sans-serif;
 	color: #000000;
 }
-
 
 /* Anchors */
 a {
@@ -65,11 +66,10 @@ a:visited {
 table {
 	border-collapse: collapse;
 	width: 50%;
-	float:left;
-	border-radius:4px;
-    -moz-border-radius:4px;
+	float: left;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
 }
-
 
 th, td {
 	text-align: center;
@@ -83,59 +83,52 @@ tr:nth-child(even) {
 th {
 	background-color: #00a990;
 	color: #ffffff;
-	
 }
 
 a:hover {
 	color: #999999;
 }
 
-
 /*Forms*/
-
 select {
-  width: 100%;
-  padding: 14px 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f2f2f2;
-  margin: 8px 0;
+	width: 100%;
+	padding: 14px 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f2f2f2;
+	margin: 8px 0;
 }
+
 select:hover {
-  background-color:  #00ccad;
+	background-color: #00ccad;
 }
 
-option{
-width: 100%;
-  background-color: #ffff;
-  color: #000000;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-	
+option {
+	width: 100%;
+	background-color: #ffff;
+	color: #000000;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
 }
-
-
-
 
 input {
-  width: 80%;
-  background-color: #ffff;
-  color: #000000;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  float:right;
+	width: 80%;
+	background-color: #ffff;
+	color: #000000;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
 }
 
 input:hover {
-  background-color:  #00ccad;
+	background-color: #00ccad;
 }
-
 
 res {
 	float: left;
@@ -144,7 +137,7 @@ res {
 	background-color: #00a990;
 	border-radius: 7px;
 	color: #ffffff;
-	text-align:center;
+	text-align: center;
 }
 
 form {
@@ -155,116 +148,172 @@ form {
 }
 
 .col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
+	float: left;
+	width: 25%;
+	margin-top: 6px;
 }
 
 .col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
+	float: left;
+	width: 75%;
+	margin-top: 6px;
 }
 
 /* Clear floats after the columns */
 .row:after {
-  content: "";
-  display: table;
-  clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
 
 label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
+	padding: 12px 12px 12px 0;
+	display: inline-block;
 }
 
-
 button {
-  -webkit-transition-duration: 0.1s; /* Safari */
-  transition-duration: 0.1s;
-  background-color:  #00a990;
-  border: none;
-  color: white;
-  padding: 3% 3%;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 130%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  cursor: pointer;
-  border-radius: 7px;
-  width:80%;
+	-webkit-transition-duration: 0.1s; /* Safari */
+	transition-duration: 0.1s;
+	background-color: #00a990;
+	border: none;
+	color: white;
+	padding: 3% 3%;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 130%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	cursor: pointer;
+	border-radius: 7px;
+	width: 80%;
 }
 
 button:hover {
-  background-color:  #00ccad; 
-  color: white;
+	background-color: #00ccad;
+	color: white;
 }
 
 /*Images*/
 .imgheader {
-	position: center; z-index : -1;
+	position: center;
+	z-index: -1;
 	opacity: .9;
-	z-index: -1; opacity : .9;
+	z-index: -1;
+	opacity: .9;
 	width: 8%;
 }
 
 /*Div*/
-.cols{
-	float:left;
-	min-width:100px;
-	position:relative;
+.cols {
+	float: left;
+	min-width: 100px;
+	position: relative;
 }
 
-.half{
-	width:50%;
+.half {
+	width: 50%;
 }
 
-.newCat{
-	clear:both;
+.newCat {
+	clear: both;
 }
 
-div.center{
+div.center {
 	width: max-content;
 	margin: auto;
 }
 
-.marginBot{
-	margin-bottom:25px;
+.marginBot {
+	margin-bottom: 25px;
 }
 
-.th , .tr , .td{
+.th, .tr{
 	text-align: center;
 	padding: 8px;
-} 
-
-.th{
-	background-color:#00a990;
-	color:#ffffff;
 }
 
-.grey{
-	background-color:#f2f2f2;
+.tr{
+	min-height:18px;
+	max-height:27px;
 }
 
-.linkCRUD{
+.th {
+	background-color: #00a990;
+	color: #ffffff;
+	height: 18px;
+}
+
+.grey {
+	background-color: #f2f2f2;
+}
+
+.linkCRUD {
 	float: left;
 	margin: 10px 10px 0px;
-	width:min-content;
+	width: min-content;
 }
 
-.divCRUD{
-	position:absolute;
-	right:0px;
+.divCRUD {
+	position: absolute;
+	right: 0px;
 }
 
-form.center{
+form.center {
 	margin: auto;
 }
 
-p.center{
-	text-align:center;
+p.center {
+	text-align: center;
+}
+
+.btnApply {
+	width: max-content;
+	position: fixed;
+	left: calc(50% - 73px);
+	top: 10px;
+}
+
+input:disabled{
+	background-color: #f2f2f2;
+}
+
+.btnApply>button {
+	background-color: #ecb613;
+}
+
+.btnApply>button:disabled {
+	background-color: #808080;
+}
+
+.btnApply>button:disabled:hover {
+	background-color: #808080;
+	cursor: default;
+	
+}
+
+.btnApply>button:hover {
+	background-color: #fec501;
+}
+
+.tableInput {
+	margin: 0px;
+	float: none;
+	padding: 5px 0px;
+	text-align: center;
+	width: 80px;
+}
+
+div .tr>img {
+	width: 24.5px;
+	cursor: pointer;
+}
+
+.noForm{
+	width: unset;
+	border-radius: unset;
+	background-color: unset;
+	padding: unset;		
 }
