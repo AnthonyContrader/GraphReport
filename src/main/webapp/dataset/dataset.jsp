@@ -89,7 +89,7 @@
 	</div>	
 	<div class="cols half">
 	<h1>Crea nuovo DataSet</h1>
-	<p class="center">In seguito alla creazione sarà possibile inserire<br>nuovi valori e nuove tipologie di valori.</p>
+	<p class="center">In seguito alla creazione sarà possibile inserire nuovi valori e nuove tipologie di valori.</p>
 	<form class="center" action="DataSetServlet" style="min-width:270px" onsubmit="return verificaCrea()">
 		<label><strong>Categoria</strong></label>
 		<select id="cc" name="cc">
