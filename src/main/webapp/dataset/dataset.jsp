@@ -26,7 +26,7 @@
 			<label>Visualizza DataSet dell'utente</label>
 			<input type="text" name="mode" value="list" style="display:none;" />
 				<select name="idUtVis" onchange="document.getElementById('visDataSetUt').submit();" style="width:max-content">
-					<option value="<%=session.getAttribute("userId")%>">Tuoi DataSet</option>
+					<option value="<%=session.getAttribute("userId")%>">Tuoi Personali</option>
 					<%
 					for(UserDTO u : listU){
 						if(u.getId()!=Integer.parseInt(session.getAttribute("userId").toString())){
