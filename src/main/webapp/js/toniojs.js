@@ -129,3 +129,40 @@ function repaint(){
 		}
 	}
 }
+
+function chiudiParente(dom){
+		dom.parentElement.remove();
+}
+
+function resize(){
+	var dom=document.querySelectorAll('div[class="cols half"]>div>div[class="center"]');
+	var domHalf=document.querySelectorAll('div[class="cols half"]');
+	
+	var max=0;
+	for(var j=0;j < dom.length;j++){
+		if(dom[j].offsetWidth > max) max=dom[j].offsetWidth;
+	}
+
+	if(max>(document.body.offsetWidth/2)+1){
+		
+		for(var i=0;i<domHalf.length;i++){
+			domHalf[i].style.width="100%";
+		}
+		try{
+			document.getElementById('btnSalva').parentElement.style.right="0px";
+		}catch(e){}
+		
+	}else{
+		
+		if((document.body.offsetWidth+1)>(max/2)+1){
+			
+			for(var i=0;i<domHalf.length;i++){
+				domHalf[i].style.width="50%";
+			}
+			try{
+				document.getElementById('btnSalva').parentElement.style.right=((document.body.offsetWidth/2)-73)+"px";
+			}catch(e){}
+			
+		}
+	}
+}

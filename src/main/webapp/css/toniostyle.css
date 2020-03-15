@@ -214,6 +214,7 @@ button:hover {
 }
 
 .half {
+	min-width:min-content;
 	width: 50%;
 }
 
@@ -267,12 +268,13 @@ form.center {
 
 p.center {
 	text-align: center;
+	min-width:min-content;
 }
 
 .btnApply {
 	width: max-content;
 	position: fixed;
-	left: calc(50% - 73px);
+	right: calc( 50% - 73px);
 	top: 10px;
 }
 
@@ -312,17 +314,24 @@ div .tr>img {
 }
 
 .noForm{
-	width: unset;
-	border-radius: unset;
-	background-color: unset;
-	padding: unset;		
+	display:none;		
 }
 .msgerr{
-	position:fixed;
-	width:80%;
-	text-align:center;
-	margin:auto;
-	right:0px;
-	left:0px;
-	background-color:yellow;
+	position: fixed;
+	width: 60%;
+	text-align: center;
+	margin: auto;
+	right: 0px;
+	left: 0px;
+	background-color: beige;
+	padding: 30px;
+	border-radius: 25px;
+	box-shadow: 0px 0px 27px 11px rgba(0,0,0,0.75);
+}
+
+.closeerr{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
 }

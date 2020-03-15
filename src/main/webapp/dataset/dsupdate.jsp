@@ -9,34 +9,6 @@
 </head>
 <body>
 
-<%
-if(request.getAttribute("err")!=null){
-	%>
-	<div id="err" class="msgerr">
-	<%
-	switch (Integer.parseInt(request.getAttribute("err").toString())){
-		case 1:
-			%>
-			<strong>Impossibile Aggiungere:</strong> unità di misura esistente!<br>Si consiglia di modificare quella esistente.
-			<%
-			break;
-		case 2:
-			%>
-			<strong>Errore imprevito!</strong><br>Impossibile eliminare la colonna selezionata.
-			<%
-			break;
-		case 3:
-			%>
-			<strong>Errore imprevito!</strong><br>Impossibile memorizzare i nuovi dati.
-			<%
-			break;
-	}
-	%>
-	</div>
-	<%
-}
-%>
-
 	<div class="cols half">
 	
 <%
@@ -147,5 +119,37 @@ if(request.getAttribute("err")!=null){
 	<div class="btnApply">
 		<button onclick="submitUpdate()" id="btnSalva" disabled>Salva modifiche</button>
 	</div>
+	<%
+if(request.getAttribute("err")!=null){
+	%>
+	<div id="err" class="msgerr">
+	<label class="closeerr" onclick="chiudiParente(this)">[X] Chiudi</label>
+	<%
+	switch (Integer.parseInt(request.getAttribute("err").toString())){
+		case 1:
+			%>
+			<strong>Impossibile Aggiungere:</strong> unità di misura esistente!<br>Si consiglia di modificare quella esistente.
+			<%
+			break;
+		case 2:
+			%>
+			<strong>Errore imprevito!</strong><br>Impossibile eliminare la colonna selezionata.
+			<%
+			break;
+		case 3:
+			%>
+			<strong>Errore imprevito!</strong><br>Impossibile memorizzare i nuovi dati.
+			<%
+			break;
+	}
+	%>
+	</div>
+	<%
+}
+%>
 </body>
 </html>
+<script>
+	window.addEventListener('resize',resize);
+	resize();
+</script>

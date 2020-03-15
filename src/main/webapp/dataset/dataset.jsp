@@ -11,24 +11,6 @@
 </head>
 <body>
 
-<%
-if(request.getAttribute("err")!=null){
-	%>
-	<div id="err">
-	<%
-	switch (Integer.parseInt(request.getAttribute("err").toString())){
-		case 1:
-		%>
-			<strong>Impossibile creare nuovo:</strong> DataSet esistente!<br>Si consiglia di modificare quello esistente.
-		<%
-		break;
-	}
-	%>
-	</div>
-	<%
-}
-%>
-
 	<div class="cols half">
 <%
 		List<DataSetDTO> list = (List <DataSetDTO>) request.getAttribute("list");
@@ -40,10 +22,10 @@ if(request.getAttribute("err")!=null){
 		if(request.getAttribute("usertype").toString().equalsIgnoreCase("admin")){
 			List<UserDTO> listU = (List <UserDTO>) request.getAttribute("listUser");
 			%>
+			<form class="center" id="visDataSetUt" action="DataSetServlet" style="width:max-content">
 			<label>Visualizza DataSet dell'utente</label>
-			<form id="visDataSetUt" action="DataSetServlet">
 			<input type="text" name="mode" value="list" style="display:none;" />
-				<select name="idUtVis" onchange="document.getElementById('visDataSetUt').submit();">
+				<select name="idUtVis" onchange="document.getElementById('visDataSetUt').submit();" style="width:max-content">
 					<option value="<%=session.getAttribute("userId")%>">Tuoi DataSet</option>
 					<%
 					for(UserDTO u : listU){
@@ -107,7 +89,7 @@ if(request.getAttribute("err")!=null){
 	</div>	
 	<div class="cols half">
 	<h1>Crea nuovo DataSet</h1>
-	<p class="center">In seguito alla creazione sarà possibile inserire nuovi valori e nuove tipologie di valori.</p>
+	<p class="center">In seguito alla creazione sarà possibile inserire<br>nuovi valori e nuove tipologie di valori.</p>
 	<form class="center" action="DataSetServlet" style="min-width:270px" onsubmit="return verificaCrea()">
 		<label><strong>Categoria</strong></label>
 		<select id="cc" name="cc">
@@ -152,5 +134,27 @@ if(request.getAttribute("err")!=null){
 		<button type="submit">Crea</button>
 	</form>
 	</div>
+	<%
+if(request.getAttribute("err")!=null){
+	%>
+	<div id="err" class="msgerr">
+	<label class="closeerr" onclick="chiudiParente(this)">[X] Chiudi</label>
+	<%
+	switch (Integer.parseInt(request.getAttribute("err").toString())){
+		case 1:
+		%>
+			<strong>Impossibile creare nuovo:</strong> DataSet esistente!<br>Si consiglia di modificare quello esistente.
+		<%
+		break;
+	}
+	%>
+	</div>
+	<%
+}
+%>
 </body>
 </html>
+<script>
+	window.addEventListener('resize',resize);
+	resize();
+</script>
