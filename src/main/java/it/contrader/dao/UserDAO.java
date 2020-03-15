@@ -171,10 +171,10 @@ public class UserDAO implements DAO<User> {
 				preparedStatement.setString(8, userToUpdate.getNazione());
 				preparedStatement.setInt(9, userToUpdate.getId());
 				int a = preparedStatement.executeUpdate();
-//				if (a > 0)
-//					return true;
-//				else
-//					return false;
+				if (a > 0)
+					return true;
+				else
+					return false;
 
 			} catch (SQLException e) {
 				return false;

@@ -12,7 +12,7 @@
 <%
 if(request.getAttribute("err")!=null){
 	%>
-	<div id="err">
+	<div id="err" class="msgerr">
 	<%
 	switch (Integer.parseInt(request.getAttribute("err").toString())){
 		case 1:

@@ -317,3 +317,12 @@ div .tr>img {
 	background-color: unset;
 	padding: unset;		
 }
+.msgerr{
+	position:fixed;
+	width:80%;
+	text-align:center;
+	margin:auto;
+	right:0px;
+	left:0px;
+	background-color:yellow;
+}
