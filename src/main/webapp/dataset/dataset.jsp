@@ -153,8 +153,10 @@ if(request.getAttribute("err")!=null){
 }
 %>
 </body>
-</html>
+
 <script>
 	window.addEventListener('resize',resize);
 	resize();
 </script>
+
+</html>
