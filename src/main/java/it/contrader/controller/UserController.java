@@ -27,17 +27,14 @@ public class UserController {
 		UserDTO userDTO = service.findByUsernameAndPassword(username, password);
 		request.getSession().setAttribute("user", userDTO);
 
-		switch (userDTO.getUsertype()) {
-
-		case ADMIN:
-			return "homeadmin";
-
-		case USER:
-			return "index";
-
-		default:
-			return "index";
-		}
+		if(userDTO!=null) {
+			return "homeStructure";
+		}else return "index";
+	}
+	
+	@GetMapping("/welcome")
+	public String welcome(HttpServletRequest request) {
+		return "welcome";
 	}
 
 	@GetMapping("/getall")
