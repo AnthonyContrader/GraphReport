@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `graphreport` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `graphreport`;
+CREATE DATABASE IF NOT EXISTS graphreportjsp;
+USE graphreportjsp;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: graphreport
+-- Host: localhost    Database: graphreportjsp
 -- ------------------------------------------------------
 -- Server version	8.0.19
 
@@ -18,81 +18,84 @@ USE `graphreport`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `area`
+-- Table structure for table `categoria`
 --
 
-DROP TABLE IF EXISTS `area`;
+DROP TABLE IF EXISTS `categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `area` (
-  `id_area` int NOT NULL,
+CREATE TABLE `categoria` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_area`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `area`
+-- Dumping data for table `categoria`
 --
 
-LOCK TABLES `area` WRITE;
-/*!40000 ALTER TABLE `area` DISABLE KEYS */;
-/*!40000 ALTER TABLE `area` ENABLE KEYS */;
+LOCK TABLES `categoria` WRITE;
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'Corsa'),(2,'Viaggio'),(3,'Dieta');
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `dato`
+-- Table structure for table `dataset`
 --
 
-DROP TABLE IF EXISTS `dato`;
+DROP TABLE IF EXISTS `dataset`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `dato` (
-  `id_dato` int NOT NULL AUTO_INCREMENT,
-  `id_utente` int NOT NULL,
-  `id_area` int NOT NULL,
-  `id_tag` int NOT NULL,
-  `valore` float NOT NULL,
-  PRIMARY KEY (`id_dato`),
-  KEY `fk_utente_idx` (`id_utente`),
-  KEY `area_idx` (`id_area`),
-  KEY `tag_idx` (`id_tag`),
-  CONSTRAINT `area` FOREIGN KEY (`id_area`) REFERENCES `area` (`id_area`),
-  CONSTRAINT `tag` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id_tag`),
-  CONSTRAINT `utente` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id_utente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `dataset` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `id_categoria` int NOT NULL,
+  `id_unitamisura` int NOT NULL,
+  `valore` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tag_idx` (`id_unitamisura`),
+  KEY `area_idx` (`id_categoria`),
+  KEY `user_idx` (`id_user`),
+  CONSTRAINT `area` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`),
+  CONSTRAINT `tag` FOREIGN KEY (`id_unitamisura`) REFERENCES `unitamisura` (`id`),
+  CONSTRAINT `user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `dato`
+-- Dumping data for table `dataset`
 --
 
-LOCK TABLES `dato` WRITE;
-/*!40000 ALTER TABLE `dato` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dato` ENABLE KEYS */;
+LOCK TABLES `dataset` WRITE;
+/*!40000 ALTER TABLE `dataset` DISABLE KEYS */;
+INSERT INTO `dataset` VALUES (1,2,3,2,'80_79.5_60');
+/*!40000 ALTER TABLE `dataset` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tag`
+-- Table structure for table `unitamisura`
 --
 
-DROP TABLE IF EXISTS `tag`;
+DROP TABLE IF EXISTS `unitamisura`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tag` (
-  `id_tag` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `unitamisura` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tag`
+-- Dumping data for table `unitamisura`
 --
 
-LOCK TABLES `tag` WRITE;
-/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
+LOCK TABLES `unitamisura` WRITE;
+/*!40000 ALTER TABLE `unitamisura` DISABLE KEYS */;
+INSERT INTO `unitamisura` VALUES (1,'Km'),(2,'Kg'),(3,'Minuti');
+/*!40000 ALTER TABLE `unitamisura` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -103,12 +106,18 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL,
   `usertype` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `id` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
+  `nome` varchar(50) DEFAULT NULL,
+  `cognome` varchar(50) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `citta` varchar(50) DEFAULT NULL,
+  `nazione` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='		';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,35 +126,8 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('admin','ADMIN','admin',1),('user','USER','user',2);
+INSERT INTO `user` VALUES (1,'admin','ADMIN','admin',NULL,NULL,NULL,NULL,NULL),(2,'user','USER','user',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `utente`
---
-
-DROP TABLE IF EXISTS `utente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `utente` (
-  `id_utente` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(200) NOT NULL,
-  `cognome` varchar(200) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `citta` varchar(200) NOT NULL,
-  `nazione` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_utente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `utente`
---
-
-LOCK TABLES `utente` WRITE;
-/*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -157,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-03 12:44:11
+-- Dump completed on 2020-03-11 19:39:21
