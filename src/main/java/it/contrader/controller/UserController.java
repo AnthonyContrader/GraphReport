@@ -26,6 +26,7 @@ public class UserController {
 
 		UserDTO userDTO = service.findByUsernameAndPassword(username, password);
 		request.getSession().setAttribute("user", userDTO);
+		request.getSession().setAttribute("userid", userDTO.getId());
 
 		if(userDTO!=null) {
 			return "homeStructure";

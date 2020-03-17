@@ -8,14 +8,10 @@
 <meta name="description" content="User Read">
 <meta name="author" content="Vittorio Valent">
 <link href="/css/vittoriostyle.css" rel="stylesheet">
-<title>Read User</title>
+<title>Info Utente</title>
 </head>
 <body>
 	<%@ include file="./css/header.jsp"%>
-	<div class="navbar">
-		<a href="/homeadmin.jsp">Home</a> <a class="active"
-			href="/user/getall">Users</a> <a href="/user/logout" id="logout">Logout</a>
-	</div>
 	<br>
 
 	<div class="main">
@@ -30,12 +26,22 @@
 				<th>Username</th>
 				<th>Password</th>
 				<th>Usertype</th>
+				<th>Nome</th>
+				<th>Cognome</th>
+				<th>Email</th>
+				<th>Città</th>
+				<th>Nazione</th>
 			</tr>
 			<tr>
 				<td><%=u.getId()%></td>
 				<td><%=u.getUsername()%></td>
 				<td><%=u.getPassword()%></td>
 				<td><%=u.getUsertype()%></td>
+				<td> <%=u.getNome()%></td>
+				<td> <%=u.getCognome()%></td>
+				<td> <%=u.getEmail()%></td>
+				<td> <%=u.getCitta()%></td>
+				<td> <%=u.getNazione()%></td>
 			</tr>
 		</table>
 

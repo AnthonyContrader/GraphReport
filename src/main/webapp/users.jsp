@@ -78,6 +78,51 @@
 					</select>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="user">Nome</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="nome" name="nome"
+						placeholder="inserisci nome">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="user">Cognome</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="cognome" name="cognome"
+						placeholder="inserisci cognome">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="user">Email</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="email" name="email"
+						placeholder="inserisci email">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="user">Città</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="citta" name="citta"
+						placeholder="inserisci città">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="user">Nazione</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="nazione" name="nazione"
+						placeholder="inserisci nazione">
+				</div>
+			</div>
 			<button type="submit">Insert</button>
 		</form>
 
