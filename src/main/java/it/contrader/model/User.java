@@ -24,11 +24,21 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique = true)
+	@Column(unique = true, nullable=false)
 	private String username;
 
 	private String password;
-
+	
 	private Usertype usertype;
-
+	
+	@Column(unique = true)
+	private String email;
+	
+	private String nome;
+	
+	private String cognome;
+	
+	private String citta;
+	
+	private String nazione;
 }

@@ -58,13 +58,21 @@ public class UserController {
 
 	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype) {
+			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype,
+			@RequestParam("nome") String nome, @RequestParam("cognome") String cognome,
+			@RequestParam("email") String email, @RequestParam("citta") String citta, 
+			@RequestParam("nazione") String nazione) {
 
 		UserDTO dto = new UserDTO();
 		dto.setId(id);
 		dto.setUsername(username);
 		dto.setPassword(password);
 		dto.setUsertype(usertype);
+		dto.setNome(nome);
+		dto.setCognome(cognome);
+		dto.setEmail(email);
+		dto.setCitta(citta);
+		dto.setNazione(nazione);
 		service.update(dto);
 		setAll(request);
 		return "users";
@@ -73,11 +81,39 @@ public class UserController {
 
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype) {
+			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype,
+			@RequestParam("nome") String nome, @RequestParam("cognome") String cognome,
+			@RequestParam("email") String email, @RequestParam("citta") String citta, 
+			@RequestParam("nazione") String nazione) {
 		UserDTO dto = new UserDTO();
 		dto.setUsername(username);
 		dto.setPassword(password);
 		dto.setUsertype(usertype);
+		dto.setNome(nome);
+		dto.setCognome(cognome);
+		dto.setEmail(email);
+		dto.setCitta(citta);
+		dto.setNazione(nazione);
+		service.insert(dto);
+		setAll(request);
+		return "users";
+	}
+	
+	@PostMapping("/register")
+	public String register(HttpServletRequest request, @RequestParam("username") String username,
+			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype,
+			@RequestParam("nome") String nome, @RequestParam("cognome") String cognome,
+			@RequestParam("email") String email, @RequestParam("citta") String citta, 
+			@RequestParam("nazione") String nazione) {
+		UserDTO dto = new UserDTO();
+		dto.setUsername(username);
+		dto.setPassword(password);
+		dto.setUsertype(usertype);
+		dto.setNome(nome);
+		dto.setCognome(cognome);
+		dto.setEmail(email);
+		dto.setCitta(citta);
+		dto.setNazione(nazione);
 		service.insert(dto);
 		setAll(request);
 		return "users";
