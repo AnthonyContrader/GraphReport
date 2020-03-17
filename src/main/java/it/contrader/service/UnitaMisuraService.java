@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 import it.contrader.converter.UnitaMisuraConverter;
 import it.contrader.dao.UnitaMisuraRepository;
 import it.contrader.dto.UnitaMisuraDTO;
+import it.contrader.model.UnitaMisura;
 
 
 
 @Service
-public class UnitaMisuraService extends AbstractService<UnitaMisuraService, UnitaMisuraDTO> {
+public class UnitaMisuraService extends AbstractService<UnitaMisura, UnitaMisuraDTO> {
 	
 	@Autowired
 	private UnitaMisuraConverter converter;
