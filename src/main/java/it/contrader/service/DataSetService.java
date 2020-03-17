@@ -18,7 +18,7 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	@Autowired
 	private DataSetConverter converter;
 	
-	public List<DataSetDTO> findAllByUtente(DataSet dato){
-		return converter.toDTOList(repository.findAllByUtente(dato.getUtente()));
+	public List<DataSetDTO> findAllByUtente(Long utente){
+		return converter.toDTOList(repository.findAllByUtente(utente));
 	}
 }

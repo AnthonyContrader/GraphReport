@@ -21,7 +21,7 @@ public class DataSetController {
 
 	@GetMapping("/home")
 	public String home(HttpServletRequest request) {
-		
+		request.setAttribute("list", service.findAllByUtente(Long.parseLong(request.getSession().getAttribute("user").toString())));
 		return "dataset/dataset";
 	}
 	

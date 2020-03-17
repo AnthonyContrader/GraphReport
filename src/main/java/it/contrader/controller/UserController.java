@@ -25,10 +25,11 @@ public class UserController {
 			@RequestParam(value = "password", required = true) String password) {
 
 		UserDTO userDTO = service.findByUsernameAndPassword(username, password);
-		request.getSession().setAttribute("user", userDTO);
-		request.getSession().setAttribute("userid", userDTO.getId());
-
+		
 		if(userDTO!=null) {
+			request.getSession().setAttribute("user", userDTO);
+			request.getSession().setAttribute("userid", userDTO.getId());
+			request.getSession().setAttribute("usertype", userDTO.getUsertype().toString());
 			return "homeStructure";
 		}else return "index";
 	}
