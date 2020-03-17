@@ -9,12 +9,17 @@
 </head>
 <body>
 
-
+<div id="graphView"></div>
 
 </body>
 
 <script>
-
+var chart = new CanvasJS.Chart("graphView", {
+	title:{
+		text: "CATEGORIA"
+	},
+	
+});
 </script>
 
 </html>
