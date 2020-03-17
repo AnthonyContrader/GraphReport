@@ -2,6 +2,8 @@ package it.contrader.dao;
 
 import javax.transaction.Transactional;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +11,7 @@ import it.contrader.model.DataSet;
 
 @Repository
 @Transactional
-public interface DataSetRepository extends CrudRepository<DataSet,Integer>{
+public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 
 	//QUERY_ALL = "SELECT * FROM dataset ORDER BY id_user";
 	//QUERY_ALL_BY_USER = "SELECT * FROM dataset WHERE id_user=? ORDER BY id_categoria";
@@ -22,5 +24,6 @@ public interface DataSetRepository extends CrudRepository<DataSet,Integer>{
 	//QUERY_EXIST1 = "SELECT COUNT(*) AS conto FROM dataset WHERE id_user=? AND id_categoria=?";
 	//QUERY_EXIST2 = "SELECT COUNT(*) AS conto FROM dataset WHERE id_user=? AND id_categoria=? AND id_unitamisura=?";
 	
+	List<DataSet> findAllByUtente(Long utente);
 
 }

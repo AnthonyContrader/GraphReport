@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 public class DataSetDTO {
 
 	
-	private Integer id;
+	private Long id;
 
 	private Long utente;
 	
-	private Integer categoria;
+	private Long categoria;
 	
-	private Integer unitaMisura;
+	private Long unitaMisura;
 	
 	private String valore;
 

@@ -19,6 +19,12 @@ public class DataSetController {
 	@Autowired
 	private DataSetService service;
 
+	@GetMapping("/home")
+	public String home(HttpServletRequest request) {
+		
+		return "dataset/dataset";
+	}
+	
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
@@ -39,14 +45,15 @@ public class DataSetController {
 	}
 
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype) {
+	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("utente") Long utente,
+			@RequestParam("categoria") Long categoria, @RequestParam("unitaMisura") Long unitaMisura, @RequestParam("valore") String valore) {
 
-		UserDTO dto = new UserDTO();
+		DataSetDTO dto = new DataSetDTO();
 		dto.setId(id);
-		dto.setUsername(username);
-		dto.setPassword(password);
-		dto.setUsertype(usertype);
+		dto.setUtente(utente);
+		dto.setCategoria(categoria);
+		dto.setUnitaMisura(unitaMisura);;
+		dto.setValore(valore);;
 		service.update(dto);
 		setAll(request);
 		return "users";
@@ -54,12 +61,14 @@ public class DataSetController {
 	}
 
 	@PostMapping("/insert")
-	public String insert(HttpServletRequest request, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype) {
-		UserDTO dto = new UserDTO();
-		dto.setUsername(username);
-		dto.setPassword(password);
-		dto.setUsertype(usertype);
+	public String insert(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("utente") Long utente,
+			@RequestParam("categoria") Long categoria, @RequestParam("unitaMisura") Long unitaMisura, @RequestParam("valore") String valore) {
+		DataSetDTO dto = new DataSetDTO();
+		dto.setId(id);
+		dto.setUtente(utente);
+		dto.setCategoria(categoria);
+		dto.setUnitaMisura(unitaMisura);;
+		dto.setValore(valore);;
 		service.insert(dto);
 		setAll(request);
 		return "users";

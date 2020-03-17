@@ -14,8 +14,8 @@
 	<div class="cols half">
 <%
 		List<DataSetDTO> list = (List <DataSetDTO>) request.getAttribute("list");
-		List<CategoriaDTO> listC = (List <CategoriaDTO>) request.getAttribute("listCat");
-		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getAttribute("listUnit");
+		//List<CategoriaDTO> listC = (List <CategoriaDTO>) request.getAttribute("listCat");
+		//List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getAttribute("listUnit");
 		String cat = "";
 		boolean first=true;
 		
@@ -78,10 +78,6 @@
 					} 
 					%>
 				</div>
-			
-			
-
-		
 		<%
 			}
 		%>
