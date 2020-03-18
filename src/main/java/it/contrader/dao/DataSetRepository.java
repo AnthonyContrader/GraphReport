@@ -25,5 +25,7 @@ public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 	//QUERY_EXIST2 = "SELECT COUNT(*) AS conto FROM dataset WHERE id_user=? AND id_categoria=? AND id_unitamisura=?";
 	
 	List<DataSet> findAllByUtente(Long utente);
+	
+	List<DataSet> findAllByUtenteAndCategoria(Long utente, Long categoria);
 
 }

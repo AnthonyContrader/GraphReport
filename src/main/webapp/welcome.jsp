@@ -7,13 +7,13 @@
 <meta name="description" content="Welcome page">
 
 <!-- Custom styles for this template -->
-<link href="/css/vittoriostyle.css" rel="stylesheet">
+<link href="../css/vittoriostyle.css" rel="stylesheet">
 
-<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="../js/javascript.js"></script>
 </head>
 <body class="main">
 <% UserDTO user = (UserDTO) session.getAttribute("user"); %>
-<h1>Welcome <%= user.getUsername()%></h1>
+<h1>Welcome <%= user.getUsername() %></h1>
 
 QUI TANTA ROBA
 

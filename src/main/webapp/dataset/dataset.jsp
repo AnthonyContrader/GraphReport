@@ -6,33 +6,32 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>DataSet</title>
-<link href="css/toniostyle.css" rel="stylesheet">
-<script type="text/javascript" src="js/toniojs.js"></script>
+<link href="../css/toniostyle.css" rel="stylesheet">
+<script type="text/javascript" src="../js/toniojs.js"></script>
 </head>
 <body>
-
 	<div class="cols half">
 <%
 		List<DataSetDTO> list = (List <DataSetDTO>) request.getAttribute("list");
 		List<CategoriaDTO> listC = (List <CategoriaDTO>) request.getAttribute("listCat");
-		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getAttribute("listUnit");
-		String cat = "";
+		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getSession().getAttribute("listUni");
+		Long cat = null;
 		boolean first=true;
 		
-		if(request.getAttribute("usertype").toString().equalsIgnoreCase("admin")){
+		if(session.getAttribute("usertype").toString().equalsIgnoreCase("admin")){
 			List<UserDTO> listU = (List <UserDTO>) request.getAttribute("listUser");
 			%>
 			<form class="center" id="visDataSetUt" action="DataSetServlet" style="width:max-content">
 			<label>Visualizza DataSet dell'utente</label>
 			<input type="text" name="mode" value="list" style="display:none;" />
 				<select name="idUtVis" onchange="document.getElementById('visDataSetUt').submit();" style="width:max-content">
-					<option value="<%=session.getAttribute("userId")%>">Tuoi Personali</option>
+					<option value="<%=session.getAttribute("userid")%>">Tuoi Personali</option>
 					<%
 					for(UserDTO u : listU){
-						if(u.getId()!=Integer.parseInt(session.getAttribute("userId").toString())){
+						if(u.getId()!=Long.parseLong(session.getAttribute("userid").toString())){
 						%>
 						
-						<option value="<%=u.getId()%>" <% if(request.getParameter("idUtVis")!=null){ if(Integer.parseInt(request.getParameter("idUtVis"))==u.getId()){ %>selected<% } } %>><%=u.getUsername()%></option>
+						<option value="<%=u.getId()%>" <% if(request.getParameter("idUtVis")!=null){ if(Long.parseLong(request.getParameter("idUtVis"))==u.getId()){ %>selected<% } } %>><%=u.getUsername()%></option>
 						
 						<%
 						}
@@ -44,7 +43,7 @@
 		}
 		
 		for (DataSetDTO ds : list){
-			if(!cat.equalsIgnoreCase(ds.getCategoria())){
+			if(cat!=ds.getCategoria()){
 				if(!first){
 					%>
 					</div></div>
@@ -53,9 +52,9 @@
 				cat=ds.getCategoria();
 			%>
 			<div class="newCat">
-				<% if(ds.getUser()==Integer.parseInt(session.getAttribute("userId").toString())){ %>
+				<% if(ds.getUtente()==Long.parseLong(session.getAttribute("userid").toString())){ %>
 				<div class="divCRUD" style="width:20%;">
-					<a href="DataSetServlet?mode=read&cat=<%=cat%>" ><div class="linkCRUD">Modifica</div></a>
+					<a href="read?id=<%=cat%>" ><div class="linkCRUD">Modifica</div></a>
 					<a href="DataSetServlet?mode=delete&cat=<%=cat%>" onclick="return confDelDS()"><div class="linkCRUD">Elimina</div></a>
 				</div>
 				<% } %>

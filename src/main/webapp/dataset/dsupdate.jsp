@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link href="css/toniostyle.css" rel="stylesheet">
-<script type="text/javascript" src="js/toniojs.js"></script>
+<link href="../css/toniostyle.css" rel="stylesheet">
+<script type="../text/javascript" src="js/toniojs.js"></script>
 </head>
 <body>
 
@@ -13,8 +13,8 @@
 	
 <%
 		List<DataSetDTO> list = (List <DataSetDTO>) request.getAttribute("dataset");
-		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getAttribute("listUnit");
-		String cat = "";
+		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getSession().getAttribute("listUni");
+		Long cat=null;
 		boolean first=true;
 		int grey=0,n=0;
 		String delOption="";
@@ -69,10 +69,10 @@
 		for(int i=0;i<=n;i++){
 			 if(i==n){ %>
 				<div class="tr <% if(grey%2==0){ %>grey<% } %>" style="width:40px;"> 
-					<img src="img/add.png" title="Crea nuova riga" onclick="addRow()"/>
+					<img src="../img/add.png" title="Crea nuova riga" onclick="addRow()"/>
 				<% }else{ %> 
 				<div name="row<%= i+1 %>" class="tr <% if(grey%2==0){ %>grey<% } %>" style="width:40px;">
-					<img src="img/remove.png" title="Elimina riga" onclick="delRow(<%= i+1 %>)"/>
+					<img src="../img/remove.png" title="Elimina riga" onclick="delRow(<%= i+1 %>)"/>
 				 <% } %>
 			</div>
 		<%

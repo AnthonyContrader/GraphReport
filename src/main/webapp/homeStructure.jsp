@@ -10,9 +10,9 @@
 <title>GraphReport Home</title>
 
 <!-- Custom styles for this template -->
-<link href="/css/vittoriostyle.css" rel="stylesheet">
+<link href="../css/vittoriostyle.css" rel="stylesheet">
 
-<script type="text/javascript" src="/js/javascript.js"></script>
+<script type="text/javascript" src="../js/javascript.js"></script>
 </head>
 <body style="min-width:760px">
 <%@include file="css/header.jsp"%>

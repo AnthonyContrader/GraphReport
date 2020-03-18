@@ -21,4 +21,8 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	public List<DataSetDTO> findAllByUtente(Long utente){
 		return converter.toDTOList(repository.findAllByUtente(utente));
 	}
+	
+	public List<DataSetDTO> findAllByUtenteAndCategoria(Long utente, Long categoria){
+		return converter.toDTOList(repository.findAllByUtenteAndCategoria(utente,categoria));
+	}
 }
