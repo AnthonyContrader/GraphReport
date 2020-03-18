@@ -108,7 +108,6 @@ function submitUpdate(){
 		str+="}";
 	}
 	document.getElementById('updValore').value=str;
-	alert(document.getElementById('updValore').value);
 	document.getElementById('formDSUpdate').submit();
 }
 

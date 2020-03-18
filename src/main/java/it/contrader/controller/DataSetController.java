@@ -37,6 +37,13 @@ public class DataSetController {
 		return "dataset/dataset";
 	}
 	
+	@PostMapping("/viewUt")
+	public String viewUt(HttpServletRequest request, @RequestParam("idUtVis") Long id) {
+		request.setAttribute("idUtVis", id);
+		setViewHome(request, id);
+		return "dataset/dataset";
+	}
+	
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long cat) {
 		setViewUpdate(request, cat);
@@ -87,37 +94,19 @@ public class DataSetController {
 	}
 	
 	@PostMapping("/updateds")
-	public String update(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("valore") String valore) {
-		DataSetDTO dto = new DataSetDTO();
+	public String updateds(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("valore") String valore) {
 		String[] arrDS = valore.split("}"), ds = new String[2];
 		for(int i=0;i < arrDS.length ;i++) {
 			ds = arrDS[i].split("]");
-			dto.setId(Long.parseLong(ds[0].toString()));
-			dto.setValore(ds[1].toString());
-			service.update(dto);
+			
+			System.out.println(service.updateDS(ds[1].toString(),Long.parseLong(ds[0].toString())));
 		}
 		
 		setViewUpdate(request,cat);
-		return "users";
+		return "dataset/dsupdate";
 
 	}
 
-	
-	@GetMapping("/getall")
-	public String getAll(HttpServletRequest request) {
-		setAll(request);
-		return "users";
-	}
-
-	
-	
-	@GetMapping("/preupdate")
-	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
-		request.getSession().setAttribute("dto", service.read(id));
-		return "updateuser";
-	}
-
-	
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		request.getSession().invalidate();
@@ -125,14 +114,21 @@ public class DataSetController {
 	}
 
 	private void setViewHome(HttpServletRequest request) {
+		setAllHome(request,Long.parseLong(request.getSession().getAttribute("userid").toString()));
+	}
+	
+	private void setViewHome(HttpServletRequest request, Long id) {
+		setAllHome(request,id);
+	}
+	
+	public void setAllHome(HttpServletRequest request, Long id) {
 		if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")) {
 			request.setAttribute("listUtente", userService.getAll());
 		}
 						
-		request.setAttribute("list", service.findAllByUtente(Long.parseLong(request.getSession().getAttribute("userid").toString())));
+		request.setAttribute("list", service.findAllByUtente(id));
 		request.setAttribute("listCat", catService.getAll());
 		request.getSession().setAttribute("listUni", unitaService.getAll());
-			
 	}
 	
 	private void setViewUpdate(HttpServletRequest request,Long cat) {

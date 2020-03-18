@@ -21,22 +21,21 @@
 		if(session.getAttribute("usertype").toString().equalsIgnoreCase("admin")){
 			List<UserDTO> listU = (List <UserDTO>) request.getAttribute("listUtente");
 			%>
-			<form class="center" id="visDataSetUt" action="DataSetServlet" style="width:max-content">
+			<form class="center" id="visDataSetUt" action="viewUt" style="width:max-content" method="post">
 			<label>Visualizza DataSet dell'utente</label>
-			<input type="text" name="mode" value="list" style="display:none;" />
-				<select name="idUtVis" onchange="document.getElementById('visDataSetUt').submit();" style="width:max-content">
-					<option value="<%=session.getAttribute("userid")%>">Tuoi Personali</option>
-					<%
-					for(UserDTO u : listU){
-						if(u.getId()!=Long.parseLong(session.getAttribute("userid").toString())){
-						%>
-						
-						<option value="<%=u.getId()%>" <% if(request.getParameter("idUtVis")!=null){ if(Long.parseLong(request.getParameter("idUtVis"))==u.getId()){ %>selected<% } } %>><%=u.getUsername()%></option>
-						
-						<%
-						}
-					}
+			<select name="idUtVis" onchange="document.getElementById('visDataSetUt').submit();" style="width:max-content">
+				<option value="<%=session.getAttribute("userid")%>">Tuoi Personali</option>
+				<%
+				for(UserDTO u : listU){
+					if(u.getId()!=Long.parseLong(session.getAttribute("userid").toString())){
 					%>
+					
+					<option value="<%=u.getId()%>" <% if(request.getAttribute("idUtVis")!=null){if(Long.parseLong(request.getAttribute("idUtVis").toString())==u.getId()){ %>selected<% } } %>><%=u.getUsername()%></option>
+					
+					<%
+					}
+				}
+				%>
 				</select>
 			</form>
 			<%
@@ -46,7 +45,8 @@
 			if(cat!=ds.getCategoria()){
 				if(!first){
 					%>
-					</div></div>
+					</div>
+					</div>
 					<%
 				}else first=false;
 				cat=ds.getCategoria();

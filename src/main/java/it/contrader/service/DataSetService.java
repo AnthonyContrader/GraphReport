@@ -29,4 +29,8 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	public void deleteDataSet(Long utente, Long categoria) {
 		repository.deleteByUtenteAndCategoria(utente, categoria);
 	}
+	
+	public int updateDS(String valore, Long id) {
+		return repository.updateValoreById(valore, id);
+	} 
 }
