@@ -19,7 +19,7 @@
 		boolean first=true;
 		
 		if(session.getAttribute("usertype").toString().equalsIgnoreCase("admin")){
-			List<UserDTO> listU = (List <UserDTO>) request.getAttribute("listUser");
+			List<UserDTO> listU = (List <UserDTO>) request.getAttribute("listUtente");
 			%>
 			<form class="center" id="visDataSetUt" action="DataSetServlet" style="width:max-content">
 			<label>Visualizza DataSet dell'utente</label>
