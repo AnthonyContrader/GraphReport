@@ -1,4 +1,3 @@
-<%@ page import="it.contrader.dto.UserDTO" import="java.util.*"%>
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -12,8 +11,8 @@
 <script type="text/javascript" src="../js/javascript.js"></script>
 </head>
 <body class="main">
-<% UserDTO user = (UserDTO) session.getAttribute("user"); %>
-<h1>Welcome <%= user.getUsername() %></h1>
+
+<h1>Welcome <%= request.getAttribute("username") %></h1>
 
 QUI TANTA ROBA
 

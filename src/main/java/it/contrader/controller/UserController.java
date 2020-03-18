@@ -35,6 +35,7 @@ public class UserController {
 	
 	@GetMapping("/welcome")
 	public String welcome(HttpServletRequest request) {
+		request.setAttribute("username", service.read(Long.parseLong(request.getSession().getAttribute("userid").toString())).getUsername());
 		return "welcome";
 	}
 
