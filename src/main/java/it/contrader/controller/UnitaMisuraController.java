@@ -20,6 +20,7 @@ public class UnitaMisuraController {
 	@Autowired
 	private UnitaMisuraService service;
 	
+	
 	@GetMapping("/welcome")
 	public String welcome(HttpServletRequest request) {
 		return "welcome";
@@ -28,20 +29,20 @@ public class UnitaMisuraController {
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
-		return "categoria";
+		return "unitamisura/unitamisura";
 	}
 	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		service.delete(id);
 		setAll(request);
-		return "unitamisura";
+		return "unitamisura/unitamisura";
 	}
 	
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
-		request.getSession().setAttribute("dto", service.read(id));
-		return "updateunitamisura";
+		request.setAttribute("dto", service.read(id));
+		return "unitamisura/updateunitamisura";
 	}
 	
 	@PostMapping("/update")
@@ -52,7 +53,7 @@ public class UnitaMisuraController {
 		dto.setNome(nome);
 		service.update(dto);
 		setAll(request);
-		return "unitamisura";
+		return "unitamisura/unitamisura";
 	}
 	
 	@PostMapping("/insert")
@@ -62,18 +63,18 @@ public class UnitaMisuraController {
 		dto.setNome(nome);
 		service.insert(dto);
 		setAll(request);
-		return "unitamisura";
+		return "unitamisura/unitamisura";
 	}
 	
 	
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
-		request.getSession().setAttribute("dto", service.read(id));
-		return "readunitamisura";
+		request.setAttribute("dto", service.read(id));
+		return "unitamisura/readunitamisura";
 	}
 	
 	private void setAll(HttpServletRequest request) {
-		request.getSession().setAttribute("list", service.getAll());
+		request.setAttribute("list", service.getAll());
 	}
 	
 	
