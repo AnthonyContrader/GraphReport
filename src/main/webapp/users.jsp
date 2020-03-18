@@ -13,7 +13,14 @@
 <body>
 	<div class="main">
 		<%
-			List<UserDTO> list = (List<UserDTO>) request.getSession().getAttribute("list");
+			List<UserDTO> list=null;
+			UserDTO p=null;
+			if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")){
+			list = (List<UserDTO>) request.getSession().getAttribute("list");
+			}
+			else{
+			p = (UserDTO) request.getSession().getAttribute("user");
+			}
 		%>
 
 		<br>
@@ -23,10 +30,18 @@
 				<th>Username</th>
 				<th>Password</th>
 				<th>Usertype</th>
+				<%if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("user")){%>
+				<th>Nome</th>
+				<th>Cognome</th>
+				<th>Email</th>
+				<th>Città</th>
+				<th>Nazione</th>
+				<%}%>
 				<th></th>
 				<th></th>
 			</tr>
 			<%
+			if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")){
 				for (UserDTO u : list) {
 			%>
 			<tr>
@@ -35,14 +50,24 @@
 				<td><%=u.getPassword()%></td>
 				<td><%=u.getUsertype()%></td>
 				<td><a href="/user/preupdate?id=<%=u.getId()%>">Edit</a></td>
-
-
 				<td><a href="/user/delete?id=<%=u.getId()%>">Delete</a></td>
-
 			</tr>
-			<%
-				}
-			%>
+			<%	}
+			}
+			else{ %>
+			<tr>
+				<td><%= p.getUsername()  %></td>
+				<td><%=p.getPassword()%></td>
+				<td><%=p.getUsertype()%></td>
+				<td><%=p.getNome()%></td>
+				<td><%=p.getCognome()%></td>
+				<td><%=p.getEmail()%></td>
+				<td><%=p.getCitta()%></td>
+				<td><%=p.getNazione()%></td>
+				<td><a href="/user/preupdate?id=<%=p.getId()%>">Edit</a></td>
+				<td><a href="/user/delete?id=<%=p.getId()%>">Delete</a></td>
+			</tr>
+			<%}%>
 		</table>
 
 

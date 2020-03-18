@@ -31,12 +31,12 @@ public class User {
 	
 	private Usertype usertype;
 	
-	@Column(unique = true)
-	private String email;
-	
 	private String nome;
 	
 	private String cognome;
+	
+	@Column(unique = true)
+	private String email;
 	
 	private String citta;
 	

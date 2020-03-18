@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class UserDTO {
 
 	private Long id;
@@ -19,11 +18,11 @@ public class UserDTO {
 
 	private Usertype usertype;
 	
-	private String email;
-	
 	private String nome;
 	
 	private String cognome;
+	
+	private String email;
 	
 	private String citta;
 	

@@ -54,7 +54,7 @@ public class UserController {
 
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
-		request.getSession().setAttribute("dto", service.read(id));
+		request.setAttribute("dto", service.read(id));
 		return "updateuser";
 	}
 
@@ -123,7 +123,7 @@ public class UserController {
 
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
-		request.getSession().setAttribute("dto", service.read(id));
+		request.setAttribute("dto", service.read(id));
 		return "readuser";
 	}
 
@@ -134,6 +134,11 @@ public class UserController {
 	}
 
 	private void setAll(HttpServletRequest request) {
-		request.getSession().setAttribute("list", service.getAll());
+		if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("user")){
+			request.setAttribute("user", service.read(Long.parseLong(request.getSession().getAttribute("userid").toString())));
+		}
+		else {
+			request.setAttribute("list", service.getAll());
+		}
 	}
 }

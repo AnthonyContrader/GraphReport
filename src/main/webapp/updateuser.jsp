@@ -13,14 +13,14 @@
 
 </head>
 <body>
-<%@ include file="./css/header.jsp" %>
 <br>
 <div class="main">
 
-<%UserDTO u = (UserDTO) request.getSession().getAttribute("dto");%>
+<%UserDTO u = (UserDTO) request.getAttribute("dto");%>
 
 
 <form id="floatleft" action="/user/update" method="post">
+  <input type="text" id="user" name="id" value=<%=u.getId()%> style="display:none">
   <div class="row">
     <div class="col-25">
       <label for="user">Username</label>
@@ -44,11 +44,13 @@
     </div>
    		 <div class="col-75">
  			<select id="type" name="usertype">
-  				<option value="ADMIN" <%if(u.getUsertype().equals("ADMIN")) {%>selected<%}%>>ADMIN</option>
-  				<option value="USER" <%if(u.getUsertype().equals("USER")) {%>selected<%}%>>USER</option>
+  				<option value="ADMIN" <%if(u.getUsertype().toString().equalsIgnoreCase("admin")) {%>selected<%}%>>ADMIN</option>
+  				<option value="USER"  <%if(u.getUsertype().toString().equalsIgnoreCase("user")) {%>selected<%}%>>USER</option>
 			</select>
     	</div>
   </div>
+  <%if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("user") || 
+		  u.getId()==Long.parseLong(request.getSession().getAttribute("userid").toString())){ %>
   <div class="row">
     <div class="col-25">
       <label for="user">Nome</label>
@@ -89,12 +91,12 @@
       <input type="text" id="nazione" name="nazione" value=<%=u.getNazione()%>>
     </div>
   </div>
+  <%} %>
       <button type="submit" >Edit</button>
 </form>
 
 	
 </div>
 <br>
-<%@ include file="./css/footer.jsp" %>	
 </body>
 </html>

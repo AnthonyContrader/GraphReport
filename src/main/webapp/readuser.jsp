@@ -11,12 +11,11 @@
 <title>Info Utente</title>
 </head>
 <body>
-	<%@ include file="./css/header.jsp"%>
 	<br>
 
 	<div class="main">
 		<%
-			UserDTO u = (UserDTO) request.getSession().getAttribute("dto");
+			UserDTO u = (UserDTO) request.getAttribute("dto");
 		%>
 
 
@@ -51,6 +50,5 @@
 
 	</div>
 
-	<%@ include file="./css/footer.jsp"%>
 </body>
 </html>
