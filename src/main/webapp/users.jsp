@@ -16,10 +16,10 @@
 			List<UserDTO> list=null;
 			UserDTO p=null;
 			if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")){
-			list = (List<UserDTO>) request.getSession().getAttribute("list");
+			list = (List<UserDTO>) request.getAttribute("list");
 			}
 			else{
-			p = (UserDTO) request.getSession().getAttribute("user");
+			p = (UserDTO) request.getAttribute("user");
 			}
 		%>
 
@@ -56,7 +56,7 @@
 			}
 			else{ %>
 			<tr>
-				<td><%= p.getUsername()  %></td>
+				<td><%=p.getUsername()%></td>
 				<td><%=p.getPassword()%></td>
 				<td><%=p.getUsertype()%></td>
 				<td><%=p.getNome()%></td>
