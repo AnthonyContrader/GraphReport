@@ -23,9 +23,9 @@
 			if(first){
 				cat=ds.getCategoria();
 				%>
-				<form class="noForm" action="DataSetServlet" id="formDSUpdate">
-					<input name="mode" value="update" style="display:none;"/>
-					<input name="cat" value="<%= cat %>" style="display:none;"/>
+				<form class="noForm" action="updateds" id="formDSUpdate" method="post">
+					<input name="cat" value="<%= cat %>" style="display:none"/>
+					<input id="updValore" name="valore" value="" style="display:none" />
 				</form>
 				<div class="newCat">
 					<h1><%= cat %></h1>
@@ -39,6 +39,7 @@
 			%>
 			<div name="um" class="cols marginBot">
 				<div class="th">
+					<input name="idDataSet" value="<%= ds.getId() %>" style="display:none">
 					<%= ds.getUnitaMisura() %>
 				</div>
 				<%

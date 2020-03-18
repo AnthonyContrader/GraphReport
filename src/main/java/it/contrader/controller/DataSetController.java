@@ -74,15 +74,34 @@ public class DataSetController {
 	@PostMapping("/addum")
 	public String addum(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("n") int n, @RequestParam("unit") Long um) {
 		DataSetDTO dto = new DataSetDTO();
-		dto.setId(id);
-		dto.setUtente(utente);
-		dto.setCategoria(categoria);
-		dto.setUnitaMisura(unitaMisura);;
-		dto.setValore(valore);;
+		String valore="";
+		dto.setUtente(Long.parseLong(request.getSession().getAttribute("userid").toString()));
+		dto.setCategoria(cat);
+		dto.setUnitaMisura(um);
+		for(int i=0; i<n;i++)
+			valore+=" _";
+		dto.setValore(valore);
 		service.insert(dto);
-		setAll(request);
-		return "users";
+		setViewUpdate(request,cat);
+		return "dataset/dsupdate";
 	}
+	
+	@PostMapping("/updateds")
+	public String update(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("valore") String valore) {
+		DataSetDTO dto = new DataSetDTO();
+		String[] arrDS = valore.split("}"), ds = new String[2];
+		for(int i=0;i < arrDS.length ;i++) {
+			ds = arrDS[i].split("]");
+			dto.setId(Long.parseLong(ds[0].toString()));
+			dto.setValore(ds[1].toString());
+			service.update(dto);
+		}
+		
+		setViewUpdate(request,cat);
+		return "users";
+
+	}
+
 	
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
@@ -98,22 +117,7 @@ public class DataSetController {
 		return "updateuser";
 	}
 
-	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("utente") Long utente,
-			@RequestParam("categoria") Long categoria, @RequestParam("unitaMisura") Long unitaMisura, @RequestParam("valore") String valore) {
-
-		DataSetDTO dto = new DataSetDTO();
-		dto.setId(id);
-		dto.setUtente(utente);
-		dto.setCategoria(categoria);
-		dto.setUnitaMisura(unitaMisura);;
-		dto.setValore(valore);;
-		service.update(dto);
-		setAll(request);
-		return "users";
-
-	}
-
+	
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		request.getSession().invalidate();

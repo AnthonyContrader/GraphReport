@@ -90,15 +90,13 @@ function activeSave(){
 function submitUpdate(){
 	
 	var col=document.getElementsByName('um');
-	var str,tmp,n=col.length-1;
-	
-	document.getElementById('formDSUpdate').innerHTML+='<input name="dstot" value="'+n+'" style="display:none" />';
+	var str="",tmp="",n=col.length-1;
 	
 	for(var i=0;i<n;i++){
-		str="";
+		
 		for(var j=0;j<col[i].childElementCount-1;j++){
 			if(j==0){
-				str=col[i].children[j].innerHTML.replace(/\t/g,"")+"!";
+				str+=col[i].children[j].querySelector("input[name='idDataSet']").value+"]";
 			}else{
 				tmp=col[i].children[j].querySelector("input[type='text']").value.replace(/ /g,"");
 				if(tmp=="" || tmp==null)
@@ -107,9 +105,10 @@ function submitUpdate(){
 					str+=tmp.replace(".",",")+"_";
 			}
 		}
-		document.getElementById('formDSUpdate').innerHTML+='<input name="ds'+i+'" value="'+str+'" style="display:none" />';
+		str+="}";
 	}
-	
+	document.getElementById('updValore').value=str;
+	alert(document.getElementById('updValore').value);
 	document.getElementById('formDSUpdate').submit();
 }
 
