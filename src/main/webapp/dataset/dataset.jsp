@@ -55,7 +55,7 @@
 				<% if(ds.getUtente()==Long.parseLong(session.getAttribute("userid").toString())){ %>
 				<div class="divCRUD" style="width:20%;">
 					<a href="read?id=<%=cat%>" ><div class="linkCRUD">Modifica</div></a>
-					<a href="DataSetServlet?mode=delete&cat=<%=cat%>" onclick="return confDelDS()"><div class="linkCRUD">Elimina</div></a>
+					<a href="deletedataset?id=<%=cat%>" onclick="return confDelDS()"><div class="linkCRUD">Elimina</div></a>
 				</div>
 				<% } %>
 			<h1><%= cat %></h1>
@@ -85,15 +85,15 @@
 	<div class="cols half">
 	<h1>Crea nuovo DataSet</h1>
 	<p class="center">In seguito alla creazione sarà possibile inserire nuovi valori e nuove tipologie di valori.</p>
-	<form class="center" action="DataSetServlet" style="min-width:270px" onsubmit="return verificaCrea()">
+	<form class="center" action="createdataset" style="min-width:270px" onsubmit="return verificaCrea()" method="post">
 		<label><strong>Categoria</strong></label>
-		<select id="cc" name="cc">
+		<select id="cc" name="cat">
 			<option value="" style="color:grey">Scegli una categoria</option>
 			<%
 			for(CategoriaDTO c : listC){
 				%>
 				
-				<option value="<%=c.getNome()%>"><%=c.getNome()%></option>
+				<option value="<%=c.getId()%>"><%=c.getNome()%></option>
 				
 				<%
 				}
@@ -101,31 +101,30 @@
 		</select>
 		<label><strong>Unità di misura:</strong></label>
 		<br>
-		<select id="cump" name="cump">
+		<select id="cump" name="ump">
 			<option value="" style="color:grey">Primo set di valori</option>
 			<%
 			for(UnitaMisuraDTO um : listUM){
 				%>
 				
-				<option value="<%=um.getNome()%>"><%=um.getNome()%></option>
+				<option value="<%=um.getId()%>"><%=um.getNome()%></option>
 				
 				<%
 				}
 			%>
 		</select>
-		<select id="cums" name="cums">
+		<select id="cums" name="ums">
 			<option value="" style="color:grey">Secondo set di valori</option>
 			<%
 			for(UnitaMisuraDTO um : listUM){
 				%>
 				
-				<option value="<%=um.getNome()%>"><%=um.getNome()%></option>
+				<option value="<%=um.getId()%>"><%=um.getNome()%></option>
 				
 				<%
 				}
 			%>
 		</select>
-		<input name="mode" value="insert" style="display:none;"/>
 		<button type="submit">Crea</button>
 	</form>
 	</div>

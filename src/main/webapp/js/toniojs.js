@@ -3,6 +3,10 @@ function verificaCrea(){
 		alert('\nAttenzione\n\nSi prega di compilare tutti i campi!\n');
 		return false;
 	}else{
+		if(document.getElementById('cump').value==document.getElementById('cums').value){
+			alert('\nAttenzione\n\nLe unita di misura dei dati non possono essere uguali!\n');
+			return false;
+		}else
 		return true;
 	}
 }

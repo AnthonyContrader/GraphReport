@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/toniostyle.css" rel="stylesheet">
-<script type="../text/javascript" src="js/toniojs.js"></script>
+<script type="text/javascript" src="../js/toniojs.js"></script>
 </head>
 <body>
 
@@ -86,7 +86,7 @@
 	<div class="cols half">
 	
 	<h1>Colonne</h1>
-	<form class="center" action="DataSetServlet" style="min-width:270px;margin-bottom:15px;" onsubmit="return checkColonna('ci')">
+	<form class="center" action="addum" style="min-width:270px;margin-bottom:15px;" onsubmit="return checkColonna('ci')" method="post">
 		<label><strong>Aggiungi nuova:</strong></label>
 		<select id="ci" name="unit">
 			<option value=""></option>
@@ -94,25 +94,23 @@
 			for(UnitaMisuraDTO um : listUM){
 				%>
 				
-				<option value="<%=um.getNome()%>"><%=um.getNome()%></option>
+				<option value="<%=um.getId()%>"><%=um.getNome()%></option>
 				
 				<%
 				}
 			%>
 		</select>
-		<input name="mode" value="insertrow" style="display:none;"/>
 		<input name="n" value="<%=n %>" style="display:none;"/>
 		<input name="cat" value="<%=cat %>" style="display:none;"/>
 		<button type="submit">Aggiungi</button>
 	</form>
-	<form class="center" action="DataSetServlet" style="min-width:270px" onsubmit="return checkColonna('ce',true)">
+	<form class="center" action="delete" style="min-width:270px" onsubmit="return checkColonna('ce',true)" method="post">
 		<label><strong>Elimina:</strong></label>
 		<select id="ce" name="id">
 			<option value=""></option>
 			<%= delOption %>
 		</select>
-		<input name="mode" value="deleterow" style="display:none;"/>
-		<input name="cat" value="<%= cat %>" style="display:none;"/>
+		<input name="cat" value="<%= cat %>" style="display:none">
 		<button type="submit">Elimina</button>
 	</form>
 	</div>

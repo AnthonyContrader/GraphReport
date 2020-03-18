@@ -25,4 +25,8 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	public List<DataSetDTO> findAllByUtenteAndCategoria(Long utente, Long categoria){
 		return converter.toDTOList(repository.findAllByUtenteAndCategoria(utente,categoria));
 	}
+	
+	public void deleteDataSet(Long utente, Long categoria) {
+		repository.deleteByUtenteAndCategoria(utente, categoria);
+	}
 }
