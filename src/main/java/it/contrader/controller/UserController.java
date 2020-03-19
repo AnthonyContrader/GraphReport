@@ -101,24 +101,25 @@ public class UserController {
 		return "users";
 	}
 	
+	@PostMapping("/preregister")
+	public String preRegister(HttpServletRequest request) {
+		return "registeruser";
+	}
+	
 	@PostMapping("/register")
 	public String register(HttpServletRequest request, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("usertype") Usertype usertype,
-			@RequestParam("nome") String nome, @RequestParam("cognome") String cognome,
-			@RequestParam("email") String email, @RequestParam("citta") String citta, 
-			@RequestParam("nazione") String nazione) {
+			@RequestParam("password") String password) {
 		UserDTO dto = new UserDTO();
 		dto.setUsername(username);
 		dto.setPassword(password);
-		dto.setUsertype(usertype);
-		dto.setNome(nome);
-		dto.setCognome(cognome);
-		dto.setEmail(email);
-		dto.setCitta(citta);
-		dto.setNazione(nazione);
+		dto.setUsertype(Usertype.USER);
+		dto.setNome(null);
+		dto.setCognome(null);
+		dto.setEmail(null);
+		dto.setCitta(null);
+		dto.setNazione(null);
 		service.insert(dto);
-		setAll(request);
-		return "users";
+		return "index";
 	}
 
 	@GetMapping("/read")

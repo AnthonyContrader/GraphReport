@@ -18,8 +18,8 @@
 
 
 <body class="text-center">
-	<form class="login" action="/user/login" method="post">
-		<h1>LOGIN</h1>
+	<form class="login" action="/user/register" method="post">
+		<h1>REGISTER</h1>
 
 		<label for="inputUser" class="sr-only">Username</label> <input
 			type="text" name="username" id="inputUser" class="form-control"
@@ -29,14 +29,9 @@
 			class="form-control" placeholder="Password" required> <input
 			type="hidden" name="richiesta" value="login">
 
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Log
-			in</button>
-		<button class="btn btn-lg btn-primary btn-block" type="button" onclick="document.getElementById('registrati').submit()">Register</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
 	</form>
 	
-	<form id="registrati" action="/user/preregister" method="post" style="display:none">
-	
-	</form>
 	
 
 </body>
