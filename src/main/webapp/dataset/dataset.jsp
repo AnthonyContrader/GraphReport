@@ -14,7 +14,7 @@
 <%
 		List<DataSetDTO> list = (List <DataSetDTO>) request.getAttribute("list");
 		List<CategoriaDTO> listC = (List <CategoriaDTO>) request.getAttribute("listCat");
-		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getSession().getAttribute("listUni");
+		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getAttribute("listUni");
 		Long cat = null;
 		boolean first=true;
 		

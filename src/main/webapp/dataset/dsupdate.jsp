@@ -13,7 +13,7 @@
 	
 <%
 		List<DataSetDTO> list = (List <DataSetDTO>) request.getAttribute("dataset");
-		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getSession().getAttribute("listUni");
+		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getAttribute("listUni");
 		Long cat=null;
 		boolean first=true;
 		int grey=0,n=0;

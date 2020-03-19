@@ -146,10 +146,11 @@ public class DataSetController {
 						
 		request.setAttribute("list", service.findAllByUtente(id));
 		request.setAttribute("listCat", catService.getAll());
-		request.getSession().setAttribute("listUni", unitaService.getAll());
+		request.setAttribute("listUni", unitaService.getAll());
 	}
 	
 	private void setViewUpdate(HttpServletRequest request,Long cat) {
 		request.setAttribute("dataset", service.findAllByUtenteAndCategoria(Long.parseLong(request.getSession().getAttribute("userid").toString()),cat));
+		request.setAttribute("listUni", unitaService.getAll());
 	}
 }

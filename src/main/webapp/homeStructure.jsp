@@ -23,6 +23,7 @@
   <a href="/dataset/home" target="frameBody" onclick="setActive(2)">DataSet</a>
   <a href="/categoria/getall" target="frameBody" onclick="setActive(3)">Categoria</a>
   <a href="/unitamisura/getall" target="frameBody" onclick="setActive(4)">Unità di misura</a>
+  <a href="/graph/home" target="frameBody" onclick="setActive(5)">Grafico</a>
   <a href="/user/logout" id="logout">Logout</a>
 </div>
 
