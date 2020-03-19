@@ -59,17 +59,23 @@ public class DataSetController {
 	
 	@PostMapping("/createdataset")
 	public String createdataset(HttpServletRequest request, @RequestParam("cat") String cat, @RequestParam("ump") String ump, @RequestParam("ums") String ums) {
-		DataSetDTO ds = new DataSetDTO();
-		ds.setUtente(Long.parseLong(request.getSession().getAttribute("userid").toString()));
-		ds.setCategoria(Long.parseLong(cat.split("]")[0].toString()));
-		ds.setCategoriaN(cat.split("]")[1].toString());
-		ds.setUnitaMisura(Long.parseLong(ump.split("]")[0].toString()));
-		ds.setUnitaMisuraN(ump.split("]")[1].toString());
-		ds.setValore(" _");
-		service.insert(ds);
-		ds.setUnitaMisura(Long.parseLong(ums.split("]")[0].toString()));
-		ds.setUnitaMisuraN(ums.split("]")[1].toString());
-		service.insert(ds);
+		String[] arrC= cat.split("]");
+		Long ut = Long.parseLong(request.getSession().getAttribute("userid").toString());
+		if(!service.exist(ut,Long.parseLong(arrC[0]))) {
+			DataSetDTO ds = new DataSetDTO();
+			ds.setUtente(ut);
+			ds.setCategoria(Long.parseLong(arrC[0]));
+			ds.setCategoriaN(arrC[1]);
+			ds.setUnitaMisura(Long.parseLong(ump.split("]")[0].toString()));
+			ds.setUnitaMisuraN(ump.split("]")[1].toString());
+			ds.setValore(" _");
+			service.insert(ds);
+			ds.setUnitaMisura(Long.parseLong(ums.split("]")[0].toString()));
+			ds.setUnitaMisuraN(ums.split("]")[1].toString());
+			service.insert(ds);
+		}else{
+			request.setAttribute("err", 1);
+		}
 		setViewHome(request);
 		return "dataset/dataset";
 	}
@@ -83,16 +89,22 @@ public class DataSetController {
 	
 	@PostMapping("/addum")
 	public String addum(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("n") int n, @RequestParam("unit") String um) {
-		DataSetDTO dto = new DataSetDTO();
-		String valore="";
-		dto.setUtente(Long.parseLong(request.getSession().getAttribute("userid").toString()));
-		dto.setCategoria(cat);
-		dto.setUnitaMisura(Long.parseLong(um.split("]")[0].toString()));
-		dto.setUnitaMisuraN(um.split("]")[1].toString());
-		for(int i=0; i<n;i++)
-			valore+=" _";
-		dto.setValore(valore);
-		service.insert(dto);
+		String[] arrUM= um.split("]");
+		Long ut = Long.parseLong(request.getSession().getAttribute("userid").toString());
+		if(!service.exist(ut,cat,Long.parseLong(arrUM[0]))) {
+			DataSetDTO dto = new DataSetDTO();
+			String valore="";
+			dto.setUtente(ut);
+			dto.setCategoria(cat);
+			dto.setUnitaMisura(Long.parseLong(arrUM[0]));
+			dto.setUnitaMisuraN(arrUM[1]);
+			for(int i=0; i<n;i++)
+				valore+=" _";
+			dto.setValore(valore);
+			service.insert(dto);
+		}else {
+			request.setAttribute("err", 1);
+		}
 		setViewUpdate(request,cat);
 		return "dataset/dsupdate";
 	}
@@ -103,7 +115,9 @@ public class DataSetController {
 		for(int i=0;i < arrDS.length ;i++) {
 			ds = arrDS[i].split("]");
 			
-			System.out.println(service.updateDS(ds[1].toString(),Long.parseLong(ds[0].toString())));
+			if(service.updateDS(ds[1].toString(),Long.parseLong(ds[0].toString()))!=1) {
+				request.setAttribute("err", 3);
+			}
 		}
 		
 		setViewUpdate(request,cat);

@@ -33,5 +33,13 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	
 	public int updateDS(String valore, Long id) {
 		return repository.updateValoreById(valore, id);
+	}
+
+	public boolean exist(Long ut, Long cat) {
+		return repository.existsByUtente_IdAndCategoria_Id(ut,cat);
+	}
+
+	public boolean exist(Long ut, Long cat, Long um) {
+		return repository.existsByUtente_IdAndCategoria_IdAndUnitaMisura_Id(ut,cat,um);
 	} 
 }
