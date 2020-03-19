@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,14 +22,17 @@ public class DataSet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable=false)
-	private Long utente;
+	@ManyToOne
+	@JoinColumn( name = "UTENTE" , nullable=false)
+	private User utente;
 	
-	@Column(nullable=false)
-	private Long categoria;
+	@ManyToOne
+	@JoinColumn(name="CATEGORIA", nullable=false)
+	private Categoria categoria;
 	
-	@Column(nullable=false)
-	private Long unitaMisura;
+	@ManyToOne
+	@JoinColumn(name="UNITAMISURA", nullable=false)
+	private UnitaMisura unitaMisura;
 	
 	private String valore;
 

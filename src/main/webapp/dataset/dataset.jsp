@@ -58,14 +58,14 @@
 					<a href="deletedataset?id=<%=cat%>" onclick="return confDelDS()"><div class="linkCRUD">Elimina</div></a>
 				</div>
 				<% } %>
-			<h1><%= cat %></h1>
+			<h1><%= ds.getCategoriaN() %></h1>
 			<div class="center">
 			<% }
 			String[] valori = ds.getValore().split("_");
 			%>
 				<div class="cols marginBot">
 					<div class="th">
-						<%= ds.getUnitaMisura() %>
+						<%= ds.getUnitaMisuraN() %>
 					</div>
 					<%
 					for(int i=0;i<valori.length;i++){

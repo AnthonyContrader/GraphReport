@@ -9,6 +9,7 @@ import it.contrader.converter.DataSetConverter;
 import it.contrader.dao.DataSetRepository;
 import it.contrader.dto.DataSetDTO;
 import it.contrader.model.DataSet;
+import it.contrader.model.User;
 
 @Service
 public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
@@ -19,15 +20,15 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	private DataSetConverter converter;
 	
 	public List<DataSetDTO> findAllByUtente(Long utente){
-		return converter.toDTOList(repository.findAllByUtente(utente));
+		return converter.toDTOList(repository.findAllByUtente_Id(utente));
 	}
 	
 	public List<DataSetDTO> findAllByUtenteAndCategoria(Long utente, Long categoria){
-		return converter.toDTOList(repository.findAllByUtenteAndCategoria(utente,categoria));
+		return converter.toDTOList(repository.findAllByUtente_IdAndCategoria_Id(utente,categoria));
 	}
 	
 	public void deleteDataSet(Long utente, Long categoria) {
-		repository.deleteByUtenteAndCategoria(utente, categoria);
+		repository.deleteByUtente_IdAndCategoria_Id(utente, categoria);
 	}
 	
 	public int updateDS(String valore, Long id) {

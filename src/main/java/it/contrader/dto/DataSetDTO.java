@@ -16,8 +16,10 @@ public class DataSetDTO {
 	private Long utente;
 	
 	private Long categoria;
+	private String categoriaN;
 	
 	private Long unitaMisura;
+	private String unitaMisuraN;
 	
 	private String valore;
 

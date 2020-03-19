@@ -28,19 +28,19 @@
 					<input id="updValore" name="valore" value="" style="display:none" />
 				</form>
 				<div class="newCat">
-					<h1><%= cat %></h1>
+					<h1><%= ds.getCategoriaN() %></h1>
 					<div class="center">
 				<%
 				first=false;
 			}
 			String[] valori = ds.getValore().split("_");
-			delOption+="<option value=\""+ds.getId()+"\">"+ds.getUnitaMisura()+"</option>";
+			delOption+="<option value=\""+ds.getId()+"\">"+ds.getUnitaMisuraN()+"</option>";
 			n=valori.length;
 			%>
 			<div name="um" class="cols marginBot">
 				<div class="th">
 					<input name="idDataSet" value="<%= ds.getId() %>" style="display:none">
-					<%= ds.getUnitaMisura() %>
+					<%= ds.getUnitaMisuraN() %>
 				</div>
 				<%
 				grey=0;
