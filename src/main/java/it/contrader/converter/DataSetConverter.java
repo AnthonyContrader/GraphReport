@@ -32,8 +32,8 @@ public class DataSetConverter extends AbstractConverter<DataSet, DataSetDTO>{
 		DataSet dato = new DataSet(
 					datoDTO.getId(), 
 					new User(datoDTO.getUtente(),null,null,null,null,null,null,null,null), 
-					new Categoria(datoDTO.getCategoria(),null), 
-					new UnitaMisura(datoDTO.getUnitaMisura(),null), 
+					new Categoria(datoDTO.getCategoria(),datoDTO.getCategoriaN()), 
+					new UnitaMisura(datoDTO.getUnitaMisura(),datoDTO.getUnitaMisuraN()), 
 					datoDTO.getValore()
 				);
 		return dato;

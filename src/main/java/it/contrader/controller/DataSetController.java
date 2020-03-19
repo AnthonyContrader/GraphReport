@@ -58,14 +58,17 @@ public class DataSetController {
 	}
 	
 	@PostMapping("/createdataset")
-	public String createdataset(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("ump") Long ump, @RequestParam("ums") Long ums) {
+	public String createdataset(HttpServletRequest request, @RequestParam("cat") String cat, @RequestParam("ump") String ump, @RequestParam("ums") String ums) {
 		DataSetDTO ds = new DataSetDTO();
 		ds.setUtente(Long.parseLong(request.getSession().getAttribute("userid").toString()));
-		ds.setCategoria(cat);
-		ds.setUnitaMisura(ump);
+		ds.setCategoria(Long.parseLong(cat.split("]")[0].toString()));
+		ds.setCategoriaN(cat.split("]")[1].toString());
+		ds.setUnitaMisura(Long.parseLong(ump.split("]")[0].toString()));
+		ds.setUnitaMisuraN(ump.split("]")[1].toString());
 		ds.setValore(" _");
 		service.insert(ds);
-		ds.setUnitaMisura(ums);
+		ds.setUnitaMisura(Long.parseLong(ums.split("]")[0].toString()));
+		ds.setUnitaMisuraN(ums.split("]")[1].toString());
 		service.insert(ds);
 		setViewHome(request);
 		return "dataset/dataset";
@@ -79,12 +82,13 @@ public class DataSetController {
 	}
 	
 	@PostMapping("/addum")
-	public String addum(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("n") int n, @RequestParam("unit") Long um) {
+	public String addum(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("n") int n, @RequestParam("unit") String um) {
 		DataSetDTO dto = new DataSetDTO();
 		String valore="";
 		dto.setUtente(Long.parseLong(request.getSession().getAttribute("userid").toString()));
 		dto.setCategoria(cat);
-		dto.setUnitaMisura(um);
+		dto.setUnitaMisura(Long.parseLong(um.split("]")[0].toString()));
+		dto.setUnitaMisuraN(um.split("]")[1].toString());
 		for(int i=0; i<n;i++)
 			valore+=" _";
 		dto.setValore(valore);

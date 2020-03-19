@@ -95,7 +95,7 @@
 			for(UnitaMisuraDTO um : listUM){
 				%>
 				
-				<option value="<%=um.getId()%>"><%=um.getNome()%></option>
+				<option value="<%=um.getId()%>]<%=um.getNome()%>"><%=um.getNome()%></option>
 				
 				<%
 				}

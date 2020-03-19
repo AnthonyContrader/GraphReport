@@ -93,7 +93,7 @@
 			for(CategoriaDTO c : listC){
 				%>
 				
-				<option value="<%=c.getId()%>"><%=c.getNome()%></option>
+				<option value="<%=c.getId()%>]<%=c.getNome()%>"><%=c.getNome()%></option>
 				
 				<%
 				}
@@ -107,7 +107,7 @@
 			for(UnitaMisuraDTO um : listUM){
 				%>
 				
-				<option value="<%=um.getId()%>"><%=um.getNome()%></option>
+				<option value="<%=um.getId()%>]<%=um.getNome() %>"><%=um.getNome()%></option>
 				
 				<%
 				}
@@ -119,7 +119,7 @@
 			for(UnitaMisuraDTO um : listUM){
 				%>
 				
-				<option value="<%=um.getId()%>"><%=um.getNome()%></option>
+				<option value="<%=um.getId()%>]<%=um.getNome()%>"><%=um.getNome()%></option>
 				
 				<%
 				}
