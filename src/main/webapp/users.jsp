@@ -71,7 +71,7 @@
 		</table>
 
 
-
+		<% if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")){ %>
 		<form id="floatright" action="/user/insert" method="post">
 			<div class="row">
 				<div class="col-25">
@@ -150,6 +150,7 @@
 			</div>
 			<button type="submit">Insert</button>
 		</form>
+		<%} %>
 
 	</div>
 </body>
