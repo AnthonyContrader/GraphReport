@@ -33,6 +33,9 @@ public class GraphController {
 
 	@GetMapping("/home")
 	public String home(HttpServletRequest request) {
+		request.setAttribute("x", 5);
+		request.setAttribute("y", 15);
+		request.setAttribute("label", "denti");
 		//setViewHome(request);
 		return "graph/graph";
 	}
