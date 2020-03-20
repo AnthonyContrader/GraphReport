@@ -7,6 +7,7 @@
 <meta name="description" content="Unita Misura Home">
 <meta name="author" content="Vittorio Valent">
 <link href="/css/vittoriostyle.css" rel="stylesheet">
+<script type="text/javascript" src=../js/riccardo.js>></script>
 <title>Unita Misura Home </title>
 </head>
 <body>

@@ -25,6 +25,14 @@ div.text{
 	width: 90%;
 	font-size: 15px;
 	text-align: justify;
+	background-size:cover;
+	background-repeat:repeatX;
+	background-position:center top;
+}
+
+.test{
+	background-image: url("img/GraphReportHome.jpg");
+	width: 100%;
 }
 
 .footer {

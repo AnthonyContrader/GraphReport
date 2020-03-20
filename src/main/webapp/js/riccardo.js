@@ -5,7 +5,9 @@ function conferma(id,conf){
 		return false;
 	}
 	if(conf){
-		return confirm("\nInserimento in corso!\n\nVuoi confermare l'inserimento?")
+		if(!confirm("\nStai per inserire: "+ document.getElementById(id).value + "\n\nVuoi conferma l'inserimento?")){
+			return false;
+		}
 	}else
-		return true;
+		return true;	
 }

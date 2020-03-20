@@ -33,9 +33,14 @@ public class CategoriaController {
 	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
-		service.delete(id);
+		try {
+			service.delete(id);
+		}catch(Exception e){
+			request.setAttribute("err", 1);
+		}
 		setAll(request);
 		return "categoria/categoria";
+		
 	}
 	
 	@GetMapping("/preupdate")
@@ -57,10 +62,13 @@ public class CategoriaController {
 	
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, @RequestParam("nome") String nome) {
-		
+		try {
 		CategoriaDTO dto = new CategoriaDTO();
 		dto.setNome(nome);
 		service.insert(dto);
+		}catch(Exception e) {
+			request.setAttribute("err", 2);
+		}
 		setAll(request);
 		return "categoria/categoria";
 	}

@@ -7,6 +7,7 @@
 <meta name="description" content="Categoria Home">
 <meta name="author" content="Vittorio Valent">
 <link href="/css/vittoriostyle.css" rel="stylesheet">
+<script type="text/javascript" src=../js/riccardo.js></script>
 <title>Categoria Home </title>
 </head>
 <body>
@@ -45,7 +46,7 @@
 	<form id="floatright" action="/categoria/insert" onsubmit="return conferma('categoria',true)" method="post">
 		<div class="row">
 			<div class="col-25">
-				<label for="user">Nome</label>
+				<label for="user">Agg.Categoria</label>
 			</div>
 			<div class="col-75">
 			<input type="text" id="categoria" name="nome"
@@ -58,4 +59,24 @@
 	</div>
 
 </body>
+
+<script>
+<% if(request.getAttribute("err")!= null){
+	switch(Integer.parseInt(request.getAttribute("err").toString())){
+	case 1:
+	%>
+	//Messaggio in javascript
+	alert("La categoria è in utilizzo!\n\n Impossibile eliminare!");
+	
+	<%
+	break;
+	case 2:
+		%>
+		alert("La categoria è gia esistente!")
+		<%
+		break;
+	}
+}
+%>
+</script>
 </html>
