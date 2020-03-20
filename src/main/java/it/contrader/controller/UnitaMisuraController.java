@@ -34,7 +34,12 @@ public class UnitaMisuraController {
 	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
-		service.delete(id);
+		try {
+			service.delete(id);
+		}
+		catch(Exception e){
+		request.setAttribute("err", 1);	
+		}
 		setAll(request);
 		return "unitamisura/unitamisura";
 	}

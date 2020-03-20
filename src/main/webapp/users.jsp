@@ -1,6 +1,7 @@
 <%@ page import="it.contrader.dto.UserDTO" import="java.util.*"%>
 <html>
 <head>
+<script type="text/javascript" src="../js/piero.js"></script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,7 +51,7 @@
 				<td><%=u.getPassword()%></td>
 				<td><%=u.getUsertype()%></td>
 				<td><a href="/user/preupdate?id=<%=u.getId()%>">Edit</a></td>
-				<td><a href="/user/delete?id=<%=u.getId()%>">Delete</a></td>
+				<td><a onclick="return confDelUT()" href="/user/delete?id=<%=u.getId()%>">Delete</a></td>
 			</tr>
 			<%	}
 			}
@@ -65,7 +66,7 @@
 				<td><%=p.getCitta()%></td>
 				<td><%=p.getNazione()%></td>
 				<td><a href="/user/preupdate?id=<%=p.getId()%>">Edit</a></td>
-				<td><a href="/user/delete?id=<%=p.getId()%>">Delete</a></td>
+				<td><a onclick="return confDelUT()" href="/user/delete?id=<%=p.getId()%>">Delete</a></td>
 			</tr>
 			<%}%>
 		</table>
@@ -79,7 +80,7 @@
 				</div>
 				<div class="col-75">
 					<input type="text" id="user" name="username"
-						placeholder="inserisci username">
+						placeholder="inserisci username" required>
 				</div>
 			</div>
 			<div class="row">
@@ -88,7 +89,7 @@
 				</div>
 				<div class="col-75">
 					<input type="text" id="pass" name="password"
-						placeholder="inserisci password">
+						placeholder="inserisci password" required>
 				</div>
 			</div>
 			<div class="row">
@@ -96,7 +97,8 @@
 					<label for="type">Usertype</label>
 				</div>
 				<div class="col-75">
-					<select id="type" name="usertype">
+					<select id="type" name="usertype" required>
+						<option value="">Selezionare il tipo utente</option>
 						<option value="ADMIN">ADMIN</option>
 						<option value="USER">USER</option>
 
@@ -109,7 +111,7 @@
 				</div>
 				<div class="col-75">
 					<input type="text" id="nome" name="nome"
-						placeholder="inserisci nome">
+						placeholder="inserisci nome" required>
 				</div>
 			</div>
 			<div class="row">
@@ -118,7 +120,7 @@
 				</div>
 				<div class="col-75">
 					<input type="text" id="cognome" name="cognome"
-						placeholder="inserisci cognome">
+						placeholder="inserisci cognome" required>
 				</div>
 			</div>
 			<div class="row">
@@ -127,7 +129,7 @@
 				</div>
 				<div class="col-75">
 					<input type="text" id="email" name="email"
-						placeholder="inserisci email">
+						placeholder="inserisci email" required>
 				</div>
 			</div>
 			<div class="row">
@@ -136,7 +138,7 @@
 				</div>
 				<div class="col-75">
 					<input type="text" id="citta" name="citta"
-						placeholder="inserisci città">
+						placeholder="inserisci città" required>
 				</div>
 			</div>
 			<div class="row">
@@ -145,7 +147,7 @@
 				</div>
 				<div class="col-75">
 					<input type="text" id="nazione" name="nazione"
-						placeholder="inserisci nazione">
+						placeholder="inserisci nazione" required>
 				</div>
 			</div>
 			<button type="submit">Insert</button>
@@ -154,4 +156,17 @@
 
 	</div>
 </body>
+<script type="text/javascript">
+	<% if(request.getAttribute("err")!=null){
+	switch (Integer.parseInt(request.getAttribute("err").toString())){
+		case 1:
+			%>
+			alert("Non è possibile eliminare un account con dei dati");
+			<%
+		break;
+	}
+	}
+	%>
+
+</script>
 </html>

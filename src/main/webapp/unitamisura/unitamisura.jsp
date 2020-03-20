@@ -1,13 +1,14 @@
 <%@ page import="it.contrader.dto.UnitaMisuraDTO" import="java.util.*" %>
 <html>
 <head>
+<script type="text/javascript" src="../js/toniojs.js"></script>
+<script type="text/javascript" src="../js/piero.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" 
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Unita Misura Home">
 <meta name="author" content="Vittorio Valent">
 <link href="/css/vittoriostyle.css" rel="stylesheet">
-<script type="text/javascript" src=../js/riccardo.js>></script>
 <title>Unita Misura Home </title>
 </head>
 <body>
@@ -58,4 +59,16 @@
 	</div>
 
 </body>
+<script>
+	<% if(request.getAttribute("err")!=null){
+	switch (Integer.parseInt(request.getAttribute("err").toString())){
+		case 1:
+			%>
+			alert("Impossibile eliminare un'unità di misura utilizzata da altri utenti");
+			<%
+		break;
+	}
+	}
+	%>
+</script>
 </html>

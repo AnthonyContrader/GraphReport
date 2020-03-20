@@ -47,7 +47,12 @@ public class UserController {
 
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
+		try {
 		service.delete(id);
+		}
+		catch(Exception e) {
+		request.setAttribute("err", 1);
+		}
 		setAll(request);
 		return "users";
 	}
