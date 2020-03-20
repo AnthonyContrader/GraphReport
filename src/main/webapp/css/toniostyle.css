@@ -321,7 +321,7 @@ div .tr>img {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: max-content;
   background-color: #555;
   color: #fff;
   text-align: center;

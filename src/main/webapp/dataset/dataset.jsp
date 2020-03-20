@@ -66,6 +66,14 @@
 					<div class="cols marginBot">
 						<div class="th">
 							<%= ds.getUnitaMisuraN() %>
+							<% if (!ds.getCommento().equals("")){ %>
+								<div class="btnComm tooltip">
+									<img src="../img/comm.png"/>
+									<span class="tooltiptext">
+										<p> <%= ds.getCommento() %> </p>
+									</span>
+								</div>
+							<% } %>
 						</div>
 						<%
 						for(int i=0;i<valori.length;i++){

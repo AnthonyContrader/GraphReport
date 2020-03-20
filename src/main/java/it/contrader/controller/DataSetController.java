@@ -92,21 +92,19 @@ public class DataSetController {
 	public String addum(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("n") int n, @RequestParam("unit") String um) {
 		String[] arrUM= um.split("]");
 		Long ut = Long.parseLong(request.getSession().getAttribute("userid").toString());
-		if(!service.exist(ut,cat,Long.parseLong(arrUM[0]))) {
-			DataSetDTO dto = new DataSetDTO();
-			String valore="";
-			dto.setUtente(ut);
-			dto.setCategoria(cat);
-			dto.setUnitaMisura(Long.parseLong(arrUM[0]));
-			dto.setUnitaMisuraN(arrUM[1]);
-			dto.setCommento("");
-			for(int i=0; i<n;i++)
-				valore+=" _";
-			dto.setValore(valore);
-			service.insert(dto);
-		}else {
-			request.setAttribute("err", 1);
-		}
+		
+		DataSetDTO dto = new DataSetDTO();
+		String valore="";
+		dto.setUtente(ut);
+		dto.setCategoria(cat);
+		dto.setUnitaMisura(Long.parseLong(arrUM[0]));
+		dto.setUnitaMisuraN(arrUM[1]);
+		dto.setCommento("");
+		for(int i=0; i<n;i++)
+			valore+=" _";
+		dto.setValore(valore);
+		service.insert(dto);
+		
 		setViewUpdate(request,cat);
 		return "dataset/dsupdate";
 	}
