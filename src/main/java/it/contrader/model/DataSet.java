@@ -34,5 +34,7 @@ public class DataSet {
 	private UnitaMisura unitaMisura;
 	
 	private String valore;
+	
+	private String commento;
 
 }

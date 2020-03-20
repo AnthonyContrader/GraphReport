@@ -69,6 +69,7 @@ public class DataSetController {
 			ds.setUnitaMisura(Long.parseLong(ump.split("]")[0].toString()));
 			ds.setUnitaMisuraN(ump.split("]")[1].toString());
 			ds.setValore(" _");
+			ds.setCommento("");
 			service.insert(ds);
 			ds.setUnitaMisura(Long.parseLong(ums.split("]")[0].toString()));
 			ds.setUnitaMisuraN(ums.split("]")[1].toString());
@@ -98,6 +99,7 @@ public class DataSetController {
 			dto.setCategoria(cat);
 			dto.setUnitaMisura(Long.parseLong(arrUM[0]));
 			dto.setUnitaMisuraN(arrUM[1]);
+			dto.setCommento("");
 			for(int i=0; i<n;i++)
 				valore+=" _";
 			dto.setValore(valore);
@@ -107,6 +109,17 @@ public class DataSetController {
 		}
 		setViewUpdate(request,cat);
 		return "dataset/dsupdate";
+	}
+	
+	@PostMapping("/updatedscomm")
+	public String updatedscomm(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("commento") String commento) {
+		String[] val = commento.split("]");
+		if(service.updateDSCommento(val[1],Long.parseLong(val[0].toString()))!=1) {
+			request.setAttribute("err", 3);
+		}
+		setViewUpdate(request,cat);
+		return "dataset/dsupdate";
+
 	}
 	
 	@PostMapping("/updateds")

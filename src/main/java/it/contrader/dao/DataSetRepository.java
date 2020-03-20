@@ -26,6 +26,10 @@ public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 	@Query("update DataSet set valore = ?1 where id = ?2")
 	int updateValoreById(String valore, Long id);
 	
+	@Modifying
+	@Query("update DataSet set commento = ?1 where id = ?2")
+	int updateCommentoById(String valore, Long id);
+	
 	boolean existsByUtente_IdAndCategoria_Id(Long ut, Long cat);
 
 	boolean existsByUtente_IdAndCategoria_IdAndUnitaMisura_Id(Long ut, Long cat, Long um);

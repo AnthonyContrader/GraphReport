@@ -39,6 +39,13 @@ public class GraphController {
 		//setViewHome(request);
 		return "graph/graph";
 	}
+	
+	@PostMapping("/creategraph")
+	public String creategraph(HttpServletRequest request) {
+		request.setAttribute("err", 0 ); // IN ATTESA DI SVILUPPO
+		return "graph/graph";
+	}
+	
 
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {

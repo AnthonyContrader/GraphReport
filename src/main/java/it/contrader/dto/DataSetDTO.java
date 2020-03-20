@@ -22,5 +22,7 @@ public class DataSetDTO {
 	private String unitaMisuraN;
 	
 	private String valore;
+	
+	private String commento;
 
 }

@@ -21,7 +21,8 @@ public class DataSetConverter extends AbstractConverter<DataSet, DataSetDTO>{
 				dato.getCategoria().getNome(),
 				dato.getUnitaMisura().getId(),
 				dato.getUnitaMisura().getNome(),
-				dato.getValore()
+				dato.getValore(),
+				dato.getCommento()
 			);
 
 		return datoDTO;
@@ -34,7 +35,8 @@ public class DataSetConverter extends AbstractConverter<DataSet, DataSetDTO>{
 					new User(datoDTO.getUtente(),null,null,null,null,null,null,null,null), 
 					new Categoria(datoDTO.getCategoria(),datoDTO.getCategoriaN()), 
 					new UnitaMisura(datoDTO.getUnitaMisura(),datoDTO.getUnitaMisuraN()), 
-					datoDTO.getValore()
+					datoDTO.getValore(),
+					datoDTO.getCommento()
 				);
 		return dato;
 	}

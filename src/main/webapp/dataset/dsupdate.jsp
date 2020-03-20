@@ -41,6 +41,18 @@
 				<div class="th">
 					<input name="idDataSet" value="<%= ds.getId() %>" style="display:none">
 					<%= ds.getUnitaMisuraN() %>
+					<div class="btnComm tooltip">
+						<img src="../img/comm.png"/>
+							<span class="tooltiptext">
+							<% if(ds.getCommento()==""){ %>
+								Clicca per inserire un commento.
+							<% }else{ %>
+								<%= ds.getCommento() %>
+								<br>
+								Clicca per modificare.
+							<% } %>
+							</span>
+					</div>
 				</div>
 				<%
 				grey=0;
@@ -62,7 +74,7 @@
 		}
 		%>
 		<div class="cols marginBot" name="um">
-		<div class="th" style="height:18px;width:40px;">
+		<div class="th" style="height:28px;width:40px;">
 			
 		</div>
 		<%

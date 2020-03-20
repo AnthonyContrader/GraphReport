@@ -40,46 +40,49 @@
 			</form>
 			<%
 		}
-		
-		for (DataSetDTO ds : list){
-			if(cat!=ds.getCategoria()){
-				if(!first){
-					%>
-					</div>
-					</div>
-					<%
-				}else first=false;
-				cat=ds.getCategoria();
-			%>
-			<div class="newCat">
-				<% if(ds.getUtente()==Long.parseLong(session.getAttribute("userid").toString())){ %>
-				<div class="divCRUD" style="width:20%;">
-					<a href="read?id=<%=cat%>" ><div class="linkCRUD">Modifica</div></a>
-					<a href="deletedataset?id=<%=cat%>" onclick="return confDelDS()"><div class="linkCRUD">Elimina</div></a>
-				</div>
-				<% } %>
-			<h1><%= ds.getCategoriaN() %></h1>
-			<div class="center">
-			<% }
-			String[] valori = ds.getValore().split("_");
-			%>
-				<div class="cols marginBot">
-					<div class="th">
-						<%= ds.getUnitaMisuraN() %>
-					</div>
-					<%
-					for(int i=0;i<valori.length;i++){
-					%>
-						<div class="tr <% if(i%2==0){ %>grey<% } %>">
-							<%= valori[i] %>
+		if(!list.isEmpty()){
+			for (DataSetDTO ds : list){
+				if(cat!=ds.getCategoria()){
+					if(!first){
+						%>
 						</div>
-					<%
-					} 
-					%>
-				</div>
-		<%
-			}
+						</div>
+						<%
+					}else first=false;
+					cat=ds.getCategoria();
+				%>
+				<div class="newCat">
+					<% if(ds.getUtente()==Long.parseLong(session.getAttribute("userid").toString())){ %>
+					<div class="divCRUD" style="width:20%;">
+						<a href="read?id=<%=cat%>" ><div class="linkCRUD">Modifica</div></a>
+						<a href="deletedataset?id=<%=cat%>" onclick="return confDelDS()"><div class="linkCRUD">Elimina</div></a>
+					</div>
+					<% } %>
+				<h1><%= ds.getCategoriaN() %></h1>
+				<div class="center">
+				<% }
+				String[] valori = ds.getValore().split("_");
+				%>
+					<div class="cols marginBot">
+						<div class="th">
+							<%= ds.getUnitaMisuraN() %>
+						</div>
+						<%
+						for(int i=0;i<valori.length;i++){
+						%>
+							<div class="tr <% if(i%2==0){ %>grey<% } %>">
+								<%= valori[i] %>
+							</div>
+						<%
+						} 
+						%>
+					</div>
+			<%
+				}
+		}else{
 		%>
+		<h1 style="margin-top:80px;">Nessun DataSet presente!</h1>
+		<%} %>
 		</div></div>
 	</div>	
 	<div class="cols half">
