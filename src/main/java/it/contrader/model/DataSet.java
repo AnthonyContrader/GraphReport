@@ -1,5 +1,6 @@
 package it.contrader.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +36,7 @@ public class DataSet {
 	
 	private String valore;
 	
-	private String commento;
+	@Column(nullable=false)
+	private String commento ="";
 
 }

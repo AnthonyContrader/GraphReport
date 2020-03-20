@@ -10,6 +10,10 @@ function confDelDS(){
 	return confirm('\nCancellazione in corso!\n\nStai per eliminare definitivamente questo DataSet.\nVuoi proseguire?');
 }
 
+function confDelDS(){
+	return confirm('\nCancellazione in corso!\n\nStai per eliminare definitivamente questo account.\nVuoi proseguire?');
+}
+
 function checkColonna(id,conf){
 	var conf = conf || false;
 	if(!document.getElementById('btnSalva').disabled){

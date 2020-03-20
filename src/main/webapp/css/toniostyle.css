@@ -311,6 +311,7 @@ div .tr>img {
 	 border: solid 1px;
 	 padding:5px;
 	 margin:5px 0px;
+	 border-radius: 4px;
 }
 
 .btnComm{

@@ -53,10 +53,10 @@
 	<p class="center">Successivamente alla creazione sarà possibile rivisitare i vari aspetti caratterizzanti.</p>
 	<form class="center" action="creategraph" style="min-width:270px" onsubmit="return verificaCrea()" method="post">
 		<label><strong>Titolo</strong></label>
-		<input class="noFloat" name="" value="" placeholder="Inserisci titolo"/>
+		<input class="noFloat" name="" value="" placeholder="Inserisci titolo" required/>
 		<label><strong>Set di valori</strong></label>
 		<div class="contenitor">
-			<select id="cump" name="ump">
+			<select id="cump" name="ump" required>
 				<option value="" style="color:grey">DataSet</option>
 				<%
 //					for(UnitaMisuraDTO um : listUM){
@@ -68,7 +68,7 @@
 // 					}
 				%>
 			</select>
-			<select id="cums" name="ums">
+			<select id="cums" name="ums" required>
 				<option value="" style="color:grey">Set di valori</option>
 				<%
 // 				for(UnitaMisuraDTO um : listUM){
@@ -82,7 +82,7 @@
 			</select>
 		</div>
 		<div class="contenitor">
-			<select id="cump" name="ump">
+			<select id="cump" name="ump" required>
 				<option value="" style="color:grey">DataSet</option>
 				<%
 //					for(UnitaMisuraDTO um : listUM){
@@ -94,7 +94,7 @@
 // 					}
 				%>
 			</select>
-			<select id="cums" name="ums">
+			<select id="cums" name="ums" required>
 				<option value="" style="color:grey">Set di valori</option>
 				<%
 // 				for(UnitaMisuraDTO um : listUM){
