@@ -9,7 +9,6 @@ import it.contrader.converter.DataSetConverter;
 import it.contrader.dao.DataSetRepository;
 import it.contrader.dto.DataSetDTO;
 import it.contrader.model.DataSet;
-import it.contrader.model.User;
 
 @Service
 public class DataSetService extends AbstractService<DataSet,DataSetDTO>{

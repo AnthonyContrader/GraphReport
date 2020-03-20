@@ -63,12 +63,11 @@ public class GraphController {
 	
 	public void setAllHome(HttpServletRequest request, Long id) {
 		if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")) {
-			request.setAttribute("listUtente", userService.getAll());
+			
 		}
+		request.setAttribute("ListCat", service.findCat);
 						
-		request.setAttribute("list", service.findAllByUtente(id));
-		request.setAttribute("listCat", catService.getAll());
-		request.setAttribute("listUni", unitaService.getAll());
+		
 	}
 	
 	private void setViewUpdate(HttpServletRequest request,Long cat) {
