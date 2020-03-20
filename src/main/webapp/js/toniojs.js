@@ -10,7 +10,7 @@ function confDelDS(){
 	return confirm('\nCancellazione in corso!\n\nStai per eliminare definitivamente questo DataSet.\nVuoi proseguire?');
 }
 
-function confDelDS(){
+function confDelUt(){
 	return confirm('\nCancellazione in corso!\n\nStai per eliminare definitivamente questo account.\nVuoi proseguire?');
 }
 
