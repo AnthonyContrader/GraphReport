@@ -110,25 +110,13 @@ public class DataSetController {
 		setViewUpdate(request,cat);
 		return "dataset/dsupdate";
 	}
-	
-	@PostMapping("/updatedscomm")
-	public String updatedscomm(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("commento") String commento) {
-		String[] val = commento.split("]");
-		if(service.updateDSCommento(val[1],Long.parseLong(val[0].toString()))!=1) {
-			request.setAttribute("err", 3);
-		}
-		setViewUpdate(request,cat);
-		return "dataset/dsupdate";
-
-	}
-	
+			
 	@PostMapping("/updateds")
 	public String updateds(HttpServletRequest request, @RequestParam("cat") Long cat, @RequestParam("valore") String valore) {
-		String[] arrDS = valore.split("}"), ds = new String[2];
+		String[] arrDS = valore.split("}"), ds;
 		for(int i=0;i < arrDS.length ;i++) {
 			ds = arrDS[i].split("]");
-			
-			if(service.updateDS(ds[1].toString(),Long.parseLong(ds[0].toString()))!=1) {
+			if(service.updateDS(ds[2].toString(),ds[1].toString(),Long.parseLong(ds[0].toString()))!=1) {
 				request.setAttribute("err", 3);
 			}
 		}

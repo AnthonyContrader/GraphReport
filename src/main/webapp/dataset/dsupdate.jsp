@@ -16,7 +16,7 @@
 		List<UnitaMisuraDTO> listUM = (List <UnitaMisuraDTO>) request.getAttribute("listUni");
 		Long cat=null;
 		boolean first=true;
-		int grey=0,n=0;
+		int grey=0,n=0,y=0;
 		String delOption="";
 		
 		for (DataSetDTO ds : list){
@@ -40,16 +40,16 @@
 			<div name="um" class="cols marginBot">
 				<div class="th">
 					<input name="idDataSet" value="<%= ds.getId() %>" style="display:none">
+					<input id="comm<%= y %>" name="comment" value="<%= ds.getCommento() %>" style="display:none">
 					<%= ds.getUnitaMisuraN() %>
-					<div class="btnComm tooltip">
+					<div class="btnComm tooltip" onclick="editComm('<%= ds.getCommento() %>',<%= y %>)">
 						<img src="../img/comm.png"/>
-							<span class="tooltiptext">
-							<% if(ds.getCommento()==""){ %>
-								Clicca per inserire un commento.
+							<span class="tooltiptext" id="tool<%= y %>">
+							<% if(ds.getCommento().equalsIgnoreCase("")){ %>
+								<p class="sugg">Clicca per inserire un commento</p>
 							<% }else{ %>
-								<%= ds.getCommento() %>
-								<br>
-								Clicca per modificare.
+								<p><%= ds.getCommento() %></p>
+								<p class="sugg">Clicca per modificare</p>
 							<% } %>
 							</span>
 					</div>
@@ -71,6 +71,7 @@
 			</div>
 			
 		<%
+		y++;
 		}
 		%>
 		<div class="cols marginBot" name="um">
@@ -101,7 +102,7 @@
 	<h1>Colonne</h1>
 	<form class="center" action="addum" style="min-width:270px;margin-bottom:15px;" onsubmit="return checkColonna('ci')" method="post">
 		<label><strong>Aggiungi nuova:</strong></label>
-		<select id="ci" name="unit">
+		<select id="ci" name="unit" required>
 			<option value=""></option>
 			<%
 			for(UnitaMisuraDTO um : listUM){
@@ -119,7 +120,7 @@
 	</form>
 	<form class="center" action="delete" style="min-width:270px" onsubmit="return checkColonna('ce',true)" method="post">
 		<label><strong>Elimina:</strong></label>
-		<select id="ce" name="id">
+		<select id="ce" name="id" required>
 			<option value=""></option>
 			<%= delOption %>
 		</select>

@@ -30,13 +30,9 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 	public void deleteDataSet(Long utente, Long categoria) {
 		repository.deleteByUtente_IdAndCategoria_Id(utente, categoria);
 	}
-	
-	public int updateDSCommento(String valore, Long id) {
-		return repository.updateCommentoById(valore, id);
-	}
-	
-	public int updateDS(String valore, Long id) {
-		return repository.updateValoreById(valore, id);
+		
+	public int updateDS(String valore, String commento, Long id) {
+		return repository.updateValoreById(valore, commento, id);
 	}
 
 	public boolean exist(Long ut, Long cat) {

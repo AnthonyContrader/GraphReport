@@ -90,7 +90,7 @@
 	<p class="center">In seguito alla creazione sarà possibile inserire nuovi valori e nuove tipologie di valori.</p>
 	<form class="center" action="createdataset" style="min-width:270px" onsubmit="return verificaCrea()" method="post">
 		<label><strong>Categoria</strong></label>
-		<select id="cc" name="cat">
+		<select id="cc" name="cat" required>
 			<option value="" style="color:grey">Scegli una categoria</option>
 			<%
 			for(CategoriaDTO c : listC){
@@ -104,7 +104,7 @@
 		</select>
 		<label><strong>Unità di misura:</strong></label>
 		<br>
-		<select id="cump" name="ump">
+		<select id="cump" name="ump" required>
 			<option value="" style="color:grey">Primo set di valori</option>
 			<%
 			for(UnitaMisuraDTO um : listUM){
@@ -116,7 +116,7 @@
 				}
 			%>
 		</select>
-		<select id="cums" name="ums">
+		<select id="cums" name="ums" required>
 			<option value="" style="color:grey">Secondo set di valori</option>
 			<%
 			for(UnitaMisuraDTO um : listUM){

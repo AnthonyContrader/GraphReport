@@ -351,3 +351,11 @@ div .tr>img {
   visibility: visible;
   opacity: 1;
 }
+
+.tooltiptext > p {
+	margin: 5px;
+}
+
+.tooltiptext > .sugg{
+	font-size:9px;
+}
