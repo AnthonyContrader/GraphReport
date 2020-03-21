@@ -53,8 +53,13 @@ public class UserController {
 		catch(Exception e) {
 		request.setAttribute("err", 1);
 		}
-		setAll(request);
-		return "users";
+		if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id) {
+			request.getSession().invalidate();
+			return "index";
+		}else {
+			setAll(request);
+			return "users";
+		}
 	}
 
 	@GetMapping("/preupdate")

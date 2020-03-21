@@ -1,10 +1,3 @@
-function verificaCrea(){
-	if(document.getElementById('cump').value==document.getElementById('cums').value){
-		alert('\nAttenzione\n\nLe unita di misura dei dati non possono essere uguali!\n');
-		return false;
-	}else
-		return true;
-}
 
 function confDelDS(){
 	return confirm('\nCancellazione in corso!\n\nStai per eliminare definitivamente questo DataSet.\nVuoi proseguire?');

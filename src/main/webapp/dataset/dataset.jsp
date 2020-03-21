@@ -96,7 +96,7 @@
 	<div class="cols half">
 	<h1>Crea nuovo DataSet</h1>
 	<p class="center">In seguito alla creazione sarà possibile inserire nuovi valori e nuove tipologie di valori.</p>
-	<form class="center" action="createdataset" style="min-width:270px" onsubmit="return verificaCrea()" method="post">
+	<form class="center" action="createdataset" style="min-width:270px" method="post">
 		<label><strong>Categoria</strong></label>
 		<select id="cc" name="cat" required>
 			<option value="" style="color:grey">Scegli una categoria</option>

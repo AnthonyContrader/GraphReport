@@ -17,10 +17,10 @@
 			List<UserDTO> list=null;
 			UserDTO p=null;
 			if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")){
-			list = (List<UserDTO>) request.getAttribute("list");
+				list = (List<UserDTO>) request.getAttribute("list");
 			}
 			else{
-			p = (UserDTO) request.getAttribute("user");
+				p = (UserDTO) request.getAttribute("user");
 			}
 		%>
 
@@ -41,22 +41,18 @@
 				<th></th>
 				<th></th>
 			</tr>
+			<tr>
 			<%
 			if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("admin")){
 				for (UserDTO u : list) {
 			%>
-			<tr>
 				<td><a href="/user/read?id=<%=u.getId()%>"> <%=u.getUsername()%>
 				</a></td>
 				<td><%=u.getPassword()%></td>
 				<td><%=u.getUsertype()%></td>
-				<td><a href="/user/preupdate?id=<%=u.getId()%>">Edit</a></td>
-				<td><a onclick="return confDelUT()" href="/user/delete?id=<%=u.getId()%>">Delete</a></td>
-			</tr>
 			<%	}
 			}
 			else{ %>
-			<tr>
 				<td><%=p.getUsername()%></td>
 				<td><%=p.getPassword()%></td>
 				<td><%=p.getUsertype()%></td>
@@ -65,10 +61,10 @@
 				<td><%=p.getEmail()%></td>
 				<td><%=p.getCitta()%></td>
 				<td><%=p.getNazione()%></td>
-				<td><a href="/user/preupdate?id=<%=p.getId()%>">Edit</a></td>
-				<td><a onclick="return confDelUT()" href="/user/delete?id=<%=p.getId()%>">Delete</a></td>
-			</tr>
 			<%}%>
+				<td><a href="/user/preupdate?id=<%=p.getId()%>">Edit</a></td>
+				<td><a onclick="return confDelUT()" href="/user/delete?id=<%=p.getId()%>" <% if(p.getId()==Long.parseLong(session.getAttribute("userid").toString())) { %> target="_top" <% } %>>Delete</a></td>
+			</tr>
 		</table>
 
 
