@@ -22,6 +22,40 @@ div.text {
 	text-align: justify;
 }
 
+/*Tables*/
+table {
+	border-collapse: collapse;
+	width: 50%;
+	float:left;
+	border-radius:4px;
+    -moz-border-radius:4px;
+}
+
+
+th, td {
+	text-align: center;
+	padding: 8px 20px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+th {
+	background-color: #00a990;
+	color: #ffffff;
+	
+}
+
+a:hover {
+	color: #999999;
+}
+
+.table{
+	margin-top:80px;
+	float: initial;
+}
+
 /* headers */
 h1 {
 	position: center;

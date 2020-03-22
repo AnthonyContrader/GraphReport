@@ -59,6 +59,11 @@ public class GraphController {
 		return "graph/graph";
 	}
 	
+	@GetMapping("/showUpdate")
+	public String showGraph(HttpServletRequest request) {
+		return "graph/showGraph";
+	}
+	
 
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {

@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>GraphHome</title>
 <link href="../css/toniostyle.css" rel="stylesheet">
-<script type="text/javascript" src="../js/graphjs.js"></script>
+<script type="text/javascript" src="../js/toniojs.js"></script>
 </head>
 <body>
 	<div class="cols half">
@@ -17,6 +17,7 @@
 		String categorie="", unitM="", jsArrayListUM = "[";
 		Long[] noDuplicate = new Long[listDS.size()];
 		int i;
+		Long id=Long.parseLong(request.getSession().getAttribute("userid").toString());
 		boolean unique;
 		
 		//GENERA LISTA CATEGORIE PRIVA DI DUPLICATI E LISTA UNITAMISURA PER IL JS
@@ -39,7 +40,7 @@
 		}
 		jsArrayListUM=jsArrayListUM.substring(0,jsArrayListUM.length() - 1) + "]";
 		
-		if(session.getAttribute("usertype").toString().equalsIgnoreCase("admin")){					//SE ADMIN STAMPA LISTA UTENTI
+		if(session.getAttribute("usertype").toString().equalsIgnoreCase("admin")){					
 			List<UserDTO> listU = (List <UserDTO>) request.getAttribute("listUtente");
 			%>
 			<form class="center" id="visDataSetUt" action="viewUt" style="width:max-content" method="post">
@@ -48,11 +49,10 @@
 				<option value="<%=session.getAttribute("userid")%>">Tuoi Personali</option>
 				<%
 				for(UserDTO u : listU){
+					id=u.getId();
 					if(u.getId()!=Long.parseLong(session.getAttribute("userid").toString())){
 					%>
-					
 					<option value="<%=u.getId()%>" <% if(request.getAttribute("idUtVis")!=null){if(Long.parseLong(request.getAttribute("idUtVis").toString())==u.getId()){ %>selected<% } } %>><%=u.getUsername()%></option>
-					
 					<%
 					}
 				}
@@ -60,14 +60,35 @@
 				</select>
 			</form>
 			<%
-		}																							
-		
+		}	%>																						
+		<div><div class="center">
+		<table class="table">
+		<tr>
+			<th>Titolo</th>
+			<th>Tipo Grafico</th>
+			<% if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id){ %>
+			<th></th>
+			<th></th>
+			<%} %>
+		</tr> 
+		<%
 		if(!list.isEmpty()){																		
 			for (GraphDTO ds : list){
 					%>
-					<%= ds %>
+					<tr>
+						<td><strong><%=ds.getTitolo()%></strong></td>
+						<td><%= ds.getTipografico().toString() %></td>
+						<%if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id){ %>
+						<td><a href="/graph/showUpdate?id=<%=ds.getId()%>">Edit</a></td>
+						<td><a href="/graph/delete?id=<%=ds.getId()%>">Delete</a></td>
+						<%} %>
+					</tr>
 					<% 
 				}
+			%>
+			</table>
+			</div></div>
+			<%
 		}else{																						
 		%>
 		<h1 style="margin-top:80px;">Nessun grafico presente!</h1>
@@ -122,6 +143,9 @@ if(request.getAttribute("err")!=null){
 </body>
 
 <script>
+window.addEventListener('resize',resize);
+resize();
+
 	function popolaAssi(){
 		var list = <%= jsArrayListUM %>, 
 			cat=document.getElementById('cat').value
