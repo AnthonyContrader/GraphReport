@@ -16,6 +16,7 @@ import it.contrader.model.DataSet;
 @Transactional
 public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 
+	@Query("SELECT ds FROM DataSet ds WHERE ds.utente.id = ?1 ORDER BY ds.categoria.id")
 	List<DataSet> findAllByUtente_Id(Long utente);
 	
 	List<DataSet> findAllByUtente_IdAndCategoria_Id(Long utente, Long categoria);

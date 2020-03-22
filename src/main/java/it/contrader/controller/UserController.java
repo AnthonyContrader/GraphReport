@@ -86,6 +86,7 @@ public class UserController {
 		dto.setCitta(citta);
 		dto.setNazione(nazione);
 		service.update(dto);
+		request.getSession().setAttribute("usertype", usertype);
 		setAll(request);
 		return "users";
 

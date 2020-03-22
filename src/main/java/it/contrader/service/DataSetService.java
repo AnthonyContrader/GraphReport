@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import it.contrader.converter.DataSetConverter;
 import it.contrader.dao.DataSetRepository;
+import it.contrader.dto.CategoriaDTO;
 import it.contrader.dto.DataSetDTO;
 import it.contrader.model.DataSet;
 
@@ -40,5 +41,6 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 
 	public boolean exist(Long ut, Long cat, Long um) {
 		return repository.existsByUtente_IdAndCategoria_IdAndUnitaMisura_Id(ut,cat,um);
-	} 
+	}
+	
 }

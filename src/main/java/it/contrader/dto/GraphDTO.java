@@ -1,8 +1,5 @@
 package it.contrader.dto;
 
-import java.util.Set;
-
-import it.contrader.model.DataSet;
 import it.contrader.model.Graph.Tema;
 import it.contrader.model.Graph.TipoGrafico;
 import lombok.AllArgsConstructor;
@@ -30,6 +27,4 @@ private Long id;
 	
 	private Boolean pareto;
 	
-	private Set<DataSet> dataset;
-
 }

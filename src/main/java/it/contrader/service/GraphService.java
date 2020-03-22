@@ -1,5 +1,7 @@
 package it.contrader.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,20 @@ import it.contrader.model.Graph;
 public class GraphService extends AbstractService<Graph,GraphDTO>{
 	
 	@Autowired
+	private GraphConverter converter;
+	
+	@Autowired
 	private GraphRepository repository;
 	
 	@Autowired
-	private GraphConverter converter;
+	private DataGraphService serviceDG;
 	
-	public List<GraphDTO> getAllByUser(){
-		return converter.toDTOList(repository.getAllByUser());
-	} 
-
+	public void insertMtM(Long ds, Long graph) {
+		serviceDG.insertNew(ds,graph);
+	}
+	
+	public List<GraphDTO> getAllByUser(Long id){
+		return converter.toDTOList(repository.findGraphByUser(id));
+	}
+	
 }
