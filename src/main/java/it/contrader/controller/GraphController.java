@@ -40,7 +40,7 @@ public class GraphController {
 	}
 	
 	@PostMapping("/creategraph")
-	public String creategraph(HttpServletRequest request, @RequestParam("tit") String titolo, @RequestParam("idassex") Long ax, @RequestParam("idassey") Long ay ) {
+	public String creategraph(HttpServletRequest request, @RequestParam("tit") String titolo, @RequestParam("assex") Long ax, @RequestParam("assey") Long ay ) {
 		
 		GraphDTO dto = new GraphDTO();
 		dto.setTitolo(titolo);
@@ -55,6 +55,7 @@ public class GraphController {
 		service.insertMtM(ax,dto.getId());
 		service.insertMtM(ay,dto.getId());
 		
+		setViewHome(request);
 		return "graph/graph";
 	}
 	

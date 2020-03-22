@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(
 		uniqueConstraints=
-			@UniqueConstraint(columnNames={"dataset_id", "dataset_id"}))
+			@UniqueConstraint(columnNames={"dataset_id", "graph_id"}))
 public class DataGraph {
 	
 	@Id
