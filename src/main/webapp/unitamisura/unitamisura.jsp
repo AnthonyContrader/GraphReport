@@ -60,15 +60,22 @@
 
 </body>
 <script>
-	<% if(request.getAttribute("err")!=null){
-	switch (Integer.parseInt(request.getAttribute("err").toString())){
-		case 1:
-			%>
-			alert("Impossibile eliminare un'unità di misura utilizzata da altri utenti");
-			<%
+	<% if(request.getAttribute("err")!= null){
+	switch(Integer.parseInt(request.getAttribute("err").toString())){
+	case 1:
+	%>
+	//Messaggio in javascript
+	alert("Unità di Misura in utilizzo!\n\n Impossibile eliminare!");
+	
+	<%
+	break;
+	case 2:
+		%>
+		alert("L'Unita di Misura è gia esistente!\n\n Impossibile inserire!");
+		<%
 		break;
 	}
-	}
-	%>
+}
+%>
 </script>
 </html>

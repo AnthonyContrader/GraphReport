@@ -63,10 +63,13 @@ public class UnitaMisuraController {
 	
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, @RequestParam("nome") String nome) {
-		
+		try {
 		UnitaMisuraDTO dto = new UnitaMisuraDTO();
 		dto.setNome(nome);
 		service.insert(dto);
+		}catch(Exception e){
+			request.setAttribute("err", 2);
+		}
 		setAll(request);
 		return "unitamisura/unitamisura";
 	}
