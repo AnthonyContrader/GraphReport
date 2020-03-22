@@ -29,4 +29,7 @@ public class DataGraphService extends AbstractService<DataGraph,DataGraphDTO>{
 		repository.save(converter.toEntity(dto));
 	}
 	
+	public void deleteByGraph(Long id) {
+		repository.deleteByGraphId(id);
+	}
 }

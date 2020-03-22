@@ -60,8 +60,17 @@ public class GraphController {
 	}
 	
 	@GetMapping("/showUpdate")
-	public String showGraph(HttpServletRequest request) {
+	public String showGraph(HttpServletRequest request, @RequestParam("id") Long id) {
+		setViewUpdate(request, id);
 		return "graph/showGraph";
+	}
+	
+	@GetMapping("/delete")
+	public String delete(HttpServletRequest request,@RequestParam("id") Long id) {
+		serviceMtM.deleteByGraph(id);
+		service.delete(id);
+		setViewHome(request);
+		return "graph/graph";
 	}
 	
 
@@ -89,7 +98,7 @@ public class GraphController {
 		
 	}
 	
-	private void setViewUpdate(HttpServletRequest request,Long cat) {
+	private void setViewUpdate(HttpServletRequest request,Long id) {
 		
 	}
 }
