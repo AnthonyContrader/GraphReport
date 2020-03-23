@@ -48,18 +48,26 @@ public class UserController {
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		try {
-		service.delete(id);
+			if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id && 
+					request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("user")) {
+				service.delete(id);
+				request.getSession().invalidate();
+				return "index";
+			}
+			else if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id && 
+					request.getSession().getAttribute("username").toString().equalsIgnoreCase("admin")){
+				request.setAttribute("err", 2);
+			}
+			else {
+				service.delete(id);
+			}	
 		}
 		catch(Exception e) {
 		request.setAttribute("err", 1);
+		request.setAttribute("err", 2);
 		}
-		if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id) {
-			request.getSession().invalidate();
-			return "index";
-		}else {
-			setAll(request);
-			return "users";
-		}
+		setAll(request);
+		return "users";
 	}
 
 	@GetMapping("/preupdate")
@@ -86,7 +94,6 @@ public class UserController {
 		dto.setCitta(citta);
 		dto.setNazione(nazione);
 		service.update(dto);
-		request.getSession().setAttribute("usertype", usertype);
 		setAll(request);
 		return "users";
 
@@ -124,11 +131,11 @@ public class UserController {
 		dto.setUsername(username);
 		dto.setPassword(password);
 		dto.setUsertype(Usertype.USER);
-		dto.setNome(null);
-		dto.setCognome(null);
-		dto.setEmail(null);
-		dto.setCitta(null);
-		dto.setNazione(null);
+		dto.setNome("");
+		dto.setCognome("");
+		dto.setEmail("");
+		dto.setCitta("");
+		dto.setNazione("");
 		service.insert(dto);
 		return "index";
 	}

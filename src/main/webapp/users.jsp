@@ -166,6 +166,11 @@
 			alert("Non è possibile eliminare un account con dei dati");
 			<%
 		break;
+		case 2:
+			%>
+			alert("Non è possibile eliminare l'admin");
+			<%
+		break;
 	}
 	}
 	%>
