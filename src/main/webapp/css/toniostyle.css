@@ -210,10 +210,15 @@ button:hover {
 	float: left;
 	min-width: 100px;
 	position: relative;
+	
+}
+
+.divGraph{
+	width: calc(100vw - 300px);
+	height: 100vh;
 }
 
 .half {
-	min-width:min-content;
 	width: 50%;
 }
 
@@ -382,4 +387,10 @@ div .tr>img {
 
 .tooltiptext > .sugg{
 	font-size:9px;
+}
+
+.checkbox{
+	float:none;
+	width:min-content;
+	margin:5px;
 }
