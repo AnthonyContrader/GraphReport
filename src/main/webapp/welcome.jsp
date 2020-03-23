@@ -12,9 +12,15 @@
 </head>
 <body class="main">
 
-<h1>Welcome <%= request.getAttribute("username") %></h1>
+<h1>WELCOME <%= request.getAttribute("username").toString().toUpperCase() %></h1>
 
-QUI TANTA ROBA
+<div class="img1">
+<img class="image" src="../img/GraphReportHome.jpg">
+<img class="frase1" src="../img/Frase1.png">
+<img class="frase2" src="../img/Frase2.png">
+<img class="frase3" src="../img/Frase3.png">
+<img class="frase4" src="../img/Frase4.png">
+</div>
 
 </body>
 </html>
