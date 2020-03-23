@@ -215,6 +215,7 @@ button:hover {
 
 #graphView{
 	width: calc(100vw - 550px);
+	height: 100vh;
 }
 
 .half {
