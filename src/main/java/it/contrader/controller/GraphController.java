@@ -64,12 +64,19 @@ public class GraphController {
 		return "graph/graph";
 	}
 	
+	@PostMapping("/viewUt")
+	public String viewUt(HttpServletRequest request, @RequestParam("idUtVis") Long id) {
+		setViewHome(request,id);
+		return "graph/graph";
+	}
+	
 	@GetMapping("/showUpdate")
-	public String showGraph(HttpServletRequest request, @RequestParam("id") Long id) {
+	public String showGraph(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("mode") String mode) {
+		request.setAttribute("mode", mode);
 		setViewUpdate(request, id);
 		return "graph/showGraph";
 	}
-	
+			
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request,@RequestParam("id") Long id) {
 		serviceMtM.deleteByGraph(id);

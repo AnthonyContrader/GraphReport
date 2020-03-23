@@ -70,8 +70,8 @@
 		<tr>
 			<th>Titolo</th>
 			<th>Tipo Grafico</th>
-			<% if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id){ %>
 			<th></th>
+			<% if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id){ %>
 			<th></th>
 			<%} %>
 		</tr> 
@@ -82,9 +82,11 @@
 						<td><strong><%=ds.getTitolo()%></strong></td>
 						<td><%= ds.getTipografico().toString() %></td>
 						<%if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id){ %>
-						<td><a href="/graph/showUpdate?id=<%=ds.getId()%>">Edit</a></td>
+						<td><a href="/graph/showUpdate?id=<%=ds.getId()%>&mode=up">Edit</a></td>
 						<td><a href="/graph/delete?id=<%=ds.getId()%>">Delete</a></td>
-						<%} %>
+						<%}else{ %>
+						<td><a href="/graph/showUpdate?id=<%=ds.getId()%>&mode=vi">View</a></td>
+						<% } %>
 					</tr>
 					<% 
 				}

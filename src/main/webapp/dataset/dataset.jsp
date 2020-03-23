@@ -151,6 +151,11 @@ if(request.getAttribute("err")!=null){
 			<strong>Impossibile creare nuovo:</strong> DataSet esistente!<br>Si consiglia di modificare quello esistente.
 		<%
 		break;
+		case 2:
+			%>
+				<strong>Impossibile eliminare:</strong> DataSet utilizzato!<br> Non è possibile eliminare i DataSet fin quando saranno utilizzati per la creazione di grafici.
+			<%
+			break;
 	}
 	%>
 	</div>

@@ -34,7 +34,7 @@
 				first=false;
 			}
 			String[] valori = ds.getValore().split("_");
-			delOption+="<option value=\""+ds.getId()+"\">"+ds.getUnitaMisuraN()+"</option>";
+			delOption+="<option value=\""+ds.getId()+"\">"+ds.getUnitaMisuraN()+" - "+ds.getCommento()+"</option>";
 			n=valori.length;
 			%>
 			<div name="um" class="cols marginBot">
@@ -145,7 +145,7 @@ if(request.getAttribute("err")!=null){
 			break;
 		case 2:
 			%>
-			<strong>Errore imprevito!</strong><br>Impossibile eliminare la colonna selezionata.
+			<strong>Errore imprevito!</strong><br>Impossibile eliminare.  <br> Non è possibile eliminare fin quando sono presenti grafici che utilizzano i seguenti dati.
 			<%
 			break;
 		case 3:

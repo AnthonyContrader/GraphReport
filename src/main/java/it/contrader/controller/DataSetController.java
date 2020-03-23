@@ -52,7 +52,11 @@ public class DataSetController {
 	
 	@GetMapping("/deletedataset")
 	public String deletedataset(HttpServletRequest request, @RequestParam("id") Long id) {
-		service.deleteDataSet(Long.parseLong(request.getSession().getAttribute("userid").toString()), id);
+		try {
+			service.deleteDataSet(Long.parseLong(request.getSession().getAttribute("userid").toString()), id);
+		}catch(Exception e) {
+			request.setAttribute("err", 2);
+		}
 		setViewHome(request);
 		return "dataset/dataset";
 	}
@@ -83,7 +87,11 @@ public class DataSetController {
 	
 	@PostMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("cat") Long cat) {
-		service.delete(id);
+		try {
+			service.delete(id);
+		}catch(Exception e) {
+			request.setAttribute("err", 2);
+		}
 		setViewUpdate(request,cat);
 		return "dataset/dsupdate";
 	}
