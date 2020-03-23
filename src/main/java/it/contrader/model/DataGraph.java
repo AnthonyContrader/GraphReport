@@ -19,9 +19,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(
-		uniqueConstraints=
-			@UniqueConstraint(columnNames={"dataset_id", "graph_id"}))
 public class DataGraph {
 	
 	@Id

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Graph {
 	
 	public enum TipoGrafico{
-		daughnut,column,line,pie,bar,rangeColumn,rangeBar,pyramid,buble,spline
+		doughnut,column,line,pie,bar,rangeColumn,rangeBar,pyramid,bubble,spline
 	}
 	
 	public enum Tema{

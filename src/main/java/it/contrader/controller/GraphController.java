@@ -50,10 +50,10 @@ public class GraphController {
 		GraphDTO dto = new GraphDTO();
 		dto.setTitolo(titolo);
 		dto.setPareto(false);
-		dto.setLegenda(false);
+		dto.setLegenda(true);
 		dto.setPosTitolo("top_center");
 		dto.setTema(Tema.ligth1);
-		dto.setTipografico(TipoGrafico.column);
+		dto.setTipografico(TipoGrafico.line);
 		dto.setZoom(false);
 		dto=service.insert(dto);
 		
@@ -62,6 +62,17 @@ public class GraphController {
 		
 		setViewHome(request);
 		return "graph/graph";
+	}
+	
+	@PostMapping("/addset")
+	public String addset(HttpServletRequest request, @RequestParam("assex") Long ax, @RequestParam("assey") Long ay, @RequestParam("id") Long id ) {
+		
+		service.insertMtM(ax,id,'x');
+		service.insertMtM(ay,id,'y');
+		
+		request.setAttribute("mode", "up");
+		setViewUpdate(request, id);
+		return "graph/showGraph";
 	}
 	
 	@PostMapping("/viewUt")
@@ -73,7 +84,29 @@ public class GraphController {
 	@GetMapping("/showUpdate")
 	public String showGraph(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("mode") String mode) {
 		request.setAttribute("mode", mode);
+		
 		setViewUpdate(request, id);
+		return "graph/showGraph";
+	}
+	
+	@PostMapping("/update")
+	public String update(HttpServletRequest request, @RequestParam("mode") String mode, @RequestParam("id") Long id, @RequestParam("titolo") String titolo, @RequestParam("altTitolo") String altT, 
+			@RequestParam("posTitolo") String posT, @RequestParam("tipo") TipoGrafico tipo, @RequestParam("tema") Tema tema,
+			@RequestParam("legenda") boolean legenda, @RequestParam("zoom") boolean zoom, @RequestParam("pareto") boolean pareto) {
+		
+		GraphDTO dto = new GraphDTO();
+		dto.setId(id);
+		dto.setTitolo(titolo);
+		dto.setPosTitolo(altT+"_"+posT);
+		dto.setTipografico(tipo);
+		dto.setTema(tema);
+		dto.setLegenda(legenda);
+		dto.setZoom(zoom);
+		dto.setPareto(pareto);
+		service.update(dto);
+		
+		request.setAttribute("mode", mode);
+		setViewUpdate(request,id);
 		return "graph/showGraph";
 	}
 			
@@ -112,34 +145,49 @@ public class GraphController {
 	
 	private void setViewUpdate(HttpServletRequest request,Long id) {
 		List<DataGraphDTO> dtolist= serviceMtM.getListValue(id);
+		GraphDTO graph = service.read(id);
 		String[] asseX = null, asseY = null;
-		String arrayValue ="",labelx="",labely="";
+		String labelx="",labely="";
+		List<String> listValori = new ArrayList<String>(),
+				tagY = new ArrayList<String>();
 		
+		int i=0;
 		for(DataGraphDTO dg : dtolist) {
+			i++;
 			DataSetDTO ds = serviceDS.read(dg.getDataSetId());
-			if(dg.getAsse()=='x') {
+			 if(dg.getAsse()=='x') {
 				asseX=ds.getValore().split("_");
-				request.setAttribute("titleX", ds.getCommento());
 			}else {
 				asseY=ds.getValore().split("_");
-				request.setAttribute("titleY", ds.getCommento());
-			}	
-		}
-		
-		try {
-			Double.parseDouble(asseX[0]);
-			labelx="{ x: ";
-			labely=", y: ";
-		}catch(Exception e) {
-			labelx="{ label: '";
-			labely="', y: ";
+				tagY.add(ds.getCommento());
 			}
-		
-		for(int i=0;i<asseX.length;i++) {
-			arrayValue+= labelx+ asseX[i] +labely+ asseY[i] +" },";
+			 if(i%2==0) {
+				 try {
+						Double.parseDouble(asseX[0]);
+						labelx="{ x: ";
+						labely=", y: ";
+					}catch(Exception e) {
+						labelx="{ label: '";
+						labely="', y: ";
+						}
+				 
+				 	String arrayValue ="";
+					for(int j=0;j<asseX.length;j++) {
+						arrayValue+= labelx+ asseX[j] +labely+ asseY[j] +" },";
+					}
+					listValori.add(arrayValue.substring(0,arrayValue.length()-1));
+			 }
 		}
 		
-		request.setAttribute("arrV", arrayValue.substring(0,arrayValue.length()-1));
-		request.setAttribute("graph", service.read(id));
+		
+		
+		if(request.getAttribute("mode").toString().equalsIgnoreCase("up")) {
+			request.setAttribute("listGraph", service.getAllByUser(Long.parseLong(request.getSession().getAttribute("userid").toString())));
+			request.setAttribute("listC", serviceDS.findAllByUtente(Long.parseLong(request.getSession().getAttribute("userid").toString())));
+		}
+		request.setAttribute("tagY", tagY);
+		request.setAttribute("id", id);
+		request.setAttribute("arrV", listValori);
+		request.setAttribute("graph", graph);
 	}
 }
