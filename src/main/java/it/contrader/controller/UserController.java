@@ -48,23 +48,13 @@ public class UserController {
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		try {
-			if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id && 
-					request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("user")) {
-				service.delete(id);
+			service.delete(id);
+			if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id) {
 				request.getSession().invalidate();
 				return "index";
 			}
-			else if(Long.parseLong(request.getSession().getAttribute("userid").toString())==id && 
-					request.getSession().getAttribute("username").toString().equalsIgnoreCase("admin")){
-				request.setAttribute("err", 2);
-			}
-			else {
-				service.delete(id);
-			}	
-		}
-		catch(Exception e) {
-		request.setAttribute("err", 1);
-		request.setAttribute("err", 2);
+		}catch(Exception e) {
+			request.setAttribute("err", 1);
 		}
 		setAll(request);
 		return "users";
