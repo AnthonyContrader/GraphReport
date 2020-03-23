@@ -2,7 +2,7 @@
 <html>
 <head>
 <script type="text/javascript" src="../js/toniojs.js"></script>
-<script type="text/javascript" src="../js/piero.js"></script>
+<script type="text/javascript" src="../js/riccardo.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" 
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -49,7 +49,7 @@
 				<label for="user">Nome</label>
 			</div>
 			<div class="col-75">
-			<input type="text" id="unitamisura" name="nome"
+			<input required type="text" id="unitamisura" name="nome"
 				placeholder="inserisci testo qui">
 			</div>
 		</div>

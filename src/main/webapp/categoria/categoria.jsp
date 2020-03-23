@@ -49,7 +49,7 @@
 				<label for="user">Agg.Categoria</label>
 			</div>
 			<div class="col-75">
-			<input type="text" id="categoria" name="nome"
+			<input required type="text" id="categoria" name="nome"
 				placeholder="inserire testo qui">
 			</div>
 		</div>
