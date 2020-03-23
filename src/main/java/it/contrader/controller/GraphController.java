@@ -1,5 +1,8 @@
 package it.contrader.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.contrader.dto.DataGraphDTO;
+import it.contrader.dto.DataSetDTO;
 import it.contrader.dto.GraphDTO;
 import it.contrader.model.Graph.TipoGrafico;
 import it.contrader.model.Graph.Tema;
@@ -52,8 +57,8 @@ public class GraphController {
 		dto.setZoom(false);
 		dto=service.insert(dto);
 		
-		service.insertMtM(ax,dto.getId());
-		service.insertMtM(ay,dto.getId());
+		service.insertMtM(ax,dto.getId(),'x');
+		service.insertMtM(ay,dto.getId(),'y');
 		
 		setViewHome(request);
 		return "graph/graph";
@@ -99,6 +104,35 @@ public class GraphController {
 	}
 	
 	private void setViewUpdate(HttpServletRequest request,Long id) {
+		List<DataGraphDTO> dtolist= serviceMtM.getListValue(id);
+		String[] asseX = null, asseY = null;
+		String arrayValue ="",labelx="",labely="";
 		
+		for(DataGraphDTO dg : dtolist) {
+			DataSetDTO ds = serviceDS.read(dg.getDataSetId());
+			if(dg.getAsse()=='x') {
+				asseX=ds.getValore().split("_");
+				request.setAttribute("titleX", ds.getCommento());
+			}else {
+				asseY=ds.getValore().split("_");
+				request.setAttribute("titleY", ds.getCommento());
+			}	
+		}
+		
+		try {
+			Double.parseDouble(asseX[0]);
+			labelx="{ x: ";
+			labely=", y: ";
+		}catch(Exception e) {
+			labelx="{ label: '";
+			labely="', y: ";
+			}
+		
+		for(int i=0;i<asseX.length;i++) {
+			arrayValue+= labelx+ asseX[i] +labely+ asseY[i] +" },";
+		}
+		
+		request.setAttribute("arrV", arrayValue.substring(0,arrayValue.length()-1));
+		request.setAttribute("graph", service.read(id));
 	}
 }

@@ -1,5 +1,6 @@
 package it.contrader.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,5 +35,8 @@ public class DataGraph {
 	@ManyToOne
 	@JoinColumn(name="graph_id", nullable=false)
 	private Graph graph;
+	
+	@Column(nullable=false)
+	private char asse;
 	
 }

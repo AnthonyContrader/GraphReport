@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="it.contrader.dto.GraphDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,34 +10,43 @@
 <link href="../css/toniostyle.css" rel="stylesheet">
 </head>
 <body>
-QUI TANTA PIU' ROBA DI LI'
-<br><br>
-INTANTO 
-<button onclick="drawGraph()" style="width:200px;height:30px;padding:0px;margin:5px">CLICCA QUI </button>
+
+<%
+	GraphDTO dto = (GraphDTO) request.getAttribute("graph");
+	String arrayValue = request.getAttribute("arrV").toString();
+%>
+
 <div id="graphView" style="width:100%;height:300px"></div>
 
 </body>
 <script>
+window.addEventListener("load", drawGraph);
 
 function drawGraph(){
-	
 	var graph = new CanvasJS.Chart("graphView", {
+		theme: "<%= dto.getTema().toString() %>",
+		animationEnabled: true,
+		exportEnabled: true,
 		title:{
-			text: "CATEGORIA"
+			text: "<%= dto.getTitolo() %>"
+		},
+		axisX: {
+			title: "<%= request.getAttribute("titleX") %>"
+		},
+		axisY: {
+			title: "<%= request.getAttribute("titleY") %>"
 		},
 		data:[
 				{
-				type: "column",
-				dataPoints : [ 
-						{ x: <%= request.getAttribute("x")%> , y: <%= request.getAttribute("y")%>,  indexLabel: "<%= request.getAttribute("label")%>"  }	
-					]
+				type: "<%= dto.getTipografico().toString() %>",
+				dataPoints : [ <%= arrayValue %> ]
 				}
 			]
-	});
+		});
 	
 	graph.render();
 	
-}
+	}
 </script>
 
 

@@ -61,7 +61,11 @@
 			</form>
 			<%
 		}	%>																						
-		<div><div class="center">
+		
+		<%
+		if(!list.isEmpty()){
+			%>
+			<div><div class="center">
 		<table class="table">
 		<tr>
 			<th>Titolo</th>
@@ -71,8 +75,7 @@
 			<th></th>
 			<%} %>
 		</tr> 
-		<%
-		if(!list.isEmpty()){																		
+			<%
 			for (GraphDTO ds : list){
 					%>
 					<tr>

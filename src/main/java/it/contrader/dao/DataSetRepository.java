@@ -30,5 +30,5 @@ public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 	boolean existsByUtente_IdAndCategoria_Id(Long ut, Long cat);
 
 	boolean existsByUtente_IdAndCategoria_IdAndUnitaMisura_Id(Long ut, Long cat, Long um);
-
+	
 }
