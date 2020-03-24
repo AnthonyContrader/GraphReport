@@ -55,6 +55,7 @@ public class UserController {
 			}
 		}catch(Exception e) {
 			request.setAttribute("err", 1);
+			return "homeStructure";
 		}
 		setAll(request);
 		return "users";

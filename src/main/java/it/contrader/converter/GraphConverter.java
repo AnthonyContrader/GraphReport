@@ -11,7 +11,7 @@ public class GraphConverter extends AbstractConverter<Graph,GraphDTO> {
 	@Override
 	public Graph toEntity(GraphDTO dto) {
 		Graph graph = new Graph(dto.getId(),dto.getTitolo(),dto.getTipografico(),dto.getTema(),
-				dto.getPosTitolo(),dto.getLegenda(),dto.getZoom(),dto.getPareto());
+				dto.getPosTitolo(),dto.getLegenda(),dto.getZoom(),dto.getPareto(),null);
 		
 		return graph;
 	}

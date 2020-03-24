@@ -36,7 +36,7 @@ public class DataSetConverter extends AbstractConverter<DataSet, DataSetDTO>{
 					new Categoria(datoDTO.getCategoria(),datoDTO.getCategoriaN()), 
 					new UnitaMisura(datoDTO.getUnitaMisura(),datoDTO.getUnitaMisuraN()), 
 					datoDTO.getValore(),
-					datoDTO.getCommento()
+					datoDTO.getCommento(),null
 				);
 		return dato;
 	}

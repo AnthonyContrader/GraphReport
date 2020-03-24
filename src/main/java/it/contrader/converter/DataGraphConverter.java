@@ -15,8 +15,8 @@ public class DataGraphConverter extends AbstractConverter<DataGraph, DataGraphDT
 	@Override
 	public DataGraph toEntity(DataGraphDTO dto) {
 		DataGraph model = new DataGraph();
-		model.setDataSet(new DataSet(dto.getDataSetId(),null,null,null,null,null));
-		model.setGraph(new Graph(dto.getGraphId(),null,null,null,null,null,null,null));
+		model.setDataSet(new DataSet(dto.getDataSetId(),null,null,null,null,null,null));
+		model.setGraph(new Graph(dto.getGraphId(),null,null,null,null,null,null,null,null));
 		model.setAsse(dto.getAsse());
 		return model;
 		}

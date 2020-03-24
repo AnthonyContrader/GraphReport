@@ -158,22 +158,4 @@
 
 	</div>
 </body>
-<script type="text/javascript">
-	<% if(request.getAttribute("err")!=null){
-	switch (Integer.parseInt(request.getAttribute("err").toString())){
-		case 1:
-			%>
-			alert("Non è possibile eliminare un account con dei dati");
-			<%
-		break;
-		case 2:
-			%>
-			alert("Non è possibile eliminare l'admin");
-			<%
-		break;
-	}
-	}
-	%>
-
-</script>
 </html>
