@@ -165,7 +165,9 @@ function drawGraph(){
 					{
 					type: "<%= dto.getTipografico().toString() %>",
 					showInLegend: <%= dto.getLegenda() %>,
-					legendText: "<%= tagY.get(z) %>",
+					<% if(arrayValue.size()>1) {%>
+						legendText: "<%= tagY.get(z) %>",
+						<% } %>
 					dataPoints : [ <%= s %> ]
 					},
 				

@@ -163,11 +163,14 @@ public class GraphController {
 			}
 			 if(i%2==0) {
 				 try {
-						Double.parseDouble(asseX[0]);
+					 Double.parseDouble(asseX[0]);
 						labelx="{ x: ";
 						labely=", y: ";
 					}catch(Exception e) {
-						labelx="{ label: '";
+						if(graph.getLegenda())
+							labelx="{ name: '";
+						else
+							labelx="{ label: '";
 						labely="', y: ";
 						}
 				 
