@@ -126,7 +126,7 @@ public class UserController {
 		dto.setUsertype(Usertype.USER);
 		dto.setNome("");
 		dto.setCognome("");
-		dto.setEmail("");
+		dto.setEmail(null);
 		dto.setCitta("");
 		dto.setNazione("");
 		service.insert(dto);
