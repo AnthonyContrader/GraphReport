@@ -18,11 +18,7 @@ import it.contrader.model.DataSet;
 @Service
 public class DataGraphService extends AbstractService<DataGraph,DataGraphDTO>{
 	
-	public void insertNew(Long ds, Long graph, char asse) {
-		DataGraphDTO dto = new DataGraphDTO();
-		dto.setDataSetId(ds);
-		dto.setGraphId(graph);
-		dto.setAsse(asse);
+	public void insertNew(DataGraphDTO dto) {
 		repository.save(converter.toEntity(dto));
 	}
 	
