@@ -1,6 +1,5 @@
 package it.contrader.controller;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,15 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.DataSetDTO;
-import it.contrader.dto.UserDTO;
 import it.contrader.service.DataSetService;
-import it.contrader.service.UserService;
-import it.contrader.service.UnitaMisuraService;
-import it.contrader.service.CategoriaService;
 
 @RestController
 @RequestMapping("/dataset")
@@ -25,15 +19,6 @@ public class DataSetController extends AbstractController<DataSetDTO>{
 
 	@Autowired
 	private DataSetService service;
-	
-	@Autowired
-	private CategoriaService catService;
-	
-	@Autowired
-	private UnitaMisuraService unitaService;
-	
-	@Autowired
-	private UserService userService;
 
 	@GetMapping("/deletedataset")
 	public boolean deletedataset(@RequestBody Long idUt,@RequestBody Long idCat) {
