@@ -42,8 +42,8 @@ public class UnitaMisuraController extends AbstractController<UnitaMisuraDTO>{
     
     }
 
-    @PostMapping("/insert")
-	public boolean insert (@RequestBody String nome){
+    @PostMapping("/insertbynome")
+	public boolean insertByNome (@RequestBody String nome){
         try{
         UnitaMisuraDTO dto = new UnitaMisuraDTO();
         unitamisuraService.insert(dto);

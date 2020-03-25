@@ -42,8 +42,8 @@ public class CategoriaController extends AbstractController<CategoriaDTO>{
     
     }
 
-    @PostMapping("/insert")
-	public boolean insert (@RequestBody String nome){
+    @PostMapping("/insertbynome")
+	public boolean insertByNome (@RequestBody String nome){
         try{
         CategoriaDTO dto = new CategoriaDTO();
         categoriaService.insert(dto);
