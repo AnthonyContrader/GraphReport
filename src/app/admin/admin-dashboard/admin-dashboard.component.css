@@ -1,3 +1,14 @@
 p {
     font-size: 14px;
+
+}
+
+.container{
+  font-family: courier;
+}
+
+.h1{
+  font-family: courier;
+  font-weight: 501;
+  color:lightslategray;
 }
