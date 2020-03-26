@@ -11,6 +11,10 @@ export class AdminMenuComponent implements OnInit {
   isUserCollapsed = false;
   isClientCollapsed = false;
   isAccountCollapsed = false;
+  isCategoriaCollapsed = false;
+  isUnitaCollapsed = false;
+  isDatasetCollapsed = false;
+  isGraphCollapsed = false;
 
   constructor(private router: Router) {
   }
@@ -33,5 +37,29 @@ export class AdminMenuComponent implements OnInit {
     if (this.isAccountCollapsed === false) {
       this.isAccountCollapsed = true;
     } else { this.isAccountCollapsed = false; }
+  }
+
+  categoriascollapse() {
+    if (this.isCategoriaCollapsed === false) {
+      this.isCategoriaCollapsed = true;
+    } else { this.isCategoriaCollapsed = false; }
+  }
+
+  unitamisuracollapse() {
+    if (this.isUnitaCollapsed === false) {
+      this.isUnitaCollapsed = true;
+    } else { this.isUnitaCollapsed = false; }
+  }
+
+  datasetscollapse() {
+    if (this.isDatasetCollapsed === false) {
+      this.isDatasetCollapsed = true;
+    } else { this.isDatasetCollapsed = false; }
+  }
+
+  graphcollapse() {
+    if (this.isGraphCollapsed === false) {
+      this.isGraphCollapsed = true;
+    } else { this.isGraphCollapsed = false; }
   }
 }

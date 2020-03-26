@@ -30,6 +30,46 @@
                         </i> Manage Users </a>
                 </button>
             </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#categoria"
+                (click)="categoriascollapse()">
+                <i class="fa fa-users" style="margin-right: 15px"></i>Categorie
+            </button>
+            <div class="collapsebtn" id="categoria" *ngIf="isCategoriaCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/admin-dashboard/work-in-progress']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Gestisci</a>
+                </button>
+            </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#unita"
+                (click)="unitamisuracollapse()">
+                <i class="fa fa-users" style="margin-right: 15px"></i>Unità di misura
+            </button>
+            <div class="collapsebtn" id="unita" *ngIf="isUnitaCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/admin-dashboard/work-in-progress']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Gestisci</a>
+                </button>
+            </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#dataset"
+                (click)="datasetscollapse()">
+                <i class="fa fa-users" style="margin-right: 15px"></i>Data Set
+            </button>
+            <div class="collapsebtn" id="dataset" *ngIf="isDatasetCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/admin-dashboard/work-in-progress']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Gestisci</a>
+                </button>
+            </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#graph"
+                (click)="graphcollapse()">
+                <i class="fa fa-users" style="margin-right: 15px"></i>Grafico
+            </button>
+            <div class="collapsebtn" id="graph" *ngIf="isGraphCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/admin-dashboard/work-in-progress']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Gestisci</a>
+                </button>
+            </div>
             <button class="menubtn" (click)="logout()">
                 <i class="fa fa-sign-out" style="margin-right: 15px"></i>Logout
             </button>
