@@ -9,16 +9,16 @@ body{
 }
 
 .divLogo{
-    margin: 50px 0 0;
-    width: 250px;
+    margin: 25px auto;
+    width: min-content;
 }
 
 .imgLogo{
-    width: 250px;
+    width: 150px;
 }
 
 .formLogin{
-    margin: 50px 0 0;
+    margin: 25px 0;
     width: 210px;
 }
 
@@ -75,6 +75,7 @@ input {
   }
   
   h1 {
+    margin: 0px;
 	text-align: center;
 	size: 300%;
 	font-family: courier;
