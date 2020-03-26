@@ -19,11 +19,11 @@ body{
 
 .formLogin{
     margin: 25px 0;
-    width: 210px;
+    width: 250px;
 }
 
 input {
-    width: 80%;
+    width: 100%;
     background-color: #ffff;
     color: #000000;
     padding: 14px 20px;
