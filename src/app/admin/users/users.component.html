@@ -3,26 +3,28 @@
     <div class="col-md-1">
 
     </div>
-    <div class="col-md-10">
-      <table>
+    
+    <div class="col-md-9">
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
-          <th>
-            Username
-          </th>
-          <th>
-            Password
-          </th>
-          <th>
-            Usertype
-          </th>
-          <th>
-            Edit
-          </th>
-          <th>
-            User
-          </th>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Password</th>
+          <th scope="col">Usertype</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Cognome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Città</th>
+          <th scope="col">Nazione</th>
+          <th scope="col">Edit</th>
+          <th scope="col">User</th>
         </tr>
+      </thead>
+      <tbody>
+
         <tr>
+          <th scope="row">1</th>
           <td>
             <input placeholder="username" [(ngModel)]="usertoinsert.username">
           </td>
@@ -36,13 +38,31 @@
             </select>
           </td>
           <td>
+            <input placeholder="nome" [(ngModel)]="usertoinsert.nome">
+          </td>
+          <td>
+            <input placeholder="cognome" [(ngModel)]="usertoinsert.cognome">
+          </td>
+          <td>
+            <input placeholder="email" [(ngModel)]="usertoinsert.email">
+          </td>
+          <td>
+            <input placeholder="città" [(ngModel)]="usertoinsert.citta">
+          </td>
+          <td>
+            <input placeholder="nazione" [(ngModel)]="usertoinsert.nazione">
+          </td>
+          <td>
             <button (click)="insert(usertoinsert)">Insert</button>
           </td>
           <td>
             <button (click)="clear()">Clear</button>
           </td>
         </tr>
+
+
         <tr *ngFor="let user of users">
+          <th scope="row">2</th>
           <td>
             <input [(ngModel)]="user.username">
           </td>
@@ -50,7 +70,22 @@
             <input [(ngModel)]="user.password">
           </td>
           <td>
-            
+            <input [(ngModel)]="user.usertype">
+          </td>
+          <td>
+            <input [(ngModel)]="user.nome">
+          </td>
+          <td>
+            <input [(ngModel)]="user.cognome">
+          </td>
+          <td>
+            <input [(ngModel)]="user.email">
+          </td>
+          <td>
+            <input [(ngModel)]="user.citta">
+          </td>
+          <td>
+            <input [(ngModel)]="user.nazione">
           </td>
           <td>
             <button (click)=update(user)>Save</button>
@@ -59,8 +94,10 @@
             <button (click)="delete(user)">Delete</button>
           </td>
         </tr>
-      </table>
+      </tbody> 
+    </table> 
     </div>
+
     <div class="col-md-1">
 
     </div>

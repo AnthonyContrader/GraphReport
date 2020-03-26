@@ -18,5 +18,15 @@ export class UserDTO {
 
    usertype: Usertype;
 
+   nome: string;
+	
+	cognome: string;
+	
+	email: string;
+	
+	citta: string;
+	
+	nazione: string;
+
 }
 
