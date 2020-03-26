@@ -7,7 +7,6 @@ import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /** 
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -27,7 +26,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     LayoutModule,
     AdminModule,
-    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
