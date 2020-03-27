@@ -1,3 +1,7 @@
+* {
+	font-family: sans-serif;
+}
+
 .centraDiv{
     margin: 25px auto;
     width: max-content;
@@ -115,4 +119,104 @@ input:disabled{
 
 .noFloat{
 	float:none;
+}
+
+.newCat {
+	clear: both;
+}
+
+div.center {
+	width: max-content;
+	margin: auto;
+}
+
+.cols {
+	float: left;
+	min-width: 100px;
+	position: relative;
+	
+}
+
+.marginBot {
+	margin-bottom: 25px;
+}
+
+.th, .tr{
+	text-align: center;
+	padding: 8px;
+}
+
+.tr{
+	min-height:18px;
+	max-height:40px;
+}
+
+.th {
+	background-color: #00a990;
+	color: #ffffff;
+	position: inherit;
+	width: 100px;
+}
+
+.btnComm{
+	position: absolute;
+	bottom: 4px;
+	right: 0px;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: max-content;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -60px;
+	opacity: 0;
+	transition: opacity 0.3s;
+  }
+  
+  .tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
+  }
+  
+  .tooltiptext > p {
+	  margin: 5px;
+  }
+  
+  .tooltiptext > .sugg{
+	  font-size:9px;
+  }
+  
+  .linkCRUD {
+	float: left;
+	margin: 10px 10px 0px;
+	width: min-content;
+}
+
+.divCRUD {
+	position: absolute;
+	right: 0px;
+}
+
+.table{
+	margin: auto;
+	display: flex;
+	width: max-content;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.grey {
+	background-color: #f2f2f2;
+}
+
+.white {
+	background-color: white;
 }

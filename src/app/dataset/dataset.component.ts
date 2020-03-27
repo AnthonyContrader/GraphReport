@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DataSetService } from 'src/service/DataSetService';
+import { DataSetDTO } from 'src/dto/DataSetDTO';
+import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
+import { CategoriaDTO } from 'src/dto/categoriadto';
 
 @Component({
   selector: 'app-dataset',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatasetComponent implements OnInit {
 
-  constructor() { }
+  public dtoList : DataSetDTO[];
+  public catList : CategoriaDTO[];
+  public umList : UnitaMisuraDTO[];
+  public nDS : DataSetDTO[];
 
-  ngOnInit(): void {
+  constructor(private service:DataSetService) {
+    
+   }
+
+  ngOnInit(){
+    this.service.getAllByUser().subscribe(dataList => this.dtoList = dataList);
+    this.service.countDS().subscribe(nDS => this.nDS = nDS)
   }
 
 }

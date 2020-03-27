@@ -1,18 +1,18 @@
 export class DataSetDTO{
 
-    private id : number;
+    id : number;
 
-	private utente : number;
+	utente : number;
 	
-	private categoria : number;
-	private categoriaN : string;
+	categoria : number;
+	categoriaN : string;
 	
-	private unitaMisura : number;
-	private unitaMisuraN : string;
+	unitaMisura : number;
+	unitaMisuraN : string;
 	
-	private valore: string;
+	valore: string;
 	
-    private commento : string;
+    commento : string;
     
     constructor(id : number, utente : number, categoria : number, categoriaN : string, unitaMisura : number, unitaMisuraN : string, valore: string, commento : string){
         this.id = id;
@@ -24,4 +24,5 @@ export class DataSetDTO{
         this.valore = valore;
         this.commento = commento;
     }
+
 }
