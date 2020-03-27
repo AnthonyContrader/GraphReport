@@ -1,12 +1,15 @@
 package it.contrader.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.DataSetDTO;
@@ -61,6 +64,16 @@ public class DataSetController extends AbstractController<DataSetDTO>{
 		if(service.updateDS(dto.getValore(),dto.getCommento(),dto.getId())!=1) 
 			return false;
 		return true;
+	}
+	
+	@GetMapping("/getAllByUser")
+	public List<DataSetDTO> getAllByUser(@RequestParam("id") Long id) {
+		return service.findAllByUtente(id);
+	}
+	
+	@GetMapping("/countDS")
+	public List<DataSetDTO> countDS(@RequestParam("id") Long id) {
+		return service.countDS(id);
 	}
 
 }

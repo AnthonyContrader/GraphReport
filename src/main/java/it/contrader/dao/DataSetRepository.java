@@ -31,4 +31,6 @@ public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 
 	boolean existsByUtente_IdAndCategoria_IdAndUnitaMisura_Id(Long ut, Long cat, Long um);
 	
+	@Query("select d from DataSet d where d.utente.id = ?1 group by d.categoria.id ORDER BY d.categoria.id")
+	List<DataSet> countDS(Long id);
 }

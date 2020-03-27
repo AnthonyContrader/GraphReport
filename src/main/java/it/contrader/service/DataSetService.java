@@ -34,4 +34,8 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 		return ((DataSetRepository)repository).existsByUtente_IdAndCategoria_IdAndUnitaMisura_Id(ut,cat,um);
 	}
 	
+	public List<DataSetDTO> countDS(Long id) {
+		return converter.toDTOList(((DataSetRepository)repository).countDS(id));
+	}
+	
 }
