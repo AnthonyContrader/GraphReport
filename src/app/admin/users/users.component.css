@@ -5,9 +5,10 @@
 /*Tables*/
 table {
 	border-collapse: collapse;
-	width: 70%;
+	width: 90%;
 	float: center;
 	margin-left: 5%;
+	margin-top: 20px;
 	border-radius: 100px;
 	-moz-border-radius: 1px;
 }
@@ -38,7 +39,8 @@ a:hover {
 input, select{
     background-color: inherit;
 	font-size: inherit;
-	width: 70%;
+	width: 100%;
+	height: 100%;
 }
 
 input:hover,  input:active, input:focus{
@@ -46,5 +48,15 @@ input:hover,  input:active, input:focus{
 }
 
 button:hover{
-    background-color: crimson;
+	background-color: crimson;
+}
+
+select{
+	height: 100%;
+	width: 100%;
+}
+
+button{
+	height: 100%;
+	width: 100%;
 }
