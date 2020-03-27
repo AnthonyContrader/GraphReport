@@ -1,10 +1,4 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-1">
-
-    </div>
-    
-    <div class="col-md-9">
+<div class="row mt-5"></div> 
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -62,7 +56,7 @@
 
 
         <tr *ngFor="let user of users">
-          <th scope="row">2</th>
+          <th>{{user.id}}</th>
           <td>
             <input [(ngModel)]="user.username">
           </td>
@@ -96,10 +90,3 @@
         </tr>
       </tbody> 
     </table> 
-    </div>
-
-    <div class="col-md-1">
-
-    </div>
-  </div>
-</div>
