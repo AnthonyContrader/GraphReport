@@ -164,7 +164,7 @@ div.center {
 	right: 0px;
 }
 
-.tooltip .tooltiptext {
+.toltip .toltiptext {
 	visibility: hidden;
 	width: max-content;
 	background-color: #555;
@@ -181,16 +181,16 @@ div.center {
 	transition: opacity 0.3s;
   }
   
-  .tooltip:hover .tooltiptext {
+  .toltip:hover .toltiptext {
 	visibility: visible;
 	opacity: 1;
   }
   
-  .tooltiptext > p {
+  .toltiptext > p {
 	  margin: 5px;
   }
   
-  .tooltiptext > .sugg{
+  .toltiptext > .sugg{
 	  font-size:9px;
   }
   
@@ -210,7 +210,6 @@ div.center {
 	display: flex;
 	width: max-content;
 	border-radius: 10px;
-	overflow: hidden;
 }
 
 .grey {

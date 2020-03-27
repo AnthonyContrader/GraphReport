@@ -1,39 +1,44 @@
 <div class="row">
-    <div class="col-sm">
-        
+    <div class="col-sm" style="padding-top:35px">
+        <form class="center" *ngIf="usertype=='ADMIN'" style="width:300px;">
+			<label>Visualizza DataSet dell'utente</label>
+			<select name="idUtVis" >
+				<option *ngFor="let c of utList" [value]="c.id" [selected]="c.id==utId">{{c.username}}</option>
+            </select>
+        </form>
 
-            <div class="centraDiv" *ngFor="let nds of nDS">
-                <div class="newCat">
-                    <div class="divCRUD" style="width:20%;">
-                        <a href="" ><div class="linkCRUD">Modifica</div></a>
-                        <a href="" onclick=""><div class="linkCRUD">Elimina</div></a>
-                    </div>
-                    <h1>{{nds.categoriaN}}</h1>
+        <div class="centraDiv" *ngFor="let nds of nDS">
+            <div class="newCat">
+                <div class="divCRUD" style="width:20%;">
+                    <a href="" ><div class="linkCRUD">Modifica</div></a>
+                    <a href="" onclick=""><div class="linkCRUD">Elimina</div></a>
                 </div>
-                <div class="table marginBot">
-                    <div *ngFor="let dto of dtoList;">
-                        <div *ngIf="dto.categoria==nds.categoria">
-                            <div class="cols">
-                                <div class="th">
-                                    {{dto.unitaMisuraN}}
-                                    <div class="btnComm tooltip" *ngIf="dto.commento!=''">
-                                        <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                                        <span class="tooltiptext">
-                                            <p> {{dto.commento}} </p>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div *ngFor="let val of dto.valore.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tr grey' : 'tr white'">
-                                    {{val}}
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>    
-                </div>
+                <h1>{{nds.categoriaN}}</h1>
             </div>
+            <br>
+            <div class="table marginBot">
+                <div *ngFor="let dto of dtoList;">
+                    <div *ngIf="dto.categoria==nds.categoria">
+                        <div class="cols">
+                            <div class="th">
+                                {{dto.unitaMisuraN}}
+                                <div class="btnComm toltip" *ngIf="dto.commento!=''">
+                                    <img src="../../assets/comm.png"/>
+                                    <span class="toltiptext">
+                                        <p> {{dto.commento}} </p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div *ngFor="let val of dto.valore.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tr grey' : 'tr white'">
+                                {{val}}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
 
-        
     </div>
     <div class="col-sm">
         <div class="centraDiv">
@@ -44,17 +49,17 @@
                 <label><strong>Categoria</strong></label>
                 <select id="cc" name="cat" required>
                     <option value="" style="color:grey">Scegli una categoria</option>
-                    
+                    <option *ngFor="let c of catList" [value]="c.id">{{c.nome}}</option>
                 </select>
                 <label style="margin-top:5px"><strong>Unità di misura:</strong></label>
                 <br>
                 <select id="cump" name="ump" required>
                     <option value="" style="color:grey">Primo set di valori</option>
-                    
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
                 </select>
                 <select id="cums" name="ums" required>
                     <option value="" style="color:grey">Secondo set di valori</option>
-                    
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
                 </select>
                 <button type="submit">Crea</button>
             </form>

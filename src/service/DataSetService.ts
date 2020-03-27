@@ -3,6 +3,9 @@ import { AbstractService } from './abstractservice';
 import { DataSetDTO } from 'src/dto/DataSetDTO';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CategoriaDTO } from 'src/dto/categoriadto';
+import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
+import { UserDTO } from 'src/dto/userdto';
 
 /**
  * I service sono decorati da @Injectable. 
@@ -24,11 +27,23 @@ export class DataSetService extends AbstractService<DataSetDTO>{
   }
 
   getAllByUser(): Observable<DataSetDTO[]> {
-    return this.http.get<any>('http://localhost:8080/' + this.type + '/getAllByUser?id=' + localStorage.getItem('currentIdUser').toString());
+    return this.http.get<any>('http://localhost:8080/' + this.type + '/getAllByUser?id=' + localStorage.getItem('idUser').toString());
   }
 
   countDS(): Observable<DataSetDTO[]> {
-    return this.http.get<any>('http://localhost:8080/' + this.type + '/countDS?id=' + localStorage.getItem('currentIdUser').toString());
+    return this.http.get<any>('http://localhost:8080/' + this.type + '/countDS?id=' + localStorage.getItem('idUser').toString());
+  }
+
+  getListCat(): Observable<CategoriaDTO[]> {
+        return this.http.get<any>('http://localhost:8080/categoria/getall');
+  }
+
+  getListUnit(): Observable<UnitaMisuraDTO[]> {
+    return this.http.get<any>('http://localhost:8080/unitamisura/getall');
+  }
+
+  getListUser(): Observable<UserDTO[]> {
+    return this.http.get<any>('http://localhost:8080/user/getall');
   }
 
 }
