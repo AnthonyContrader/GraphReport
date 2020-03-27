@@ -29,37 +29,53 @@ export class AdminMenuComponent implements OnInit {
 
   userscollapse() {
     if (this.isUserCollapsed === false) {
+      this.closeAll();
       this.isUserCollapsed = true;
     } else { this.isUserCollapsed = false; }
   }
 
   accountcollapse() {
     if (this.isAccountCollapsed === false) {
+      this.closeAll();
       this.isAccountCollapsed = true;
     } else { this.isAccountCollapsed = false; }
   }
 
   categoriascollapse() {
     if (this.isCategoriaCollapsed === false) {
+      this.closeAll();
       this.isCategoriaCollapsed = true;
     } else { this.isCategoriaCollapsed = false; }
   }
 
   unitamisuracollapse() {
     if (this.isUnitaCollapsed === false) {
+      this.closeAll();
       this.isUnitaCollapsed = true;
     } else { this.isUnitaCollapsed = false; }
   }
 
   datasetscollapse() {
     if (this.isDatasetCollapsed === false) {
+      this.closeAll();
       this.isDatasetCollapsed = true;
     } else { this.isDatasetCollapsed = false; }
   }
 
   graphcollapse() {
     if (this.isGraphCollapsed === false) {
+      this.closeAll();
       this.isGraphCollapsed = true;
     } else { this.isGraphCollapsed = false; }
+  }
+
+  closeAll(){
+    this.isUserCollapsed = false;
+    this.isClientCollapsed = false;
+    this.isAccountCollapsed = false;
+    this.isCategoriaCollapsed = false;
+    this.isUnitaCollapsed = false;
+    this.isDatasetCollapsed = false;
+    this.isGraphCollapsed = false;
   }
 }

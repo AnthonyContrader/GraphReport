@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
 
       if (user != null) {
         localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('currentIdUser', user.id.toString());
+        localStorage.setItem('currentIdUser', user.usertype.toString());
 
         switch (user.usertype.toString()) {
           case 'ADMIN': {
