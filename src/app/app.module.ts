@@ -6,11 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
-import { AdminModule } from './admin/admin.module';
 import { DatasetComponent } from './dataset/dataset.component';
-import { UtenteComponent } from './utente/utente.component';
 import { CategorieComponent } from './categoria/categorie.component';
 import { UnitamisureComponent } from './unitamisura/unitamisure.component';
+import { UtenteModule } from './utente/utente.module';
 
 /**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -23,7 +22,6 @@ import { UnitamisureComponent } from './unitamisura/unitamisure.component';
   declarations: [
     AppComponent,
     DatasetComponent,
-    UtenteComponent,
     CategorieComponent,
     UnitamisureComponent
   ],
@@ -33,7 +31,7 @@ import { UnitamisureComponent } from './unitamisura/unitamisure.component';
     LoginModule,
     HttpClientModule,
     LayoutModule,
-    AdminModule,
+    UtenteModule,
     FormsModule,
     ReactiveFormsModule
   ],
