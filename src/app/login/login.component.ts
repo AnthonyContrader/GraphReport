@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
             break;
           }
           case 'USER': {
-            this.router.navigate(['/user-dashboard']);
+            this.router.navigate(['/utente-dashboard']);
             break;
           }
           default:

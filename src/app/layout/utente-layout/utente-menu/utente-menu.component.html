@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="sidenav">
+            <button class="menubtn">
+                <a [routerLink]="['/utente-dashboard']"> <i class="fa fa-home" style="margin-right: 10px"> </i>
+                    Homepage </a>
+            </button>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#account"
+                (click)="accountcollapse()">
+                <i class="fa fa-address-card" style="margin-right: 15px"></i> Account
+            </button>
+            <div class="collapsebtn" id="account" *ngIf="isAccountCollapsed">
+                <button class="menubtn" style="background-color: #334247; padding-left: 40px">
+                    <a [routerLink]="['/utente-dashboard/users']"> <i class="fa fa-pencil"
+                            style="margin-right: 15px"></i>
+                        Edit Profile</a>
+                </button>
+            </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#categoria"
+                (click)="categoriascollapse()">
+                <i class="fa fa-inbox" style="margin-right: 15px"></i>Categorie
+            </button>
+            <div class="collapsebtn" id="categoria" *ngIf="isCategoriaCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/utente-dashboard/categoria']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Manage Categories </a>
+                </button>
+            </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#unita"
+                (click)="unitamisuracollapse()">
+                <i class="fa fa-thermometer" style="margin-right: 15px"></i>Unità di misura
+            </button>
+            <div class="collapsebtn" id="unita" *ngIf="isUnitaCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/utente-dashboard/work-in-progress']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Manage Unit </a>
+                </button>
+            </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#dataset"
+                (click)="datasetscollapse()">
+                <i class="fa fa-table" style="margin-right: 15px"></i>Data Set
+            </button>
+            <div class="collapsebtn" id="dataset" *ngIf="isDatasetCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/utente-dashboard/dataset']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Gestisci</a>
+                </button>
+            </div>
+            <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#graph"
+                (click)="graphcollapse()">
+                <i class="fa fa-area-chart" style="margin-right: 15px"></i>Grafico
+            </button>
+            <div class="collapsebtn" id="graph" *ngIf="isGraphCollapsed">
+                <button class="menubtn" style="padding-left: 40px; background-color: #334247;">
+                    <a [routerLink]="['/utente-dashboard/work-in-progress']"> <i class="fa fa-edit" style="margin-right: 10px">
+                        </i> Gestisci</a>
+                </button>
+            </div>
+            <button class="menubtn" (click)="logout()">
+                <i class="fa fa-sign-out" style="margin-right: 15px"></i>Logout
+            </button>
+        </div>
+    </div>
+</div>
