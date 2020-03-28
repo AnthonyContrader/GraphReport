@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
 import { DatasetComponent } from './dataset/dataset.component';
+import { UtenteComponent } from './utente/utente.component';
 
 /** 
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -20,7 +21,8 @@ import { DatasetComponent } from './dataset/dataset.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DatasetComponent
+    DatasetComponent,
+    UtenteComponent
   ],
   imports: [
     BrowserModule,
