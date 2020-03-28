@@ -10,6 +10,7 @@ import { DatasetComponent } from './dataset/dataset.component';
 import { CategorieComponent } from './categoria/categorie.component';
 import { UnitamisureComponent } from './unitamisura/unitamisure.component';
 import { UtenteModule } from './utente/utente.module';
+import { AdminModule } from './admin/admin.module';
 
 /**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -32,6 +33,7 @@ import { UtenteModule } from './utente/utente.module';
     HttpClientModule,
     LayoutModule,
     UtenteModule,
+    AdminModule,
     FormsModule,
     ReactiveFormsModule
   ],
