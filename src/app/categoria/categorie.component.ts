@@ -24,7 +24,6 @@ export class CategorieComponent implements OnInit {
 
   delete(categoria: CategoriaDTO) {
     this.service.delete(categoria.id).subscribe(() => this.getCategoria());
-
   }
 
   update(categoria: CategoriaDTO) {
@@ -35,7 +34,7 @@ export class CategorieComponent implements OnInit {
     this.service.insert(categoria).subscribe(() => this.getCategoria());
   }
 
-  clear(){
+  clear() {
     this.categoriainsert = new CategoriaDTO();
   }
 

@@ -3,7 +3,9 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nome</th>
+          <th></th>
           <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -14,14 +16,11 @@
           <td>
             <button (click)="insert(unitamisurainsert)">Insert</button>
           </td>
-          <td>
-            <button (click)="clear()">Clear</button>
-          </td>
 
 
 
         <tr *ngFor="let unitamisura of unitamisure">
-          <th>{{unitamisura.id}}</th>
+          <th>{{unitamisura.nome}}</th>
           <td>
             <input [(ngModel)]="unitamisura.nome">
           </td>
