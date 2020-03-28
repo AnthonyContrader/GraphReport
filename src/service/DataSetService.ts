@@ -26,12 +26,12 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     this.type = 'dataset';
   }
 
-  getAllByUser(): Observable<DataSetDTO[]> {
-    return this.http.get<any>('http://localhost:8080/' + this.type + '/getAllByUser?id=' + localStorage.getItem('idUser').toString());
+  getAllByUser(id: number): Observable<DataSetDTO[]> {
+    return this.http.get<any>('http://localhost:8080/' + this.type + '/getAllByUser?id=' + id);
   }
 
-  countDS(): Observable<DataSetDTO[]> {
-    return this.http.get<any>('http://localhost:8080/' + this.type + '/countDS?id=' + localStorage.getItem('idUser').toString());
+  countDS(id: number): Observable<DataSetDTO[]> {
+    return this.http.get<any>('http://localhost:8080/' + this.type + '/countDS?id=' + id);
   }
 
   getListCat(): Observable<CategoriaDTO[]> {
