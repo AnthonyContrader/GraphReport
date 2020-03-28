@@ -6,19 +6,19 @@
 				<option *ngFor="let c of utList" [value]="c.id" [selected]="c.id==utId">{{c.username}}</option>
             </select>
         </form>
-        <ng-container *ngIf="(nDS.length>0); else noDS">
-            <div class="centraDiv" *ngFor="let nds of nDS">
+        <ng-container *ngIf="(nDS!=undefined && nDS.length>0); else noDS">
+            <div class="centraDiv" *ngFor="let nd of nDS">
                 <div class="newCat">
-                    <div class="divCRUD" style="width:20%;" *ngIf="nds.utente==utId">
+                    <div class="divCRUD" style="width:20%;" *ngIf="nd.utente==utId">
                         <a href="" ><div class="linkCRUD">Modifica</div></a>
                         <a href="" onclick=""><div class="linkCRUD">Elimina</div></a>
                     </div>
-                    <h1>{{nds.categoriaN}}</h1>
+                    <h1>{{nd.categoriaN}}</h1>
                 </div>
                 <br>
                 <div class="table marginBot">
                     <div *ngFor="let dto of dtoList;">
-                        <div *ngIf="dto.categoria==nds.categoria">
+                        <div *ngIf="dto.categoria==nd.categoria">
                             <div class="cols">
                                 <div class="th">
                                     {{dto.unitaMisuraN}}
@@ -51,19 +51,19 @@
             
             <h1>Crea nuovo DataSet</h1>
             <br>
-            <form style="min-width:270px" [formGroup]="createForm" (onSubmit)="createDS(createForm.value)">
+            <form style="min-width:270px" [formGroup]="createForm" (ngSubmit)="createDS(createForm.value)">
                 <label><strong>Categoria</strong></label>
-                <select id="cc" name="cat" required>
+                <select formControlName="cat" required>
                     <option value="" style="color:grey">Scegli una categoria</option>
                     <option *ngFor="let c of catList" [value]="c.id">{{c.nome}}</option>
                 </select>
                 <label style="margin-top:5px"><strong>Unità di misura:</strong></label>
                 <br>
-                <select id="cump" name="ump" required>
+                <select formControlName="ump" required>
                     <option value="" style="color:grey">Primo set di valori</option>
                     <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
                 </select>
-                <select id="cums" name="ums" required>
+                <select formControlName="ums" required>
                     <option value="" style="color:grey">Secondo set di valori</option>
                     <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
                 </select>

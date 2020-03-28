@@ -46,4 +46,11 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     return this.http.get<any>('http://localhost:8080/user/getall');
   }
 
+  createDS(dtop: DataSetDTO, dtos: DataSetDTO): Observable<boolean>{
+    let dto = [dtop,dtos];
+    console.warn(dto[0]);
+    console.warn(dto[1]);
+    return this.http.post<any>('http://localhost:8080/' + this.type + '/createdataset', dto);
+  }
+
 }

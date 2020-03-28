@@ -47,7 +47,10 @@ export class DatasetComponent implements OnInit {
   }
 
   createDS(formValue){
-
+    let dtop = new DataSetDTO(0,this.utId,Number(formValue.cat),null,Number(formValue.ump),null," _","");
+    let dtos = new DataSetDTO(0,this.utId,Number(formValue.cat),null,Number(formValue.ums),null," _","");
+    this.service.createDS(dtop,dtos);
+    
   }
 
 }
