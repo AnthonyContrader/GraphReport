@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AbstractService } from './abstractservice';
-import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
+import { AbstractService} from './abstractservice';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UnitaMisuraService extends AbstractService<UnitaMisuraDTO> {
+export class UnitamisuraService extends AbstractService<UnitaMisuraDTO> {
 
   constructor(http: HttpClient) {
+
     super(http);
     this.type = 'unitamisura';
-  }
-
+   }
 }

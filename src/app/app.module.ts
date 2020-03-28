@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
@@ -10,19 +9,23 @@ import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
 import { DatasetComponent } from './dataset/dataset.component';
 import { UtenteComponent } from './utente/utente.component';
+import { CategorieComponent } from './categoria/categorie.component';
+import { UnitamisureComponent } from './unitamisura/unitamisure.component';
 
-/** 
+/**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
  * da dichiare qui è l'AppComponent, tutte le altre devono essere dichiarate nel loro modulo e questo importato
  * qui.
- * 
+ *
  * @author Vittorio Valent
 */
 @NgModule({
   declarations: [
     AppComponent,
     DatasetComponent,
-    UtenteComponent
+    UtenteComponent,
+    CategorieComponent,
+    UnitamisureComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { UtenteComponent } from './utente/utente.component';
     HttpClientModule,
     LayoutModule,
     AdminModule,
-    FormsModule ,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],

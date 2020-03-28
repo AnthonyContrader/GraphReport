@@ -1,0 +1,34 @@
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <td>
+            <input placeholder="nome" [(ngModel)]="categoriainsert.nome">
+          </td>
+          <td>
+            <button (click)="insert(categoriainsert)">Insert</button>
+          </td>
+          <td>
+            <button (click)="clear()">Clear</button>
+          </td>
+
+        <tr *ngFor="let categoria of categorie">
+          <th>{{categoria.id}}</th>
+          <td>
+            <input [(ngModel)]="categoria.nome">
+          </td>
+          <td>
+            <button (click)=update(categoria)>Update</button>
+          </td>
+          <td>
+            <button (click)="delete(categoria)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>

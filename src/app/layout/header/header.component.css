@@ -14,21 +14,21 @@
     overflow: hidden;
   background-color: white;
   }
-  
-  
+
+
   .searchIcon {
     padding: 0.5rem;
     z-index:2;
     background-color: white;
   }
-  
+
   .searchBox {
     border: 0;
     padding: 0.5rem;
     background-color: white;
     font-size: 12px;
   }
-  
+
   .searchButton {
       height: 70%;
       margin-top:7px;
@@ -36,9 +36,9 @@
     border: 2px solid darkorange;
     color: darkorange;
     border-radius: 15px;
-  
+
   }
-  
+
   p{
       font-size: 19px;
       color: #f1f1f1;
@@ -49,8 +49,13 @@
       width: 100%;
       background-color: #1e282d !important;
   }
-  
+
   i:hover{
     background-color: crimson;
+
+  }
+
+  .menubtn{
+
 
   }

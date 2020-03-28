@@ -1,0 +1,36 @@
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <td>
+            <input placeholder="nome" [(ngModel)]="unitamisurainsert.nome">
+          </td>
+          <td>
+            <button (click)="insert(unitamisurainsert)">Insert</button>
+          </td>
+          <td>
+            <button (click)="clear()">Clear</button>
+          </td>
+
+
+
+        <tr *ngFor="let unitamisura of unitamisure">
+          <th>{{unitamisura.id}}</th>
+          <td>
+            <input [(ngModel)]="unitamisura.nome">
+          </td>
+          <td>
+            <button (click)=update(unitamisura)>Update</button>
+          </td>
+          <td>
+            <button (click)="delete(unitamisura)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>

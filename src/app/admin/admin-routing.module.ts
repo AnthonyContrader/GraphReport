@@ -3,9 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from '../layout/admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UsersComponent } from './users/users.component';
-//import { CategoriaComponent } from './categoria/categoria.component';
+import { CategorieComponent } from '../categoria/categorie.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { DatasetComponent } from '../dataset/dataset.component';
+import { UnitamisureComponent } from '../unitamisura/unitamisure.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
     { path: 'users', component: UsersComponent},
     { path: 'work-in-progress', component: WorkInProgressComponent},
     { path: 'dataset', component: DatasetComponent},
-//    { path: 'categoria', component: CategoriaComponent}
+    { path: 'categorie', component: CategorieComponent},
+    { path: 'unitamisure', component: UnitamisureComponent}
   ]}
 ];
 

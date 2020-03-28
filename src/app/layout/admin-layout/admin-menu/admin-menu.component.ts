@@ -22,11 +22,6 @@ export class AdminMenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigateByUrl('');
-  }
-
   userscollapse() {
     if (this.isUserCollapsed === false) {
       this.closeAll();
