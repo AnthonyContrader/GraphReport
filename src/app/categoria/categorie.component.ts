@@ -9,6 +9,7 @@ import { CategoriaDTO } from 'src/dto/categoriadto';
 })
 export class CategorieComponent implements OnInit {
 
+  public usertype: string;
   categorie: CategoriaDTO[];
   categoriainsert: CategoriaDTO = new CategoriaDTO();
 
