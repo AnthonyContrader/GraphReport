@@ -9,6 +9,7 @@ import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
 })
 export class UnitamisureComponent implements OnInit {
 
+  public usertype: string;
   unitamisure: UnitaMisuraDTO[];
   unitamisurainsert: UnitaMisuraDTO = new UnitaMisuraDTO();
 
@@ -16,6 +17,7 @@ export class UnitamisureComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUnitamisura();
+    this.usertype = localStorage.getItem('usertype').toString();
   }
 
   getUnitamisura() {

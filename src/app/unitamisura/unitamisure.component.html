@@ -1,34 +1,39 @@
 
-    <table class="table">
+    <table allign="center" class="table" style="width:max-content">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nome</th>
-          <th></th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
+          <th *ngIf="usertype=='ADMIN'" scope = "col">Manage</th>
+
         </tr>
       </thead>
       <tbody>
-
+        <tr>
           <td>
-            <input placeholder="nome" [(ngModel)]="unitamisurainsert.nome">
+            <input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+            placeholder="Inserisci qui" [(ngModel)]="unitamisurainsert.nome">
           </td>
           <td>
-            <button (click)="insert(unitamisurainsert)">Insert</button>
+            <button class="btn btn-success btn-sm" style="margin-top: 3px;" style="font-family: 'Courier New', Courier, monospace;"
+             (click)="insert(unitamisurainsert)">Insert</button>
           </td>
-
+        </tr>
 
 
         <tr *ngFor="let unitamisura of unitamisure">
-          <th>{{unitamisura.nome}}</th>
+          <th class="form-control" style="font-family: 'Courier New', Courier, monospace;"
+          *ngIf="usertype!='ADMIN'">{{unitamisura.nome}}</th>
           <td>
-            <input [(ngModel)]="unitamisura.nome">
+            <input *ngIf="usertype=='ADMIN'" class="form-control" style="font-family: 'Courier New', Courier, monospace;"
+             [(ngModel)]="unitamisura.nome">
           </td>
           <td>
-            <button (click)=update(unitamisura)>Update</button>
-          </td>
-          <td>
-            <button (click)="delete(unitamisura)">Delete</button>
+            <div  *ngIf="usertype=='ADMIN'">
+            <button class="btn btn-outline-secondary btn btn-dark" style="font-family:'Courier New', Courier, monospace"
+             style="background-color: yellow;" (click)=update(unitamisura)>Update</button>
+            <button class="btn btn-outline-secondary btn btn-danger" style="font-family:'Courier New', Courier, monospace"
+            style="background-color: crimson;" (click)="delete(unitamisura)">Delete</button>
+          </div>
           </td>
         </tr>
       </tbody>

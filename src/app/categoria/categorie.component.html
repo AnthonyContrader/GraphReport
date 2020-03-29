@@ -1,33 +1,35 @@
 
-    <table class="table">
+    <table allign="center" class="table" style="width:max-content">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nome</th>
-          <th></th>
-          <th scope="col">Edit</th>
-          <th scope = "col">Delete</th>
+          <th *ngIf="usertype=='ADMIN'" scope = "col">Manage</th>
 
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>
+            <input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Inserisci qui" [(ngModel)]="categoriainsert.nome">
+          </td>
+          <td>
+            <button class="btn btn-success btn-sm" style="margin-top: 3px;" style="font-family:'Courier New', Courier, monospace" (click)="insert(categoriainsert)">Insert</button>
+          </td>
+        </tr>
 
-          <td>
-            <input placeholder="nome" [(ngModel)]="categoriainsert.nome">
-          </td>
-          <td>
-            <button (click)="insert(categoriainsert)">Insert</button>
-          </td>
 
         <tr *ngFor="let categoria of categorie">
-          <th>{{categoria.nome}}</th>
+          <th class="form-control" style="font-family: 'Courier New', Courier, monospace;" *ngIf="usertype!='ADMIN'">{{categoria.nome}}</th>
           <td>
-            <input [(ngModel)]="categoria.nome">
+            <input *ngIf="usertype=='ADMIN'" class="form-control" style="font-family: 'Courier New', Courier, monospace;" [(ngModel)]="categoria.nome">
           </td>
           <td>
-            <button (click)=update(categoria)>Update</button>
-          </td>
-          <td>
-            <button (click)="delete(categoria)">Delete</button>
+            <div  *ngIf="usertype=='ADMIN'">
+              <button class="btn btn-outline-secondary btn btn-dark" style="font-family:'Courier New', Courier, monospace"
+              style="background-color: yellow;" (click)=update(categoria)>Update</button>
+              <button class="btn btn-outline-secondary btn btn-danger" style="font-family:'Courier New', Courier, monospace"
+              style="background-color: crimson;" (click)="delete(categoria)">Delete</button>
+          </div>
           </td>
         </tr>
       </tbody>

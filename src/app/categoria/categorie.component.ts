@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from 'src/service/categoria.service';
 import { CategoriaDTO } from 'src/dto/categoriadto';
+import { Usertype } from 'src/dto/usertype';
 
 @Component({
   selector: 'app-categorie',
@@ -17,6 +18,7 @@ export class CategorieComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategoria();
+    this.usertype = localStorage.getItem('usertype').toString();
   }
 
   getCategoria() {
@@ -30,6 +32,7 @@ export class CategorieComponent implements OnInit {
   update(categoria: CategoriaDTO) {
     this.service.update(categoria).subscribe(() => this.getCategoria());
   }
+
 
   insert(categoria: CategoriaDTO) {
     this.service.insert(categoria).subscribe(() => this.getCategoria());

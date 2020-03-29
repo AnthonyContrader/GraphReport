@@ -4,11 +4,15 @@
 
 /*Tables*/
 table {
-border-collapse: collapse;
+border: 1px solid;
 width: 100%;
 float: left;
 border-radius: 20px;
 -moz-border-radius: 1px;
+margin: 20px auto;
+position: absolute;
+left: 0;
+right: 0;
 }
 
 th, td {
@@ -47,3 +51,9 @@ button:hover{
   background-color: crimson;
 }
 
+.btn btn-success btn-sm{
+  color: #fff;
+  background-color: darkgreen;
+  border-color: darkgreen;
+  margin-top: 3px;
+}
