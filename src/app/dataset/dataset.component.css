@@ -141,12 +141,19 @@ div.center {
 	margin-bottom: 25px;
 }
 
-.th, .tr{
+.table{
+	margin: auto; 
+	display: flex;
+	width: max-content;
+	border-radius: 10px;
+}
+
+.th, .tc{
 	text-align: center;
 	padding: 8px;
 }
 
-.tr{
+.tc {
 	min-height:18px;
 	max-height:40px;
 }
@@ -156,6 +163,22 @@ div.center {
 	color: #ffffff;
 	position: inherit;
 	width: 100px;
+}
+
+.table > .cols:first-of-type > .tc:first-of-type{
+	border-radius: 10px 0 0 0;
+}
+
+.table > .cols:first-of-type > .tc:last-of-type{
+	border-radius: 0 0 0 10px; 
+}
+
+.table > .cols:last-of-type > .tc:first-of-type{
+	border-radius: 0 10px 0 0;
+}
+
+.table > .cols:last-of-type > .tc:last-of-type{
+	border-radius: 0 0 10px 0; 
 }
 
 .btnComm{
@@ -196,20 +219,14 @@ div.center {
   
   .linkCRUD {
 	float: left;
-	margin: 10px 10px 0px;
 	width: min-content;
+	cursor: pointer;
+	padding: 8px;
 }
 
 .divCRUD {
 	position: absolute;
 	right: 0px;
-}
-
-.table{
-	margin: auto;
-	display: flex;
-	width: max-content;
-	border-radius: 10px;
 }
 
 .grey {
@@ -223,4 +240,37 @@ div.center {
 .noDS{
 	height: 100%;
 	padding-top: 15%;
+}
+
+.error{
+	width: 60%;
+	position: fixed;
+	margin: 25vh auto;
+	background: moccasin;
+	border-radius: 10px;
+	padding: 30px;
+	text-align: center;
+	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+
+.closerr{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.delbutton{
+	padding: 8px;
+	cursor: pointer;
+	padding: 8px;
+	margin: 0 50px;
+}
+
+.closerr:hover, .delbutton:hover, .linkCRUD:hover {
+	background-color: crimson;
+	border-radius: 10px;
 }

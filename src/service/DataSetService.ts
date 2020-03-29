@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractService } from './abstractservice';
 import { DataSetDTO } from 'src/dto/DataSetDTO';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CategoriaDTO } from 'src/dto/categoriadto';
 import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
@@ -46,11 +46,12 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     return this.http.get<any>('http://localhost:8080/user/getall');
   }
 
-  createDS(dtop: DataSetDTO, dtos: DataSetDTO): Observable<boolean>{
-    let dto = [dtop,dtos];
-    console.warn(dto[0]);
-    console.warn(dto[1]);
+  createDS(dto: DataSetDTO): Observable<number>{
     return this.http.post<any>('http://localhost:8080/' + this.type + '/createdataset', dto);
+  }
+
+  deleteDS(ut: number,cat:number): Observable<boolean>{
+    return this.http.get<any>('http://localhost:8080/' + this.type + '/deletedataset?ut='+ut+'&cat='+cat);
   }
 
 }
