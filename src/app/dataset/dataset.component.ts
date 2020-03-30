@@ -26,6 +26,7 @@ export class DatasetComponent implements OnInit {
   public err : number = 0;
   public first : boolean = false;
   public del : number = 0;
+  public pathModify : string;
 
   constructor(private service:DataSetService) {
     this.createForm = new FormGroup({
@@ -44,6 +45,9 @@ export class DatasetComponent implements OnInit {
     this.service.getListUnit().subscribe(x => this.umList = x);
     if(this.usertype=="ADMIN"){
       this.service.getListUser().subscribe(x => this.utList = x);
+      this.pathModify = "/admin-dashboard/datasetmodify";
+    }else{
+      this.pathModify = "/utente-dashboard/datasetmodify";
     }
   }
 

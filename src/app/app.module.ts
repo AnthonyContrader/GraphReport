@@ -10,7 +10,8 @@ import { CategorieComponent } from './categoria/categorie.component';
 import { UnitamisureComponent } from './unitamisura/unitamisure.component';
 import { UtenteModule } from './utente/utente.module';
 import { AdminModule } from './admin/admin.module';
-import { DatasetModule } from './dataset/dataset.module';
+import { DatasetComponent } from './dataset/dataset.component';
+import { DataSetModifyComponent } from './dataset/dataset-modify/dataset-modify.component';
 
 /**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -23,10 +24,11 @@ import { DatasetModule } from './dataset/dataset.module';
   declarations: [
     AppComponent,
     CategorieComponent,
-    UnitamisureComponent
+    UnitamisureComponent,
+    DatasetComponent,
+    DataSetModifyComponent
   ],
   imports: [
-    DatasetModule,
     BrowserModule,
     AppRoutingModule,
     LoginModule,

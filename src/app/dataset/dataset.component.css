@@ -70,7 +70,8 @@ form {
     margin: auto;
 }
 
-label {
+label, a {
+	color: #000000;
     margin: 0px;
 	display: inline-block;
 }
