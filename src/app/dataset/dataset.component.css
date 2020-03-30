@@ -196,7 +196,7 @@ div.center {
 	color: #fff;
 	text-align: center;
 	border-radius: 6px;
-	padding: 5px 0;
+	padding: 5px;
 	position: absolute;
 	z-index: 1;
 	bottom: 125%;
@@ -216,7 +216,7 @@ div.center {
   }
   
   .toltiptext > .sugg{
-	  font-size:9px;
+	  font-size:11px;
   }
   
   .linkCRUD {

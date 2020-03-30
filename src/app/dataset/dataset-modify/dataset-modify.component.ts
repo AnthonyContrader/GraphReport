@@ -4,6 +4,7 @@ import { DataSetService } from 'src/service/DataSetService';
 import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
 import { DataSetDTO } from 'src/dto/DataSetDTO';
 import { FormGroup, FormControl } from '@angular/forms';
+import { rejects } from 'assert';
 
 @Component({
     selector: 'app-datasetmodify',
@@ -19,6 +20,9 @@ export class DataSetModifyComponent implements OnInit{
     public dataSet : DataSetDTO[];
     public delForm : FormGroup;
     public addForm : FormGroup;
+    public loaded : boolean;
+    public matrice : string[][] = [];
+    public needToSave : boolean = false;
 
     constructor(private route: ActivatedRoute, private service:DataSetService){
         this.delForm = new FormGroup({
@@ -30,14 +34,20 @@ export class DataSetModifyComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.idUt = Number(localStorage.getItem('idUser'));
-        this.route.queryParams.subscribe(x => {this.cat = x['id']});
-        this.init();
+        this.loaded=false;
+        this.idUt = Number(localStorage.getItem("idUser"));
+        this.route.queryParams.subscribe(x => this.cat = x["id"]);
+        this.service.getListUnit().subscribe(x => this.umList = x);
+        this.init().then(x=>{this.loaded=true;});
     }
 
     init(){
-        this.service.getListUnit().subscribe(x => this.umList = x);
-        this.service.getDataSet(this.idUt,this.cat).subscribe(x => this.dataSet = x);
+        return new Promise ((response,rejects)=>{this.service.getDataSet(this.idUt,this.cat).subscribe(x => {
+            this.dataSet=x;
+            for(let i=0; this.dataSet.length>i; i++)
+                this.matrice[i]=this.dataSet[i].valore.split("_");
+            response(true);
+        })});
     }
 
     delete(form){
@@ -49,9 +59,9 @@ export class DataSetModifyComponent implements OnInit{
 
     add(form){
         if(form.add!=null){
-            let valore : string;
-            for(let ds of this.dataSet){
-                valore=" _";
+            let valore : string = "";
+            for(let i=0; this.dataSet[0].valore.split("_").length>i; i++){
+                valore+=" _";
             }
             valore = valore.substring(0,valore.length-1);
             let dto = new DataSetDTO(0,Number(localStorage.getItem('idUser')),this.cat,null,form.add,null,valore,"");
@@ -64,24 +74,47 @@ export class DataSetModifyComponent implements OnInit{
         for(let i =0; this.dataSet.length>i ; i++){
             this.dataSet[i].valore+="_";
         }
-        this.service.updateDS(this.dataSet).subscribe();
+        this.service.updateDS(this.dataSet).subscribe(()=>this.init());
     }
 
     delrow(index : number){
-        console.warn(index);
         let val : string;
         for(let i =0; this.dataSet.length>i ; i++){
             let x=this.dataSet[i].valore.split("_");
             val="";
             for(let j=0; x.length>j; j++){
                 if(j!=index)
-                    if(x[j]=="" || x[j]==null)
+                    if(x[j]=="")
                         val += " _";
                     else
                         val += x[j]+"_";
             }
             this.dataSet[i].valore=val.substring(0,val.length-1);
         }
-        this.service.updateDS(this.dataSet).subscribe();
+        this.service.updateDS(this.dataSet).subscribe(()=>this.init());
+        
+    }
+
+    salva(){
+        if(this.needToSave){
+            let val : string;
+            for(let i=0;this.matrice.length>i;i++){
+                val = "";
+                for(let j=0;this.matrice[i].length>j;j++){
+                    if( this.matrice[i][j]!=null)
+                        if(this.matrice[i][j].replace(/ /g,"")=="")
+                            val+=" _";
+                        else
+                            val+=this.matrice[i][j].replace(/ /g,"")+"_";
+                }
+                this.dataSet[i].valore=val.substring(0,val.length-1);
+            }
+            this.service.updateDS(this.dataSet).subscribe();
+            this.needToSave=false;
+        }
+    }
+
+    needtosave(){
+        this.needToSave=true;
     }
 }

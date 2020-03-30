@@ -1,22 +1,27 @@
-<div class="row">
+<div class="row" *ngIf="loaded">
     <div class="col-sm" style="padding-top:35px">
-
+        
         <div class="centraDiv">
+            
+            <button (click)="salva()" [ngClass]="(needToSave) ? 'btnSave' : 'btnSave disabled'">Salva</button>
+            
             <h1>{{dataSet[0].categoriaN}}</h1>
         </div>
         <div class="table">
-            <div class="cols" *ngFor="let ds of dataSet">
+            <div class="cols" *ngFor="let ds of dataSet;let j = index">
                 <div class="th tc">
                     {{ds.unitaMisuraN}}
-                    <div class="btnComm toltip" *ngIf="ds.commento!=''">
-                        <img src="../../assets/comm.png"/>
+                    <div class="btnComm toltip" style="cursor: pointer;">
+                        <img src="../../assets/comm.png" />
                         <span class="toltiptext">
                             <p> {{ds.commento}} </p>
+                                <div *ngIf="(ds.commento!='')" class="sugg">Clicca per modificare</div>
+                                <div *ngIf="(ds.commento=='')" class="sugg">Clicca per aggiungere</div>
                         </span>
                     </div>
                 </div>
                 <div *ngFor="let val of ds.valore.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tc grey' : 'tc white'">
-                    <input type="text" [value]="val" class="tableInput" />
+                    <input type="text" [(ngModel)]="matrice[j][i]" class="tableInput" (change)="needtosave()"/>
                 </div>
                 <div [ngClass]="((dataSet[0].valore.split('_').length)%2 == 0) ? 'tc grey' : 'tc white'" style="height:40px">
 
