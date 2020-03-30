@@ -38,4 +38,11 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 		return converter.toDTOList(((DataSetRepository)repository).countDS(id));
 	}
 	
+	public boolean createDS(DataSetDTO dtop,DataSetDTO dtos) {
+		if(((DataSetRepository)repository).createDB(dtop.getUtente(),dtop.getCategoria(),dtop.getUnitaMisura(),dtop.getValore(),dtop.getCommento()))
+			if(((DataSetRepository)repository).createDB(dtop.getUtente(),dtop.getCategoria(),dtop.getUnitaMisura(),dtop.getValore(),dtop.getCommento()))
+				return true;
+		return false;
+	}
+	
 }

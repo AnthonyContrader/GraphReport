@@ -24,7 +24,7 @@ public class DataSetController extends AbstractController<DataSetDTO>{
 	private DataSetService service;
 
 	@GetMapping("/deletedataset")
-	public boolean deletedataset(@RequestBody Long idUt,@RequestBody Long idCat) {
+	public boolean deletedataset(@RequestParam("ut") Long idUt,@RequestParam("cat") Long idCat) {
 		try {
 			service.deleteDataSet(idUt, idCat);
 		}catch(Exception e) {
@@ -35,16 +35,11 @@ public class DataSetController extends AbstractController<DataSetDTO>{
 	}
 	
 	@PostMapping("/createdataset")
-	public boolean createdataset(@RequestBody DataSetDTO dtop,@RequestBody DataSetDTO dtos) {
+	public int createdataset(@RequestBody DataSetDTO dto) {
+		if(service.insert(dto)!=null)
+			return 0;
 		
-		if(!service.exist(dtop.getUtente(),dtop.getCategoria())) {
-			
-			service.insert(dtop);
-			service.insert(dtos);
-		}else{
-			return false;
-		}
-		return true;
+		return 1;
 	}
 	
 	@PostMapping("/delete")
@@ -71,9 +66,22 @@ public class DataSetController extends AbstractController<DataSetDTO>{
 		return service.findAllByUtente(id);
 	}
 	
+	@GetMapping("/getDataSet")
+	public List<DataSetDTO> getDataSet(@RequestParam("id") Long id,@RequestParam("cat") Long cat ) {
+		return service.findAllByUtenteAndCategoria(id,cat);
+	}
+	
 	@GetMapping("/countDS")
 	public List<DataSetDTO> countDS(@RequestParam("id") Long id) {
 		return service.countDS(id);
+	}
+	
+	@PostMapping("/updateDS")
+	public boolean updateDS(@RequestBody List<DataSetDTO> dtoList) {
+		for(DataSetDTO dto : dtoList) {
+			service.update(dto);
+		}
+		return true;
 	}
 
 }

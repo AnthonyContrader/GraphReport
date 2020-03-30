@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import it.contrader.dto.DataSetDTO;
 import it.contrader.model.DataSet;
 
 
@@ -33,4 +34,8 @@ public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 	
 	@Query("select d from DataSet d where d.utente.id = ?1 group by d.categoria.id ORDER BY d.categoria.id")
 	List<DataSet> countDS(Long id);
+	
+	@Modifying
+	@Query(value = "INSERT INTO data_set (utente, categoria, unitamisura, valore, commento) VALUE (:id,:cat,:um,:val,:comm)", nativeQuery = true)
+	boolean createDB(Long id, Long cat, Long um, String val, String comm);
 }
