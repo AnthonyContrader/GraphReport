@@ -58,4 +58,8 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     return this.http.get<any>('http://localhost:8080/' + this.type + '/getDataSet?id='+ut+'&cat='+cat);
   }
 
+  updateDS(dtoList: DataSetDTO[]) : Observable<boolean>{
+    return this.http.post<any>('http://localhost:8080/' + this.type + '/updateDS',dtoList);
+  }
+
 }

@@ -152,6 +152,7 @@ div.center {
 .th, .tc{
 	text-align: center;
 	padding: 8px;
+	height: 40px;
 }
 
 .tc {
