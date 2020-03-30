@@ -33,11 +33,12 @@ export class UnitamisureComponent implements OnInit {
   }
 
   insert(unitamisura: UnitaMisuraDTO) {
-    this.service.insert(unitamisura).subscribe(() => this.getUnitamisura());
-  }
-
-  clear() {
-    this.unitamisurainsert = new UnitaMisuraDTO ();
+    let x = this.unitamisurainsert.nome.trim();
+    if(x != null){
+      if(x != ""){
+        this.service.insert(unitamisura).subscribe(() => this.getUnitamisura());
+      }
+    }
   }
 
 }

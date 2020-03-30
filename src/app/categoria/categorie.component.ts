@@ -33,13 +33,14 @@ export class CategorieComponent implements OnInit {
     this.service.update(categoria).subscribe(() => this.getCategoria());
   }
 
-
   insert(categoria: CategoriaDTO) {
-    this.service.insert(categoria).subscribe(() => this.getCategoria());
+    let x = this.categoriainsert.nome.trim();
+    if(x != null) {
+      if(x !== "") {
+        this.service.insert(categoria).subscribe(() => this.getCategoria());
+      }
+    }
   }
 
-  clear() {
-    this.categoriainsert = new CategoriaDTO();
-  }
 
 }

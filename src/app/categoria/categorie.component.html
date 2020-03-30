@@ -2,7 +2,7 @@
     <table allign="center" class="table" style="width:max-content">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Nome</th>
+          <th class="text-uppercase" scope="col" style="font-family: 'Courier New', Courier, monospace;">Nome</th>
           <th *ngIf="usertype=='ADMIN'" scope = "col">Manage</th>
 
         </tr>
@@ -10,18 +10,22 @@
       <tbody>
         <tr>
           <td>
-            <input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Inserisci qui" [(ngModel)]="categoriainsert.nome">
+            <input class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Inserisci qui"
+            [(ngModel)]="categoriainsert.nome">
           </td>
           <td>
-            <button class="btn btn-success btn-sm" style="margin-top: 3px;" style="font-family:'Courier New', Courier, monospace" (click)="insert(categoriainsert)">Insert</button>
+            <button class="btn btn-success btn-sm" style="margin-top: 3px;" style="font-family:'Courier New', Courier, monospace"
+            (click)="insert(categoriainsert)">Insert</button>
           </td>
         </tr>
 
 
         <tr *ngFor="let categoria of categorie">
-          <th class="form-control" style="font-family: 'Courier New', Courier, monospace;" *ngIf="usertype!='ADMIN'">{{categoria.nome}}</th>
+          <th class="form-control" style="font-family: 'Courier New', Courier, monospace;"
+          *ngIf="usertype!='ADMIN'">{{categoria.nome}}</th>
           <td>
-            <input *ngIf="usertype=='ADMIN'" class="form-control" style="font-family: 'Courier New', Courier, monospace;" [(ngModel)]="categoria.nome">
+            <input *ngIf="usertype=='ADMIN'" class="form-control" style="font-family: 'Courier New', Courier, monospace;"
+             [(ngModel)]="categoria.nome">
           </td>
           <td>
             <div  *ngIf="usertype=='ADMIN'">
