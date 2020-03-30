@@ -10,20 +10,29 @@ import { UserDTO } from 'src/dto/userdto';
 export class UsersComponent implements OnInit {
 
   users: UserDTO[];
+  utente: UserDTO;
   usertoinsert: UserDTO = new UserDTO();
 
   constructor(private service: UserService) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.getUtente();
   }
 
   getUsers() {
     this.service.getAll().subscribe(users => this.users = users);
   }
 
+  getUtente() {
+    this.service.read(Number(localStorage.getItem('idUser'))).subscribe(utente => this.utente = utente);
+  }
+
   delete(user: UserDTO) {
     this.service.delete(user.id).subscribe(() => this.getUsers());
+  }
+
+  update1(utente: UserDTO) {
+    this.service.update(utente).subscribe(() => this.getUtente());
   }
 
   update(user: UserDTO) {

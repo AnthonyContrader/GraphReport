@@ -37,6 +37,7 @@ a:hover {
 }
 
 input, select{
+	text-align: center;
     background-color: inherit;
 	font-size: inherit;
 	width: 100%;
@@ -52,6 +53,7 @@ button:hover{
 }
 
 select{
+	text-align: center;
 	height: 100%;
 	width: 100%;
 }
@@ -59,4 +61,14 @@ select{
 button{
 	height: 100%;
 	width: 100%;
+}
+
+form {
+	border-collapse: collapse;
+	width: 100%;
+	float: center;
+	margin-left: 25%;
+	margin-top: 50px;
+	border-radius: 100px;
+	-moz-border-radius: 1px;
 }
