@@ -10,7 +10,7 @@
             <div class="centraDiv" *ngFor="let nd of nDS">
                 <div class="newCat">
                     <div class="divCRUD" style="width:20%;" *ngIf="nd.utente==utId">
-                        <label [routerLink]="['/admin-dashboard/work-in-progress']"><div class="linkCRUD">Modifica</div></label>
+                        <label [routerLink]="['/dataset-modify']"><div class="linkCRUD">Modifica</div></label>
                         <label (click)="dele(nd.categoria)"><div class="linkCRUD">Elimina</div></label>
                     </div>
                     <h1>{{nd.categoriaN}}</h1>

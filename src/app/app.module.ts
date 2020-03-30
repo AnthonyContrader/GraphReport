@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
-import { DatasetComponent } from './dataset/dataset.component';
 import { CategorieComponent } from './categoria/categorie.component';
 import { UnitamisureComponent } from './unitamisura/unitamisure.component';
 import { UtenteModule } from './utente/utente.module';
 import { AdminModule } from './admin/admin.module';
+import { DatasetModule } from './dataset/dataset.module';
 
 /**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -22,11 +22,11 @@ import { AdminModule } from './admin/admin.module';
 @NgModule({
   declarations: [
     AppComponent,
-    DatasetComponent,
     CategorieComponent,
     UnitamisureComponent
   ],
   imports: [
+    DatasetModule,
     BrowserModule,
     AppRoutingModule,
     LoginModule,
