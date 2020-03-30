@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-sm" style="padding-top:35px">
+
+        <div class="centraDiv">
+            <h1>{{dataSet[0].categoriaN}}</h1>
+        </div>
+        <div class="table">
+            <div class="cols" *ngFor="let ds of dataSet">
+                <div class="th tc">
+                    {{ds.unitaMisuraN}}
+                    <div class="btnComm toltip" *ngIf="ds.commento!=''">
+                        <img src="../../assets/comm.png"/>
+                        <span class="toltiptext">
+                            <p> {{ds.commento}} </p>
+                        </span>
+                    </div>
+                </div>
+                <div *ngFor="let val of ds.valore.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tc grey' : 'tc white'">
+                    <input type="text" [value]="val" class="tableInput" />
+                </div>
+                <div [ngClass]="((dataSet[0].valore.split('_').length)%2 == 0) ? 'tc grey' : 'tc white'" style="height:40px">
+
+                </div>
+            </div>
+            <div class="cols">
+                <div class="th tc" style="height:40px">
+                    
+                </div>
+                <div *ngFor="let val of dataSet[0].valore.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tc grey' : 'tc white'">
+                    <img class="imgbtn" src="../../assets/del.png" title="Elimina riga"/>
+                </div>
+                <div [ngClass]="((dataSet[0].valore.split('_').length)%2 == 0) ? 'tc grey' : 'tc white'">
+                    <img class="imgbtn" src="../../assets/add.png" title="Aggiungi riga"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm" style="padding-top:35px">
+
+        <div class="centraDiv">
+            <h1>Unita di Misura</h1>
+            <br>
+            <form style="min-width:270px" > <!-- [formGroup]="createForm" (ngSubmit)="createDS(createForm.value)"> -->
+                <label><strong>Aggiungi nuova:</strong></label>
+                <select  required> <!--formControlName="add"-->
+                   <option [ngValue]="null" style="color:grey" selected>Seleziona dall'elenco</option>
+                   <option *ngFor="let u of umList" [value]="u.id">{{u.nome}}</option>
+                </select>
+                <button type="submit">Aggiungi</button>
+            </form>
+            <form style="min-width:270px;margin-top: 8px;" > <!-- [formGroup]="createForm" (ngSubmit)="createDS(createForm.value)"> -->
+                <label style="margin-top:5px"><strong>Elimina esistente:</strong></label>
+                <select  required> <!--formControlName="remove"-->
+                    <option [ngValue]="null" style="color:grey">Seleziona dall'elenco</option>
+                    <option *ngFor="let u of dataSet" [value]="u.id">{{u.unitaMisuraN}} {{u.commento}}</option>
+                </select>
+                <button type="submit">Elimina</button>
+            </form>
+        </div>
+
+    </div>
+</div>

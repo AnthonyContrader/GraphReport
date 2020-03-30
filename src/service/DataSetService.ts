@@ -54,4 +54,8 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     return this.http.get<any>('http://localhost:8080/' + this.type + '/deletedataset?ut='+ut+'&cat='+cat);
   }
 
+  getDataSet(ut: number,cat:number){
+    return this.http.get<any>('http://localhost:8080/' + this.type + '/getDataSet?id='+ut+'&cat='+cat);
+  }
+
 }

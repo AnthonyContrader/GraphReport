@@ -1,0 +1,15 @@
+.tableInput {
+	margin: 0px;
+	float: none;
+	padding: 0px;
+	text-align: center;
+	width: 80px;
+}
+
+.imgbtn:hover{
+    cursor: pointer;
+}
+
+.imgbtn:hover{
+    opacity: 0.7;
+}
