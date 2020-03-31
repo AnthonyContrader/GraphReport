@@ -40,14 +40,12 @@ public abstract class AbstractController <DTO>{
 	
 	@PutMapping("/update")
 	public DTO update(@RequestBody DTO dto){
-		service.update(dto);
-		return dto;
+		return service.update(dto);
 	}
 	
 	@PostMapping("/insert")
 	public DTO insert (@RequestBody DTO dto) {
-		service.insert(dto);
-		return dto;
+		return service.insert(dto);
 	}
 	
 	@GetMapping("/read")

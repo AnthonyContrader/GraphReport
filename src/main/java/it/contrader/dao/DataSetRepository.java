@@ -32,8 +32,11 @@ public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 
 	boolean existsByUtente_IdAndCategoria_IdAndUnitaMisura_Id(Long ut, Long cat, Long um);
 	
-	@Query("select d from DataSet d where d.utente.id = ?1 group by d.categoria.id ORDER BY d.categoria.id")
+	@Query("select d from DataSet d where d.utente.id = ?1 group by d.categoria.nome ORDER BY d.categoria.nome")
 	List<DataSet> countDS(Long id);
+	
+	@Query("select d from DataSet d where d.utente.id = ?1 AND d.categoria.id = ?2 ORDER BY d.unitaMisura.nome, d.commento")
+	List<DataSet> getUMList(Long id,Long cat);
 	
 	@Modifying
 	@Query(value = "INSERT INTO data_set (utente, categoria, unitamisura, valore, commento) VALUE (:id,:cat,:um,:val,:comm)", nativeQuery = true)

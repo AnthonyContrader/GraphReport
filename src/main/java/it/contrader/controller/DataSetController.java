@@ -83,5 +83,10 @@ public class DataSetController extends AbstractController<DataSetDTO>{
 		}
 		return true;
 	}
+	
+	@GetMapping("/getUMList")
+	public List<DataSetDTO> getUMList(@RequestParam("id") Long id,@RequestParam("cat") Long cat) {
+		return service.getUMList(id,cat);
+	}
 
 }

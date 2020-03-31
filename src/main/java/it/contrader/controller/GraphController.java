@@ -1,11 +1,14 @@
 package it.contrader.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.DataGraphDTO;
@@ -37,20 +40,24 @@ public class GraphController extends AbstractController<GraphDTO>{
 	}
 	
 	@PostMapping("/addset")
-	public boolean addset(@RequestBody DataGraphDTO dtoDGx,@RequestBody DataGraphDTO dtoDGy) {
-		
-		service.insertMtM(dtoDGx);
-		service.insertMtM(dtoDGy);
-		
+	public boolean addset(@RequestBody List<DataGraphDTO> dto) {
+		for(DataGraphDTO d : dto) 
+			service.insertMtM(d); 
 		return true;
 	}
 				
 	@GetMapping("/delete")
-	public boolean delete(@RequestBody Long id) {
+	public boolean delete(@RequestParam("id") Long id) {
 		serviceMtM.deleteByGraph(id);
 		service.delete(id);
 		
 		return true;
 	}
+	
+	@GetMapping("/getAllByUser")
+	public List<GraphDTO> getAllByUser(@RequestParam("id") Long id) {
+		return service.getAllByUser(id);
+	}
+	
 	
 }
