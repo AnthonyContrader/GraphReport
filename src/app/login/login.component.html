@@ -4,8 +4,8 @@
       <img class="imgLogo" src="../../assets/logo2.png" alt="logo">
     </div>
     <div >
-      <form class="formLogin" #f="ngForm">
-        
+      <form class="registerForm" #g="ngForm" style="display: none;"></form>
+      <form class="formLogin" #f="ngForm">  
         <h1>LOGIN</h1>
 
         <label for="inputUser" class="">Username</label> 
@@ -15,7 +15,7 @@
         <input type="password" id="pass" name="password" placeholder="Password" class="" required ngModel> 
       
         <button class="" type="submit" (click)="login(f)">Log in</button>
-        <button class="" type="button" onclick="">Register</button>
+        <button class="" type="submit" (click)="register(g)">Register</button>
       </form>
     </div>
   </div>

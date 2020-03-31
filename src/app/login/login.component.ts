@@ -3,6 +3,7 @@ import { LoginDTO } from 'src/dto/logindto';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
+import { UserDTO } from 'src/dto/userdto';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginDTO: LoginDTO;
+  UserDTO: UserDTO;
 
   constructor(private service: UserService, private router: Router) { }
 
@@ -43,4 +45,11 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-}
+  register(g: NgForm): void {
+    this.UserDTO = new UserDTO();
+
+    this.service.register(this.UserDTO);
+
+      this.router.navigate(['/register']);
+    }
+} 

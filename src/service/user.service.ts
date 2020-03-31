@@ -28,4 +28,8 @@ export class UserService extends AbstractService<UserDTO>{
     return this.http.post<any>('http://localhost:8080/' + this.type + '/login', loginDTO)
   }
 
+  register(UserDTO: UserDTO): Observable<UserDTO> {
+    return this.http.post<any>('http://localhost:8080/' + this.type + '/register', UserDTO)
+  }
+
 }
