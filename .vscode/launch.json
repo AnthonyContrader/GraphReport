@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringWebApplication<pCarpet>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "it.contrader.SpringWebApplication",
+            "projectName": "pCarpet",
+            "args": ""
+        }
+    ]
+}
