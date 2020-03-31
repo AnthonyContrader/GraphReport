@@ -189,7 +189,7 @@ div.center {
 	right: 0px;
 }
 
-.toltip .toltiptext {
+.toltip .toltiptext{
 	visibility: hidden;
 	width: max-content;
 	background-color: #555;
@@ -206,7 +206,7 @@ div.center {
 	transition: opacity 0.3s;
   }
   
-  .toltip:hover .toltiptext {
+  .toltip:hover > .toltiptext {
 	visibility: visible;
 	opacity: 1;
   }

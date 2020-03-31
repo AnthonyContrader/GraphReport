@@ -23,6 +23,7 @@ export class DataSetModifyComponent implements OnInit{
     public loaded : boolean;
     public matrice : string[][] = [];
     public needToSave : boolean = false;
+    public err : number =0;
 
     constructor(private route: ActivatedRoute, private service:DataSetService){
         this.delForm = new FormGroup({
@@ -52,8 +53,11 @@ export class DataSetModifyComponent implements OnInit{
 
     delete(form){
         if(form.del!=null){
-            this.service.delete(form.del).subscribe(() => this.init());
-            this.delForm.reset();
+            if(this.matrice.length>2){
+                this.service.delete(form.del).subscribe(() => this.init());
+                this.delForm.reset();
+            }else
+                this.err=1;
         }
     }
 
@@ -116,5 +120,15 @@ export class DataSetModifyComponent implements OnInit{
 
     needtosave(){
         this.needToSave=true;
+    }
+
+    closerror(){
+        this.err=0;
+    }
+
+    addComm(n : number){
+        let x = window.prompt("Digita nuovo commento","");
+        this.dataSet[n].commento=x;
+        this.service.update(this.dataSet[n]).subscribe(()=>this.init());
     }
 }

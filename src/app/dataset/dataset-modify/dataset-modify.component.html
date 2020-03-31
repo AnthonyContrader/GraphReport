@@ -12,7 +12,7 @@
                 <div class="th tc">
                     {{ds.unitaMisuraN}}
                     <div class="btnComm toltip" style="cursor: pointer;">
-                        <img src="../../assets/comm.png" />
+                        <img src="../../assets/comm.png" (click)="addComm(j)"/>
                         <span class="toltiptext">
                             <p> {{ds.commento}} </p>
                                 <div *ngIf="(ds.commento!='')" class="sugg">Clicca per modificare</div>
@@ -63,5 +63,13 @@
             </form>
         </div>
 
+    </div>
+    <div *ngIf="err!=0" class="error">
+        <label class="closerr" (click)="closerror()">[X] Chiudi</label>
+        <container-element [ngSwitch]="err">
+            <p *ngSwitchCase="1">
+                <strong>Impossibile eliminare:</strong> Un DataSet non può avere meno di due set di valori!.
+            </p>
+        </container-element>
     </div>
 </div>
