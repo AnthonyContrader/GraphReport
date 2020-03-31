@@ -158,6 +158,7 @@ div.center {
 .tc {
 	min-height:18px;
 	max-height:40px;
+	border-top: 1px solid #dee2e6;
 }
 
 .th {
@@ -165,6 +166,7 @@ div.center {
 	color: #ffffff;
 	position: inherit;
 	width: 100px;
+	border-top: none !important;
 }
 
 .table > .cols:first-of-type > .tc:first-of-type{

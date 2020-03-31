@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphService } from 'src/service/GraphService';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { GraphDTO } from 'src/dto/GraphDTO';
+import { DataSetDTO } from 'src/dto/DataSetDTO';
+import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
+import { FormGroup, FormControl } from '@angular/forms';
+import { UserDTO } from 'src/dto/userdto';
+import { FontStyle } from 'src/dto/FontStyle';
+import { TipoGrafico } from 'src/dto/TipoGrafico';
+import { mtmDTO } from 'src/dto/mtmDTO';
+
 
 @Component({
     selector: "app-graph",
@@ -10,32 +17,84 @@ import { Color, Label } from 'ng2-charts';
 })
 export class GraphComponent implements OnInit{
 
-    
-  lineChartData: ChartDataSets[] = [
-    { data: [85, 72, 78, 75, 77, 75], label: 'Crude oil prices' },
-  ];
+    public graphList : GraphDTO[];
+    public dsList : DataSetDTO[];
+    public assiList : DataSetDTO[];
+    public formCrea : FormGroup;
+    public utList : UserDTO[];
+    public utLogged : number = Number(localStorage.getItem('idUser'));
+    public usertype : string = localStorage.getItem('usertype').toString() ;
+    public abilita : boolean = false;
+    public err : number =0;
+    public conf : number =0;
+    public idDaVis : number = Number(localStorage.getItem('idUser'));
 
-  lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June'];
-
-  lineChartOptions = {
-    responsive: true,
-  };
-
-  lineChartColors: Color[] = [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,255,0,0.28)',
-    },
-  ];
-
-  lineChartLegend = true;
-  lineChartPlugins = [];
-  lineChartType = 'line';
-  
-
-    constructor(private service : GraphService){}
+    constructor(private service : GraphService){
+        this.formCrea = new FormGroup({
+            titolo : new FormControl(),
+            ds : new FormControl(),
+            x : new FormControl({value:null,disabled:true}),
+            y : new FormControl({value:null,disabled:true})
+        });
+    }
 
     ngOnInit(){
-        
+        if(this.usertype=="ADMIN")
+            this.service.getUtenti().subscribe(x => this.utList=x);
+        this.service.getDsList(this.utLogged).subscribe(x => this.dsList=x);
+        this.init(this.utLogged);
     }
+    
+    init(id : number){
+        this.service.getGraphListByUser(id).subscribe(x => {this.graphList=x;this.idDaVis=id});
+    }
+
+    caricaDS(id : number){
+        this.init(id);
+    }
+
+    caricaUM(cat){
+        if(cat!="null"){
+            this.service.getAssiList(this.utLogged,cat).subscribe(x => this.assiList=x);
+            this.formCrea.get('x').enable();
+            this.formCrea.get('y').enable();
+        }else{
+            this.formCrea.reset();
+            this.assiList=null;
+            this.formCrea.get('x').disable();
+            this.formCrea.get('y').disable();
+        }
+    }
+
+    creaGraph(form){
+        if(form!=null && form.titolo!=null && form.titolo.toString().trim()!="" && form.ds!=null && form.x!=null && form.y!=null){
+            let g = new GraphDTO(null,form.titolo.toString().trim(),0,0,"top_center",false,false);
+            this.service.insert(g).subscribe(graph=>{
+                let d = new mtmDTO(null,form.x,graph.id,"x");
+                let dt = new mtmDTO(null,form.y,graph.id,"y");
+                let dto : mtmDTO[] = [d,dt];
+                this.service.insertMtM(dto).subscribe(()=>this.init(this.utLogged));
+            });
+            
+        }else{
+            this.err=1;
+        }
+        this.formCrea.reset();
+        this.assiList=null;
+        this.formCrea.get('x').disable();
+        this.formCrea.get('y').disable();
+    }
+
+    closerror(){
+        this.err=0;
+    }
+
+    confdel(id : number){
+        this.conf=id;
+    }
+
+    delete(id : number){
+        this.service.delete(id).subscribe(()=>{this.init(this.utLogged);this.conf=0;});
+    }
+
 }

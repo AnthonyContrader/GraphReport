@@ -1,13 +1,87 @@
+<div class="row">
+    <div class="col-sm" style="padding-top:35px">
 
-<div class="chart-wrapper">
-    <canvas baseChart 
-        [datasets]="lineChartData" 
-        [labels]="lineChartLabels" 
-        [options]="lineChartOptions"
-        [colors]="lineChartColors" 
-        [legend]="lineChartLegend" 
-        [chartType]="lineChartType" 
-        [plugins]="lineChartPlugins">
-    </canvas>
+        <form class="center" *ngIf="usertype=='ADMIN'" style="width:300px;"> 
+			<label>Visualizza i grafici dell'utente</label>
+			<select (change)="caricaDS($event.target.value)" name="idUtVis" >
+				<option *ngFor="let c of utList" [value]="c.id" [selected]="c.id==utLogged"> {{c.username}} </option>
+            </select>
+        </form>
+        <ng-container *ngIf="(graphList!=undefined && graphList.length>0); else noG">
+            <div class="center">
+                <table class="table" style="margin-top: 20px;" style="display: unset;">
+                    <tr>
+                        <th class="tc th" style="width: max-content;">
+                            Titolo
+                        </th>
+                        <th class="tc th" style="width: max-content;" >
+                            Tipologia Grafico
+                        </th>
+                        <th class="tc th" style="width: max-content;" *ngIf="idDaVis==utLogged">
+                            
+                        </th>
+                    </tr>
+                    <tr *ngFor="let g of graphList;let i = index" [ngClass]="( i%2 == 0) ? 'tr grey' : 'tr white'">
+                        <td  class="tc">
+                            <strong>{{g.titolo}}</strong>
+                        </td>
+                        <td  class="tc">
+                            {{g.tipografico.toString().toUpperCase()}}
+                        </td>
+                        <td class="tc" *ngIf="idDaVis==utLogged" style="padding: 0px;">
+                            <label ><div class="linkCRUD" (click)="confdel(g.id)" style="z-index: 999;">Elimina</div></label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ng-container>
+        <ng-template #noG>
+            <div class="noDS" style="margin-top: 20px;">
+                <h1>Nessun Grafico presente!</h1>
+            </div>
+        </ng-template>
+    </div>
+    <div class="col-sm">
+    
+        <div class="centraDiv">
+            <h1>Crea nuovo Grafico</h1>
+            <br>
+            <form [formGroup]="formCrea" (ngSubmit)="creaGraph(formCrea.value)" style="min-width:270px" > 
+                <label><strong>Titolo</strong></label>
+                <input type="text" style="text-align: center;" formControlName="titolo"/>
+                <label><strong>DataSet</strong></label>
+                <div style="border: solid 1px;border-radius: 10px;padding: 8px;">
+                    <select formControlName="ds" (change)="caricaUM($event.target.value)">
+                        <option [value]="null" style="color:grey">DataSet</option>
+                        <option *ngFor="let c of dsList" [value]="c.categoria">{{c.categoriaN}}</option> 
+                    </select>
+                    <select formControlName="x" > 
+                        <option [value]="null" style="color:grey" >Asse X</option> 
+                        <option *ngFor="let c of assiList" [value]="c.id">{{c.unitaMisuraN}} {{c.commento}}</option> 
+                    </select>
+                    <select formControlName="y" > 
+                        <option [value]="null" style="color:grey">Asse Y</option>
+                        <option *ngFor="let c of assiList" [value]="c.id">{{c.unitaMisuraN}} {{c.commento}}</option> 
+                    </select>
+                </div>
+                <button type="submit">Crea</button>
+            </form>
+        </div>
+
+    </div>
+    <div *ngIf="err!=0" class="error">
+        <label class="closerr" (click)="closerror()">[X] Chiudi</label>
+        <container-element [ngSwitch]="err">
+            <p *ngSwitchCase="1">
+                <strong>Attenzione:</strong><br> Si prega di compilare correttamente i campi.
+            </p>
+        </container-element>
+    </div>
+    <div *ngIf="conf!=0" class="error">
+        <p>
+            <strong>Sei sicuro di voler eliminare questo Grafico?</strong>
+        </p>
+        <label class="delbutton" (click)="delete(conf)">Prosegui</label>
+        <label class="delbutton" (click)="conf=0">Annulla</label>
+    </div>
 </div>
-sto caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalmissimo
