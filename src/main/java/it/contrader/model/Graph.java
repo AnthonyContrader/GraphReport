@@ -20,28 +20,26 @@ import lombok.NoArgsConstructor;
 public class Graph {
 	
 	public enum TipoGrafico{
-		doughnut,column,line,pie,bar,rangeColumn,rangeBar,pyramid,bubble,spline
+		line,bar,radar,pie,doughnut,polarArea,bubble,scatter
 	}
 	
-	public enum Tema{
-		ligth1,ligth2,dark1,dark2
+	public enum FontStyle{
+		courier
 	}
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String titolo;
 	
-	private TipoGrafico tipografico;
+	private FontStyle fontStyle;
 	
-	private Tema tema;
+	private TipoGrafico tipografico;
 	
 	private String posTitolo;
 	
 	private Boolean legenda;
-	
-	private Boolean zoom;
 	
 	private Boolean pareto;
 	
