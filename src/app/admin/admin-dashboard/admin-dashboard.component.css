@@ -12,3 +12,40 @@ p {
   font-weight: 501;
   color:lightslategray;
 }
+
+.img1{
+	position: absolute;
+	right: 0;
+	left: 0;
+	margin: auto;
+	width: min-content;
+}
+.image{
+	width: 350px;
+	opacity: 0.8;
+}
+
+.frase1{
+	width: 90%;
+	position: absolute;
+	right: 94%;
+	top: 30px;
+}
+.frase2{
+	width: 90%;
+	position: absolute;
+	right: -82%;
+	top: -14px;
+}
+.frase3{
+	width: 80%;
+	position: absolute;
+	right: -87%;
+	top: 143px;
+}
+.frase4{
+	width: 90%;
+	position: absolute;
+	right: 99%;
+	top: 170px;
+}
