@@ -12,6 +12,8 @@ import { UtenteModule } from './utente/utente.module';
 import { AdminModule } from './admin/admin.module';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataSetModifyComponent } from './dataset/dataset-modify/dataset-modify.component';
+import { GraphComponent } from './graph/graph.component';
+import { ChartsModule } from 'ng2-charts';
 
 /**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -26,7 +28,8 @@ import { DataSetModifyComponent } from './dataset/dataset-modify/dataset-modify.
     CategorieComponent,
     UnitamisureComponent,
     DatasetComponent,
-    DataSetModifyComponent
+    DataSetModifyComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { DataSetModifyComponent } from './dataset/dataset-modify/dataset-modify.
     UtenteModule,
     AdminModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

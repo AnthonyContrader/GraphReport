@@ -8,6 +8,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
 import { DatasetComponent } from '../dataset/dataset.component';
 import { UnitamisureComponent } from '../unitamisura/unitamisure.component';
 import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify.component';
+import { GraphComponent } from '../graph/graph.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     { path: 'dataset', component: DatasetComponent},
     { path: 'datasetmodify', component: DataSetModifyComponent},
     { path: 'categorie', component: CategorieComponent},
-    { path: 'unitamisure', component: UnitamisureComponent}
+    { path: 'unitamisure', component: UnitamisureComponent},
+    { path: 'graph', component: GraphComponent}
   ]}
 ];
 
