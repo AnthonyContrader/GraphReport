@@ -17,18 +17,18 @@
                         <th class="tc th" style="width: max-content;" >
                             Tipologia Grafico
                         </th>
-                        <th class="tc th" style="width: max-content;" *ngIf="idDaVis==utLogged">
+                        <th class="tc th" style="width: max-content;" *ngIf="owner">
                             
                         </th>
                     </tr>
-                    <tr *ngFor="let g of graphList;let i = index" [ngClass]="( i%2 == 0) ? 'tr grey' : 'tr white'">
+                    <tr *ngFor="let g of graphList;let i = index" [ngClass]="( i%2 == 0) ? 'tr grey' : 'tr white'" (click)="toView(g.id)">
                         <td  class="tc">
                             <strong>{{g.titolo}}</strong>
                         </td>
                         <td  class="tc">
                             {{g.tipografico.toString().toUpperCase()}}
                         </td>
-                        <td class="tc" *ngIf="idDaVis==utLogged" style="padding: 0px;">
+                        <td class="tc" *ngIf="owner" style="padding: 0px;">
                             <label ><div class="linkCRUD" (click)="confdel(g.id)" style="z-index: 999;">Elimina</div></label>
                         </td>
                     </tr>

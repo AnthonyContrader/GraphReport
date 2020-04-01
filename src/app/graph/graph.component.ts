@@ -5,6 +5,7 @@ import { DataSetDTO } from 'src/dto/DataSetDTO';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserDTO } from 'src/dto/userdto';
 import { mtmDTO } from 'src/dto/mtmDTO';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,9 +25,9 @@ export class GraphComponent implements OnInit{
     public abilita : boolean = false;
     public err : number =0;
     public conf : number =0;
-    public idDaVis : number = Number(localStorage.getItem('idUser'));
+    public owner : boolean;
 
-    constructor(private service : GraphService){
+    constructor(private service : GraphService, private router : Router){
         this.formCrea = new FormGroup({
             titolo : new FormControl(),
             ds : new FormControl(),
@@ -43,7 +44,13 @@ export class GraphComponent implements OnInit{
     }
     
     init(id : number){
-        this.service.getGraphListByUser(id).subscribe(x => {this.graphList=x;this.idDaVis=id});
+        this.service.getGraphListByUser(id).subscribe(x => {
+            this.graphList=x;
+            if(id==this.utLogged)
+                this.owner=true;
+            else
+                this.owner=false;
+        });
     }
 
     caricaDS(id : number){
@@ -92,6 +99,15 @@ export class GraphComponent implements OnInit{
 
     delete(id : number){
         this.service.delete(id).subscribe(()=>{this.init(this.utLogged);this.conf=0;});
+    }
+
+    toView(id : Number){
+        let path : string;
+        if(this.usertype=="ADMIN")
+            path="/admin-dashboard";
+        else
+            path="/utente-dashboard";
+        this.router.navigate([path+'/graphModify',id,this.owner]);
     }
 
 }
