@@ -26,6 +26,14 @@ export class RegisterComponent implements OnInit {
   insert(user: UserDTO) {
     this.usertoinsert.usertype=1;
     this.service.insert(user).subscribe(() => this.getUsers());
+    if(user==null){
+      this.router.navigate(['/register']);
+    }
+    else
+    this.router.navigate(['/login']);
+  }
+
+  back(){
     this.router.navigate(['/login']);
   }
 

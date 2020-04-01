@@ -60,3 +60,30 @@ button{
 	height: 100%;
 	width: 100%;
 }
+
+form{
+	border-collapse: collapse;
+	width: 100%;
+	/* float: center; */
+	margin-left: 25%; 
+	margin-top: 20px;
+}
+
+.form-reg{
+  width: max-content;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.form-reg > div{
+	max-width: 300px;
+	min-width: 150px;
+  
+}
+
+.form-reg > select{
+	height: 100%;
+	width: 100%;
+}

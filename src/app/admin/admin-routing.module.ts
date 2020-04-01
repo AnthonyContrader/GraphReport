@@ -10,6 +10,7 @@ import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify
 import { UnitamisureComponent } from '../unitamisura/unitamisure.component';
 import { GraphComponent } from '../graph/graph.component';
 import { GraphModifyComponent } from '../graph/graph-modify/graph-modify.component';
+import { UsersEditComponent } from './users/usersedit.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
     { path: 'categorie', component: CategorieComponent},
     { path: 'unitamisure', component: UnitamisureComponent},
     { path: 'graph', component: GraphComponent},
-    { path: 'graphModify/:id/:owner', component: GraphModifyComponent}
+    { path: 'graphModify/:id/:owner', component: GraphModifyComponent},
+    { path: 'usersedit', component: UsersEditComponent}
   ]}
 ];
 

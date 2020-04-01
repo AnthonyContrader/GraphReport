@@ -6,6 +6,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UsersComponent } from './users/users.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { DatasetComponent } from '../dataset/dataset.component';
+import { UsersEditComponent } from './users/usersedit.component';
+
 
 /**
  * Modulo dell'admin, qui vengono dichiarate le component che utilizza 
@@ -16,7 +18,7 @@ import { DatasetComponent } from '../dataset/dataset.component';
  * @see AdminRoutingModule
  */
 @NgModule({
-  declarations: [AdminDashboardComponent, UsersComponent, WorkInProgressComponent],
+  declarations: [AdminDashboardComponent, UsersComponent, WorkInProgressComponent, UsersEditComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
