@@ -22,7 +22,7 @@ const routes: Routes = [
     { path: 'categorie', component: CategorieComponent},
     { path: 'unitamisure', component: UnitamisureComponent},
     { path: 'graph', component: GraphComponent},
-    { path: 'graphModify', component: GraphModifyComponent}
+    { path: 'graphModify/:id/:owner', component: GraphModifyComponent}
   ]}
 ];
 
