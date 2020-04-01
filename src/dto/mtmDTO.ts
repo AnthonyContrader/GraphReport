@@ -1,7 +1,11 @@
+import { DataSetDTO } from './DataSetDTO';
+
 export class mtmDTO{
     public id : number;
 
     public dataSetId : number;
+
+    public dataSet : DataSetDTO;
 
     public graphId : number;
 
