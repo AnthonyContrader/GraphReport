@@ -2,6 +2,8 @@ package it.contrader.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,6 +66,12 @@ public class UserController extends AbstractController<UserDTO>{
 	@PostMapping("/register")
 	public UserDTO register(@RequestBody UserDTO dto) {
 		return userService.insert(dto);
+	}
+
+
+	@GetMapping("/findAll")
+	public List<UserDTO> findAll(@RequestParam("cerca") String daCercare){
+		return userService.findAll(daCercare);
 	}
 
 

@@ -89,4 +89,9 @@ public class DataSetController extends AbstractController<DataSetDTO>{
 		return service.getUMList(id,cat);
 	}
 
+	@GetMapping("/findAll")
+	public List<DataSetDTO> findAll(@RequestParam("cerca") String daCercare){
+		return service.findAll(daCercare);
+	}
+
 }

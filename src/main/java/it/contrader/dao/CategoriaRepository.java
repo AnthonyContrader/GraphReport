@@ -1,9 +1,12 @@
 package it.contrader.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
 import it.contrader.model.Categoria;
 
@@ -23,4 +26,7 @@ public interface CategoriaRepository extends CrudRepository<Categoria, Long>{
 
 	Categoria findByNome(String nome);
 	
+	@Query("select s from Categoria s where s.nome =?1")
+	List<Categoria> findAll(String daCercare);
+
 }

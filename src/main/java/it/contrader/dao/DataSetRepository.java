@@ -41,4 +41,7 @@ public interface DataSetRepository extends CrudRepository<DataSet,Long>{
 	@Modifying
 	@Query(value = "INSERT INTO data_set (utente, categoria, unitamisura, valore, commento) VALUE (:id,:cat,:um,:val,:comm)", nativeQuery = true)
 	boolean createDB(Long id, Long cat, Long um, String val, String comm);
+
+	@Query("select s from DataSet s where s.commento =?1")
+	List<DataSet> findAll(String daCercare);
 }

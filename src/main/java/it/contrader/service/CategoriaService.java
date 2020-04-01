@@ -1,5 +1,7 @@
 package it.contrader.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import it.contrader.dao.CategoriaRepository;
@@ -22,6 +24,10 @@ public class CategoriaService extends AbstractService<Categoria,CategoriaDTO> {
 	
 	public CategoriaDTO findByNome(String nome) {
 		return converter.toDTO(((CategoriaRepository)repository).findByNome(nome));
+	}
+
+	public List<CategoriaDTO> findAll(String daCercare){
+		return converter.toDTOList(((CategoriaRepository)repository).findAll(daCercare));
 	}
 
 }

@@ -18,4 +18,6 @@ public interface GraphRepository  extends CrudRepository<Graph,Long>{
 	@Query("SELECT DISTINCT dg.graph FROM DataGraph dg WHERE dg.dataSet.utente.id= ?1")
 	public List<Graph> findGraphByUser(Long id);
 	
+	@Query("select s from Graph s where s.titolo =?1")
+	List<Graph> findAll(String daCercare);
 }

@@ -24,5 +24,9 @@ public class GraphService extends AbstractService<Graph,GraphDTO>{
 	public List<GraphDTO> getAllByUser(Long id){
 		return converter.toDTOList(((GraphRepository)repository).findGraphByUser(id));
 	}
+
+	public List<GraphDTO> findAll(String daCercare){
+		return converter.toDTOList(((GraphRepository)repository).findAll(daCercare));
+	}
 	
 }

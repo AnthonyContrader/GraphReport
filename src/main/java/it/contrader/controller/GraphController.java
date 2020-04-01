@@ -64,4 +64,8 @@ public class GraphController extends AbstractController<GraphDTO>{
 		return serviceMtM.getListValue(id);
 	}
 	
+	@GetMapping("/findAll")
+	public List<GraphDTO> findAll(@RequestParam("cerca") String daCercare){
+		return service.findAll(daCercare);
+	}
 }

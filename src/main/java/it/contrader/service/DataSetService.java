@@ -49,4 +49,7 @@ public class DataSetService extends AbstractService<DataSet,DataSetDTO>{
 		return false;
 	}
 	
+	public List<DataSetDTO> findAll(String daCercare){
+		return converter.toDTOList(((DataSetRepository)repository).findAll(daCercare));
+	}
 }

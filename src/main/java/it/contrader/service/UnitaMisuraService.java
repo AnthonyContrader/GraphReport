@@ -1,5 +1,7 @@
 package it.contrader.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import it.contrader.dao.UnitaMisuraRepository;
@@ -22,6 +24,10 @@ public class UnitaMisuraService extends AbstractService<UnitaMisura,UnitaMisuraD
 	
 	public UnitaMisuraDTO findByNome(String nome) {
 		return converter.toDTO(((UnitaMisuraRepository)repository).findByNome(nome));
+	}
+
+	public List<UnitaMisuraDTO> findAll(String daCercare){
+		return converter.toDTOList(((UnitaMisuraRepository)repository).findAll(daCercare));
 	}
 
 }

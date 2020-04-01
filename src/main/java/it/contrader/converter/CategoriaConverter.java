@@ -35,4 +35,7 @@ public class CategoriaConverter extends AbstractConverter<Categoria,CategoriaDTO
 		}
 		return categoriaDTO;
 	}
+
+	
+
 }

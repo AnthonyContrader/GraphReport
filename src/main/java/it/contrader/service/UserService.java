@@ -1,5 +1,7 @@
 package it.contrader.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import it.contrader.dao.UserRepository;
@@ -23,6 +25,10 @@ public class UserService extends AbstractService<User,UserDTO> {
 	//LOGIN method
 	public UserDTO findByUsernameAndPassword(String username, String password) {
 		return converter.toDTO(((UserRepository)repository).findByUsernameAndPassword(username, password));
+	}
+
+	public List<UserDTO> findAll(String daCercare){
+		return converter.toDTOList(((UserRepository)repository).findAll(daCercare));
 	}
 
 }
