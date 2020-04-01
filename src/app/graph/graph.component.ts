@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GraphService } from 'src/service/GraphService';
 import { GraphDTO } from 'src/dto/GraphDTO';
 import { DataSetDTO } from 'src/dto/DataSetDTO';
-import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserDTO } from 'src/dto/userdto';
-import { FontStyle } from 'src/dto/FontStyle';
-import { TipoGrafico } from 'src/dto/TipoGrafico';
 import { mtmDTO } from 'src/dto/mtmDTO';
 
 

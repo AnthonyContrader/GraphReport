@@ -3,7 +3,7 @@
         <form class="center" *ngIf="usertype=='ADMIN'" style="width:300px;">
 			<label>Visualizza DataSet dell'utente</label>
 			<select name="idUtVis" [value]="idDaVedere" (change)="caricaDS($event.target.value)">
-				<option *ngFor="let c of utList" [value]="c.id" >{{c.username}}</option>
+				<option *ngFor="let c of utList" [value]="c.id" [selected]="c.id==utId">{{c.username}}</option>
             </select>
         </form>
         <ng-container *ngIf="(nDS!=undefined && nDS.length>0); else noDS">
@@ -46,7 +46,7 @@
 
     </div>
     <div class="col-sm">
-        <div class="centraDiv">
+        <div style="padding-top: 25px;">
             
             <h1>Crea nuovo DataSet</h1>
             <br>

@@ -238,3 +238,8 @@ div.center {
 	padding: 8px;
 	margin: 0 50px;
 }
+
+.noDS{
+	height: 100%;
+	padding-top: 15%;
+}

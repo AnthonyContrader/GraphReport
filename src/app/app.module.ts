@@ -15,6 +15,7 @@ import { DataSetModifyComponent } from './dataset/dataset-modify/dataset-modify.
 import { GraphComponent } from './graph/graph.component';
 import { ChartsModule } from 'ng2-charts';
 import { RegisterComponent } from './register/register.component';
+import { GraphModifyComponent } from './graph/graph-modify/graph-modify.component';
 
 /**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -31,6 +32,7 @@ import { RegisterComponent } from './register/register.component';
     DatasetComponent,
     DataSetModifyComponent,
     GraphComponent,
+    GraphModifyComponent,
     RegisterComponent
   ],
   imports: [
