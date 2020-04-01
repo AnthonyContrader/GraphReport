@@ -1,5 +1,6 @@
 package it.contrader.converter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import it.contrader.dto.CategoriaDTO;
@@ -11,6 +12,9 @@ import it.contrader.model.Graph;
 
 @Component
 public class DataGraphConverter extends AbstractConverter<DataGraph, DataGraphDTO> {
+	
+	@Autowired
+	DataSetConverter dsconv;
 	
 	@Override
 	public DataGraph toEntity(DataGraphDTO dto) {
@@ -25,6 +29,7 @@ public class DataGraphConverter extends AbstractConverter<DataGraph, DataGraphDT
 		DataGraphDTO dto = new DataGraphDTO();
 		dto.setId(model.getId());
 		dto.setDataSetId(model.getDataSet().getId());
+		dto.setDataSet(dsconv.toDTO(model.getDataSet()));
 		dto.setGraphId(model.getGraph().getId());
 		dto.setAsse(model.getAsse());
 		return dto;

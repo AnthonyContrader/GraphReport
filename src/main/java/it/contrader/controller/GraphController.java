@@ -59,5 +59,9 @@ public class GraphController extends AbstractController<GraphDTO>{
 		return service.getAllByUser(id);
 	}
 	
+	@GetMapping("/getAllByGraph")
+	public List<DataGraphDTO> getAllByGraph(@RequestParam("id") Long id) {
+		return serviceMtM.getListValue(id);
+	}
 	
 }

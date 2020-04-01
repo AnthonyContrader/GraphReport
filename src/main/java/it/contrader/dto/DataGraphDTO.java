@@ -17,6 +17,7 @@ public class DataGraphDTO {
 	private Long id;
 	
 	private Long dataSetId;
+	private DataSetDTO dataSet;
 	
 	private Long graphId;
 	
