@@ -11,7 +11,7 @@ import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify
 import { GraphComponent } from '../graph/graph.component';
 import { GraphModifyComponent } from '../graph/graph-modify/graph-modify.component';
 import { SearchComponent } from '../search/search.component';
-import { ImportcsvComponent } from '../importcsv/importcsv.component';
+import { ImportcsvComponent } from '../dataset/importcsv/importcsv.component';
 
 
 const routes: Routes = [
