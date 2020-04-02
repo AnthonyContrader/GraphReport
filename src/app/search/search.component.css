@@ -37,3 +37,11 @@
   font-family: 'Courier New', Courier, monospace;
   cursor: pointer;
 }
+
+/* TABLE */
+.table{
+  margin-top: 5%;
+  margin-left: 8%;
+  width: 85%;
+}
+

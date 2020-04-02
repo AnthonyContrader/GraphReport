@@ -3,19 +3,18 @@
       <div class="dataset"(click)= "hoScelto(2)" style="background-color:#334247;">DataSet</div>
       <div class="categorie"(click)= "hoScelto(3)" style="background-color: #334247;">Categorie</div>
       <div class="unitamisura"(click)= "hoScelto(4)" style="background-color:#334247;">Unita di Misura</div>
-      <div class="grafici"(click)= "hoScelto(5)" style="background-color: #334247;">
-        Grafici</div>
+      <div class="grafici"(click)= "hoScelto(5)" style="background-color: #334247;">Grafici</div>
 </div>
 <div>
-  <table>
+  <table class="table table-dark" >
     <ng-container [ngSwitch] = "scelta">
       <ng-container *ngSwitchCase = "1">
     <tr>
-      <th>Username</th>
-      <th>Nome</th>
-      <th>Cognome</th>
-      <th>Citta</th>
-      <th>Nazione</th>
+      <th scope="col">Username</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Cognome</th>
+      <th scope="col">Citta</th>
+      <th scope="col">Nazione</th>
     </tr>
     <tr *ngFor = "let u of user">
     <td>{{u.username}}</td>
@@ -27,7 +26,7 @@
   </ng-container>
   <ng-container *ngSwitchCase = "2">
     <tr>
-      <th>Commento</th>
+      <th scope="col">Commento</th>
     </tr>
     <tr *ngFor = "let d of dataset">
     <td>{{d.commento}}</td>
@@ -35,15 +34,15 @@
     </ng-container>
     <ng-container *ngSwitchCase = "3">
     <tr>
-      <th>Nome</th>
+      <th scope="col">Nome</th>
     </tr>
     <tr *ngFor = "let cat of categorie">
-    <td>{{cat.nome}}</td>
+    <td scope="col">{{cat.nome}}</td>
     </tr>
     </ng-container>
     <ng-container *ngSwitchCase = "4">
     <tr>
-      <th>Nome</th>
+      <th scope="col">Nome</th>
     </tr>
     <tr *ngFor = "let um of unitamisura">
     <td>{{um.nome}}</td>
@@ -51,7 +50,7 @@
     </ng-container>
     <ng-container *ngSwitchCase = "5">
     <tr>
-      <th>Titolo</th>
+      <th scope="col">Titolo</th>
     </tr>
     <tr *ngFor = "let g of graph">
     <td>{{g.titolo}}</td>

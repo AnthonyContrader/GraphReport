@@ -43,7 +43,6 @@ export class SearchComponent implements OnInit {
 
   hoScelto(scelta){
     this.scelta = scelta;
-
   }
 
 
