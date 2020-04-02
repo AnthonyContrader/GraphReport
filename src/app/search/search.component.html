@@ -1,24 +1,58 @@
-<h1>Risultati Ricerca</h1>
 <div>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">User</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="#">DataSet</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Categorie</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Unita di Misura</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Grafici</a>
-    </li>
-  </ul>
-
-
-
-
+  <div>User</div>
+  <div>DataSet</div>
+  <div>Categorie</div>
+  <div>Unita di Misura</div>
+  <div>Grafici</div>
 </div>
+<div>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>Citta</th>
+      <th>Nazione</th>
+    </tr>
+    <tr *ngFor = "let u of user">
+    <td>{{u.username}}</td>
+    <td>{{u.nome}}</td>
+    <td>{{u.cognome}}</td>
+    <td>{{u.citta}}</td>
+    <td>{{u.nazione}}</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th>Commento</th>
+    </tr>
+    <tr *ngFor = "let d of dataset">
+    <td>{{d.commento}}</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th>Nome</th>
+    </tr>
+    <tr *ngFor = "let cat of categorie">
+    <td>{{cat.nome}}</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th>Nome</th>
+    </tr>
+    <tr *ngFor = "let um of unitamisura">
+    <td>{{um.nome}}</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th>Titolo</th>
+    </tr>
+    <tr *ngFor = "let g of graph">
+    <td>{{g.titolo}}</td>
+    </tr>
+  </table>
+</div>
+
