@@ -11,6 +11,7 @@ import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify
 import { GraphComponent } from '../graph/graph.component';
 import { GraphModifyComponent } from '../graph/graph-modify/graph-modify.component';
 import { SearchComponent } from '../search/search.component';
+import { ImportcsvComponent } from '../importcsv/importcsv.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     { path: 'unitamisure', component: UnitamisureComponent},
     { path: 'graph', component: GraphComponent},
     { path: 'graphModify/:id/:owner', component: GraphModifyComponent},
-    { path: 'search/:ricerca', component: SearchComponent}
+    { path: 'search/:ricerca', component: SearchComponent},
+    { path: 'importcsv', component: ImportcsvComponent}
   ]}
 ];
 
