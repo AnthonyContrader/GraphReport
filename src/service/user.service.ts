@@ -32,8 +32,8 @@ export class UserService extends AbstractService<UserDTO>{
     return this.http.post<any>('http://localhost:8080/' + this.type + '/register', UserDTO)
   }
 
-  findAll(): Observable<UserDTO[]> {
-    return this.http.get<any>('http://localhost:8080/user/findAll');
+  findAll(daCercare: string): Observable<UserDTO[]> {
+    return this.http.get<any>('http://localhost:8080/user/findAll?cerca=' + daCercare);
   }
 
 }

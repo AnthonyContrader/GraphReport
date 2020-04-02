@@ -62,8 +62,8 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     return this.http.post<any>('http://localhost:8080/' + this.type + '/updateDS',dtoList);
   }
 
-  findAll(): Observable<DataSetDTO[]> {
-    return this.http.get<any>('http://localhost:8080/dataset/findAll');
+  findAll(daCercare: string): Observable<DataSetDTO[]> {
+    return this.http.get<any>('http://localhost:8080/dataset/findAll?cerca=' + daCercare);
   }
 
 }

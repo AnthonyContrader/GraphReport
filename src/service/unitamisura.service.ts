@@ -15,8 +15,8 @@ export class UnitamisuraService extends AbstractService<UnitaMisuraDTO> {
     this.type = 'unitamisura';
   }
 
-  findAll(): Observable<UnitaMisuraDTO[]> {
-    return this.http.get<any>('http://localhost:8080/unitamisura/findAll');
+  findAll(daCercare: string): Observable<UnitaMisuraDTO[]> {
+    return this.http.get<any>('http://localhost:8080/unitamisura/findAll?cerca=' + daCercare);
   }
 
 }
