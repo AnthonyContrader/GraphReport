@@ -195,7 +195,7 @@ export class GraphModifyComponent implements OnInit{
     }
 
     esportaPNG(){
-        console.warn(this.dom.toDataURL("image/png;base64"));
+        console.warn(this.dom.nativeElement.toDataURL("image/png;base64"));
     }
 
 }
