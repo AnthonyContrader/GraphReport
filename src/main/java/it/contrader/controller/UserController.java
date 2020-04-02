@@ -55,13 +55,13 @@ public class UserController extends AbstractController<UserDTO>{
 	}
 
 
-	@PostMapping("/update")
-	public UserDTO update(@RequestBody UserDTO dto) {
-		return userService.update(dto);
-//		if(!request.getSession().getAttribute("usertype").toString().equalsIgnoreCase(usertype.toString()))
-//			request.getSession().setAttribute("usertype",usertype.toString());
-//		return "users";
-	}
+// 	@PostMapping("/update")
+// 	public UserDTO update(@RequestBody UserDTO dto) {
+// 		return userService.update(dto);
+// //		if(!request.getSession().getAttribute("usertype").toString().equalsIgnoreCase(usertype.toString()))
+// //			request.getSession().setAttribute("usertype",usertype.toString());
+// //		return "users";
+// 	}
 	
 	@PostMapping("/register")
 	public UserDTO register(@RequestBody UserDTO dto) {
@@ -73,20 +73,4 @@ public class UserController extends AbstractController<UserDTO>{
 	public List<UserDTO> findAll(@RequestParam("cerca") String daCercare){
 		return userService.findAll(daCercare);
 	}
-
-
-//	@GetMapping("/logout")
-//	public String logout(HttpServletRequest request) {
-//		request.getSession().invalidate();
-//		return "index";
-//	}
-
-//	private void setAll(HttpServletRequest request) {
-//		if(request.getSession().getAttribute("usertype").toString().equalsIgnoreCase("user")){
-//			request.setAttribute("user", service.read(Long.parseLong(request.getSession().getAttribute("userid").toString())));
-//		}
-//		else {
-//			request.setAttribute("list", service.getAll());
-//		}
-//	}
 }
