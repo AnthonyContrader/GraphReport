@@ -1,6 +1,32 @@
-<div class="row">
-    <div class="col-10" *ngIf="pronto" >
-        <canvas baseChart 
+<div class="contenitore">
+    
+    <div class="cols-menu" *ngIf="owner">
+        <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#addset"
+            (click)="addsetcollapse()">
+            <i class="fa fa-line-chart" style="margin-right: 15px"></i> Aggiungi set
+        </button>
+        <div class="collapsebtn" id="addset" *ngIf="isAddsetCollapsed">
+            20px
+        </div>
+        <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#option"
+            (click)="optioncollapse()">
+            <i class="fa fa-cogs" style="margin-right: 15px"></i>Opzioni
+        </button>
+        <div class="collapsebtn" id="option" *ngIf="isOptionCollapsed">
+            gran
+        </div>
+        <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#export"
+            (click)="exportcollapse()">
+            <i class="fa fa-external-link" style="margin-right: 15px"></i>Esporta
+        </button>
+        <div class="collapsebtn" id="unita" *ngIf="isExportCollapsed">
+            <button class="menubtn" style="padding-left: 40px; background-color: #334247;" (click)="esportaPNG()">
+                As PNG
+            </button>
+        </div>
+    </div>
+    <div class="cols-rest" *ngIf="pronto" >
+        <canvas #esporta baseChart 
             [datasets]="datasets"
             [labels]="labels"
             [options]="options"
@@ -10,12 +36,5 @@
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)">
         </canvas>
-    </div>
-    <div class="col-auto" *ngIf="owner">
-        aggiungi set
-        <br>
-        modifica opzioni
-        <br>
-        esporta
     </div>
 </div>

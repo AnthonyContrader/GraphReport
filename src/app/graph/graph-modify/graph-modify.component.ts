@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FontStyle } from 'src/dto/FontStyle';
 import { TipoGrafico } from 'src/dto/TipoGrafico';
 import { ActivatedRoute } from '@angular/router';
@@ -11,9 +11,15 @@ import { mtmDTO } from 'src/dto/mtmDTO';
 @Component({
     selector: "app-graph-modify",
     templateUrl: "./graph-modify.component.html",
-    styleUrls: ["./graph-modify.component.css", "../graph.component.css"]
+    styleUrls: ["./graph-modify.component.css"]
 })
 export class GraphModifyComponent implements OnInit{
+
+    @ViewChild("esporta",{read: ElementRef}) dom : ElementRef;
+
+    public isAddsetCollapsed : boolean = true;
+    public isOptionCollapsed : boolean = false;
+    public isExportCollapsed : boolean = false;
 
     public idGraph : number;
     public owner : boolean;
@@ -154,11 +160,42 @@ export class GraphModifyComponent implements OnInit{
     }
 
     public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-        console.log(event, active);
+        //console.log(event, active);
       }
     
     public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+        //console.log(event, active);
+    }
+
+    addsetcollapse() {
+        if (this.isAddsetCollapsed === false) {
+          this.closeAll();
+          this.isAddsetCollapsed = true;
+        } else { this.isAddsetCollapsed = false; }
+      }
+
+    optioncollapse() {
+    if (this.isOptionCollapsed === false) {
+        this.closeAll();
+        this.isOptionCollapsed = true;
+    } else { this.isOptionCollapsed = false; }
+    }
+
+    exportcollapse() {
+    if (this.isExportCollapsed === false) {
+        this.closeAll();
+        this.isExportCollapsed = true;
+    } else { this.isExportCollapsed = false; }
+    }
+
+    closeAll(){
+    this.isAddsetCollapsed = false;
+    this.isOptionCollapsed = false;
+    this.isExportCollapsed = false;
+    }
+
+    esportaPNG(){
+        console.warn(this.dom.toDataURL("image/png;base64"));
     }
 
 }

@@ -45,4 +45,5 @@ import { mtmDTO } from 'src/dto/mtmDTO';
         return this.http.get<any>("http://localhost:8080/"+this.type+"/getAllByGraph?id="+id);
       }
 
+      
   }
