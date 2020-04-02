@@ -1,32 +1,53 @@
 <div class="contenitore">
     
     <div class="cols-menu" *ngIf="owner">
-        <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#addset"
+        <button type="button" class="menubtn" 
             (click)="addsetcollapse()">
             <i class="fa fa-line-chart" style="margin-right: 15px"></i> Aggiungi set
         </button>
-        <div class="collapsebtn" id="addset" *ngIf="isAddsetCollapsed">
-            20px
+        <div [ngClass]="(!isAddsetCollapsed)?'collapsebtn':'collapsebtn openAdd'">
+            <form [formGroup]="formCrea" (ngSubmit)="addSet(formCrea.value)" style="margin-top: 10px;"> 
+                <label>Asse X</label>
+                <select formControlName="x" style="width: 100%;"> 
+                    <option [value]="null" style="color:grey" >Seleziona</option>
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.unitaMisuraN}} {{c.commento}}</option> 
+                </select>
+                <label>Asse Y</label>
+                <select formControlName="y" style="width: 100%;"> 
+                    <option [value]="null" style="color:grey">Seleziona</option>
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.unitaMisuraN}} {{c.commento}}</option> 
+                </select>
+                <label style="margin-bottom:1px;">Asse Z </label><p style="font-size:10px; margin: 0;"> Solo tipo BOUBLE</p>
+                <select formControlName="z" style="width: 100%;"> 
+                    <option [value]="null" style="color:grey">Seleziona</option>
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.unitaMisuraN}} {{c.commento}}</option> 
+                </select>                
+                <button type="submit" class="menubtn" style="background-color: #334247; margin: 10px 0px;">Crea</button>
+            </form>
         </div>
         <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#option"
             (click)="optioncollapse()">
             <i class="fa fa-cogs" style="margin-right: 15px"></i>Opzioni
         </button>
-        <div class="collapsebtn" id="option" *ngIf="isOptionCollapsed">
+        <div [ngClass]="(!isOptionCollapsed)?'collapsebtn':'collapsebtn openOption'">
             gran
         </div>
         <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#export"
             (click)="exportcollapse()">
             <i class="fa fa-external-link" style="margin-right: 15px"></i>Esporta
         </button>
-        <div class="collapsebtn" id="unita" *ngIf="isExportCollapsed">
-            <button class="menubtn" style="padding-left: 40px; background-color: #334247;" (click)="esportaPNG()">
-                As PNG
+        <div [ngClass]="(!isExportCollapsed)?'collapsebtn':'collapsebtn openExport'">
+            <button class="menubtn" style="background-color: #334247; margin: 10px 0;" (click)="esporta('png')">
+                    As PNG
             </button>
+            <!--<button class="menubtn" style="background-color: #334247; margin-bottom: 10px;" (click)="esporta('jpeg')">
+                As JPG
+        </button>-->
+            <a [href]="esportalink" [download]="esportaname" #download></a>
         </div>
     </div>
     <div class="cols-rest" *ngIf="pronto" >
-        <canvas #esporta baseChart 
+        <canvas #esporta baseChart
             [datasets]="datasets"
             [labels]="labels"
             [options]="options"
@@ -36,5 +57,13 @@
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)">
         </canvas>
+    </div>
+    <div *ngIf="err!=0" class="error">
+        <label class="closerr" (click)="closerror()">[X] Chiudi</label>
+        <container-element [ngSwitch]="err">
+            <p *ngSwitchCase="1">
+                <strong>Attenzione:</strong><br> Si prega di compilare correttamente i campi.
+            </p>
+        </container-element>
     </div>
 </div>

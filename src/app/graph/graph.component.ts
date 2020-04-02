@@ -78,7 +78,7 @@ export class GraphComponent implements OnInit{
             let t = 0;
             if(form.z!=null)
                 t = 6;
-            let g = new GraphDTO(null,form.titolo.toString().trim(),0,t,"top_center",false,false);
+            let g = new GraphDTO(null,form.titolo.toString().trim(),0,t,"top",false,false);
             this.service.insert(g).subscribe(graph=>{
                 let d = new mtmDTO(null,form.x,graph.id,"x");
                 let dt = new mtmDTO(null,form.y,graph.id,"y");

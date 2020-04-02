@@ -14,6 +14,7 @@ export class mtmDTO{
     constructor(i : number,d : number,g : number ,a : string){
         this.id=i;
         this.dataSetId=d;
+        this.dataSet = new DataSetDTO(null,null,null,null,null,null,null,null);
         this.graphId=g;
         this.asse=a;
     }
