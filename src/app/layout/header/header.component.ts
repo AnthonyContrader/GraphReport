@@ -34,12 +34,14 @@ export class HeaderComponent implements OnInit {
 
   search(ricerca) {
     let path: string;
+    let testo = ricerca.testo;
     if (localStorage.getItem('usertype').toString() === 'ADMIN') {
       path = '/admin-dashboard';
     } else {
       path = '/utente-dashboard';
     }
-    this.router.navigate([path + '/search', ricerca.testo]);
+    this.ricerca.reset();
+    this.router.navigate([path + '/search', testo]);
   }
 
 

@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSetService } from 'src/service/DataSetService';
+import { UserService } from 'src/service/user.service';
+import { CategoriaService } from 'src/service/categoria.service';
+import { UnitamisuraService } from 'src/service/unitamisura.service';
 
 @Component({
   selector: 'app-importcsv',
@@ -8,7 +11,8 @@ import { DataSetService } from 'src/service/DataSetService';
 })
 export class ImportcsvComponent implements OnInit {
 
-  constructor(private service: DataSetService) { }
+  constructor(private service: DataSetService, private serviceus: UserService, 
+    private servicecat: CategoriaService, private serviceum: UnitamisuraService) { }
 
   ngOnInit(): void {
   }
@@ -29,6 +33,8 @@ export class ImportcsvComponent implements OnInit {
           this.csvRecords.push(rowdata);
           }
         };
+
+
         reader.onerror = function() {
           alert('Unable to read ' + input.files[0]);
         };

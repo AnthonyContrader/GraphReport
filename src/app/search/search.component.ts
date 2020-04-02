@@ -26,16 +26,19 @@ export class SearchComponent implements OnInit {
 
 
   constructor(private service: SearchService, private route: ActivatedRoute) {
-     let c = this.route.snapshot.paramMap.get('ricerca').toString();
-      this.service.findOnCategorie(c).subscribe(x => {this.categorie = x});
-      this.service.findOnDataSet(c).subscribe(x => {this.dataset = x});
-      this.service.findOnGraph(c).subscribe(x => {this.graph = x});
-      this.service.findOnUnitaMisura(c).subscribe(x => {this.unitamisura = x});
-      this.service.findOnUser(c).subscribe(x => {this.user = x});
   }
 
   ngOnInit(): void {
+    let c: string;
+    this.route.paramMap.subscribe(x => { c = x.get('ricerca');
+    this.service.findOnUser(c).subscribe(x => {this.user = x});
+    this.service.findOnDataSet(c).subscribe(x => {this.dataset = x});
+    this.service.findOnCategorie(c).subscribe(x => {this.categorie = x});
+    this.service.findOnUnitaMisura(c).subscribe(x => {this.unitamisura = x});
+    this.service.findOnGraph(c).subscribe(x => {this.graph = x});
+  });
   }
+
 
 
 }
