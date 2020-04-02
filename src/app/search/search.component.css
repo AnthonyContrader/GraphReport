@@ -1,0 +1,47 @@
+.user{
+  width: 20%;
+  text-align: center;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+}
+
+.dataset{
+  width: 20%;
+  text-align: center;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+}
+
+.categorie{
+  width: 20%;
+  text-align: center;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+}
+
+.unitamisura{
+  width: 20%;
+  text-align: center;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+}
+
+.grafici{
+  width: 20%;
+  text-align: center;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+}
+
+/* TABLE */
+.table{
+  margin-top: 5%;
+  margin-left: 8%;
+  width: 85%;
+}
+
