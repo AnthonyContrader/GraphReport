@@ -16,6 +16,7 @@ import { GraphComponent } from './graph/graph.component';
 import { ChartsModule } from 'ng2-charts';
 import { RegisterComponent } from './register/register.component';
 import { GraphModifyComponent } from './graph/graph-modify/graph-modify.component';
+import { SearchComponent } from './search/search.component';
 
 /**
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -33,7 +34,8 @@ import { GraphModifyComponent } from './graph/graph-modify/graph-modify.componen
     DataSetModifyComponent,
     GraphComponent,
     GraphModifyComponent,
-    RegisterComponent
+    RegisterComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

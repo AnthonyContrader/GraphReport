@@ -8,12 +8,12 @@ import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
 import { UserDTO } from 'src/dto/userdto';
 
 /**
- * I service sono decorati da @Injectable. 
+ * I service sono decorati da @Injectable.
  * Qui trovate, oltre ai metodi ereditati dall'Abstract,
  *  il metodo per il login (in mirror con il backend).
- * 
+ *
  * @author Vittorio Valent
- * 
+ *
  * @see AbstractService
  */
 @Injectable({
@@ -60,6 +60,10 @@ export class DataSetService extends AbstractService<DataSetDTO>{
 
   updateDS(dtoList: DataSetDTO[]) : Observable<boolean>{
     return this.http.post<any>('http://localhost:8080/' + this.type + '/updateDS',dtoList);
+  }
+
+  findAll(): Observable<DataSetDTO[]> {
+    return this.http.get<any>('http://localhost:8080/dataset/findAll');
   }
 
 }

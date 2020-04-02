@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from 'src/dto/userdto';
 import { Router } from '@angular/router';
+import { SearchService } from 'src/service/searchservice';
+import { FormGroup, FormControl } from '@angular/forms';
+
+
+
 
 @Component({
   selector: 'app-header',
@@ -9,8 +14,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  user: UserDTO = new UserDTO;
-  constructor(private router: Router) {
+  user: UserDTO = new UserDTO ();
+  ricerca: FormGroup;
+  constructor(private router: Router, private service: SearchService) {
+    this.ricerca = new FormGroup({
+      testo : new FormControl()
+  });
 
   }
 
@@ -22,5 +31,17 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.router.navigateByUrl('');
   }
+
+  search(ricerca) {
+    let path: string;
+    if (localStorage.getItem('usertype').toString() === 'ADMIN') {
+      path = '/admin-dashboard';
+    } else {
+      path = '/utente-dashboard';
+    }
+    this.router.navigate([path + '/search', ricerca.testo]);
+  }
+
+
 
 }
