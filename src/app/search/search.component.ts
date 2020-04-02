@@ -23,9 +23,11 @@ export class SearchComponent implements OnInit {
   graph: GraphDTO [];
   unitamisura: UnitaMisuraDTO [];
   user: UserDTO[];
+  public scelta: number;
 
 
   constructor(private service: SearchService, private route: ActivatedRoute) {
+    this.scelta = 1;
   }
 
   ngOnInit(): void {
@@ -37,6 +39,11 @@ export class SearchComponent implements OnInit {
     this.service.findOnUnitaMisura(c).subscribe(x => {this.unitamisura = x});
     this.service.findOnGraph(c).subscribe(x => {this.graph = x});
   });
+  }
+
+  hoScelto(scelta){
+    this.scelta = scelta;
+
   }
 
 

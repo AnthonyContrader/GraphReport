@@ -1,12 +1,15 @@
-<div>
-  <div>User</div>
-  <div>DataSet</div>
-  <div>Categorie</div>
-  <div>Unita di Misura</div>
-  <div>Grafici</div>
+<div style="display: flex;">
+      <div class="user"(click)= "hoScelto(1)" style="background-color: #334247;">User</div>
+      <div class="dataset"(click)= "hoScelto(2)" style="background-color:#334247;">DataSet</div>
+      <div class="categorie"(click)= "hoScelto(3)" style="background-color: #334247;">Categorie</div>
+      <div class="unitamisura"(click)= "hoScelto(4)" style="background-color:#334247;">Unita di Misura</div>
+      <div class="grafici"(click)= "hoScelto(5)" style="background-color: #334247;">
+        Grafici</div>
 </div>
 <div>
   <table>
+    <ng-container [ngSwitch] = "scelta">
+      <ng-container *ngSwitchCase = "1">
     <tr>
       <th>Username</th>
       <th>Nome</th>
@@ -21,38 +24,40 @@
     <td>{{u.citta}}</td>
     <td>{{u.nazione}}</td>
     </tr>
-  </table>
-  <table>
+  </ng-container>
+  <ng-container *ngSwitchCase = "2">
     <tr>
       <th>Commento</th>
     </tr>
     <tr *ngFor = "let d of dataset">
     <td>{{d.commento}}</td>
     </tr>
-  </table>
-  <table>
+    </ng-container>
+    <ng-container *ngSwitchCase = "3">
     <tr>
       <th>Nome</th>
     </tr>
     <tr *ngFor = "let cat of categorie">
     <td>{{cat.nome}}</td>
     </tr>
-  </table>
-  <table>
+    </ng-container>
+    <ng-container *ngSwitchCase = "4">
     <tr>
       <th>Nome</th>
     </tr>
     <tr *ngFor = "let um of unitamisura">
     <td>{{um.nome}}</td>
     </tr>
-  </table>
-  <table>
+    </ng-container>
+    <ng-container *ngSwitchCase = "5">
     <tr>
       <th>Titolo</th>
     </tr>
     <tr *ngFor = "let g of graph">
     <td>{{g.titolo}}</td>
     </tr>
-  </table>
+  </ng-container>
+</ng-container>
+</table>
 </div>
 
