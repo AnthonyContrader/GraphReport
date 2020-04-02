@@ -4,10 +4,10 @@
   </div>
 
   <div class="col-md-3">
-      <div class="searchContainer">
+      <form [formGroup]= "ricerca" (ngSubmit)="search(ricerca.value)"class="searchContainer">
           <i class="fa fa-search searchIcon"></i>
-          <input class="searchBox" type="search" name="search" placeholder="Search...">
-      </div>
+          <input class="searchBox" type="search" name="search" placeholder="Search..." formControlName = "testo">
+      </form>
   </div>
   <div class="col-md-4" style="text-align: center">
       <img src="../../../assets/logo2.png" alt="header" style="height:50px;padding-top: 2.5px;">

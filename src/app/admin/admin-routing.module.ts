@@ -11,6 +11,7 @@ import { UnitamisureComponent } from '../unitamisura/unitamisure.component';
 import { GraphComponent } from '../graph/graph.component';
 import { GraphModifyComponent } from '../graph/graph-modify/graph-modify.component';
 import { UsersEditComponent } from './users/usersedit.component';
+import { SearchComponent } from '../search/search.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     { path: 'unitamisure', component: UnitamisureComponent},
     { path: 'graph', component: GraphComponent},
     { path: 'graphModify/:id/:owner', component: GraphModifyComponent},
-    { path: 'usersedit', component: UsersEditComponent}
+    { path: 'usersedit', component: UsersEditComponent},
+    { path: 'search/:ricerca', component: SearchComponent}
   ]}
 ];
 

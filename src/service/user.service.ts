@@ -6,12 +6,12 @@ import { LoginDTO } from 'src/dto/logindto';
 import { Observable } from 'rxjs';
 
 /**
- * I service sono decorati da @Injectable. 
+ * I service sono decorati da @Injectable.
  * Qui trovate, oltre ai metodi ereditati dall'Abstract,
  *  il metodo per il login (in mirror con il backend).
- * 
+ *
  * @author Vittorio Valent
- * 
+ *
  * @see AbstractService
  */
 @Injectable({
@@ -30,6 +30,10 @@ export class UserService extends AbstractService<UserDTO>{
 
   register(UserDTO: UserDTO): Observable<UserDTO> {
     return this.http.post<any>('http://localhost:8080/' + this.type + '/register', UserDTO)
+  }
+
+  findAll(daCercare: string): Observable<UserDTO[]> {
+    return this.http.get<any>('http://localhost:8080/user/findAll?cerca=' + daCercare);
   }
 
 }

@@ -11,7 +11,7 @@ import { mtmDTO } from 'src/dto/mtmDTO';
     providedIn: 'root'
   })
   export class GraphService extends AbstractService<GraphDTO>{
-    
+
     constructor(http: HttpClient) {
         super(http);
         this.type = 'graph';
@@ -41,9 +41,13 @@ import { mtmDTO } from 'src/dto/mtmDTO';
         return this.http.get<any>("http://localhost:8080/"+this.type+"/delete?id="+id);
       }
 
-      getDSByGraph(id : number): Observable<mtmDTO[]>{
-        return this.http.get<any>("http://localhost:8080/"+this.type+"/getAllByGraph?id="+id);
+      findAll(daCercare: string): Observable<GraphDTO[]> {
+        return this.http.get<any>('http://localhost:8080/graph/findAll?cerca=' + daCercare);
       }
 
+<<<<<<< HEAD
       
   }
+=======
+  }
+>>>>>>> b1572589ca8d5713d1848b49dcfa96a2ba281689
