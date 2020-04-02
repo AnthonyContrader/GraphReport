@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/service/user.service';
 import { UserDTO } from 'src/dto/userdto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -13,7 +14,7 @@ export class UsersEditComponent implements OnInit {
   utente: UserDTO;
   usertoinsert: UserDTO = new UserDTO();
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private router: Router) { }
 
   ngOnInit() {
     this.getUtente();
@@ -37,6 +38,8 @@ export class UsersEditComponent implements OnInit {
 
   update1(utente: UserDTO) {
     this.service.update(utente).subscribe(() => this.getUtente());
+    alert('Motifica avvenuta con successo');
+    this.router.navigate(['/admin-dashboard']);
   }
 
   insert(user: UserDTO) {

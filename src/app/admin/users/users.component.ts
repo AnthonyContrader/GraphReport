@@ -28,6 +28,7 @@ export class UsersComponent implements OnInit {
 
   update(user: UserDTO) {
     this.service.update(user).subscribe(() => this.getUsers());
+    alert('Motifica avvenuta con successo');
   }
 
   insert(user: UserDTO) {

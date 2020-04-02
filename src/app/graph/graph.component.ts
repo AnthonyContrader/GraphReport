@@ -32,7 +32,8 @@ export class GraphComponent implements OnInit{
             titolo : new FormControl(),
             ds : new FormControl(),
             x : new FormControl({value:null,disabled:true}),
-            y : new FormControl({value:null,disabled:true})
+            y : new FormControl({value:null,disabled:true}),
+            z : new FormControl({value:null,disabled:true})
         });
     }
 
@@ -62,21 +63,33 @@ export class GraphComponent implements OnInit{
             this.service.getAssiList(this.utLogged,cat).subscribe(x => this.assiList=x);
             this.formCrea.get('x').enable();
             this.formCrea.get('y').enable();
+            this.formCrea.get('z').enable();
         }else{
             this.formCrea.reset();
             this.assiList=null;
             this.formCrea.get('x').disable();
             this.formCrea.get('y').disable();
+            this.formCrea.get('z').disable();
         }
     }
 
     creaGraph(form){
         if(form!=null && form.titolo!=null && form.titolo.toString().trim()!="" && form.ds!=null && form.x!=null && form.y!=null){
-            let g = new GraphDTO(null,form.titolo.toString().trim(),0,0,"top_center",false,false);
+            let t = 0;
+            if(form.z!=null)
+                t = 6;
+            let g = new GraphDTO(null,form.titolo.toString().trim(),0,t,"top_center",false,false);
             this.service.insert(g).subscribe(graph=>{
                 let d = new mtmDTO(null,form.x,graph.id,"x");
                 let dt = new mtmDTO(null,form.y,graph.id,"y");
-                let dto : mtmDTO[] = [d,dt];
+                let dtz : mtmDTO;
+                let dto : mtmDTO[];
+                if( form.z!=null){
+                    dtz = new mtmDTO(null,form.z,graph.id,"z");
+                    dto = [d,dt,dtz];
+                }else{
+                    dto  = [d,dt];
+                }
                 this.service.insertMtM(dto).subscribe(()=>this.init(this.utLogged));
             });
             
