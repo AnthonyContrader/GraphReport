@@ -22,7 +22,7 @@ export class GraphModifyComponent implements OnInit{
 
     @ViewChild("esporta") dom : ElementRef;
     @ViewChild("download") dwn : ElementRef;
-
+    
     public err: number =0;
 
     public esportalink : string = ""; 
@@ -39,45 +39,14 @@ export class GraphModifyComponent implements OnInit{
     public pronto : boolean = false;
     public umList;
     public formCrea: FormGroup;
+    public mix: boolean = false;
 
-    public chartTitle : string;
-    public chartLegendBool: boolean;
-    public chartTitleBool: boolean;
-    public chartParetoBool: boolean;
-    public chartType: TipoGrafico;
-    public chartFont: FontStyle;
-    public chartTitlePos: PositionType = "top" ;
-    public chartLegendPos: PositionType = "bottom" ;
     public datasets: ChartDataSets[] =[];
     public labels: Label[];
-    public chartTitSize : number = 20;
-    public colors: Color[] = [
-        { // red
-            backgroundColor: 'rgba(255,0,0,0.3)',
-            borderColor: 'red',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        },
-        { // dark grey
-            backgroundColor: 'rgba(77,83,96,0.2)',
-            borderColor: 'rgba(77,83,96,1)',
-            pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,83,96,1)'
-        },
-        { // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        }
-      ];
+    public chartTitSize : number;
+    public colors: Color[];
     public options: ChartOptions;
+    public chartType: string;
    
     constructor(private service: GraphService, private route: ActivatedRoute){
         this.formCrea = new FormGroup ({
@@ -94,36 +63,32 @@ export class GraphModifyComponent implements OnInit{
     }
 
     init(){
-            this.service.read(this.idGraph).subscribe(x=>{
-                this.graph=x;
-                this.service.getDSByGraph(this.idGraph).subscribe(y=>{
-                    this.assiList=y;
-                    this.service.getAssiList(Number(localStorage.getItem("idUser").toString()),this.assiList[0].dataSet.categoria).subscribe(x => this.umList=x);
-                    this.settaGrafico();
-                    this.pronto=true;
-                })
-            });
+        this.datasets=[];
+        this.service.read(this.idGraph).subscribe(x=>{
+            this.graph=x;
+            this.service.getDSByGraph(this.idGraph).subscribe(y=>{
+                this.assiList=y;
+                this.service.getAssiList(Number(localStorage.getItem("idUser").toString()),this.assiList[0].dataSet.categoria).subscribe(x => this.umList=x);
+                this.settaGrafico();
+                this.pronto=true;
+            })
+        });
     }
 
     settaGrafico(){
-        this.chartTitle=this.graph.titolo;
-        this.chartLegendBool=this.graph.legenda;
         this.chartType=this.graph.tipografico;
-        this.chartFont=this.graph.fontStyle;
-        this.chartTitlePos=<PositionType>this.graph.posTitolo;
-        //Pareto da fare
         this.options={
             responsive: true,
             title: {
-                fontSize: this.chartTitSize,
-                text: this.chartTitle,
-                fontFamily: this.chartFont.toString(),
-                position: this.chartTitlePos,
-                display: this.chartTitleBool,
+                fontSize: this.graph.fontSize,
+                text: this.graph.titolo,
+                fontFamily: this.graph.fontStyle,
+                position: <PositionType>this.graph.posTitolo,
+                display: this.graph.titoloBool,
             },
             legend:{
-                display: this.chartLegendBool,
-                position: this.chartLegendPos,
+                display: this.graph.legenda,
+                position: <PositionType>this.graph.posLegenda,
             },
           }
 
@@ -148,8 +113,10 @@ export class GraphModifyComponent implements OnInit{
         }
 
         for(let j=0;assex.length>j;j++){
+            let pareto : {};
             let data : {} ;
             let arr : any[] = [];
+            let arrPar : any[] = [0];
              if(assez[j]!=undefined){
                 for(let i=0;assex[j].dataSet.valore.split("_").length>i;i++){
                     arr[j]={
@@ -172,14 +139,60 @@ export class GraphModifyComponent implements OnInit{
                     this.datasets.push(data);
                 }else{
                     this.labels = assex[j].dataSet.valore.split("_"); 
-                    for(let k=0; assey[j].dataSet.valore.split("_").length>k;k++)
+                    for(let k=0; assey[j].dataSet.valore.split("_").length>k;k++){
                         arr[k]=Number(assey[j].dataSet.valore.split("_")[k].toString());
+                        if(this.graph.pareto){
+                            arrPar[k]+=Number(assey[j].dataSet.valore.split("_")[k].toString());
+                            if(k!=assey[j].dataSet.valore.split("_").length-1)
+                                arrPar[(k+1)]=arrPar[k];
+                        }
+                    }
                     data={ type: this.chartType,data: arr, label: assey[j].dataSet.commento };
                     this.datasets.push(data);
+                    if(this.graph.pareto){
+                        pareto={ type: 'line',data: arrPar, label: "Pareto: "+assey[j].dataSet.commento };
+                        this.datasets.push(pareto);
+                    }
                 }
             }
         }
-      
+    if(this.graph.tipografico=="bubble")
+        this.colors = [
+            { // red
+                backgroundColor: 'rgba(255,0,0,0.3)',
+                borderColor: 'red',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            },
+            { // dark grey
+                backgroundColor: 'rgba(77,83,96,0.2)',
+                borderColor: 'rgba(77,83,96,1)',
+                pointBackgroundColor: 'rgba(77,83,96,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(77,83,96,1)'
+            },
+            { // grey
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            },
+            { backgroundColor: 'red', },
+            { backgroundColor: 'green', },
+            { backgroundColor: 'blue', },
+            { backgroundColor: 'purple', },
+            { backgroundColor: 'yellow', },
+            { backgroundColor: 'brown', },
+            { backgroundColor: 'magenta', },
+            { backgroundColor: 'cyan', },
+            { backgroundColor: 'orange', },
+            { backgroundColor: 'pink', },
+          ];
 
     }
 
@@ -219,7 +232,7 @@ export class GraphModifyComponent implements OnInit{
     }
 
     esporta(ext : string){
-        this.esportaname = this.graph.titolo;
+        this.esportaname = this.graph.titolo+"_graph";
         let canvas : HTMLCanvasElement = <HTMLCanvasElement>this.dom.nativeElement;
         this.esportalink=canvas.toDataURL("image/"+ext+";base64",1.0);
         setTimeout(() => {this.dwn.nativeElement.click();}, 500);
@@ -247,5 +260,18 @@ export class GraphModifyComponent implements OnInit{
         this.err=0;
     }
 
-    salvaOpzioni(){}
+    salvaOpzioni(){
+        this.service.update(this.graph).subscribe(() => {
+            this.pronto=false;
+            this.init();    
+        });
+    }
+
+    mixed(){
+        if(this.graph.pareto){
+            this.mix=true;
+            this.graph.tipografico="bar";
+        }else
+            this.mix=false;
+    }
 }

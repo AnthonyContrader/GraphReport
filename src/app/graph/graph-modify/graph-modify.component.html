@@ -1,6 +1,6 @@
 <div class="contenitore">
     
-    <div class="cols-menu" *ngIf="owner">
+    <div class="cols-menu" *ngIf="owner && pronto">
         <button type="button" class="menubtn" 
             (click)="addsetcollapse()">
             <i class="fa fa-line-chart" style="margin-right: 15px"></i> Aggiungi set
@@ -32,26 +32,26 @@
         <div [ngClass]="(!isOptionCollapsed)?'collapsebtn':'collapsebtn openOption'">
             
             <label >Tipologia Grafico</label>
-            <select [(ngModel)]="chartType"> 
+            <select [(ngModel)]="graph.tipografico" [disabled]="mix"> 
                 <option *ngFor="let c of keys(enumTipoGrafico)" [value]="c">{{enumTipoGrafico[c]}}</option> 
             </select>
             <div class="cntOption">
                 <div>
-                    <input id="optTit" type="checkbox" class="inpOption" [(ngModel)]="chartTitleBool" style="margin:0px 3px;width:max-content"/>
+                    <input id="optTit" type="checkbox" class="inpOption" [(ngModel)]="graph.titoloBool" style="margin:0px 3px;width:max-content"/>
                     <label for="optTit" class="lblOption" style="margin:0px 3px">Titolo</label>
-                    <input type="text" class="inpOption" [(ngModel)]="chartTitle" style="margin:0px 3px"/>
+                    <input type="text" class="inpOption" [(ngModel)]="graph.titolo" style="margin:0px 3px"/>
                     <label style="margin-top:3px">Font</label>
-                    <select [(ngModel)]="chartFont"> 
+                    <select [(ngModel)]="graph.fontStyle"> 
                         <option *ngFor="let c of keys(enumFont)" [value]="c">{{enumFont[c]}}</option> 
                     </select>
                     <div style="display: flex;">
                         <div style="width:40%;padding:0 1px;">
                             <label style="margin-top:3px">Size</label>
-                            <input [(ngModel)]="chartTitSize" type="number"  />
+                            <input [(ngModel)]="graph.fontSize" type="number"  />
                         </div>
                         <div style="width:60%;padding:0 1px;">
                             <label style="margin-top:3px;width: 100%;">Position:</label>
-                            <select [(ngModel)]="chartTitlePos"> 
+                            <select [(ngModel)]="graph.posTitolo"> 
                                 <option value="top">Top</option> 
                                 <option value="bottom">Bottom</option> 
                                 <option value="left">Left</option> 
@@ -64,10 +64,10 @@
 
             <div class="cntOption">
                 <div>
-                    <input id="optLeg" type="checkbox" class="inpOption" [(ngModel)]="chartLegendBool" style="margin:0px 3px;width:max-content"/>
+                    <input id="optLeg" type="checkbox" class="inpOption" [(ngModel)]="graph.legenda" style="margin:0px 3px;width:max-content"/>
                     <label class="lblOption" style="margin:0px 3px;" for="optLeg">Legenda</label>
                     <label style="margin-top:3px;width: 100%;">Position:</label>
-                    <select [(ngModel)]="chartLegendPos"> 
+                    <select [(ngModel)]="graph.posLegenda"> 
                         <option value="top">Top</option> 
                         <option value="bottom">Bottom</option> 
                         <option value="left">Left</option> 
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <input id="optPareto" type="checkbox" class="inpOption" [(ngModel)]="chartParetoBool" style="margin:0px 3px;width:max-content"/>
+            <input id="optPareto" type="checkbox" class="inpOption" [(ngModel)]="graph.pareto" style="margin:0px 3px;width:max-content" (change)="mixed()"/>
             <label class="lblOption" style="margin:10px 3px" for="optPareto">Pareto</label>
                     
             <button (click)="salvaOpzioni()" class="menubtn" style="background-color: #334247; margin: 10px 0px;">Salva</button>
@@ -95,13 +95,13 @@
             <a [href]="esportalink" [download]="esportaname" #download></a>
         </div>
     </div>
-    <div class="cols-rest" *ngIf="pronto" >
+    <div id="contCanvas" class="cols-rest" *ngIf="pronto" >
         <canvas #esporta baseChart
             [datasets]="datasets"
             [labels]="labels"
             [options]="options"
             [colors]="colors"
-            [legend]="chartLegendBool"
+            [legend]="graph.legenda"
             [chartType]="chartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)">

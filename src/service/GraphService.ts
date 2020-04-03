@@ -48,4 +48,5 @@ import { mtmDTO } from 'src/dto/mtmDTO';
       findAll(daCercare: string): Observable<GraphDTO[]> {
         return this.http.get<any>('http://localhost:8080/graph/findAll?cerca=' + daCercare);
       }
+
   }

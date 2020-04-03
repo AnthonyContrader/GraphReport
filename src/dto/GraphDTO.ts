@@ -1,29 +1,35 @@
-import { TipoGrafico } from './TipoGrafico';
-import { FontStyle } from './FontStyle';
-
 export class GraphDTO{
 
-    id : number;
+	id : number;
+	
+	titoloBool : boolean;
 	
     titolo : string;
     
-    fontStyle : FontStyle;
+	fontStyle : string;
 	
-	tipografico : TipoGrafico;
+	fontSize : number;
+	
+	tipografico : string;
 	
 	posTitolo : string;
 	
 	legenda : boolean;
+
+	posLegenda : string;
 	
 	pareto : boolean;
 
-	constructor(id : number,titolo : string,font : FontStyle,tipografico : TipoGrafico,posTitolo : string,legenda : boolean,pareto : boolean){
+	constructor(id : number,titolobool : boolean, titolo : string,font : string, size: number, tipografico : string,posTitolo : string,legenda : boolean,posLegenda : string,pareto : boolean){
 		this.id=id;
+		this.titoloBool=titolobool;
 		this.titolo=titolo;
 		this.fontStyle=font;
+		this.fontSize=size;
 		this.tipografico=tipografico;
 		this.posTitolo=posTitolo;
 		this.legenda=legenda;
+		this.posLegenda=posLegenda;
 		this.pareto=pareto;
 	}
 }

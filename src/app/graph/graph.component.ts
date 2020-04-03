@@ -77,10 +77,10 @@ export class GraphComponent implements OnInit{
 
     creaGraph(form){
         if(form!=null && form.titolo!=null && form.titolo.toString().trim()!="" && form.ds!=null && form.x!=null && form.y!=null){
-            let t: TipoGrafico = TipoGrafico.line ;
+            let t: string = "line";
             if(form.z!=null)
-                t = TipoGrafico.bubble;
-            let g = new GraphDTO(null,form.titolo.toString().trim(),FontStyle.courier,t,"top",false,false);
+                t = "bubble";
+            let g = new GraphDTO(null,true,form.titolo.toString().trim(),"courier",20,t,"top",true,"bottom",false);
             this.service.insert(g).subscribe(graph=>{
                 let d = new mtmDTO(null,form.x,graph.id,"x");
                 let dt = new mtmDTO(null,form.y,graph.id,"y");
