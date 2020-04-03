@@ -6,6 +6,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { UserDTO } from 'src/dto/userdto';
 import { mtmDTO } from 'src/dto/mtmDTO';
 import { Router } from '@angular/router';
+import { TipoGrafico } from 'src/dto/TipoGrafico';
+import { FontStyle } from 'src/dto/FontStyle';
 
 
 @Component({
@@ -75,10 +77,10 @@ export class GraphComponent implements OnInit{
 
     creaGraph(form){
         if(form!=null && form.titolo!=null && form.titolo.toString().trim()!="" && form.ds!=null && form.x!=null && form.y!=null){
-            let t = 0;
+            let t: TipoGrafico = TipoGrafico.line ;
             if(form.z!=null)
-                t = 6;
-            let g = new GraphDTO(null,form.titolo.toString().trim(),0,t,"top",false,false);
+                t = TipoGrafico.bubble;
+            let g = new GraphDTO(null,form.titolo.toString().trim(),FontStyle.courier,t,"top",false,false);
             this.service.insert(g).subscribe(graph=>{
                 let d = new mtmDTO(null,form.x,graph.id,"x");
                 let dt = new mtmDTO(null,form.y,graph.id,"y");

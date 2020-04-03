@@ -16,6 +16,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class GraphModifyComponent implements OnInit{
 
+    keys = Object.keys;
+    public enumTipoGrafico = TipoGrafico;
+    public enumFont = FontStyle;
+
     @ViewChild("esporta") dom : ElementRef;
     @ViewChild("download") dwn : ElementRef;
 
@@ -37,12 +41,16 @@ export class GraphModifyComponent implements OnInit{
     public formCrea: FormGroup;
 
     public chartTitle : string;
-    public legend: boolean;
+    public chartLegendBool: boolean;
+    public chartTitleBool: boolean;
+    public chartParetoBool: boolean;
     public chartType: TipoGrafico;
     public chartFont: FontStyle;
     public chartTitlePos: PositionType = "top" ;
+    public chartLegendPos: PositionType = "bottom" ;
     public datasets: ChartDataSets[] =[];
     public labels: Label[];
+    public chartTitSize : number = 20;
     public colors: Color[] = [
         { // red
             backgroundColor: 'rgba(255,0,0,0.3)',
@@ -99,7 +107,7 @@ export class GraphModifyComponent implements OnInit{
 
     settaGrafico(){
         this.chartTitle=this.graph.titolo;
-        this.legend=this.graph.legenda;
+        this.chartLegendBool=this.graph.legenda;
         this.chartType=this.graph.tipografico;
         this.chartFont=this.graph.fontStyle;
         this.chartTitlePos=<PositionType>this.graph.posTitolo;
@@ -107,15 +115,15 @@ export class GraphModifyComponent implements OnInit{
         this.options={
             responsive: true,
             title: {
-                fontSize: 20,
+                fontSize: this.chartTitSize,
                 text: this.chartTitle,
                 fontFamily: this.chartFont.toString(),
                 position: this.chartTitlePos,
-                display: true
+                display: this.chartTitleBool,
             },
             legend:{
-                display: this.graph.legenda,
-                position: "bottom"
+                display: this.chartLegendBool,
+                position: this.chartLegendPos,
             },
           }
 
@@ -238,4 +246,6 @@ export class GraphModifyComponent implements OnInit{
     closerror(){
         this.err=0;
     }
+
+    salvaOpzioni(){}
 }

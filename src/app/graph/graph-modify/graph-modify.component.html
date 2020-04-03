@@ -6,7 +6,7 @@
             <i class="fa fa-line-chart" style="margin-right: 15px"></i> Aggiungi set
         </button>
         <div [ngClass]="(!isAddsetCollapsed)?'collapsebtn':'collapsebtn openAdd'">
-            <form [formGroup]="formCrea" (ngSubmit)="addSet(formCrea.value)" style="margin-top: 10px;"> 
+            <form [formGroup]="formCrea" (ngSubmit)="addSet(formCrea.value)"> 
                 <label>Asse X</label>
                 <select formControlName="x" style="width: 100%;"> 
                     <option [value]="null" style="color:grey" >Seleziona</option>
@@ -17,7 +17,7 @@
                     <option [value]="null" style="color:grey">Seleziona</option>
                     <option *ngFor="let c of umList" [value]="c.id">{{c.unitaMisuraN}} {{c.commento}}</option> 
                 </select>
-                <label style="margin-bottom:1px;">Asse Z </label><p style="font-size:10px; margin: 0;"> Solo tipo BOUBLE</p>
+                <label style="margin-bottom:1px;">Asse Z </label><label style="font-size:10px; margin: 0;"> Solo tipo BOUBLE</label>
                 <select formControlName="z" style="width: 100%;"> 
                     <option [value]="null" style="color:grey">Seleziona</option>
                     <option *ngFor="let c of umList" [value]="c.id">{{c.unitaMisuraN}} {{c.commento}}</option> 
@@ -30,7 +30,56 @@
             <i class="fa fa-cogs" style="margin-right: 15px"></i>Opzioni
         </button>
         <div [ngClass]="(!isOptionCollapsed)?'collapsebtn':'collapsebtn openOption'">
-            gran
+            
+            <label >Tipologia Grafico</label>
+            <select [(ngModel)]="chartType"> 
+                <option *ngFor="let c of keys(enumTipoGrafico)" [value]="c">{{enumTipoGrafico[c]}}</option> 
+            </select>
+            <div class="cntOption">
+                <div>
+                    <input id="optTit" type="checkbox" class="inpOption" [(ngModel)]="chartTitleBool" style="margin:0px 3px;width:max-content"/>
+                    <label for="optTit" class="lblOption" style="margin:0px 3px">Titolo</label>
+                    <input type="text" class="inpOption" [(ngModel)]="chartTitle" style="margin:0px 3px"/>
+                    <label style="margin-top:3px">Font</label>
+                    <select [(ngModel)]="chartFont"> 
+                        <option *ngFor="let c of keys(enumFont)" [value]="c">{{enumFont[c]}}</option> 
+                    </select>
+                    <div style="display: flex;">
+                        <div style="width:40%;padding:0 1px;">
+                            <label style="margin-top:3px">Size</label>
+                            <input [(ngModel)]="chartTitSize" type="number"  />
+                        </div>
+                        <div style="width:60%;padding:0 1px;">
+                            <label style="margin-top:3px;width: 100%;">Position:</label>
+                            <select [(ngModel)]="chartTitlePos"> 
+                                <option value="top">Top</option> 
+                                <option value="bottom">Bottom</option> 
+                                <option value="left">Left</option> 
+                                <option value="right">Right</option> 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cntOption">
+                <div>
+                    <input id="optLeg" type="checkbox" class="inpOption" [(ngModel)]="chartLegendBool" style="margin:0px 3px;width:max-content"/>
+                    <label class="lblOption" style="margin:0px 3px;width: 100%;" for="optLeg">Legenda</label>
+                    <label style="margin-top:3px">Position:</label>
+                    <select [(ngModel)]="chartLegendPos"> 
+                        <option value="top">Top</option> 
+                        <option value="bottom">Bottom</option> 
+                        <option value="left">Left</option> 
+                        <option value="right">Right</option> 
+                    </select>
+                </div>
+            </div>
+
+            <input id="optPareto" type="checkbox" class="inpOption" [(ngModel)]="chartParetoBool" style="margin:0px 3px;width:max-content"/>
+            <label class="lblOption" style="margin:10px 3px" for="optPareto">Legenda</label>
+                    
+            <button (click)="salvaOpzioni()" class="menubtn" style="background-color: #334247; margin: 10px 0px;">Salva</button>
         </div>
         <button type="button" class="menubtn" data-toggle="collapsebtn" data-target="#export"
             (click)="exportcollapse()">
@@ -52,7 +101,7 @@
             [labels]="labels"
             [options]="options"
             [colors]="colors"
-            [legend]="legend"
+            [legend]="chartLegendBool"
             [chartType]="chartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)">

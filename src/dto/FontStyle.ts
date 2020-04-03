@@ -1,3 +1,3 @@
 export enum FontStyle{
-    courier
+    courier = "Courier",
 }
