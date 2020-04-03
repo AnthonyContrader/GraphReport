@@ -55,6 +55,13 @@ button:hover, a:hover {
     overflow: hidden;
 }
 
+.cols-rest > canvas{
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
 label{
     margin: 10px 4px 0 4px;
 }
