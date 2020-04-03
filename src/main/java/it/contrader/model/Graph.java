@@ -31,15 +31,21 @@ public class Graph {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private Boolean titoloBool;
+	
 	private String titolo;
 	
 	private FontStyle fontStyle;
+	
+	private Integer fontSize;
 	
 	private TipoGrafico tipografico;
 	
 	private String posTitolo;
 	
 	private Boolean legenda;
+	
+	private String posLegenda;
 	
 	private Boolean pareto;
 	
