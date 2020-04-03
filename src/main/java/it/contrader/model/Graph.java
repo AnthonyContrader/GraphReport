@@ -24,7 +24,7 @@ public class Graph {
 	}
 	
 	public enum FontStyle{
-		courier
+		courier, helveticaneue, helvetica, arial,
 	}
 	
 	@Id
