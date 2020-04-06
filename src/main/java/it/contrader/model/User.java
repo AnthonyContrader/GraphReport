@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name="USER")
+@Table(name="UTENTE")
 public class User {
 
 	public enum Usertype {
