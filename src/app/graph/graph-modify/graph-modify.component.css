@@ -56,10 +56,6 @@ button:hover, a:hover {
 }
 
 .cols-rest > canvas{
-    position: fixed;
-    margin: auto;
-    left: 0;
-    right: 0;
 }
 
 label{
