@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "it.contrader.graphreport"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "gateway",
+    "baseName": "gateway",
+    "packageName": "it.contrader.graphreport",
+    "packageFolder": "it/contrader/graphreport",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "oracle",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZTkwNjU0MjYyM2IwNTkwNDAxZTI5NThkZDRkZDM2ZWEzMTEyM2YzMDZlZjQ0ZDJhNjNjOGQ4MzQwZjllODE1N2U0MDEyZTAwN2NkYmM2Nzk3YzQ4NWM0M2Q3ODFlYWZjNTUxYjI5NjhlZTZkNjU3ZmUxZGQ0OGZhNWE2ODg0NWM=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
