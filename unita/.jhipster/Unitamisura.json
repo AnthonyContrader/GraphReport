@@ -1,32 +1,27 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "unicat",
-            "otherEntityName": "categoria",
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
-            "otherEntityField": "id"
-        }
-    ],
+    "name": "Unitamisura",
     "fields": [
         {
             "fieldName": "nome",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20200409144728",
-    "dto": "mapstruct",
-    "searchEngine": false,
-    "service": "serviceImpl",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "categoria",
+            "otherEntityName": "categoria",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200410135951",
     "entityTableName": "unitamisura",
-    "jpaMetamodelFiltering": false,
+    "dto": "mapstruct",
     "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
     "microserviceName": "unita"
 }

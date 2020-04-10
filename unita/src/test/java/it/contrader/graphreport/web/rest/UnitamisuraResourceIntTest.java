@@ -3,7 +3,6 @@ package it.contrader.graphreport.web.rest;
 import it.contrader.graphreport.UnitaApp;
 
 import it.contrader.graphreport.domain.Unitamisura;
-import it.contrader.graphreport.domain.Categoria;
 import it.contrader.graphreport.repository.UnitamisuraRepository;
 import it.contrader.graphreport.service.UnitamisuraService;
 import it.contrader.graphreport.service.dto.UnitamisuraDTO;
@@ -93,11 +92,6 @@ public class UnitamisuraResourceIntTest {
     public static Unitamisura createEntity(EntityManager em) {
         Unitamisura unitamisura = new Unitamisura()
             .nome(DEFAULT_NOME);
-        // Add required entity
-        Categoria categoria = CategoriaResourceIntTest.createEntity(em);
-        em.persist(categoria);
-        em.flush();
-        unitamisura.setUnicat(categoria);
         return unitamisura;
     }
 
@@ -143,25 +137,6 @@ public class UnitamisuraResourceIntTest {
         // Validate the Unitamisura in the database
         List<Unitamisura> unitamisuraList = unitamisuraRepository.findAll();
         assertThat(unitamisuraList).hasSize(databaseSizeBeforeCreate);
-    }
-
-    @Test
-    @Transactional
-    public void checkNomeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = unitamisuraRepository.findAll().size();
-        // set the field null
-        unitamisura.setNome(null);
-
-        // Create the Unitamisura, which fails.
-        UnitamisuraDTO unitamisuraDTO = unitamisuraMapper.toDto(unitamisura);
-
-        restUnitamisuraMockMvc.perform(post("/api/unitamisuras")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(unitamisuraDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Unitamisura> unitamisuraList = unitamisuraRepository.findAll();
-        assertThat(unitamisuraList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test

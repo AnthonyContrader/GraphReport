@@ -1,6 +1,5 @@
 package it.contrader.graphreport.service.dto;
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,7 +10,6 @@ public class CategoriaDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String nome;
 
     public Long getId() {

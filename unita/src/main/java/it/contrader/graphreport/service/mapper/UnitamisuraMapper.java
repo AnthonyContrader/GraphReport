@@ -11,10 +11,10 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {CategoriaMapper.class})
 public interface UnitamisuraMapper extends EntityMapper<UnitamisuraDTO, Unitamisura> {
 
-    @Mapping(source = "unicat.id", target = "unicatId")
+    @Mapping(source = "categoria.id", target = "categoriaId")
     UnitamisuraDTO toDto(Unitamisura unitamisura);
 
-    @Mapping(source = "unicatId", target = "unicat")
+    @Mapping(source = "categoriaId", target = "categoria")
     Unitamisura toEntity(UnitamisuraDTO unitamisuraDTO);
 
     default Unitamisura fromId(Long id) {

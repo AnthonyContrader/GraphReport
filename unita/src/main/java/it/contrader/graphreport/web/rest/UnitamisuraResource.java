@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -49,7 +48,7 @@ public class UnitamisuraResource {
      */
     @PostMapping("/unitamisuras")
     @Timed
-    public ResponseEntity<UnitamisuraDTO> createUnitamisura(@Valid @RequestBody UnitamisuraDTO unitamisuraDTO) throws URISyntaxException {
+    public ResponseEntity<UnitamisuraDTO> createUnitamisura(@RequestBody UnitamisuraDTO unitamisuraDTO) throws URISyntaxException {
         log.debug("REST request to save Unitamisura : {}", unitamisuraDTO);
         if (unitamisuraDTO.getId() != null) {
             throw new BadRequestAlertException("A new unitamisura cannot already have an ID", ENTITY_NAME, "idexists");
@@ -71,7 +70,7 @@ public class UnitamisuraResource {
      */
     @PutMapping("/unitamisuras")
     @Timed
-    public ResponseEntity<UnitamisuraDTO> updateUnitamisura(@Valid @RequestBody UnitamisuraDTO unitamisuraDTO) throws URISyntaxException {
+    public ResponseEntity<UnitamisuraDTO> updateUnitamisura(@RequestBody UnitamisuraDTO unitamisuraDTO) throws URISyntaxException {
         log.debug("REST request to update Unitamisura : {}", unitamisuraDTO);
         if (unitamisuraDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

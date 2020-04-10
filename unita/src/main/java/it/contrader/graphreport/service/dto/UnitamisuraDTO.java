@@ -1,6 +1,5 @@
 package it.contrader.graphreport.service.dto;
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,10 +10,9 @@ public class UnitamisuraDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String nome;
 
-    private Long unicatId;
+    private Long categoriaId;
 
     public Long getId() {
         return id;
@@ -32,12 +30,12 @@ public class UnitamisuraDTO implements Serializable {
         this.nome = nome;
     }
 
-    public Long getUnicatId() {
-        return unicatId;
+    public Long getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setUnicatId(Long categoriaId) {
-        this.unicatId = categoriaId;
+    public void setCategoriaId(Long categoriaId) {
+        this.categoriaId = categoriaId;
     }
 
     @Override
@@ -66,7 +64,7 @@ public class UnitamisuraDTO implements Serializable {
         return "UnitamisuraDTO{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
-            ", unicat=" + getUnicatId() +
+            ", categoria=" + getCategoriaId() +
             "}";
     }
 }

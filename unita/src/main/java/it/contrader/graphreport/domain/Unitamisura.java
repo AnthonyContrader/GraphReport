@@ -3,7 +3,6 @@ package it.contrader.graphreport.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -22,14 +21,12 @@ public class Unitamisura implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome")
     private String nome;
 
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties("")
-    private Categoria unicat;
+    @ManyToOne
+    @JsonIgnoreProperties("unitamisuras")
+    private Categoria categoria;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -53,17 +50,17 @@ public class Unitamisura implements Serializable {
         this.nome = nome;
     }
 
-    public Categoria getUnicat() {
-        return unicat;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public Unitamisura unicat(Categoria categoria) {
-        this.unicat = categoria;
+    public Unitamisura categoria(Categoria categoria) {
+        this.categoria = categoria;
         return this;
     }
 
-    public void setUnicat(Categoria categoria) {
-        this.unicat = categoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

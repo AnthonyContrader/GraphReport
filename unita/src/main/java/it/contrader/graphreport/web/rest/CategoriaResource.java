@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -49,7 +48,7 @@ public class CategoriaResource {
      */
     @PostMapping("/categorias")
     @Timed
-    public ResponseEntity<CategoriaDTO> createCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO) throws URISyntaxException {
+    public ResponseEntity<CategoriaDTO> createCategoria(@RequestBody CategoriaDTO categoriaDTO) throws URISyntaxException {
         log.debug("REST request to save Categoria : {}", categoriaDTO);
         if (categoriaDTO.getId() != null) {
             throw new BadRequestAlertException("A new categoria cannot already have an ID", ENTITY_NAME, "idexists");
@@ -71,7 +70,7 @@ public class CategoriaResource {
      */
     @PutMapping("/categorias")
     @Timed
-    public ResponseEntity<CategoriaDTO> updateCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO) throws URISyntaxException {
+    public ResponseEntity<CategoriaDTO> updateCategoria(@RequestBody CategoriaDTO categoriaDTO) throws URISyntaxException {
         log.debug("REST request to update Categoria : {}", categoriaDTO);
         if (categoriaDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

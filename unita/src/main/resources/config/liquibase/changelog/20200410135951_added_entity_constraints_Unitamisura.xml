@@ -6,11 +6,11 @@
     <!--
         Added the constraints for entity Unitamisura.
     -->
-    <changeSet id="20200409144728-2" author="jhipster">
+    <changeSet id="20200410135951-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="unicat_id"
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
                                  baseTableName="unitamisura"
-                                 constraintName="fk_unitamisura_unicat_id"
+                                 constraintName="fk_unitamisura_categoria_id"
                                  referencedColumnNames="id"
                                  referencedTableName="categoria"/>
 

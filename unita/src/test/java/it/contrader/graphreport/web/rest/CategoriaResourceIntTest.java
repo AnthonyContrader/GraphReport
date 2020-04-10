@@ -141,25 +141,6 @@ public class CategoriaResourceIntTest {
 
     @Test
     @Transactional
-    public void checkNomeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = categoriaRepository.findAll().size();
-        // set the field null
-        categoria.setNome(null);
-
-        // Create the Categoria, which fails.
-        CategoriaDTO categoriaDTO = categoriaMapper.toDto(categoria);
-
-        restCategoriaMockMvc.perform(post("/api/categorias")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(categoriaDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Categoria> categoriaList = categoriaRepository.findAll();
-        assertThat(categoriaList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllCategorias() throws Exception {
         // Initialize the database
         categoriaRepository.saveAndFlush(categoria);

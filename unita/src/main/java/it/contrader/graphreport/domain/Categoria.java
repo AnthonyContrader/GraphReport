@@ -1,10 +1,12 @@
 package it.contrader.graphreport.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -21,9 +23,11 @@ public class Categoria implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome")
     private String nome;
+
+    @OneToMany(mappedBy = "categoria")
+    private Set<Unitamisura> unitamisuras = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -45,6 +49,31 @@ public class Categoria implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Set<Unitamisura> getUnitamisuras() {
+        return unitamisuras;
+    }
+
+    public Categoria unitamisuras(Set<Unitamisura> unitamisuras) {
+        this.unitamisuras = unitamisuras;
+        return this;
+    }
+
+    public Categoria addUnitamisura(Unitamisura unitamisura) {
+        this.unitamisuras.add(unitamisura);
+        unitamisura.setCategoria(this);
+        return this;
+    }
+
+    public Categoria removeUnitamisura(Unitamisura unitamisura) {
+        this.unitamisuras.remove(unitamisura);
+        unitamisura.setCategoria(null);
+        return this;
+    }
+
+    public void setUnitamisuras(Set<Unitamisura> unitamisuras) {
+        this.unitamisuras = unitamisuras;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

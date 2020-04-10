@@ -1,22 +1,27 @@
 {
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "relationships": [],
+    "name": "Categoria",
     "fields": [
         {
             "fieldName": "nome",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20200409144621",
-    "dto": "mapstruct",
-    "searchEngine": false,
-    "service": "serviceImpl",
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "unitamisura",
+            "otherEntityName": "unitamisura",
+            "otherEntityRelationshipName": "categoria"
+        }
+    ],
+    "changelogDate": "20200410135950",
     "entityTableName": "categoria",
-    "jpaMetamodelFiltering": false,
+    "dto": "mapstruct",
     "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
     "microserviceName": "unita"
 }

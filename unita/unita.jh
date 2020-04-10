@@ -1,0 +1,17 @@
+entity Categoria{
+	id Long
+    nome String
+}
+
+entity Unitamisura{
+	id Long
+    nome String
+}
+
+relationship ManyToOne{
+	Unitamisura to Categoria
+}
+
+dto Categoria, Unitamisura with mapstruct
+service Categoria, Unitamisura with serviceImpl
+paginate Categoria, Unitamisura with pagination
