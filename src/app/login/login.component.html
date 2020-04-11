@@ -1,0 +1,17 @@
+<div class="home">
+    <div class="contenitor">
+        <div class="divLogo">
+            <img class="imgLogo" src="../../assets/completo.png" alt="logo">
+        </div>
+        <form #f="ngForm">
+            <input #u="ngModel" required type="username" [(ngModel)]="username" name="username" placeholder="User" [ngClass]="(u.invalid && u.touched) ? 'invalid-input' : ''" />
+            <br>
+            <input #p="ngModel" required type="password" [(ngModel)]="password" name="password" placeholder="Password" [ngClass]="(p.invalid && p.touched) ? 'invalid-input' : ''" />
+            <button (click)="login()" [disabled]="f.invalid">Accedi</button>
+            <div class="line">
+                <p class="or">ALTRIMENTI</p>
+            </div>
+            <button >Registrati</button>
+        </form>
+    </div>
+</div>
