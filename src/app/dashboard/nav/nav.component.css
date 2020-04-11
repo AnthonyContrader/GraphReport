@@ -1,0 +1,42 @@
+.navbar{
+    display: flex;
+    width: calc(100% - 40px);
+    background-color: gainsboro;
+    padding: 0 20px;
+}
+
+.logo{
+    margin: 9px 20px;
+}
+
+img{
+    width:150px;
+    cursor: pointer;
+}
+
+.el{
+    cursor: pointer;
+    width: max-content;
+    padding: 10px 15px;
+    border-bottom: 3px solid gainsboro;
+    text-align: center;
+}
+
+.el:hover{
+    border-bottom: 2px solid #8B51CA;
+}
+
+.selected{
+    border-bottom: 2px solid #8B51CA;
+}
+
+.elcont{
+    width: max-content;
+    display: flex;
+    margin: auto;
+}
+
+.personal{
+    cursor: pointer;
+    float: right;
+}
