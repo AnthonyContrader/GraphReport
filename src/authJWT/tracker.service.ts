@@ -8,7 +8,7 @@ import { AuthServerProvider } from './auth-jwt.service';
 
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'webstomp-client';
-import { SERVER_API_URL } from 'src/app.constants';
+import { SERVER_API_URL } from 'src/authJWT/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class JhiTrackerService {

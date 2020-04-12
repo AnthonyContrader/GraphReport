@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
-import { SERVER_API_URL } from '../app.constants';
+import { SERVER_API_URL } from './app.constants';
 import { JhiTrackerService } from './tracker.service';
 import { AccountDTO } from 'src/dto/account.dto';
 
