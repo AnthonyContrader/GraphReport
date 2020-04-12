@@ -9,9 +9,16 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
+  nome : string;
+  isAdmin : boolean;
   selected : string = "home";
 
-  constructor(private router: Router,private loginService: LoginService) { }
+  constructor(private router: Router,private loginService: LoginService) {
+
+    this.nome = JSON.parse(localStorage.getItem('identity')).firstName || JSON.parse(localStorage.getItem('identity')).login;
+    this.isAdmin = JSON.parse(localStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
+
+   }
 
   ngOnInit(): void {
   }

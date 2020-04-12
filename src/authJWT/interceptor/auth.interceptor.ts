@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(request);
         }
 
-        const token = localStorage.getItem('authenticationToken') || sessionStorage.getItem('authenticationToken');
+        const token = localStorage.getItem('key') || sessionStorage.getItem('key');
         if (!!token) {
             request = request.clone({
                 setHeaders: {

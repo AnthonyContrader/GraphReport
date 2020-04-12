@@ -16,13 +16,13 @@
         </div>
         <div class="dropdown-contenitor el" >
             <label class="personal">
-                Ciao 
+                Ciao {{nome}}
             </label>
             <div class="dropdown">
                 <div class="eldrop" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
                     profilo
                 </div>
-                <div class="eldrop" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
+                <div class="eldrop" *ngIf="isAdmin" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
                     lista utenti
                 </div>
                 <div (click)="logout()" class="eldrop" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">

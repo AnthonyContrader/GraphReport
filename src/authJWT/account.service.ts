@@ -29,7 +29,6 @@ export class AccountService {
     authenticate(identity) {
         if (identity) {
             this.userIdentity = identity;
-            localStorage.setItem('identity',identity)
             this.authenticated = true;
             this.trackerService.connect();
         } else {
@@ -86,6 +85,7 @@ export class AccountService {
             .toPromise()
             .then(response => {
                 const account = response.body;
+                localStorage.setItem('identity',JSON.stringify(account));
                 this.authenticate(account);
                 return resolve(this.userIdentity);
             })
