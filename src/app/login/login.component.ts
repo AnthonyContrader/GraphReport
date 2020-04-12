@@ -43,16 +43,14 @@ export class LoginComponent implements OnInit {
                     name: 'authenticationSuccess',
                     content: 'Sending Authentication Success'
                 });
-
                 // previousState was set in the authExpiredInterceptor before being redirected to login modal.
                 // since login is successful, go to stored previousState and clear previousState
                 const redirect = this.stateStorageService.getUrl();
-                if (redirect) {
-                    this.stateStorageService.storeUrl(null);
-                    this.router.navigate([redirect]);
-                }else{
-                  this.router.navigate(['home']);
-                }
+                
+                this.stateStorageService.storeUrl('');
+                console.warn('Login success: redirect to: '+redirect)
+                this.router.navigate([redirect]);
+                
             })
             .catch(() => {
                 this.authenticationError = true;

@@ -12,22 +12,19 @@ export class LoginService {
         private authServerProvider: AuthServerProvider
     ) {}
 
-    login(credentials, callback?) {
-        const cb = callback || function() {};
+    login(credentials) {
 
         return new Promise((resolve, reject) => {
             this.authServerProvider.login(credentials).subscribe(
                 data => {
                         this.accountService.identity(true).then(account => {
-                        this.trackerService.sendActivity();
-                        resolve(data);
-                    });
-                    return cb();
-                },
+                            this.trackerService.sendActivity();
+                            return resolve(data);
+                        });
+                        },
                 err => {
                     this.logout();
-                    reject(err);
-                    return cb(err);
+                    return reject(err);
                 }
             );
         });

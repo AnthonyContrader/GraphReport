@@ -1,8 +1,8 @@
 .navbar{
     display: flex;
-    width: calc(100% - 40px);
-    background-color: gainsboro;
     padding: 0 20px;
+    max-width: 1000px;
+    margin: auto;
 }
 
 .logo{
@@ -17,17 +17,17 @@ img{
 .el{
     cursor: pointer;
     width: max-content;
-    padding: 10px 15px;
+    padding: 9px 15px;
     border-bottom: 3px solid gainsboro;
     text-align: center;
 }
 
 .el:hover{
-    border-bottom: 2px solid #8B51CA;
+    border-bottom: 3px solid #8B51CA;
 }
 
 .selected{
-    border-bottom: 2px solid #8B51CA;
+    border-bottom: 3px solid #8B51CA;
 }
 
 .elcont{
@@ -36,7 +36,36 @@ img{
     margin: auto;
 }
 
-.personal{
-    cursor: pointer;
-    float: right;
+.dropdown-contenitor{
+    position: relative;
+    display: inline-block;
 }
+
+.personal{
+    border: none;
+    cursor: pointer;
+    height: 21px;
+    overflow: visible;
+}
+
+.dropdown{
+    margin: 13px;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right:-15px;
+}
+
+.eldrop{
+    cursor: pointer;
+    padding: 10px 15px;
+    border-bottom: 3px solid gainsboro;
+    text-align: center;
+    width: 100px;
+}
+
+.dropdown-contenitor:hover > .dropdown{
+    display: block;
+} 

@@ -1,17 +1,15 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AccountService } from './account.service';
+import { StateStorageService } from './state-storage.service';
 
-//import { LoginModalService } from '../login/login-modal.service';
-//import { StateStorageService } from './state-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserRouteAccessService implements CanActivate {
     constructor(
         private router: Router,
-//        private loginModalService: LoginModalService,
             private accountService: AccountService,
-//        private stateStorageService: StateStorageService
+            private stateStorageService: StateStorageService,
     ) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> {
@@ -22,32 +20,20 @@ export class UserRouteAccessService implements CanActivate {
         return this.checkLogin(authorities, state.url);
     }
 
-    checkLogin(authorities: string[], url: string): Promise<boolean> {
-        return this.accountService.identity().then(account => {
-            if (!authorities || authorities.length === 0) {
-                return true;
-            }
-
-            if (account) {
-                const hasAnyAuthority = this.accountService.hasAnyAuthority(authorities);
-                if (hasAnyAuthority) {
+    checkLogin(authorities: string[], url: string): boolean {
+            
+            if (this.accountService.isAuthenticated()) {
                     return true;
-                }
-                if (isDevMode()) {
-                    console.error('User has not any of required authorities: ', authorities);
-                }
+            }else{
+                this.stateStorageService.storeUrl(url);
+                this.router.navigate(['login']).then(() => {
+                                
+                //messaggio richiesta login
+
+                });
                 return false;
+                
             }
 
-            //this.stateStorageService.storeUrl(url);
-            this.router.navigate(['accessdenied']).then(() => {
-                // only show the login dialog, if the user hasn't logged in yet
-                if (!account) {
-                    //this.loginModalService.open();
-                    alert('Tu qui non puoi entrare');
-                }
-            });
-            return false;
-        });
     }
 }

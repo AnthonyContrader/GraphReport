@@ -2,35 +2,51 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class StateStorageService {
+
+    previousState : { name: any, params: any } = null;
+    destinationState : {
+        destination: {
+            name: any,
+            data: any,
+        },
+        params: any,
+        from: {
+            name: any,
+        }
+    } = null;
+    previousUrl : string = '';
+    
+
     constructor() {}
 
     getPreviousState() {
-        return sessionStorage.getItem('previousState');
+        return this.previousState;
     }
 
     resetPreviousState() {
-        sessionStorage.clear();
+        this.previousState = null;
+        this.destinationState = null;
+        this.previousUrl = "";
     }
 
     storePreviousState(previousStateName, previousStateParams) {
-        const previousState = { name: previousStateName, params: previousStateParams };
-        sessionStorage.setItem('previousState', JSON.stringify(previousState));
+        this.previousState = { name: previousStateName, params: previousStateParams };
     }
 
     getDestinationState() {
-        return sessionStorage.getItem('destinationState');
+        return this.destinationState;
     }
 
     storeUrl(url: string) {
-        sessionStorage.setItem('previousUrl', url);
+        this.previousUrl = url;
     }
 
     getUrl() {
-        return sessionStorage.getItem('previousUrl');
+        return this.previousUrl;
     }
 
     storeDestinationState(destinationState, destinationStateParams, fromState) {
-        const destinationInfo = {
+        this.destinationState = {
             destination: {
                 name: destinationState.name,
                 data: destinationState.data
@@ -40,6 +56,5 @@ export class StateStorageService {
                 name: fromState.name
             }
         };
-        sessionStorage.setItem('destinationState', JSON.stringify(destinationInfo));
     }
 }

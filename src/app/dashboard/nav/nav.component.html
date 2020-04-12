@@ -1,20 +1,34 @@
-<div class="navbar">
-    <div class="logo">
-        <img src="../../../assets/ori.png" (click)="apriqualcosa('home')" />
+<div style="background-color: gainsboro;">
+    <div class="navbar">
+        <div class="logo">
+            <img src="../../../assets/ori.png" (click)="apriqualcosa('home')" />
+        </div>
+        <div class="elcont">
+            <label class="el" (click)="apriqualcosa('um')" [ngClass]="(selected=='um') ? 'el selected' : 'el'">
+                unita di misura
+            </label>
+            <label class="el" (click)="apriqualcosa('ds')" [ngClass]="(selected=='ds') ? 'el selected' : 'el'">
+                data set
+            </label>
+            <label class="el" (click)="apriqualcosa('gr')" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
+                grafici
+            </label>
+        </div>
+        <div class="dropdown-contenitor el" >
+            <label class="personal">
+                Ciao 
+            </label>
+            <div class="dropdown">
+                <div class="eldrop" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
+                    profilo
+                </div>
+                <div class="eldrop" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
+                    lista utenti
+                </div>
+                <div (click)="logout()" class="eldrop" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
+                    log out
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="elcont">
-        <label class="el" (click)="apriqualcosa('um')" [ngClass]="(selected=='um') ? 'el selected' : 'el'">
-            unita di misura
-        </label>
-        <label class="el" (click)="apriqualcosa('ds')" [ngClass]="(selected=='ds') ? 'el selected' : 'el'">
-            data set
-        </label>
-        <label class="el" (click)="apriqualcosa('gr')" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
-            grafici
-        </label>
-    </div>
-    <div class="personal el">
-        log out
-    </div>
-
 </div>

@@ -7,10 +7,11 @@ import { SERVER_API_URL } from '../app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class AuthServerProvider {
+
     constructor(private http: HttpClient) {}
 
     getToken() {
-        return localStorage.retrieve('authenticationToken') || sessionStorage.retrieve('authenticationToken');
+        return localStorage.getItem('key') || sessionStorage.getItem('key');
     }
 
     login(credentials): Observable<any> {
@@ -19,7 +20,7 @@ export class AuthServerProvider {
             password: credentials.password,
             rememberMe: credentials.rememberMe
         };
-        return this.http.post<any>(SERVER_API_URL + 'api/authenticate', data, { observe: 'response' }).pipe(map(authenticateSuccess.bind(this)));
+        return this.http.post<any>(SERVER_API_URL + '/api/authenticate', data, { observe: 'response' }).pipe(map(authenticateSuccess.bind(this)));
 
         function authenticateSuccess(resp) {
             const bearerToken = resp.headers.get('Authorization');
@@ -42,9 +43,9 @@ export class AuthServerProvider {
 
     storeAuthenticationToken(jwt, rememberMe) {
         if (rememberMe) {
-            localStorage.setItem('authenticationToken', jwt);
+            localStorage.setItem('key', jwt);
         } else {
-            sessionStorage.setItem('authenticationToken', jwt);
+            sessionStorage.setItem('key', jwt);
         }
     }
 

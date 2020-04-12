@@ -12,19 +12,31 @@ export class AccountService {
     private authenticated = false;
     private authenticationState = new Subject<any>();
 
-    constructor(private http: HttpClient, private trackerService: JhiTrackerService) {}
+    constructor(private http: HttpClient, private trackerService: JhiTrackerService) {
+        if(localStorage.getItem('identity')){
+            this.authenticate(localStorage.getItem('identity'));
+        }
+    }
 
     fetch(): Observable<HttpResponse<AccountDTO>> {
-        return this.http.get<AccountDTO>(SERVER_API_URL + 'api/account', { observe: 'response' });
+        return this.http.get<AccountDTO>(SERVER_API_URL + '/api/account', { observe: 'response' });
     }
 
     save(account: any): Observable<HttpResponse<any>> {
-        return this.http.post(SERVER_API_URL + 'api/account', account, { observe: 'response' });
+        return this.http.post(SERVER_API_URL + '/api/account', account, { observe: 'response' });
     }
 
     authenticate(identity) {
-        this.userIdentity = identity;
-        this.authenticated = identity !== null;
+        if (identity) {
+            this.userIdentity = identity;
+            localStorage.setItem('identity',identity)
+            this.authenticated = true;
+            this.trackerService.connect();
+        } else {
+            localStorage.clear();
+            this.userIdentity = null;
+            this.authenticated = false;
+        }
         this.authenticationState.next(this.userIdentity);
     }
 
@@ -58,8 +70,9 @@ export class AccountService {
     }
 
     identity(force?: boolean): Promise<any> {
+        
         if (force) {
-            this.userIdentity = undefined;
+            this.userIdentity = null;
         }
 
         // check and see if we have retrieved the userIdentity data from the server.
@@ -69,20 +82,12 @@ export class AccountService {
         }
 
         // retrieve the userIdentity data from the server, update the identity object, and then resolve.
-        return this.fetch()
+        return new Promise((resolve, reject) => this.fetch()
             .toPromise()
             .then(response => {
                 const account = response.body;
-                if (account) {
-                    this.userIdentity = account;
-                    this.authenticated = true;
-                    this.trackerService.connect();
-                } else {
-                    this.userIdentity = null;
-                    this.authenticated = false;
-                }
-                this.authenticationState.next(this.userIdentity);
-                return this.userIdentity;
+                this.authenticate(account);
+                return resolve(this.userIdentity);
             })
             .catch(err => {
                 if (this.trackerService.stompClient && this.trackerService.stompClient.connected) {
@@ -91,8 +96,8 @@ export class AccountService {
                 this.userIdentity = null;
                 this.authenticated = false;
                 this.authenticationState.next(this.userIdentity);
-                return null;
-            });
+                return reject(null);
+            }));
     }
 
     isAuthenticated(): boolean {
