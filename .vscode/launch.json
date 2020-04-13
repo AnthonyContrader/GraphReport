@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-JHipsterRegistryApp<jhipster-registry>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "io.github.jhipster.registry.JHipsterRegistryApp",
+            "projectName": "jhipster-registry",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GraphApp<graph>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "it.contrader.graphreport.GraphApp",
+            "projectName": "graph",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApp<gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "it.contrader.graphreport.GatewayApp",
+            "projectName": "gateway",
+            "args": ""
+        }
+    ]
+}

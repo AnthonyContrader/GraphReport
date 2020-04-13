@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "it.contrader.graphreport"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "microservice",
+    "baseName": "dataset",
+    "packageName": "it.contrader.graphreport",
+    "packageFolder": "it/contrader/graphreport",
+    "serverPort": "8083",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "oracle",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NTJhNjE1MTY5YzQ2MDVlZjQ3YTU3MjU2ZjNkMGE4Zjc2MjQwZjhhYTg1ZjA2Y2FjMDUxODkyOTMyZWEzZjBhZmQ2YjU4YzZiMjIzZDVjODQ0YTUyMWQ0YjlmNDQ0ZTdlMzIwMGZmMTNlYTA2MTk5NGU5NzJkYzZkMjZlZDVlOTY=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1586445685661,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

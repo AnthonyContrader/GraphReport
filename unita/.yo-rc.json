@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "it.contrader.graphreport"
+    },
+    "jhipsterVersion": "5.2.1",
+    "applicationType": "microservice",
+    "baseName": "unita",
+    "packageName": "it.contrader.graphreport",
+    "packageFolder": "it/contrader/graphreport",
+    "serverPort": "8082",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "oracle",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "bf01a946b1df64145bfa5ab539f3c9648b6e1655",
+    "enableTranslation": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

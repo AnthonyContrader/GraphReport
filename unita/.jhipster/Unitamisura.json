@@ -1,0 +1,27 @@
+{
+    "name": "Unitamisura",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "categoria",
+            "otherEntityName": "categoria",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200410135951",
+    "entityTableName": "unitamisura",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "unita"
+}
