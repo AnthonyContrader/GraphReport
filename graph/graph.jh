@@ -1,0 +1,44 @@
+enum TipoGrafico{
+	LINE,
+    BAR,
+    RADAR,
+    PIE,
+    DOUGHNUT,
+    POLARAREA,
+    BUBBLE,
+    SCATTER
+}
+
+enum FontStyle{
+	COURIER,
+    HELVETICANEUE,
+    HELVETICA,
+    ARIAL
+}
+
+entity Graph{
+	id Long,
+	tipoGrafico TipoGrafico,
+    titoloBool Boolean,
+    titolo String,
+    fontStyle FontStyle,
+    posTitolo String,
+    legenda Boolean,
+    posLegenda String,
+    pareto Boolean
+}
+
+entity MtM{
+	utente Long,
+    asse String,
+    tipoSet TipoGrafico,
+    colore String
+}
+
+relationship ManyToOne{
+	MtM to Graph
+}
+
+dto Graph, MtM with mapstruct
+service Graph, MtM with serviceImpl
+paginate Graph, MtM with pagination

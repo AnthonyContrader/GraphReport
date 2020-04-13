@@ -1,0 +1,41 @@
+{
+    "name": "MtM",
+    "fields": [
+        {
+            "fieldName": "utente",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "asse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoSet",
+            "fieldType": "TipoGrafico",
+            "fieldValues": "LINE,BAR,RADAR,PIE,DOUGHNUT,POLARAREA,BUBBLE,SCATTER"
+        },
+        {
+            "fieldName": "colore",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "graph",
+            "otherEntityRelationshipName": "mtM",
+            "relationshipName": "graph",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200412184255",
+    "entityTableName": "mt_m",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "graph",
+    "applications": "*",
+    "microserviceName": "graph"
+}

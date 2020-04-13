@@ -21,7 +21,7 @@
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "ZmJhYTljMGM1ZmQ4OTMwY2FjMGE0MDdjNGFkMDc5ZDQzZmUyYmJiNTAwMTdmYWJlNThiYmM4ZjZkZmRmZTM0MGMwYmJjYmExMjI2NjQwODU5ZDBlZTZiNWJmNGI5ZWNjYzQ5NmYwYmQ5NmMwMmZkNTExZjM2MDk3NmRiNTc2NzU=",
+    "jwtSecretKey": "MTVmNzJlYTc2ZTgxYjczOTYwZTY5NmUyYmU4ZmJmNGUyODYzMWRkZDFmOTk3NzRlN2MzOTRlYzJlNmVlZDIwMjBmOGY0NTI1OWExNGZkMzFmYzUzZmUxZDY1Y2M2ODgwNzhjYWZkY2RjMDFkNDQ4NjFiZWFlNGUyM2E3ZjI2MjQ=",
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",

@@ -1,0 +1,57 @@
+{
+    "name": "Graph",
+    "fields": [
+        {
+            "fieldName": "tipoGrafico",
+            "fieldType": "TipoGrafico",
+            "fieldValues": "LINE,BAR,RADAR,PIE,DOUGHNUT,POLARAREA,BUBBLE,SCATTER"
+        },
+        {
+            "fieldName": "titoloBool",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "titolo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fontStyle",
+            "fieldType": "FontStyle",
+            "fieldValues": "COURIER,HELVETICANEUE,HELVETICA,ARIAL"
+        },
+        {
+            "fieldName": "posTitolo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "legenda",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "posLegenda",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pareto",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "mtM",
+            "otherEntityRelationshipName": "graph",
+            "relationshipName": "mtM"
+        }
+    ],
+    "changelogDate": "20200412184254",
+    "entityTableName": "graph",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "graph",
+    "applications": "*",
+    "microserviceName": "graph"
+}
