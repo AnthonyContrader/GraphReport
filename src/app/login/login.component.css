@@ -103,3 +103,40 @@ label {
 .invalid-input{
     border-bottom: solid 2px red;
 }
+
+
+/** Messaggi modal */
+.msg-modal{
+    border: 1px solid;
+    border-radius: 5px;
+    position: fixed;
+    top: 25%;
+    margin: auto;
+    left:0px;
+    right: 0px;
+    width: 40%;
+    min-width: 300px;
+    padding: 10px 15px;
+    display: ruby;
+} 
+
+.msg-modal-close{
+    cursor: pointer;
+    float: right;
+    opacity: 0.5;
+} 
+
+.msg-modal-close:hover{
+    opacity: 1;
+}
+
+.error-color{
+    color: #b81636;
+    border-color: #ff0000;
+    background-color: #fcc6c6;
+}
+
+.hidden{
+    display: none;
+}
+/** */

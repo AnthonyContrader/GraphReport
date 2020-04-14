@@ -11,6 +11,7 @@ import { AuthInterceptor } from 'src/authJWT/interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from 'src/authJWT/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from 'src/authJWT/interceptor/notification.interceptor';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    DashboardModule
+    DashboardModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

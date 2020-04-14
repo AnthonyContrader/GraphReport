@@ -3,6 +3,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { LoginService } from 'src/authJWT/login.service';
 import { Router } from '@angular/router';
 import { StateStorageService } from 'src/authJWT/state-storage.service';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,13 @@ import { StateStorageService } from 'src/authJWT/state-storage.service';
 })
 export class LoginComponent implements OnInit {
 
-  authenticationError: boolean;
+  authenticationError: number = 0;
   password: string;
   rememberMe: boolean;
   username: string;
   credentials: any;
+
+  faTimes = faTimes;
 
   constructor(
     private eventManager: JhiEventManager,
@@ -37,7 +40,7 @@ export class LoginComponent implements OnInit {
                 rememberMe: false
             })
             .then(() => {
-                this.authenticationError = false;
+                this.authenticationError = 0;
                 
                 this.eventManager.broadcast({
                     name: 'authenticationSuccess',
@@ -53,9 +56,12 @@ export class LoginComponent implements OnInit {
                 
             })
             .catch(() => {
-                this.authenticationError = true;
-                alert("errore");
+                this.authenticationError = 1;
             });
+  }
+
+  resetErr(){
+    this.authenticationError = 0;
   }
 
 }
