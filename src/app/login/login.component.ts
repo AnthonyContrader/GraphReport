@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   authenticationError: number = 0;
   password: string;
-  rememberMe: boolean;
+  rememberMe: boolean = false;
   username: string;
   credentials: any;
 
