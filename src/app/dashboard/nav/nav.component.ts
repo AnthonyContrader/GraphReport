@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/authJWT/login.service';
 import { Router } from '@angular/router';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-nav',
@@ -12,6 +14,8 @@ export class NavComponent implements OnInit {
   nome : string;
   isAdmin : boolean;
   selected : string = "home";
+
+  arrowDown = faCaretDown;
 
   constructor(private router: Router,private loginService: LoginService) {
     if(localStorage.getItem('identity')){

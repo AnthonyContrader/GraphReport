@@ -1,22 +1,24 @@
 <div style="background-color: gainsboro;">
     <div class="navbar">
-        <div class="logo">
+        <div class="logo" style="width: 30%;">
             <img src="../../../assets/ori.png" (click)="apriqualcosa('home')" />
         </div>
-        <div class="elcont">
-            <label class="el" (click)="apriqualcosa('um')" [ngClass]="(selected=='um') ? 'el selected' : 'el'">
-                unita di misura
-            </label>
-            <label class="el" (click)="apriqualcosa('ds')" [ngClass]="(selected=='ds') ? 'el selected' : 'el'">
-                data set
-            </label>
-            <label class="el" (click)="apriqualcosa('gr')" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
-                grafici
-            </label>
+        <div style="width: 40%;">
+            <div class="elcont" >
+                <label class="el" (click)="apriqualcosa('um')" [ngClass]="(selected=='um') ? 'el selected' : 'el'">
+                    unita di misura
+                </label>
+                <label class="el" (click)="apriqualcosa('ds')" [ngClass]="(selected=='ds') ? 'el selected' : 'el'">
+                    data set
+                </label>
+                <label class="el" (click)="apriqualcosa('gr')" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">
+                    grafici
+                </label>
+            </div>
         </div>
-        <div class="dropdown-contenitor el" >
+        <div class="dropdown-contenitor el" style="float: right;">
             <label class="personal">
-                Ciao {{nome}}
+               {{nome}} <fa-icon [icon]="arrowDown"></fa-icon>
             </label>
             <div class="dropdown">
                 <div class="eldrop" [ngClass]="(selected=='gr') ? 'el selected' : 'el'">

@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { UserRouteAccessService } from 'src/authJWT/user-route-access-service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { UserRouteAccessService } from 'src/authJWT/user-route-access-service';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    FontAwesomeModule
   ],
   providers: [
     UserRouteAccessService
