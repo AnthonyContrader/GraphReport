@@ -28,6 +28,9 @@ public class Graph implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "utente")
+    private Long utente;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_grafico")
     private TipoGrafico tipoGrafico;
@@ -63,6 +66,19 @@ public class Graph implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUtente() {
+        return utente;
+    }
+
+    public Graph utente(Long utente) {
+        this.utente = utente;
+        return this;
+    }
+
+    public void setUtente(Long utente) {
+        this.utente = utente;
     }
 
     public TipoGrafico getTipoGrafico() {
@@ -219,6 +235,7 @@ public class Graph implements Serializable {
     public String toString() {
         return "Graph{" +
             "id=" + getId() +
+            ", utente=" + getUtente() +
             ", tipoGrafico='" + getTipoGrafico() + "'" +
             ", titoloBool='" + isTitoloBool() + "'" +
             ", titolo='" + getTitolo() + "'" +

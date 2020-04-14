@@ -45,6 +45,9 @@ import it.contrader.graphreport.domain.enumeration.FontStyle;
 @SpringBootTest(classes = GraphApp.class)
 public class GraphResourceIntTest {
 
+    private static final Long DEFAULT_UTENTE = 1L;
+    private static final Long UPDATED_UTENTE = 2L;
+
     private static final TipoGrafico DEFAULT_TIPO_GRAFICO = TipoGrafico.LINE;
     private static final TipoGrafico UPDATED_TIPO_GRAFICO = TipoGrafico.BAR;
 
@@ -117,6 +120,7 @@ public class GraphResourceIntTest {
      */
     public static Graph createEntity(EntityManager em) {
         Graph graph = new Graph()
+            .utente(DEFAULT_UTENTE)
             .tipoGrafico(DEFAULT_TIPO_GRAFICO)
             .titoloBool(DEFAULT_TITOLO_BOOL)
             .titolo(DEFAULT_TITOLO)
@@ -149,6 +153,7 @@ public class GraphResourceIntTest {
         List<Graph> graphList = graphRepository.findAll();
         assertThat(graphList).hasSize(databaseSizeBeforeCreate + 1);
         Graph testGraph = graphList.get(graphList.size() - 1);
+        assertThat(testGraph.getUtente()).isEqualTo(DEFAULT_UTENTE);
         assertThat(testGraph.getTipoGrafico()).isEqualTo(DEFAULT_TIPO_GRAFICO);
         assertThat(testGraph.isTitoloBool()).isEqualTo(DEFAULT_TITOLO_BOOL);
         assertThat(testGraph.getTitolo()).isEqualTo(DEFAULT_TITOLO);
@@ -190,6 +195,7 @@ public class GraphResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(graph.getId().intValue())))
+            .andExpect(jsonPath("$.[*].utente").value(hasItem(DEFAULT_UTENTE.intValue())))
             .andExpect(jsonPath("$.[*].tipoGrafico").value(hasItem(DEFAULT_TIPO_GRAFICO.toString())))
             .andExpect(jsonPath("$.[*].titoloBool").value(hasItem(DEFAULT_TITOLO_BOOL.booleanValue())))
             .andExpect(jsonPath("$.[*].titolo").value(hasItem(DEFAULT_TITOLO.toString())))
@@ -211,6 +217,7 @@ public class GraphResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(graph.getId().intValue()))
+            .andExpect(jsonPath("$.utente").value(DEFAULT_UTENTE.intValue()))
             .andExpect(jsonPath("$.tipoGrafico").value(DEFAULT_TIPO_GRAFICO.toString()))
             .andExpect(jsonPath("$.titoloBool").value(DEFAULT_TITOLO_BOOL.booleanValue()))
             .andExpect(jsonPath("$.titolo").value(DEFAULT_TITOLO.toString()))
@@ -242,6 +249,7 @@ public class GraphResourceIntTest {
         // Disconnect from session so that the updates on updatedGraph are not directly saved in db
         em.detach(updatedGraph);
         updatedGraph
+            .utente(UPDATED_UTENTE)
             .tipoGrafico(UPDATED_TIPO_GRAFICO)
             .titoloBool(UPDATED_TITOLO_BOOL)
             .titolo(UPDATED_TITOLO)
@@ -261,6 +269,7 @@ public class GraphResourceIntTest {
         List<Graph> graphList = graphRepository.findAll();
         assertThat(graphList).hasSize(databaseSizeBeforeUpdate);
         Graph testGraph = graphList.get(graphList.size() - 1);
+        assertThat(testGraph.getUtente()).isEqualTo(UPDATED_UTENTE);
         assertThat(testGraph.getTipoGrafico()).isEqualTo(UPDATED_TIPO_GRAFICO);
         assertThat(testGraph.isTitoloBool()).isEqualTo(UPDATED_TITOLO_BOOL);
         assertThat(testGraph.getTitolo()).isEqualTo(UPDATED_TITOLO);

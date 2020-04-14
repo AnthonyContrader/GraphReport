@@ -17,21 +17,22 @@ enum FontStyle{
 }
 
 entity Graph{
-	id Long,
-	tipoGrafico TipoGrafico,
-    titoloBool Boolean,
-    titolo String,
-    fontStyle FontStyle,
-    posTitolo String,
-    legenda Boolean,
-    posLegenda String,
+	id Long
+	utente Long
+	tipoGrafico TipoGrafico
+    titoloBool Boolean
+    titolo String
+    fontStyle FontStyle
+    posTitolo String
+    legenda Boolean
+    posLegenda String
     pareto Boolean
 }
 
 entity MtM{
-	utente Long,
-    asse String,
-    tipoSet TipoGrafico,
+	utente Long
+    asse String
+    tipoSet TipoGrafico
     colore String
 }
 

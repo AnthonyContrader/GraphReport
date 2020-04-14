@@ -11,6 +11,8 @@ public class GraphDTO implements Serializable {
 
     private Long id;
 
+    private Long utente;
+
     private TipoGrafico tipoGrafico;
 
     private Boolean titoloBool;
@@ -34,6 +36,14 @@ public class GraphDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Long utente) {
+        this.utente = utente;
     }
 
     public TipoGrafico getTipoGrafico() {
@@ -125,6 +135,7 @@ public class GraphDTO implements Serializable {
     public String toString() {
         return "GraphDTO{" +
             "id=" + getId() +
+            ", utente=" + getUtente() +
             ", tipoGrafico='" + getTipoGrafico() + "'" +
             ", titoloBool='" + isTitoloBool() + "'" +
             ", titolo='" + getTitolo() + "'" +

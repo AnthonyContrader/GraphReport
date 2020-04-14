@@ -2,6 +2,10 @@
     "name": "Graph",
     "fields": [
         {
+            "fieldName": "utente",
+            "fieldType": "Long"
+        },
+        {
             "fieldName": "tipoGrafico",
             "fieldType": "TipoGrafico",
             "fieldValues": "LINE,BAR,RADAR,PIE,DOUGHNUT,POLARAREA,BUBBLE,SCATTER"
