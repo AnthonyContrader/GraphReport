@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             .login({
                 username: this.username,
                 password: this.password,
-                rememberMe: false
+                rememberMe: this.rememberMe
             })
             .then(() => {
                 this.authenticationError = 0;

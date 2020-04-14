@@ -13,9 +13,11 @@ export class AccountService {
     private authenticationState = new Subject<any>();
 
     constructor(private http: HttpClient, private trackerService: JhiTrackerService) {
-        if(localStorage.getItem('identity')){
+        if(localStorage.getItem('identity'))
             this.authenticate(localStorage.getItem('identity'));
-        }
+        if(sessionStorage.getItem('identity'))
+            this.authenticate(sessionStorage.getItem('identity'));
+        
     }
 
     fetch(): Observable<HttpResponse<AccountDTO>> {
@@ -85,7 +87,12 @@ export class AccountService {
             .toPromise()
             .then(response => {
                 const account = response.body;
-                localStorage.setItem('identity',JSON.stringify(account));
+
+                if(localStorage.getItem('key'))
+                    localStorage.setItem('identity',JSON.stringify(account));
+                if(sessionStorage.getItem('key'))
+                    sessionStorage.setItem('identity',JSON.stringify(account));
+                    
                 this.authenticate(account);
                 return resolve(this.userIdentity);
             })

@@ -7,6 +7,9 @@
             <input #u="ngModel" required type="username" [(ngModel)]="username" name="username" placeholder="User" [ngClass]="(u.invalid && u.touched) ? 'invalid-input' : ''" />
             <br>
             <input #p="ngModel" required type="password" [(ngModel)]="password" name="password" placeholder="Password" [ngClass]="(p.invalid && p.touched) ? 'invalid-input' : ''" />
+            <div style="clear: both;">
+                <input id="remMe" name="rememberMe" type="checkbox" [(ngModel)]="rememberMe" style="width:min-content; margin: 10px;"> <label for="remMe">Ricordami</label>
+            </div>
             <button (click)="login()" [disabled]="f.invalid">Accedi</button>
             <div class="line">
                 <p class="or">ALTRIMENTI</p>

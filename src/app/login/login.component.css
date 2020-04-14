@@ -76,7 +76,7 @@ input {
     color: red;
 }
 
-label {
+.label {
     padding: 12px 12px 12px 0;
     font-weight: bold;
 	float: center;
