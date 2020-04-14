@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { UserRouteAccessService } from 'src/authJWT/user-route-access-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GraphComponent } from '../graph/graph.component';
+
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DashboardComponent,
     HeaderComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    GraphComponent,
   ],
   imports: [
     CommonModule,

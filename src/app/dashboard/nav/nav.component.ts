@@ -13,7 +13,7 @@ export class NavComponent implements OnInit {
 
   nome : string;
   isAdmin : boolean;
-  selected : string = "home";
+  selected : string = this.router.url.split('/')[2];
 
   arrowDown = faCaretDown;
 
@@ -34,8 +34,31 @@ export class NavComponent implements OnInit {
   apriqualcosa(el : string){
     this.selected = el;
 
-    //route alla pagina
+    switch(el){
+      case 'graph':
+        this.router.navigate(['home/graph']);
+        break;
 
+      case 'ds':
+        //this.router.navigate(['graph']);
+        break;
+
+      case 'um':
+        //this.router.navigate(['graph']);
+        break;
+
+      case 'pr':
+        //this.router.navigate(['graph']);
+        break;
+
+      case 'lu':
+        //this.router.navigate(['graph']);
+        break;
+
+      default:
+        this.router.navigate(['home']);
+        break;
+    }
   }
 
   logout(){
