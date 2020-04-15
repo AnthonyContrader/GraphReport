@@ -25,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 
@@ -60,6 +62,9 @@ public class GraphResourceIntTest {
     private static final FontStyle DEFAULT_FONT_STYLE = FontStyle.COURIER;
     private static final FontStyle UPDATED_FONT_STYLE = FontStyle.HELVETICANEUE;
 
+    private static final Integer DEFAULT_FONT_SIZE = 1;
+    private static final Integer UPDATED_FONT_SIZE = 2;
+
     private static final String DEFAULT_POS_TITOLO = "AAAAAAAAAA";
     private static final String UPDATED_POS_TITOLO = "BBBBBBBBBB";
 
@@ -71,6 +76,12 @@ public class GraphResourceIntTest {
 
     private static final Boolean DEFAULT_PARETO = false;
     private static final Boolean UPDATED_PARETO = true;
+
+    private static final LocalDate DEFAULT_CREATED = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATED = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_MODIFY = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_MODIFY = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private GraphRepository graphRepository;
@@ -125,10 +136,13 @@ public class GraphResourceIntTest {
             .titoloBool(DEFAULT_TITOLO_BOOL)
             .titolo(DEFAULT_TITOLO)
             .fontStyle(DEFAULT_FONT_STYLE)
+            .fontSize(DEFAULT_FONT_SIZE)
             .posTitolo(DEFAULT_POS_TITOLO)
             .legenda(DEFAULT_LEGENDA)
             .posLegenda(DEFAULT_POS_LEGENDA)
-            .pareto(DEFAULT_PARETO);
+            .pareto(DEFAULT_PARETO)
+            .created(DEFAULT_CREATED)
+            .modify(DEFAULT_MODIFY);
         return graph;
     }
 
@@ -158,10 +172,13 @@ public class GraphResourceIntTest {
         assertThat(testGraph.isTitoloBool()).isEqualTo(DEFAULT_TITOLO_BOOL);
         assertThat(testGraph.getTitolo()).isEqualTo(DEFAULT_TITOLO);
         assertThat(testGraph.getFontStyle()).isEqualTo(DEFAULT_FONT_STYLE);
+        assertThat(testGraph.getFontSize()).isEqualTo(DEFAULT_FONT_SIZE);
         assertThat(testGraph.getPosTitolo()).isEqualTo(DEFAULT_POS_TITOLO);
         assertThat(testGraph.isLegenda()).isEqualTo(DEFAULT_LEGENDA);
         assertThat(testGraph.getPosLegenda()).isEqualTo(DEFAULT_POS_LEGENDA);
         assertThat(testGraph.isPareto()).isEqualTo(DEFAULT_PARETO);
+        assertThat(testGraph.getCreated()).isEqualTo(DEFAULT_CREATED);
+        assertThat(testGraph.getModify()).isEqualTo(DEFAULT_MODIFY);
     }
 
     @Test
@@ -200,10 +217,13 @@ public class GraphResourceIntTest {
             .andExpect(jsonPath("$.[*].titoloBool").value(hasItem(DEFAULT_TITOLO_BOOL.booleanValue())))
             .andExpect(jsonPath("$.[*].titolo").value(hasItem(DEFAULT_TITOLO.toString())))
             .andExpect(jsonPath("$.[*].fontStyle").value(hasItem(DEFAULT_FONT_STYLE.toString())))
+            .andExpect(jsonPath("$.[*].fontSize").value(hasItem(DEFAULT_FONT_SIZE)))
             .andExpect(jsonPath("$.[*].posTitolo").value(hasItem(DEFAULT_POS_TITOLO.toString())))
             .andExpect(jsonPath("$.[*].legenda").value(hasItem(DEFAULT_LEGENDA.booleanValue())))
             .andExpect(jsonPath("$.[*].posLegenda").value(hasItem(DEFAULT_POS_LEGENDA.toString())))
-            .andExpect(jsonPath("$.[*].pareto").value(hasItem(DEFAULT_PARETO.booleanValue())));
+            .andExpect(jsonPath("$.[*].pareto").value(hasItem(DEFAULT_PARETO.booleanValue())))
+            .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())))
+            .andExpect(jsonPath("$.[*].modify").value(hasItem(DEFAULT_MODIFY.toString())));
     }
     
     @Test
@@ -222,10 +242,13 @@ public class GraphResourceIntTest {
             .andExpect(jsonPath("$.titoloBool").value(DEFAULT_TITOLO_BOOL.booleanValue()))
             .andExpect(jsonPath("$.titolo").value(DEFAULT_TITOLO.toString()))
             .andExpect(jsonPath("$.fontStyle").value(DEFAULT_FONT_STYLE.toString()))
+            .andExpect(jsonPath("$.fontSize").value(DEFAULT_FONT_SIZE))
             .andExpect(jsonPath("$.posTitolo").value(DEFAULT_POS_TITOLO.toString()))
             .andExpect(jsonPath("$.legenda").value(DEFAULT_LEGENDA.booleanValue()))
             .andExpect(jsonPath("$.posLegenda").value(DEFAULT_POS_LEGENDA.toString()))
-            .andExpect(jsonPath("$.pareto").value(DEFAULT_PARETO.booleanValue()));
+            .andExpect(jsonPath("$.pareto").value(DEFAULT_PARETO.booleanValue()))
+            .andExpect(jsonPath("$.created").value(DEFAULT_CREATED.toString()))
+            .andExpect(jsonPath("$.modify").value(DEFAULT_MODIFY.toString()));
     }
 
     @Test
@@ -254,10 +277,13 @@ public class GraphResourceIntTest {
             .titoloBool(UPDATED_TITOLO_BOOL)
             .titolo(UPDATED_TITOLO)
             .fontStyle(UPDATED_FONT_STYLE)
+            .fontSize(UPDATED_FONT_SIZE)
             .posTitolo(UPDATED_POS_TITOLO)
             .legenda(UPDATED_LEGENDA)
             .posLegenda(UPDATED_POS_LEGENDA)
-            .pareto(UPDATED_PARETO);
+            .pareto(UPDATED_PARETO)
+            .created(UPDATED_CREATED)
+            .modify(UPDATED_MODIFY);
         GraphDTO graphDTO = graphMapper.toDto(updatedGraph);
 
         restGraphMockMvc.perform(put("/api/graphs")
@@ -274,10 +300,13 @@ public class GraphResourceIntTest {
         assertThat(testGraph.isTitoloBool()).isEqualTo(UPDATED_TITOLO_BOOL);
         assertThat(testGraph.getTitolo()).isEqualTo(UPDATED_TITOLO);
         assertThat(testGraph.getFontStyle()).isEqualTo(UPDATED_FONT_STYLE);
+        assertThat(testGraph.getFontSize()).isEqualTo(UPDATED_FONT_SIZE);
         assertThat(testGraph.getPosTitolo()).isEqualTo(UPDATED_POS_TITOLO);
         assertThat(testGraph.isLegenda()).isEqualTo(UPDATED_LEGENDA);
         assertThat(testGraph.getPosLegenda()).isEqualTo(UPDATED_POS_LEGENDA);
         assertThat(testGraph.isPareto()).isEqualTo(UPDATED_PARETO);
+        assertThat(testGraph.getCreated()).isEqualTo(UPDATED_CREATED);
+        assertThat(testGraph.getModify()).isEqualTo(UPDATED_MODIFY);
     }
 
     @Test

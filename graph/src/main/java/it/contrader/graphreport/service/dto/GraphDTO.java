@@ -1,4 +1,5 @@
 package it.contrader.graphreport.service.dto;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 import it.contrader.graphreport.domain.enumeration.TipoGrafico;
@@ -21,6 +22,8 @@ public class GraphDTO implements Serializable {
 
     private FontStyle fontStyle;
 
+    private Integer fontSize;
+
     private String posTitolo;
 
     private Boolean legenda;
@@ -28,6 +31,10 @@ public class GraphDTO implements Serializable {
     private String posLegenda;
 
     private Boolean pareto;
+
+    private LocalDate created;
+
+    private LocalDate modify;
 
 
     public Long getId() {
@@ -78,6 +85,14 @@ public class GraphDTO implements Serializable {
         this.fontStyle = fontStyle;
     }
 
+    public Integer getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize(Integer fontSize) {
+        this.fontSize = fontSize;
+    }
+
     public String getPosTitolo() {
         return posTitolo;
     }
@@ -110,6 +125,22 @@ public class GraphDTO implements Serializable {
         this.pareto = pareto;
     }
 
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModify() {
+        return modify;
+    }
+
+    public void setModify(LocalDate modify) {
+        this.modify = modify;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -140,10 +171,13 @@ public class GraphDTO implements Serializable {
             ", titoloBool='" + isTitoloBool() + "'" +
             ", titolo='" + getTitolo() + "'" +
             ", fontStyle='" + getFontStyle() + "'" +
+            ", fontSize=" + getFontSize() +
             ", posTitolo='" + getPosTitolo() + "'" +
             ", legenda='" + isLegenda() + "'" +
             ", posLegenda='" + getPosLegenda() + "'" +
             ", pareto='" + isPareto() + "'" +
+            ", created='" + getCreated() + "'" +
+            ", modify='" + getModify() + "'" +
             "}";
     }
 }

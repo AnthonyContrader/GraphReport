@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -45,6 +46,9 @@ public class Graph implements Serializable {
     @Column(name = "font_style")
     private FontStyle fontStyle;
 
+    @Column(name = "font_size")
+    private Integer fontSize;
+
     @Column(name = "pos_titolo")
     private String posTitolo;
 
@@ -56,6 +60,12 @@ public class Graph implements Serializable {
 
     @Column(name = "pareto")
     private Boolean pareto;
+
+    @Column(name = "created")
+    private LocalDate created;
+
+    @Column(name = "jhi_modify")
+    private LocalDate modify;
 
     @OneToMany(mappedBy = "graph")
     private Set<MtM> mtMS = new HashSet<>();
@@ -133,6 +143,19 @@ public class Graph implements Serializable {
         this.fontStyle = fontStyle;
     }
 
+    public Integer getFontSize() {
+        return fontSize;
+    }
+
+    public Graph fontSize(Integer fontSize) {
+        this.fontSize = fontSize;
+        return this;
+    }
+
+    public void setFontSize(Integer fontSize) {
+        this.fontSize = fontSize;
+    }
+
     public String getPosTitolo() {
         return posTitolo;
     }
@@ -183,6 +206,32 @@ public class Graph implements Serializable {
 
     public void setPareto(Boolean pareto) {
         this.pareto = pareto;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public Graph created(LocalDate created) {
+        this.created = created;
+        return this;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public LocalDate getModify() {
+        return modify;
+    }
+
+    public Graph modify(LocalDate modify) {
+        this.modify = modify;
+        return this;
+    }
+
+    public void setModify(LocalDate modify) {
+        this.modify = modify;
     }
 
     public Set<MtM> getMtMS() {
@@ -240,10 +289,13 @@ public class Graph implements Serializable {
             ", titoloBool='" + isTitoloBool() + "'" +
             ", titolo='" + getTitolo() + "'" +
             ", fontStyle='" + getFontStyle() + "'" +
+            ", fontSize=" + getFontSize() +
             ", posTitolo='" + getPosTitolo() + "'" +
             ", legenda='" + isLegenda() + "'" +
             ", posLegenda='" + getPosLegenda() + "'" +
             ", pareto='" + isPareto() + "'" +
+            ", created='" + getCreated() + "'" +
+            ", modify='" + getModify() + "'" +
             "}";
     }
 }

@@ -41,6 +41,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="font_size" type="integer">
+                <constraints nullable="true" />
+            </column>
+
             <column name="pos_titolo" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -54,6 +58,14 @@
             </column>
 
             <column name="pareto" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="created" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_modify" type="date">
                 <constraints nullable="true" />
             </column>
 

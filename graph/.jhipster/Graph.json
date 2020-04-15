@@ -24,6 +24,10 @@
             "fieldValues": "COURIER,HELVETICANEUE,HELVETICA,ARIAL"
         },
         {
+            "fieldName": "fontSize",
+            "fieldType": "Integer"
+        },
+        {
             "fieldName": "posTitolo",
             "fieldType": "String"
         },
@@ -38,6 +42,14 @@
         {
             "fieldName": "pareto",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "created",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "modify",
+            "fieldType": "LocalDate"
         }
     ],
     "relationships": [

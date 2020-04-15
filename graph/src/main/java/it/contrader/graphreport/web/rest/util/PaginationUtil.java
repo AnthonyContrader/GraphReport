@@ -1,5 +1,8 @@
 package it.contrader.graphreport.web.rest.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -36,6 +39,9 @@ public final class PaginationUtil {
         link += "<" + generateUri(baseUrl, lastPage, page.getSize()) + ">; rel=\"last\",";
         link += "<" + generateUri(baseUrl, 0, page.getSize()) + ">; rel=\"first\"";
         headers.add(HttpHeaders.LINK, link);
+        List<String> list = new ArrayList<String>();
+        list.add("X-Total-Count");
+        headers.setAccessControlExposeHeaders(list);
         return headers;
     }
 

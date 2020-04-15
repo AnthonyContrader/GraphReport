@@ -61,7 +61,14 @@ public class GraphServiceImpl implements GraphService {
             .map(graphMapper::toDto);
     }
 
-
+    @Transactional(readOnly = true)
+    public Page<GraphDTO> findAllByUser(Long user,Pageable pageable) {
+        log.debug("Request to get all Graphs");
+        return graphRepository.findAllByUtente(user,pageable)
+            .map(graphMapper::toDto);
+    }
+    
+    
     /**
      * Get one graph by id.
      *

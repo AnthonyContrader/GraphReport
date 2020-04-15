@@ -4,11 +4,14 @@ import it.contrader.graphreport.web.rest.errors.BadRequestAlertException;
 import it.contrader.graphreport.web.rest.util.HeaderUtil;
 import it.contrader.graphreport.web.rest.util.PaginationUtil;
 import it.contrader.graphreport.service.dto.GraphDTO;
+import it.contrader.graphreport.service.impl.GraphServiceImpl;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +34,9 @@ public class GraphResource {
 
     private static final String ENTITY_NAME = "graphGraph";
 
-    private final GraphService graphService;
+    private final GraphServiceImpl graphService;
 
-    public GraphResource(GraphService graphService) {
+    public GraphResource(GraphServiceImpl graphService) {
         this.graphService = graphService;
     }
 
@@ -90,7 +93,16 @@ public class GraphResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/graphs");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
-
+    
+    @GetMapping("/getByUt")
+    public ResponseEntity<List<GraphDTO>> getGraphsByUser(@RequestParam("id") Long id,@RequestParam("page") int npage,@RequestParam("size") int size,@RequestParam("sort") String sort) {
+        log.debug("REST request to get a page of Graphs by user");
+        Pageable p = PageRequest.of(npage, size, Sort.by(sort));
+        Page<GraphDTO> page = graphService.findAllByUser(id,p);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/graphs");
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+    
     /**
      * GET  /graphs/:id : get the "id" graph.
      *

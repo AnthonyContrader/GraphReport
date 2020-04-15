@@ -23,10 +23,13 @@ entity Graph{
     titoloBool Boolean
     titolo String
     fontStyle FontStyle
+    fontSize Integer
     posTitolo String
     legenda Boolean
     posLegenda String
     pareto Boolean
+    created LocalDate
+    modify LocalDate
 }
 
 entity MtM{
