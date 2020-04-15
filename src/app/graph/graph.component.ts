@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { GraphDTO } from 'src/dto/graph.dto';
-import { GraphService } from 'src/service/graph.service';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
-
-CUSTOM_ELEMENTS_SCHEMA 
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { GraphListComponent } from './graph-list/graph-list.component';
 
 @Component({
   selector: 'app-graph',
@@ -12,14 +9,51 @@ CUSTOM_ELEMENTS_SCHEMA
 })
 export class GraphComponent implements OnInit {
 
-  loaded: boolean = false;
-  listGraph : GraphDTO[];
-  userId : number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
+  @ViewChild(GraphListComponent) childList: GraphListComponent;
 
-  constructor(private service : GraphService) { }
+  userId : number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
+  graph: number = -1;
+  op: string = null;
+  whereId: number;
+  ok = faCheck;
+  ann= faTimes;
+  err: number = 0;
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.service.getGraphListByUser(this.userId,0,20,['titolo']).subscribe(x => {this.listGraph=x; this.loaded=true;});
+  }
+
+  confDel(del){
+    this.op = 'del';
+    this.whereId=del;
+  }
+
+  conf(b:boolean){
+
+    if(b){
+      switch(this.op){
+        case 'del':
+          console.warn('elimina grafico '+this.whereId);
+          console.warn('elimina set relativi');
+          break;
+      }
+    }
+
+    this.op=null;
+    this.whereId=0;
+
+  }
+
+  modify(m:number){
+    this.graph=m;
+  }
+
+  checkOp(result:boolean){
+    if(result)
+      this.childList.update();
+    else
+    this.err=1;
   }
 
 }

@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { UserRouteAccessService } from 'src/authJWT/user-route-access-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { GraphComponent } from '../graph/graph.component';
+import { GraphModule } from '../graph/graph.module';
 
 
 
@@ -17,12 +17,12 @@ import { GraphComponent } from '../graph/graph.component';
     HeaderComponent,
     HomeComponent,
     NavComponent,
-    GraphComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    GraphModule
   ],
   providers: [
     UserRouteAccessService

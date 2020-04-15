@@ -1,18 +1,21 @@
+import { FontStyle } from './fontStyle.enum';
+import { TipoGrafico } from './tipoGrafico.enum';
+
 export class GraphDTO{
 
 	id : number;
 
 	utente : number;
-	
+
+	tipoGrafico : TipoGrafico;
+
 	titoloBool : boolean;
 	
     titolo : string;
     
-	fontStyle : string;
+	fontStyle : FontStyle;
 	
 	fontSize : number;
-	
-	tipografico : string;
 	
 	posTitolo : string;
 	
@@ -22,18 +25,20 @@ export class GraphDTO{
 	
 	pareto : boolean;
 
-	created : string;
+	created : Date;
 
-	modify : string;
+	modify : Date;
 
-	constructor(id : number, utente : number, titolobool : boolean, titolo : string,font : string, size: number, tipografico : string,posTitolo : string,legenda : boolean,posLegenda : string,pareto : boolean, created : string, modify : string){
+	constructor(id : number, utente : number, titolobool : boolean, titolo : string,font : FontStyle, size: number, tipografico : TipoGrafico,posTitolo : string,
+													legenda : boolean,posLegenda : string,pareto : boolean, created : Date, modify : Date){
+
 		this.id=id;
 		this.utente=utente;
 		this.titoloBool=titolobool;
 		this.titolo=titolo;
 		this.fontStyle=font;
 		this.fontSize=size;
-		this.tipografico=tipografico;
+		this.tipoGrafico=tipografico;
 		this.posTitolo=posTitolo;
 		this.legenda=legenda;
 		this.posLegenda=posLegenda;

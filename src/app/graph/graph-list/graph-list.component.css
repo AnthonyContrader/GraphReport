@@ -1,0 +1,66 @@
+.linkCRUD {
+	width: min-content;
+	cursor: pointer;
+}
+
+.red-h:hover{
+    color:crimson;
+}
+
+.table{
+	margin: auto; 
+	display: flex;
+	width: max-content;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+
+.tr{
+    border-bottom: 1px solid #dee2e6;
+}
+
+.th, .tc{
+	text-align: center;
+    padding: 3px 10px;
+}
+
+.tc, .tcrud {
+	min-height:18px;
+    max-height:40px;
+}
+
+.th {
+	background-color: #00a990;
+	color: #ffffff;
+	position: inherit;
+    width: 100px;
+}
+
+.table > tr:first-of-type > th:first-of-type{
+	border-radius: 10px 0 0 0;
+}
+
+.table > tr:first-of-type > th:last-of-type{
+	border-radius: 0 10px 0 0;
+}
+
+.table > tr:last-of-type > td:first-of-type{
+	border-radius: 10px 0 0 0;
+}
+
+.table > tr:last-of-type > td:last-of-type{
+	border-radius: 0 10px 0 0;
+}
+
+.tr:hover{
+    cursor: pointer;
+    border-bottom: 1px solid #8B51CA;
+}
+
+.grey{
+    background-color: #f2f2f2;
+}
+
+.white{
+    background-color: white;
+}

@@ -1,0 +1,49 @@
+<label><strong>Crea nuovo</strong></label>
+<div class="contenitore">
+
+    <label >Tipologia Grafico</label>
+    <select [(ngModel)]="graph.tipoGrafico"> 
+        <option *ngFor="let c of keys(enumTipo)" [value]="c">{{enumTipo[c] | titlecase}}</option> 
+    </select>
+    <div class="cntOption">
+        <div>
+            <label for="optTit" class="lblOption" style="margin:0px 3px">Titolo</label>
+            <input type="text" class="inpOption" [(ngModel)]="graph.titolo" style="margin:0px 3px"/>
+            <input id="optTit" type="checkbox" class="inpOption" [(ngModel)]="graph.titoloBool" style="margin:0px 3px;width:max-content"/>
+            <label for="optTit" class="lblOption" style="margin:0px 3px">Mostra Titolo</label><br>
+            <label style="margin-top:3px">Font</label>
+            <select [(ngModel)]="graph.fontStyle"> 
+                <option *ngFor="let c of keys(enumFont)" [value]="c">{{enumFont[c] | titlecase}}</option> 
+            </select>
+            <div style="display: flex;">
+                <div style="width:40%;padding:0 1px;">
+                    <label style="margin-top:3px">Size</label>
+                    <input [(ngModel)]="graph.fontSize" type="number"  />
+                </div>
+                <div style="width:60%;padding:0 1px;">
+                    <label style="margin-top:3px;width: 100%;">Position:</label>
+                    <select [(ngModel)]="graph.posTitolo"> 
+                        <option value="top">Top</option> 
+                        <option value="bottom">Bottom</option> 
+                        <option value="left">Left</option> 
+                        <option value="right">Right</option> 
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cntOption">
+        <div>
+            <input id="optLeg" type="checkbox" class="inpOption" [(ngModel)]="graph.legenda" style="margin:0px 3px;width:max-content"/>
+            <label class="lblOption" style="margin:0px 3px;" for="optLeg">Mostra Legenda</label><br>
+            <label style="margin-top:3px;width: 100%;">Position:</label>
+            <select [(ngModel)]="graph.posLegenda"> 
+                <option value="top">Top</option> 
+                <option value="bottom">Bottom</option> 
+                <option value="left">Left</option> 
+                <option value="right">Right</option> 
+            </select>
+        </div>
+    </div>
+    <button (click)="crea()" class="menubtn">Salva</button>
+</div>

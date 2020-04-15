@@ -1,0 +1,68 @@
+.contenitore{
+    width: 250px;
+}
+
+label{
+    margin: 10px 4px 0 4px;
+}
+
+input{
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    padding: 1px 8px;
+    margin: 0 4px;
+}
+
+select{
+    width: 100%;
+    padding: 1px 0 1px 3px ;
+    border-radius: 15px;
+    border: none;
+    margin: 0px 4px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%);
+  background-position:
+    calc(100% - 13px),
+    calc(100% - 8px);
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+
+}
+
+.cntOption{
+    border: white solid 1px;
+    border-top: none;
+    border-right: none;
+    margin-top: 20px;
+    border-radius: 0 0 0 10px;
+}
+
+.cntOption > div{
+    position: relative;
+    top: -15px;
+}
+
+.menubtn{
+    width: 100%;
+    text-align: center;
+    background-color: #263238;
+    color: #f1f1f1;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menubtn:focus {
+    background-color: #334247;
+}
+
+.menubtn:hover {
+    background-color: #59737c;
+}

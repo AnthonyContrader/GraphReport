@@ -36,6 +36,13 @@
     }
 }
 
+.full{
+    min-width: 350px;
+    padding:10px;
+    height: max-content;
+    box-sizing: border-box;
+}
+
 .cont{
     margin:auto;
     max-width: 500px;
@@ -47,3 +54,68 @@
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
 }
+
+/** Messaggi modal */
+.msg-modal{
+    border: 1px solid;
+    border-radius: 5px;
+    position: fixed;
+    top: 25%;
+    margin: auto;
+    left:0px;
+    right: 0px;
+    max-width: 60%;
+    width: max-content;
+    padding: 10px 15px;
+} 
+
+.msg-modal > div{
+    text-align: center;
+}
+
+.msg-modal-close{
+    cursor: pointer;
+    float: right;
+    opacity: 0.5;
+} 
+
+.msg-modal-close:hover{
+    opacity: 1;
+}
+
+.error-color{
+    color: #b81636;
+    border-color: #ff0000;
+    background-color: #fcc6c6;
+}
+
+.conf-color{
+    color: #0e7594;
+    border-color: #0b7392;
+    background-color: #dbf7ff;
+}
+
+.hidden{
+    display: none;
+}
+
+.confbutton, .annbutton{
+	cursor: pointer;
+	padding: 10px 20px; 
+    margin: auto;
+    left:0px;
+    right:0px;
+    opacity: 0.5;
+}
+
+.confbutton:hover{
+    opacity: 1;
+    color: green;
+}
+
+.annbutton:hover{
+    opacity: 1;
+    color: red;
+}
+
+/** */

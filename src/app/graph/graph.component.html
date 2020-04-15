@@ -1,12 +1,46 @@
 <div class="page">
+    <div class="full">
+        <div class="cont">
+            <app-graph-modify [show]="graph" ></app-graph-modify>
+        </div>
+    </div>
     <div class="half">
         <div class="cont">
-            <app-graph-list></app-graph-list>
+            <app-graph-list [search]="userId" (toDelete)="confDel($event)" (toShow)="modify($event)"></app-graph-list>
         </div>
     </div>
     <div class="half dx">
-        <div class="cont">
-            aaa
+        <div class="cont" style="background-color: #666;color: white;">
+            <app-graph-create (resOp)="checkOp($event)"></app-graph-create>
         </div>
+    </div>
+</div>
+<div [ngClass]="(op) ? 'msg-modal conf-color' : 'hidden'">
+<!--
+    <div class="msg-modal-close">
+        <fa-icon [icon]="faTimes" (click)="resetErr()"></fa-icon>
+    </div>
+-->
+    <div *ngIf="op==='del'">
+        <strong>Attenzione!</strong><br> Proseguendo non sarà più possibile recuperare questo grafico.<br>Si desidera proseguire?
+    </div>
+    <div style="display:flex">
+        <div style="width:50%;display: contents;">
+            <fa-icon [icon]="ann" style="font-size: 1.5em;" class="annbutton" (click)="conf(false)"></fa-icon>
+        </div>
+        <div style="width:50%;display: contents;">
+            <fa-icon fa-2x [icon]="ok" style="font-size: 1.5em;" class="confbutton" (click)="conf(true)"></fa-icon>
+        </div>
+            
+    </div>
+
+</div>
+
+<div [ngClass]="(err) ? 'msg-modal error-color' : 'hidden'">
+    <div class="msg-modal-close">
+        <fa-icon [icon]="ann" (click)="err=0"></fa-icon>
+    </div>
+    <div *ngIf="err===1">
+        <strong>Errore!</strong><br>Impossibile creare: si prega di riprovare.
     </div>
 </div>
