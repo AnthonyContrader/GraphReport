@@ -7,6 +7,8 @@ import { GraphDTO } from 'src/dto/graph.dto';
 import { UserDTO } from 'src/dto/user.dto';
 import { mtmDTO } from 'src/dto/mtm.dto';
 
+import { SERVER_API_URL } from '../authJWT/app.constants';
+
 @Injectable({
     providedIn: 'root'
   })
@@ -14,15 +16,15 @@ import { mtmDTO } from 'src/dto/mtm.dto';
 
     constructor(http: HttpClient) {
         super(http);
-        this.type = 'graph';
+        this.type = '/graph/api';
       }
 
       public getUtenti() : Observable<UserDTO[]>{
         return this.http.get<any>("http://localhost:8080/user/getall");
       }
 
-      getGraphListByUser(id : number) : Observable<GraphDTO[]>{
-        return this.http.get<any>("http://localhost:8080/"+this.type+"/getAllByUser?id="+id);
+      getGraphListByUser(id: number, page: number, size: number, sort: string[]) : Observable<any>{
+        return this.http.get<any>(SERVER_API_URL+this.type+"/getByUt?id="+id+"&page="+page+"&size="+size+"&sort="+sort);
       }
 
 //      getDsList(id : number) : Observable<DataSetDTO[]>{

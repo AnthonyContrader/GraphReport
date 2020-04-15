@@ -33,30 +33,31 @@ export class NavComponent implements OnInit {
 
   apriqualcosa(el : string){
     this.selected = el;
+    let path="dashboard/";
 
     switch(el){
       case 'graph':
-        this.router.navigate(['home/graph']);
+        this.router.navigate([path+el]);
         break;
 
       case 'ds':
-        //this.router.navigate(['graph']);
+        this.router.navigate([path+el]);
         break;
 
       case 'um':
-        //this.router.navigate(['graph']);
+        this.router.navigate([path+el]);
         break;
 
       case 'pr':
-        //this.router.navigate(['graph']);
+        this.router.navigate([path+el]);
         break;
 
       case 'lu':
-        //this.router.navigate(['graph']);
+        this.router.navigate([path+el]);
         break;
 
       default:
-        this.router.navigate(['home']);
+        this.router.navigate([path]);
         break;
     }
   }

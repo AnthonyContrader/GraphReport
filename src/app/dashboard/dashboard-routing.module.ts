@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: 'home', component: DashboardComponent, canActivate: [ UserRouteAccessService ], children:[
+  { path: 'dashboard', component: DashboardComponent, canActivate: [ UserRouteAccessService ], children:[
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'graph', component: GraphComponent },
   ]}
