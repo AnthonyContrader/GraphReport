@@ -37,7 +37,7 @@ export class DataSetService extends AbstractService<DataSetDTO>{
 //  }
 
 //  getListCat(): Observable<CategoriaDTO[]> {
-//        return this.http.get<any>('http://localhost:8080/categoria/getall');
+//    return this.http.get<any>('http://localhost:8080/categoria/getall');
 //  }
 
 //  getListUnit(): Observable<UnitaMisuraDTO[]> {
@@ -56,9 +56,9 @@ export class DataSetService extends AbstractService<DataSetDTO>{
 //    return this.http.get<any>('http://localhost:8080/' + this.type + '/deletedataset?ut='+ut+'&cat='+cat);
 //  }
 
-//  getDataSet(ut: number,cat:number){
-//    return this.http.get<any>('http://localhost:8080/' + this.type + '/getDataSet?id='+ut+'&cat='+cat);
-//  }
+  getDataSet(ut: number,cat:number){
+    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + '/getDataSet?id='+ut+'&cat='+cat);
+  }
 
 //  updateDS(dtoList: DataSetDTO[]) : Observable<boolean>{
 //    return this.http.post<any>('http://localhost:8080/' + this.type + '/updateDS',dtoList);

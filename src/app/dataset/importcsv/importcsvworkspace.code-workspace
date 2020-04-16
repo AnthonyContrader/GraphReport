@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\.."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.classpath": true,
+			"**/.project": true,
+			"**/.settings": true,
+			"**/.factorypath": true
+		},
+		"liveServer.settings.multiRootWorkspaceName": "graphreport-angular",
+		"liveServer.settings.port": 5501,
+		"vscode.tsc.compiler.alertTSConfigChanges": "never"
+	}
+}

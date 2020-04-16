@@ -1,0 +1,96 @@
+<div class="row">
+    <p>ciao Tonio tvb♥</p>
+    <!-- <div class="col-sm" style="padding-top:35px">
+        <form class="center" *ngIf="usertype=='ADMIN'" style="width:300px;">
+			<label>Visualizza DataSet dell'utente</label>
+			<select name="idUtVis" [value]="idDaVedere" (change)="caricaDS($event.target.value)">
+				<option *ngFor="let c of utList" [value]="c.id" [selected]="c.id==utId">{{c.username}}</option>
+            </select>
+        </form>
+        <ng-container *ngIf="(nDS!=undefined && nDS.length>0); else noDS">
+            <div class="centraDiv" *ngFor="let nd of nDS">
+                <div class="newCat">
+                    <div class="divCRUD" style="width:20%;" *ngIf="nd.utente==utId">
+                        <a [routerLink]="[pathModify]" [queryParams]="{id: nd.categoria}"><div class="linkCRUD">Modifica</div></a>
+                        <label (click)="dele(nd.categoria)"><div class="linkCRUD">Elimina</div></label>
+                    </div>
+                    <h1>{{nd.categoriaN}}</h1>
+                </div>
+                <br>
+                <div class="table marginBot">
+                    <ng-container *ngFor="let dto of dtoList;">
+                        <ng-container  *ngIf="dto.categoria==nd.categoria">
+                            <div  class="cols" >
+                                <div class="th tc">
+                                    {{dto.unitaMisuraN}}
+                                    <div class="btnComm toltip" *ngIf="dto.commento!=''">
+                                        <img src="../../assets/comm.png"/>
+                                        <span class="toltiptext">
+                                            <p> {{dto.commento}} </p>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div *ngFor="let val of dto.valore.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tc grey' : 'tc white'">
+                                    {{val}}
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>    
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #noDS>
+            <div class="noDS">
+                <h1>Nessun DataSet presente!</h1>
+            </div>
+        </ng-template>
+
+    </div>
+    <div class="col-sm">
+        <div style="padding-top: 25px;">
+            
+            <h1>Crea nuovo DataSet</h1>
+            <br>
+            <form style="min-width:270px" [formGroup]="createForm" (ngSubmit)="createDS(createForm.value)">
+                <label><strong>Categoria</strong></label>
+                <select formControlName="cat" required>
+                    <option [ngValue]="null" style="color:grey" selected>Scegli una categoria</option>
+                    <option *ngFor="let c of catList" [value]="c.id">{{c.nome}}</option>
+                </select>
+                <label style="margin-top:5px"><strong>Unità di misura:</strong></label>
+                <br>
+                <select formControlName="ump" required>
+                    <option [ngValue]="null" style="color:grey">Primo set di valori</option>
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
+                </select>
+                <select formControlName="ums" required>
+                    <option [ngValue]="null" style="color:grey">Secondo set di valori</option>
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
+                </select>
+                <button type="submit">Crea</button>
+            </form>
+
+        </div>
+    </div>
+    <div *ngIf="err!=0" class="error">
+        <label class="closerr" (click)="closerror()">[X] Chiudi</label>
+        <container-element [ngSwitch]="err">
+            <p *ngSwitchCase="1">
+                <strong>Errore imprevisto:</strong> Impossibile creare nuovo DataSet!<br>Si consiglia di riprovare.
+            </p>
+            <p *ngSwitchCase="2">
+                <strong>Impossibile creare nuovo:</strong> DataSet esistente!<br>Si consiglia di modificare quello esistente.
+            </p>
+            <p *ngSwitchCase="3">
+                <strong>Attenzione!</strong> <br> Per proseguire è necessario compilare tutti i campi!
+            </p>
+        </container-element>
+    </div>
+    <div *ngIf="del!=0" class="error">
+        <p>
+            <strong>Sei sicuro di voler eliminare questo DataSet?</strong>
+        </p>
+        <label class="delbutton" (click)="deleteDS(del)">Prosegui</label>
+        <label class="delbutton" (click)="del=0">Annulla</label>
+    </div> -->
+</div>
