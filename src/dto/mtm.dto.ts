@@ -1,17 +1,22 @@
+import { DataSetDTO } from './dataSet.dto';
+
 export class mtmDTO{
 
-    utente : Number;
+    id: number;
 
-    graphId : number;
+    dataSet : DataSetDTO;
 
     asse : string;
-
+    
     tipoSet : string;
 
     colore : string;
 
-    constructor(utente: number, graph: number, asse: string, tipoSet: string, colore: string){
-        this.utente=utente;
+    graphId : number;
+
+    constructor(id:number,dataset: DataSetDTO, graph: number, asse: string, tipoSet: string, colore: string){
+        this.id=id;
+        this.dataSet=dataset;
         this.asse=asse;
         this.colore=colore;
         this.graphId=graph;

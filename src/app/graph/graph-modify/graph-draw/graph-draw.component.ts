@@ -3,6 +3,9 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { GraphService } from 'src/service/graph.service';
+import { mtmDTO } from 'src/dto/mtm.dto';
+import { DataSetService } from 'src/service/DataSetService';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -23,8 +26,9 @@ export class GraphDrawComponent implements OnInit {
   tipo: string;
 
   ready: boolean = false;
+  assi: mtmDTO[];
 
-  constructor(private service: GraphService) { }
+  constructor(private service: GraphService,private dsService: DataSetService) { }
 
   ngOnInit(): void {
     if(this.graph)
@@ -35,7 +39,9 @@ export class GraphDrawComponent implements OnInit {
     let promise = new Promise((response,reject) => {
       this.service.getIdAssi(this.graph).subscribe(
         x => {
-          
+          this.assi=x;
+          //this.assi.forEach(x => { this.dsService.read() });
+          //this.dsService.getAll().pipe(filter(x => x.id==this.graph))
           return response(true);
         },
         err =>{
