@@ -4,7 +4,6 @@
     background: cornsilk;
     padding:10px;
     box-sizing: border-box;
-    
 }
 
 .half{
@@ -37,15 +36,16 @@
 }
 
 .full{
+    max-width: calc(100vw - 20px);
     min-width: 350px;
     padding:10px;
     height: max-content;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .cont{
     margin:auto;
-    max-width: 500px;
     width:max-content;
     background-color: white;
     border-radius: 5px;
@@ -53,6 +53,9 @@
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 /** Messaggi modal */

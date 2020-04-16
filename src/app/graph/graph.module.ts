@@ -6,18 +6,22 @@ import { GraphComponent } from './graph.component';
 import { GraphListComponent } from './graph-list/graph-list.component';
 import { GraphCreateComponent } from './graph-create/graph-create.component';
 import { GraphModifyComponent } from './graph-modify/graph-modify.component';
+import { GraphDrawComponent } from './graph-modify/graph-draw/graph-draw.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     GraphComponent,
     GraphListComponent,
     GraphCreateComponent,
-    GraphModifyComponent,    
+    GraphModifyComponent,
+    GraphDrawComponent,    
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [GraphComponent]

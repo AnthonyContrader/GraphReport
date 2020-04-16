@@ -37,7 +37,7 @@ export class GraphListComponent implements OnInit {
   }
 
   show(s:number){
-    this.modify.emit(s);
+    this.modify.emit(JSON.stringify(this.listGraph.filter(x => x.id == s)));
   }
 
 

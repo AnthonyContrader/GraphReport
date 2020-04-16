@@ -1,0 +1,16 @@
+<div *ngIf="(ready) else noAssi">
+    <canvas baseChart width="400" height="400"
+        [datasets]="data"
+        [labels]="label"
+        [options]="option"
+        [legend]="legend"
+        [chartType]="tipo">
+    </canvas>
+</div>
+<ng-template #noAssi>
+    <div style="width: max-content;margin: auto;left: 0;right: 0;">
+        <fa-icon [icon]="wait" [spin]="true" size="2x"></fa-icon>
+    </div>
+</ng-template>
+
+ 
