@@ -9,6 +9,7 @@ import { UserRouteAccessService } from 'src/authJWT/user-route-access-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GraphModule } from '../graph/graph.module';
 import { DatasetComponent } from '../dataset/dataset.component';
+import { UnitaComponent } from '../unitamisura/unita.component';
 
 
 
@@ -20,12 +21,14 @@ import { DatasetComponent } from '../dataset/dataset.component';
     HomeComponent,
     NavComponent,
     DatasetComponent,
+    UnitaComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     FontAwesomeModule,
     GraphModule,
+
   ],
   providers: [
     UserRouteAccessService

@@ -42,7 +42,7 @@ export class NavComponent implements OnInit {
         this.router.navigate([path+el]);
         break;
 
-      case 'um':
+      case 'unita':
         this.router.navigate([path+el]);
         break;
 
