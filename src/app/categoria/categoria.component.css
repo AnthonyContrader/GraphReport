@@ -1,0 +1,61 @@
+/*
+*{
+  text-align: center;
+}
+
+
+table {
+border: 1px solid;
+width: 100%;
+float: left;
+border-radius: 20px;
+-moz-border-radius: 1px;
+margin: 20px auto;
+position: absolute;
+left: 0;
+right: 0;
+}
+
+th, td {
+text-align: center;
+padding: 0px;
+}
+
+td{
+  font-size: 16px;
+}
+
+
+tr:nth-child(even) {
+background-color: #ffdb99;
+}
+
+th {
+background-color: darkorange;
+color: #ffffff;
+}
+
+a:hover {
+color: #999999;
+}
+
+input, select{
+  background-color: inherit;
+  font-size: inherit;
+}
+
+input:hover,  input:active, input:focus{
+  border: 2px solid crimson;
+}
+
+button:hover{
+  background-color: crimson;
+}
+
+.btn btn-success btn-sm{
+  color: #fff;
+  background-color: darkgreen;
+  border-color: darkgreen;
+  margin-top: 3px;
+}
+*/
