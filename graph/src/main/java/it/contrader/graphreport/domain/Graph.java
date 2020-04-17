@@ -45,6 +45,9 @@ public class Graph implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "font_style")
     private FontStyle fontStyle;
+    
+    @Column(name = "font_color")
+    private String fontColor;
 
     @Column(name = "font_size")
     private Integer fontSize;
@@ -210,6 +213,14 @@ public class Graph implements Serializable {
 
     public LocalDate getCreated() {
         return created;
+    }
+    
+    public String getFontColor() {
+    	return this.fontColor;
+    }
+    
+    public void setFontColor(String color) {
+    	this.fontColor = color;
     }
 
     public Graph created(LocalDate created) {

@@ -6,6 +6,8 @@ import it.contrader.graphreport.domain.Graph;
 import it.contrader.graphreport.repository.GraphRepository;
 import it.contrader.graphreport.service.GraphService;
 import it.contrader.graphreport.service.dto.GraphDTO;
+import it.contrader.graphreport.service.impl.GraphServiceImpl;
+import it.contrader.graphreport.service.impl.MtMServiceImpl;
 import it.contrader.graphreport.service.mapper.GraphMapper;
 import it.contrader.graphreport.web.rest.errors.ExceptionTranslator;
 
@@ -90,7 +92,10 @@ public class GraphResourceIntTest {
     private GraphMapper graphMapper;
 
     @Autowired
-    private GraphService graphService;
+    private GraphServiceImpl graphService;
+    
+    @Autowired
+    private MtMServiceImpl mtMService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -114,7 +119,7 @@ public class GraphResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final GraphResource graphResource = new GraphResource(graphService);
+        final GraphResource graphResource = new GraphResource(graphService, mtMService);
         this.restGraphMockMvc = MockMvcBuilders.standaloneSetup(graphResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

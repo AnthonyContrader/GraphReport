@@ -1,6 +1,6 @@
 package it.contrader.graphreport.service.mapper;
 
-import it.contrader.graphreport.domain.*;
+import it.contrader.graphreport.domain.MtM;
 import it.contrader.graphreport.service.dto.MtMDTO;
 
 import org.mapstruct.*;
@@ -12,10 +12,14 @@ import org.mapstruct.*;
 public interface MtMMapper extends EntityMapper<MtMDTO, MtM> {
 
     @Mapping(source = "graph.id", target = "graphId")
+    @Mapping(source = "dataSet", target = "dataSet.id")
     MtMDTO toDto(MtM mtM);
 
     @Mapping(source = "graphId", target = "graph")
+    @Mapping(source = "dataSet.id", target = "dataSet")
     MtM toEntity(MtMDTO mtMDTO);
+    
+    
 
     default MtM fromId(Long id) {
         if (id == null) {

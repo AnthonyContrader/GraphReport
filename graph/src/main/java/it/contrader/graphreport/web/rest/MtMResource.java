@@ -4,6 +4,7 @@ import it.contrader.graphreport.web.rest.errors.BadRequestAlertException;
 import it.contrader.graphreport.web.rest.util.HeaderUtil;
 import it.contrader.graphreport.web.rest.util.PaginationUtil;
 import it.contrader.graphreport.service.dto.MtMDTO;
+import it.contrader.graphreport.service.impl.MtMServiceImpl;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +32,9 @@ public class MtMResource {
 
     private static final String ENTITY_NAME = "graphMtM";
 
-    private final MtMService mtMService;
+    private final MtMServiceImpl mtMService;
 
-    public MtMResource(MtMService mtMService) {
+    public MtMResource(MtMServiceImpl mtMService) {
         this.mtMService = mtMService;
     }
 
@@ -116,4 +117,11 @@ public class MtMResource {
         mtMService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @GetMapping("/getMtMByGraph/{id}")
+    public ResponseEntity<List<MtMDTO>> getAllByGraph(@PathVariable Long id) {
+        log.debug("REST request to get all By Graph");
+        return ResponseEntity.ok().body(mtMService.getAllByGraph(id));
+    }
+    
 }

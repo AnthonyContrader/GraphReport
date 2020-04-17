@@ -3,8 +3,12 @@ import it.contrader.graphreport.service.GraphService;
 import it.contrader.graphreport.web.rest.errors.BadRequestAlertException;
 import it.contrader.graphreport.web.rest.util.HeaderUtil;
 import it.contrader.graphreport.web.rest.util.PaginationUtil;
+import it.contrader.graphreport.service.dto.DataSetDTO;
 import it.contrader.graphreport.service.dto.GraphDTO;
+import it.contrader.graphreport.service.dto.MtMDTO;
+import it.contrader.graphreport.service.dto.ToDrawDTO;
 import it.contrader.graphreport.service.impl.GraphServiceImpl;
+import it.contrader.graphreport.service.impl.MtMServiceImpl;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +20,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Graph.
@@ -35,9 +41,13 @@ public class GraphResource {
     private static final String ENTITY_NAME = "graphGraph";
 
     private final GraphServiceImpl graphService;
+    
+    private final MtMServiceImpl mtmService;   
+    
 
-    public GraphResource(GraphServiceImpl graphService) {
+    public GraphResource(GraphServiceImpl graphService, MtMServiceImpl mtmService) {
         this.graphService = graphService;
+        this.mtmService = mtmService;
     }
 
     /**
@@ -128,4 +138,12 @@ public class GraphResource {
         graphService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @GetMapping("/lastModify")
+    public ResponseEntity<GraphDTO> getGraphByLastModify() {
+        log.debug("REST request to get Last Modify Graph");
+        Optional<GraphDTO> graphDTO = graphService.findLastModify();
+        return ResponseUtil.wrapOrNotFound(graphDTO);
+    }
+    
 }

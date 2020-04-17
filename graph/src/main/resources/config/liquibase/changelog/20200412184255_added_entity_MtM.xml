@@ -17,11 +17,11 @@
         Added the entity MtM.
     -->
     <changeSet id="20200412184255-1" author="jhipster">
-        <createTable tableName="mt_m">
+        <createTable tableName="mtm">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="utente" type="bigint">
+            <column name="dsid" type="bigint">
                 <constraints nullable="true" />
             </column>
 

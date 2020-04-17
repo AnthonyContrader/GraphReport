@@ -2,6 +2,7 @@ package it.contrader.graphreport.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 import it.contrader.graphreport.domain.enumeration.TipoGrafico;
+import it.contrader.graphreport.service.dto.DataSetDTO;
 
 /**
  * A DTO for the MtM entity.
@@ -10,7 +11,7 @@ public class MtMDTO implements Serializable {
 
     private Long id;
 
-    private Long utente;
+    private DataSetDTO dataSet;
 
     private String asse;
 
@@ -18,8 +19,9 @@ public class MtMDTO implements Serializable {
 
     private String colore;
 
-
     private Long graphId;
+    
+    
 
     public Long getId() {
         return id;
@@ -29,12 +31,12 @@ public class MtMDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getUtente() {
-        return utente;
+    public DataSetDTO getDataSet() {
+        return dataSet;
     }
 
-    public void setUtente(Long utente) {
-        this.utente = utente;
+    public void setDataSet(DataSetDTO dataSet) {
+        this.dataSet = dataSet;
     }
 
     public String getAsse() {
@@ -68,6 +70,8 @@ public class MtMDTO implements Serializable {
     public void setGraphId(Long graphId) {
         this.graphId = graphId;
     }
+    
+    
 
     @Override
     public boolean equals(Object o) {
@@ -94,7 +98,7 @@ public class MtMDTO implements Serializable {
     public String toString() {
         return "MtMDTO{" +
             "id=" + getId() +
-            ", utente=" + getUtente() +
+            ", dataSet=" + getDataSet() +
             ", asse='" + getAsse() + "'" +
             ", tipoSet='" + getTipoSet() + "'" +
             ", colore='" + getColore() + "'" +

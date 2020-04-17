@@ -37,6 +37,7 @@ entity MtM{
     asse String
     tipoSet TipoGrafico
     colore String
+    label String
 }
 
 relationship ManyToOne{

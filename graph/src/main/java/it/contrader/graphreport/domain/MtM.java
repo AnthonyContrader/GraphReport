@@ -14,7 +14,7 @@ import it.contrader.graphreport.domain.enumeration.TipoGrafico;
  * A MtM.
  */
 @Entity
-@Table(name = "mt_m")
+@Table(name = "mtm")
 public class MtM implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,8 +24,8 @@ public class MtM implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "utente")
-    private Long utente;
+    @Column(name = "dsid")
+    private Long dataSet;
 
     @Column(name = "asse")
     private String asse;
@@ -50,17 +50,17 @@ public class MtM implements Serializable {
         this.id = id;
     }
 
-    public Long getUtente() {
-        return utente;
+    public Long getDataSet() {
+        return dataSet;
     }
 
-    public MtM utente(Long utente) {
-        this.utente = utente;
+    public MtM dataSet(Long dataSet) {
+        this.dataSet = dataSet;
         return this;
     }
 
-    public void setUtente(Long utente) {
-        this.utente = utente;
+    public void setDataSet(Long dataSet) {
+        this.dataSet = dataSet;
     }
 
     public String getAsse() {
@@ -140,7 +140,7 @@ public class MtM implements Serializable {
     public String toString() {
         return "MtM{" +
             "id=" + getId() +
-            ", utente=" + getUtente() +
+            ", dataSet=" + getDataSet() +
             ", asse='" + getAsse() + "'" +
             ", tipoSet='" + getTipoSet() + "'" +
             ", colore='" + getColore() + "'" +

@@ -6,6 +6,7 @@ import it.contrader.graphreport.domain.MtM;
 import it.contrader.graphreport.repository.MtMRepository;
 import it.contrader.graphreport.service.MtMService;
 import it.contrader.graphreport.service.dto.MtMDTO;
+import it.contrader.graphreport.service.impl.MtMServiceImpl;
 import it.contrader.graphreport.service.mapper.MtMMapper;
 import it.contrader.graphreport.web.rest.errors.ExceptionTranslator;
 
@@ -63,7 +64,7 @@ public class MtMResourceIntTest {
     private MtMMapper mtMMapper;
 
     @Autowired
-    private MtMService mtMService;
+    private MtMServiceImpl mtMService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -104,7 +105,7 @@ public class MtMResourceIntTest {
      */
     public static MtM createEntity(EntityManager em) {
         MtM mtM = new MtM()
-            .utente(DEFAULT_UTENTE)
+            .dataSet(DEFAULT_UTENTE)
             .asse(DEFAULT_ASSE)
             .tipoSet(DEFAULT_TIPO_SET)
             .colore(DEFAULT_COLORE);
@@ -132,7 +133,7 @@ public class MtMResourceIntTest {
         List<MtM> mtMList = mtMRepository.findAll();
         assertThat(mtMList).hasSize(databaseSizeBeforeCreate + 1);
         MtM testMtM = mtMList.get(mtMList.size() - 1);
-        assertThat(testMtM.getUtente()).isEqualTo(DEFAULT_UTENTE);
+        assertThat(testMtM.getDataSet()).isEqualTo(DEFAULT_UTENTE);
         assertThat(testMtM.getAsse()).isEqualTo(DEFAULT_ASSE);
         assertThat(testMtM.getTipoSet()).isEqualTo(DEFAULT_TIPO_SET);
         assertThat(testMtM.getColore()).isEqualTo(DEFAULT_COLORE);
@@ -213,7 +214,7 @@ public class MtMResourceIntTest {
         // Disconnect from session so that the updates on updatedMtM are not directly saved in db
         em.detach(updatedMtM);
         updatedMtM
-            .utente(UPDATED_UTENTE)
+            .dataSet(UPDATED_UTENTE)
             .asse(UPDATED_ASSE)
             .tipoSet(UPDATED_TIPO_SET)
             .colore(UPDATED_COLORE);
@@ -228,7 +229,7 @@ public class MtMResourceIntTest {
         List<MtM> mtMList = mtMRepository.findAll();
         assertThat(mtMList).hasSize(databaseSizeBeforeUpdate);
         MtM testMtM = mtMList.get(mtMList.size() - 1);
-        assertThat(testMtM.getUtente()).isEqualTo(UPDATED_UTENTE);
+        assertThat(testMtM.getDataSet()).isEqualTo(UPDATED_UTENTE);
         assertThat(testMtM.getAsse()).isEqualTo(UPDATED_ASSE);
         assertThat(testMtM.getTipoSet()).isEqualTo(UPDATED_TIPO_SET);
         assertThat(testMtM.getColore()).isEqualTo(UPDATED_COLORE);

@@ -13,7 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing MtM.
@@ -86,4 +88,11 @@ public class MtMServiceImpl implements MtMService {
         log.debug("Request to delete MtM : {}", id);
         mtMRepository.deleteById(id);
     }
+    
+    @Transactional(readOnly = true)
+    public List<MtMDTO> getAllByGraph(Long id) {
+        log.debug("Request to get all MtMS");
+        return mtMRepository.findAllByGraph_id(id).stream().map(mtMMapper::toDto).collect(Collectors.toList());
+    }
+    
 }

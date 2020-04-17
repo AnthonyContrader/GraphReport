@@ -40,6 +40,10 @@
             <column name="font_style" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            
+            <column name="font_color" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
 
             <column name="font_size" type="integer">
                 <constraints nullable="true" />

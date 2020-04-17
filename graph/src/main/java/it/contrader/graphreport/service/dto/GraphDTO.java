@@ -21,6 +21,8 @@ public class GraphDTO implements Serializable {
     private String titolo;
 
     private FontStyle fontStyle;
+    
+    private String fontColor;
 
     private Integer fontSize;
 
@@ -139,6 +141,14 @@ public class GraphDTO implements Serializable {
 
     public void setModify(LocalDate modify) {
         this.modify = modify;
+    }
+    
+    public String getFontColor() {
+    	return this.fontColor;
+    }
+    
+    public void setFontColor(String color) {
+    	this.fontColor = color;
     }
 
     @Override
