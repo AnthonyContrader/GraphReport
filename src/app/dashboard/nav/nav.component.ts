@@ -23,7 +23,7 @@ export class NavComponent implements OnInit {
     }else{
       this.nome = JSON.parse(sessionStorage.getItem('identity')).firstName || JSON.parse(sessionStorage.getItem('identity')).login;
     }
-    this.isAdmin = JSON.parse(sessionStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
+    this.isAdmin = JSON.parse(sessionStorage.getItem('identity') || localStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
    }
 
   ngOnInit(): void {

@@ -1,19 +1,21 @@
 <div class="page">
     <div class="full">
-        <div class="cont">
-            <app-graph-modify [show]="graph" ></app-graph-modify>
+        <div class="cont" style="width: 100%;max-width: 1200px;min-width: 350px;">
+            <app-graph-modify [show]="graph" (errore)="catch($event)"></app-graph-modify>
         </div>
     </div>
-    <div class="half">
-        <div class="cont">
-            <app-graph-list [search]="userId" (toDelete)="confDel($event)" (toShow)="modify($event)"></app-graph-list>
+    <div class="full">
+        <div class="half">
+            <div class="cont">
+                <app-graph-list [search]="userId" (toDelete)="confDel($event)" (toShow)="modify($event)"></app-graph-list>
+            </div>
         </div>
-    </div>
-    <div class="half dx">
-        <div class="cont" style="background-color: #666;color: white;">
-            <app-graph-create (resOp)="checkOp($event)"></app-graph-create>
+        <div class="half dx">
+            <div class="cont" style="background-color: #666;color: white;">
+                <app-graph-create (resOp)="checkOp($event)"></app-graph-create>
+            </div>
         </div>
-    </div>
+    </div>  
 </div>
 <div [ngClass]="(op) ? 'msg-modal conf-color' : 'hidden'">
 <!--
@@ -41,6 +43,18 @@
         <fa-icon [icon]="ann" (click)="err=0"></fa-icon>
     </div>
     <div *ngIf="err===1">
-        <strong>Errore!</strong><br>Impossibile creare: si prega di riprovare.
+        <strong>Errore!</strong><br>Impossibile creare il grafico.
+    </div>
+    <div *ngIf="err===2">
+        <strong>Errore!</strong><br>Impossibile recuperare i riferimenti agli assi del grafico.
+    </div>
+    <div *ngIf="err===3">
+        <strong>Errore!</strong><br>Impossibile recuperare i valori degli assi.
+    </div>
+    <div *ngIf="err===4">
+        <strong>Errore!</strong><br>Impossibile eliminare il grafico.
+    </div>
+    <div *ngIf="err===5">
+        <strong>Errore!</strong><br>Impossibile eliminare gli assi del grafico.
     </div>
 </div>

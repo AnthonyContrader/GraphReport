@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { GraphListComponent } from './graph-list/graph-list.component';
+import { GraphDTO } from 'src/dto/graph.dto';
+import { GraphService } from 'src/service/graph.service';
 
 @Component({
   selector: 'app-graph',
@@ -12,14 +14,14 @@ export class GraphComponent implements OnInit {
   @ViewChild(GraphListComponent) childList: GraphListComponent;
 
   userId : number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
-  graph: number = -1;
+  graph: GraphDTO = new GraphDTO(-1,null,null,null,null,null,null,null,null,null,null,null,null);
   op: string = null;
   whereId: number;
   ok = faCheck;
   ann= faTimes;
   err: number = 0;
 
-  constructor() { }
+  constructor(private service: GraphService) { }
 
   ngOnInit(): void {
   }
@@ -34,8 +36,15 @@ export class GraphComponent implements OnInit {
     if(b){
       switch(this.op){
         case 'del':
-          console.warn('elimina grafico '+this.whereId);
-          console.warn('elimina set relativi');
+          this.service.delete(this.whereId).subscribe(
+            () => { this.service.mtmDelete(this.whereId).subscribe(
+              () => { this.childList.update() },
+              err => { err = 5},
+              () => {}
+            )},
+            err => { err = 4 },
+            () => {}
+            );
           break;
       }
     }
@@ -45,8 +54,8 @@ export class GraphComponent implements OnInit {
 
   }
 
-  modify(m:number){
-    this.graph=m;
+  modify(m : GraphDTO){
+    this.graph=m[0];
   }
 
   checkOp(result:boolean){
@@ -54,6 +63,10 @@ export class GraphComponent implements OnInit {
       this.childList.update();
     else
     this.err=1;
+  }
+
+  catch(e:number){
+    this.err=e+1;
   }
 
 }

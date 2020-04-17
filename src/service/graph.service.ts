@@ -40,12 +40,12 @@ import { SERVER_API_URL } from '../authJWT/app.constants';
 //        return this.http.post<any>("http://localhost:8080/"+this.microservicesPath+"/addset",dto);
 //      }
 
-//      delete(id:number): Observable<boolean>{
-//        return this.http.get<any>("http://localhost:8080/"+this.microservicesPath+"/delete?id="+id);
-//      }
+    mtmDelete(id: number): Observable<any> {
+        return this.http.delete(SERVER_API_URL + this.microservicesPath + "/mt-ms/" + id);
+    }
 
       getIdAssi(id : number): Observable<mtmDTO[]>{
-        return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getAllByGraph/"+id);
+        return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getMtMByGraph/"+id);
       }
 
 //      findAll(daCercare: string): Observable<GraphDTO[]> {
