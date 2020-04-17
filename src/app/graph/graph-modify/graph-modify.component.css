@@ -47,10 +47,6 @@ input.nav:checked + label{
     color: white;
 }
 
-.optCont > label{
-    margin: 10px 4px 0 4px;
-}
-
 input{
     width: 100%;
     border: none;
@@ -79,4 +75,40 @@ select{
     5px 5px;
   background-repeat: no-repeat;
 
+}
+
+.minicont{
+    width: 150px;
+    display: inline-table;
+    padding: 0 5px; 
+    box-sizing: border-box;
+}
+
+.minicont > label{
+    margin: 10px 4px 0 10px;
+}
+
+.menubtn{
+    width: 100%;
+    text-align: center;
+    background-color: #263238;
+    color: #f1f1f1;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menubtn:focus {
+    background-color: #334247;
+}
+
+.menubtn:hover {
+    background-color: #59737c;
+}
+
+input[type="color"]{
+    width:50px;
+    height: 20px;
+    padding:2px 5px;
+    box-sizing: border-box;
 }

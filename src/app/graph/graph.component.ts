@@ -14,7 +14,7 @@ export class GraphComponent implements OnInit {
   @ViewChild(GraphListComponent) childList: GraphListComponent;
 
   userId : number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
-  graph: GraphDTO = new GraphDTO(-1,null,null,null,null,null,null,null,null,null,null,null,null);
+  graph: GraphDTO = new GraphDTO(-1);
   op: string = null;
   whereId: number;
   ok = faCheck;

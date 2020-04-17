@@ -13,7 +13,7 @@ export class GraphCreateComponent implements OnInit {
 
   @Output('resOp') riuscito = new EventEmitter();
 
-  graph: GraphDTO = new GraphDTO(null,null,true,"Nuovo Titolo",0,20,0,"top",true,"bottom",false,null,null);
+  graph: GraphDTO = new GraphDTO(null,null,true,"Nuovo Titolo",0,null,20,0,"top",true,"bottom",false,null,null);
   enumFont= Object.keys(FontStyle).filter(x => isNaN(Number(x)));
   enumTipo= Object.keys(TipoGrafico).filter(x => isNaN(Number(x)));
   mix: boolean;

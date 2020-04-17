@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { GraphService } from 'src/service/graph.service';
 import { GraphDTO } from 'src/dto/graph.dto';
 import { mtmDTO } from 'src/dto/mtm.dto';
@@ -19,7 +19,7 @@ export class GraphModifyComponent implements OnInit {
 
   @Input('show') graph : GraphDTO;
   @Output('errore') err = new EventEmitter();
-
+  @ViewChild("esporta") dom : ElementRef;
   wait = faSpinner;
 
   datasets: ChartDataSets[];
@@ -28,6 +28,8 @@ export class GraphModifyComponent implements OnInit {
   legend: boolean;
   chartType: string;
   colors: Color[];
+  az: boolean = false;
+  assex: mtmDTO[];
 
   key = Object.keys; 
   enumFont: string[] = Object.keys(FontStyle).filter(x => isNaN(Number(x)));
@@ -102,7 +104,7 @@ export class GraphModifyComponent implements OnInit {
         },
       }
 
-    let assex: mtmDTO[] = [];
+    this.assex = [];
     let assey: mtmDTO[] = [];
     let assez: mtmDTO[] = [];
     let n =-1;
@@ -110,7 +112,7 @@ export class GraphModifyComponent implements OnInit {
         switch(a.asse){
             case "x":
                 n++;
-                assex[n]=a;
+                this.assex[n]=a;
                 break;
             case "y":
                 assey[n]=a;
@@ -122,15 +124,15 @@ export class GraphModifyComponent implements OnInit {
           
     }
 
-    for(let j=0;assex.length>j;j++){
+    for(let j=0;this.assex.length>j;j++){
         let pareto : {};
         let data : {} ;
         let arr : any[] = [];
         let arrPar : any[] = [0];
          if(assez[j]!=undefined){
-            for(let i=0;assex[j].dataSet.valori.split("_").length>i;i++){
+            for(let i=0;this.assex[j].dataSet.valori.split("_").length>i;i++){
                 arr[j]={
-                    x: Number(assex[j].dataSet.valori.split("_")[i]),
+                    x: Number(this.assex[j].dataSet.valori.split("_")[i]),
                     y: Number(assey[j].dataSet.valori.split("_")[i]),
                     r: Number(assez[j].dataSet.valori.split("_")[i])
                 };
@@ -139,16 +141,16 @@ export class GraphModifyComponent implements OnInit {
             }
         }else{
             if(this.graph.tipoGrafico===TipoGrafico.SCATTER){
-                for(let i=0;assex[j].dataSet.valori.split("_").length>i;i++){
+                for(let i=0;this.assex[j].dataSet.valori.split("_").length>i;i++){
                     arr[i] = {
-                        x: Number(assex[j].dataSet.valori.split("_")[i]),
+                        x: Number(this.assex[j].dataSet.valori.split("_")[i]),
                         y: Number(assey[j].dataSet.valori.split("_")[i])
                     };
                 }
                 data={ data: arr, label: assey[j].dataSet.commento }
                 this.datasets.push(data);
             }else{
-                this.labels = assex[j].dataSet.valori.split("_"); 
+                this.labels = this.assex[j].dataSet.valori.split("_"); 
                 for(let k=0; assey[j].dataSet.valori.split("_").length>k;k++){
                     arr[k]=Number(assey[j].dataSet.valori.split("_")[k].toString());
                     if(this.graph.pareto){
@@ -210,5 +212,13 @@ export class GraphModifyComponent implements OnInit {
         this.sc=x;
       }
 
+      esporta(ext:string){
+        let canvas : HTMLCanvasElement = <HTMLCanvasElement>this.dom.nativeElement;
+        let img = canvas.toDataURL("image/"+ext+";base64",1.0).replace("image/png", "image/octet-stream");
+        let a = document.createElement('a');
+        a.href = img;
+        a.download = this.graph.titolo+"_graph"+ext;
+        a.click();
+      }
 
 }

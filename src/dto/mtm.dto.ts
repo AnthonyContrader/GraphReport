@@ -1,4 +1,5 @@
 import { DataSetDTO } from './dataSet.dto';
+import { TipoGrafico } from './tipoGrafico.enum';
 
 export class mtmDTO{
 
@@ -8,13 +9,13 @@ export class mtmDTO{
 
     asse : string;
     
-    tipoSet : string;
+    tipoSet : TipoGrafico;
 
     colore : string;
 
     graphId : number;
 
-    constructor(id:number,dataset: DataSetDTO, graph: number, asse: string, tipoSet: string, colore: string){
+    constructor(id:number,dataset: DataSetDTO, graph: number, asse: string, tipoSet: TipoGrafico, colore: string){
         this.id=id;
         this.dataSet=dataset;
         this.asse=asse;

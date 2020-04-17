@@ -14,6 +14,8 @@ export class GraphDTO{
     titolo : string;
     
 	fontStyle : FontStyle;
+
+	fontColor : string;
 	
 	fontSize : number;
 	
@@ -29,21 +31,22 @@ export class GraphDTO{
 
 	modify : Date;
 
-	constructor(id : number, utente : number, titolobool : boolean, titolo : string,font : FontStyle, size: number, tipografico : TipoGrafico,posTitolo : string,
-													legenda : boolean,posLegenda : string,pareto : boolean, created : Date, modify : Date){
+	constructor(id : number, utente? : number, titolobool? : boolean, titolo? : string,font? : FontStyle, fontColor? : string, size? : number, tipografico? : TipoGrafico,posTitolo? : string,
+													legenda? : boolean,posLegenda? : string,pareto? : boolean, created? : Date, modify? : Date){
 
-		this.id=id;
-		this.utente=utente;
-		this.titoloBool=titolobool;
-		this.titolo=titolo;
-		this.fontStyle=font;
-		this.fontSize=size;
-		this.tipoGrafico=tipografico;
-		this.posTitolo=posTitolo;
-		this.legenda=legenda;
-		this.posLegenda=posLegenda;
-		this.pareto=pareto;
-		this.created = created;
-		this.modify = modify;
+		this.id= id;
+		this.utente=utente ? utente : null;
+		this.titoloBool=titolobool ? titolobool : null;
+		this.titolo=titolo ? titolo : null;
+		this.fontStyle=font ? font : null;
+		this.fontColor=fontColor ? fontColor : null;
+		this.fontSize=size ? size : null;
+		this.tipoGrafico=tipografico ? tipografico : null;
+		this.posTitolo=posTitolo ? posTitolo : null;
+		this.legenda=legenda ? legenda : null;
+		this.posLegenda=posLegenda ? posLegenda : null;
+		this.pareto=pareto ? pareto : null;
+		this.created = created ? created : null;
+		this.modify = modify ? modify : null;
 	}
 }

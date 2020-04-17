@@ -1,5 +1,5 @@
 <div class="canvas" *ngIf="(ready) else noAssi">
-    <canvas baseChart 
+    <canvas #esporta baseChart 
         [datasets]="datasets" 
         [labels]="labels" 
         [options]="options" 
@@ -29,51 +29,110 @@
     
         <input id="esp" type="radio" name="nav" class="hidden nav" />
         <label for="esp" class="scheda" (click)="sc=5">Esporta</label>
+
+        <label class="menubtn" style="width: 100px;float: right;border-radius: 5px;">Salva</label>
     </div>
     <div class="optCont">
         <div *ngIf="sc==1">
-            aaaa
-        </div>
-        <div *ngIf="sc==2">
-            <div style="width:115px">
-                <label >Tipologia Grafico</label>
-                <select [(ngModel)]="graph.tipoGrafico"> 
-                    <option *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}}</option> 
-                </select>   
-            </div>
-        </div>
-        <div *ngIf="sc==3">
+            <label style="margin-top:3px">DataSet</label><br>
+            <select style="width: 140px;"> <!-- [(ngModel)]="" [disabled]="!graph.titoloBool" -->
+                <option  > a </option> <!-- *ngFor="let c of key(enumFont)" -->
+            </select>
             <div>
-                <label for="optTit" class="lblOption" style="margin:0px 3px">Titolo</label>
-                <input type="text" class="inpOption" [(ngModel)]="graph.titolo" style="margin:0px 3px"/>
-                <input id="optTit" type="checkbox" class="inpOption" [(ngModel)]="graph.titoloBool" style="margin:0px 3px;width:max-content"/>
-                <label for="optTit" class="lblOption" style="margin:0px 3px">Mostra Titolo</label><br>
-                <label style="margin-top:3px">Font</label>
-                <select [(ngModel)]="graph.fontStyle"> 
-                    <option *ngFor="let c of key(enumFont)" [value]="c">{{enumFont[c] | titlecase}}</option> 
-                </select>
-                <div style="display: flex;">
-                    <div style="width:40%;padding:0 1px;">
-                        <label style="margin-top:3px">Size</label>
-                        <input [(ngModel)]="graph.fontSize" type="number"  />
-                    </div>
-                    <div style="width:60%;padding:0 1px;">
-                        <label style="margin-top:3px;width: 100%;">Position:</label>
-                        <select [(ngModel)]="graph.posTitolo"> 
-                            <option value="top">Top</option> 
-                            <option value="bottom">Bottom</option> 
-                            <option value="left">Left</option> 
-                            <option value="right">Right</option> 
-                        </select>
-                    </div>
+                <div class="minicont">
+                    <label >Asse X</label>
+                    <select > <!-- [(ngModel)]="" -->
+                        <option> a </option> <!-- *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}} -->
+                    </select>
+                </div>
+                <div class="minicont">
+                    <label >Asse Y</label>
+                    <select > <!-- [(ngModel)]="" -->
+                        <option> a </option> <!-- *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}} -->
+                    </select>
+                </div>
+                <div class="minicont">
+                    <input id="az" type="checkbox" class="inpOption" style="margin:0px 3px;width:max-content" [(ngModel)]="az"/>
+                    <label for="az">Asse Z</label>
+                    <select [disabled]="!az"> <!-- [(ngModel)]="" -->
+                        <option> a </option> <!-- *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}} -->
+                    </select>
                 </div>
             </div>
         </div>
+        <div *ngIf="sc==2">
+            <div class="minicont">
+                <label >Tipologia Grafico</label>
+                <select [(ngModel)]="graph.tipoGrafico" style="margin-bottom: 5px;"> 
+                    <option *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}}</option>
+                </select>   
+                <input id="pareto" type="checkbox" class="inpOption" [(ngModel)]="graph.pareto" style="margin:0px 3px;width:max-content"/>
+                <label for="pareto" class="lblOption" style="margin:0px 3px">Pareto</label><br>
+            </div>
+            <ng-container *ngIf="ready">
+                <div class="minicont" *ngFor="let x of assex; let i = index">
+                    <label >Asse {{x}}</label>
+                    <div>
+                        <label >Tipologia Grafico</label>
+                        <select [(ngModel)]="assex[i].tipoSet"> 
+                            <option *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}}</option> 
+                        </select>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div *ngIf="sc==3">
+            <div>
+                <div class="minicont">
+                    <input id="optTit" type="checkbox" class="inpOption" [(ngModel)]="graph.titoloBool" style="margin:0px 3px;width:max-content"/>
+                    <label for="optTit" class="lblOption" style="margin:0px 3px">Mostra Titolo</label><br>
+                    <input type="text" class="inpOption" [(ngModel)]="graph.titolo" style="margin:0px 3px" [disabled]="!graph.titoloBool" />
+                    <label style="margin-top:3px">Font</label>
+                    <select [(ngModel)]="graph.fontStyle" [disabled]="!graph.titoloBool"> 
+                        <option *ngFor="let c of key(enumFont)" [value]="enumFont[c]">{{enumFont[c] | titlecase}}</option> 
+                    </select>
+                </div>
+                <div class="minicont">
+                    <div style="display: flex;">
+                        <div style="width:40%;padding:0 1px;">
+                            <label style="margin:3px 0px 0px 10px">Size</label>
+                            <input [(ngModel)]="graph.fontSize" type="number"  [disabled]="!graph.titoloBool"/>
+                        </div>
+                        <div style="width:60%;padding:0 1px;">
+                            <label style="margin:3px 0px 0px 10px;width: 100%;">Position:</label>
+                            <select [(ngModel)]="graph.posTitolo" [disabled]="!graph.titoloBool"> 
+                                <option value="top">Top</option> 
+                                <option value="bottom">Bottom</option> 
+                                <option value="left">Left</option> 
+                                <option value="right">Right</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <label class="lblOption" style="margin:0px 3px">Color</label><br>
+                    <input type="color" class="inpOption" [(ngModel)]="graph.fontColor" style="margin:0px 3px" [disabled]="!graph.titoloBool" />
+                </div>
+                
+            </div>
+        </div>
         <div *ngIf="sc==4">
-            dddd
+            <div class="minicont">
+                <input id="optLeg" type="checkbox" class="inpOption" [(ngModel)]="graph.legenda" style="margin:0px 3px;width:max-content"/>
+                <label class="lblOption" style="margin:0px 3px;" for="optLeg">Mostra Legenda</label><br>
+                <label style="margin-top:3px;width: 100%;">Position:</label>
+                <select [(ngModel)]="graph.posLegenda" [disabled]="!graph.legenda"> 
+                    <option value="top">Top</option> 
+                    <option value="bottom">Bottom</option> 
+                    <option value="left">Left</option> 
+                    <option value="right">Right</option> 
+                </select>
+            </div>
         </div>
         <div *ngIf="sc==5">
-            eeee
+            <div class="minicont">
+                <button class="menubtn" (click)="esporta('.png')">
+                    As PNG
+                </button>
+            </div>
         </div>
     </div>
 </div>
