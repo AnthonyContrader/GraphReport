@@ -20,8 +20,6 @@ export class CategoriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategoria();
-
-
   }
 
   getCategoria(){
@@ -37,12 +35,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   insert(categoria: CategoriaDTO){
-    let x = this.newCategoria.nome.trim();
-    if(x != null){
-      if(x !== ""){
-        this.service.insert(categoria).subscribe(() => this.getCategoria());
-      }
-    }
+    this.service.insert(categoria).subscribe(() => this.getCategoria());
   }
 
 }

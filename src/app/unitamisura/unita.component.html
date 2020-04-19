@@ -1,29 +1,56 @@
-<div class="main-right">
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="text-uppercase">Unita di Misura</th>
-        <th class="text-uppercase">Manage</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let u of listUnita">
-        <th>{{u.nome}}</th>
-        <th>
-          <button class="btn btn-outline-secondary btn btn-dark" style="font-family:'Courier New', Courier, monospace"
-          style="background-color: crimson;" (click)="delete(u)">Delete</button>
-        </th>
-      </tr>
-    </tbody>
-  </table>
-      <div class="insert">
-        <form>
-          <input type="text" placeholder="Insert Unità di Misura">
-          <label for="categoria">Scegli Categoria</label>
-          <select>
-            <option selected="selected" *ngFor="let c of categorie">{{c.nome}}</option>
-          </select>
-          <input type="submit" (click)="insert(newUnita)" value="Insert">
-        </form>
-      </div>
+<div class="container">
+  <div class="main-right">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-uppercase">Unita di Misura</th>
+          <th class="text-uppercase">Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of listUnita">
+          <th>{{u.nome}}</th>
+          <th>
+            <button style="font-family:'Courier New', Courier, monospace"
+            style="background-color: crimson;" (click)="delete(u)">Delete</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+        <div class="insert">
+          <form>
+            <input type="text" placeholder="Insert Unità di Misura">
+            <label for="categoria">Scegli Categoria</label>
+            <select>
+              <option selected="selected" *ngFor="let c of categories">{{c.nome}}</option>
+            </select>
+            <input type="submit" (click)="insert(newUnita)" value="Insert">
+          </form>
+        </div>
+  </div>
+  <div class="main-left">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-uppercase">Categorie</th>
+          <th class="text-uppercase">Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of categories">
+          <th>{{c.nome}}</th>
+          <th>
+            <button style="font-family:'Courier New', Courier, monospace" style="background-color: crimson;" (click)="delete(c)">Delete</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insert">
+      <form>
+        <input type="text" placeholder="Insert Categoria">
+        <input type="submit" (click)="insert(insertCat)" value="Insert">
+      </form>
+    </div>
+  </div>
 </div>
+
