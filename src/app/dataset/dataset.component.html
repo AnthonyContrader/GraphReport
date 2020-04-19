@@ -1,17 +1,18 @@
 <div class="row">
-    <p>ciao Tonio tvb♥</p>
-    <!-- <div class="col-sm" style="padding-top:35px">
-        <form class="center" *ngIf="usertype=='ADMIN'" style="width:300px;">
+       <div class="col-sm" style="padding-top:35px">
+        {{utente | json}}
+       </div>
+        <!-- <form class="center" *ngIf="isAdmin" style="width:300px;">
 			<label>Visualizza DataSet dell'utente</label>
 			<select name="idUtVis" [value]="idDaVedere" (change)="caricaDS($event.target.value)">
-				<option *ngFor="let c of utList" [value]="c.id" [selected]="c.id==utId">{{c.username}}</option>
+				<option *ngFor="let c of utList" [value]="c.id" [selected]="c.id==utId">{{c.id}}</option>
             </select>
-        </form>
-        <ng-container *ngIf="(nDS!=undefined && nDS.length>0); else noDS">
+        </form> -->
+     <!-- <ng-container *ngIf="(nDS!=undefined && nDS.length>0); else noDS">
             <div class="centraDiv" *ngFor="let nd of nDS">
                 <div class="newCat">
                     <div class="divCRUD" style="width:20%;" *ngIf="nd.utente==utId">
-                        <a [routerLink]="[pathModify]" [queryParams]="{id: nd.categoria}"><div class="linkCRUD">Modifica</div></a>
+                        <a [queryParams]="{id: nd.categoria}"><div class="linkCRUD">Modifica</div></a>
                         <label (click)="dele(nd.categoria)"><div class="linkCRUD">Elimina</div></label>
                     </div>
                     <h1>{{nd.categoriaN}}</h1>
@@ -39,40 +40,41 @@
                 </div>
             </div>
         </ng-container>
+
         <ng-template #noDS>
             <div class="noDS">
                 <h1>Nessun DataSet presente!</h1>
             </div>
         </ng-template>
 
-    </div>
+    </div> -->
     <div class="col-sm">
-        <div style="padding-top: 25px;">
+        <div>
             
             <h1>Crea nuovo DataSet</h1>
             <br>
-            <form style="min-width:270px" [formGroup]="createForm" (ngSubmit)="createDS(createForm.value)">
+            <form>
                 <label><strong>Categoria</strong></label>
-                <select formControlName="cat" required>
+                <select required>
                     <option [ngValue]="null" style="color:grey" selected>Scegli una categoria</option>
                     <option *ngFor="let c of catList" [value]="c.id">{{c.nome}}</option>
                 </select>
                 <label style="margin-top:5px"><strong>Unità di misura:</strong></label>
                 <br>
-                <select formControlName="ump" required>
+                <select required>
                     <option [ngValue]="null" style="color:grey">Primo set di valori</option>
                     <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
                 </select>
-                <select formControlName="ums" required>
+                <select required>
                     <option [ngValue]="null" style="color:grey">Secondo set di valori</option>
                     <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
                 </select>
-                <button type="submit">Crea</button>
+                <button (click)="createDataset(newDataset)">Crea</button>
             </form>
 
         </div>
-    </div>
-    <div *ngIf="err!=0" class="error">
+    </div> 
+    <!-- <div *ngIf="err!=0" class="error">
         <label class="closerr" (click)="closerror()">[X] Chiudi</label>
         <container-element [ngSwitch]="err">
             <p *ngSwitchCase="1">
@@ -92,5 +94,5 @@
         </p>
         <label class="delbutton" (click)="deleteDS(del)">Prosegui</label>
         <label class="delbutton" (click)="del=0">Annulla</label>
-    </div> -->
+    </div>  -->
 </div>

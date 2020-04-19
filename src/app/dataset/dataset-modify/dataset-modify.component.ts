@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from '@angular/router';
 import { DataSetService } from 'src/service/DataSetService';
-// import { UnitaMisuraDTO } from 'src/dto/unitamisuradto';
 import { DataSetDTO } from 'src/dto/dataSet.dto';
 import { FormGroup, FormControl } from '@angular/forms';
 import { rejects } from 'assert';
+import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
 
 @Component({
     selector: 'app-datasetmodify',
@@ -16,7 +16,7 @@ export class DataSetModifyComponent implements OnInit{
 
     public idUt : number;
     public cat : number;
-    // public umList : UnitaMisuraDTO[];
+    public umList : UnitaMisuraDTO[];
     public dataSet : DataSetDTO[];
     public delForm : FormGroup;
     public addForm : FormGroup;

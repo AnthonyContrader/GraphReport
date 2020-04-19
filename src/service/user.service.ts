@@ -12,7 +12,8 @@ export class UserService extends AbstractService<UserDTO> {
 
     constructor(http: HttpClient) {
       super(http);
-      this.type = '';
+      this.microservicesPath = '/api';
+      this.generic="/users";
     }
 
     create(user: UserDTO): Observable<HttpResponse<UserDTO>> {
@@ -24,7 +25,7 @@ export class UserService extends AbstractService<UserDTO> {
     }
 
     authorities(): Observable<string[]> {
-        return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
+        return this.http.get<string[]>(SERVER_API_URL + '/api/users/authorities');
     }
 
     findAll(daCercare: string): Observable<UserDTO[]> {
