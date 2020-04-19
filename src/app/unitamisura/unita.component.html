@@ -40,7 +40,7 @@
         <tr *ngFor="let c of categories">
           <th>{{c.nome}}</th>
           <th>
-            <button style="font-family:'Courier New', Courier, monospace" style="background-color: crimson;" (click)="delete(c)">Delete</button>
+            <button style="font-family:'Courier New', Courier, monospace" style="background-color: crimson;" (click)="delCategoria(c)">Delete</button>
           </th>
         </tr>
       </tbody>
@@ -48,7 +48,7 @@
     <div class="insert">
       <form>
         <input type="text" placeholder="Insert Categoria">
-        <!--<input type="submit" (click)="insert(insertCat)" value="Insert">-->
+        <input type="submit" (click)="insertCat(newCategoria)" value="Insert">
       </form>
     </div>
   </div>

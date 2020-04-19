@@ -13,7 +13,7 @@ import { CategoriaDTO } from 'src/dto/categoria.dto';
 export class UnitaComponent implements OnInit {
 
   categories: CategoriaDTO[];
-  insertCat: CategoriaDTO = new CategoriaDTO();
+  newCategoria: CategoriaDTO = new CategoriaDTO();
   listUnita: UnitaMisuraDTO[];
   newUnita: UnitaMisuraDTO = new UnitaMisuraDTO();
 
@@ -21,10 +21,15 @@ export class UnitaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getunitaMisura();
+    this.getCategoria();
   }
 
   getCategoria(){
-    this.catService.getAll().subscribe(categories => this.categories = categories);
+    this.service.getCategoria().subscribe(categories => this.categories = categories);
+  }
+
+  delCategoria(categoria: CategoriaDTO){
+    this.service.deleteCategoria(categoria.id).subscribe(() => this.getCategoria());
   }
 
   getunitaMisura() {
@@ -43,9 +48,9 @@ export class UnitaComponent implements OnInit {
     this.service.insert(unitamisura).subscribe(() => this.getunitaMisura());
   }
 
-  //newCat(categoria: CategoriaDTO){
-   // this.service.newCat(categoria).subscribe(() => this.getCategoria());
-  //}
+  insertCat(categoria: CategoriaDTO){
+    this.service.insertCat(categoria).subscribe(() => this.getCategoria());
+  }
 
 
 }
