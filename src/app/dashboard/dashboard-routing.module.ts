@@ -11,9 +11,9 @@ import { UnitaComponent } from '../unitamisura/unita.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [ UserRouteAccessService ], children:[
     { path: '', component: HomeComponent, pathMatch: 'full' },
+    { path: 'unita', component: UnitaComponent},
     { path: 'graph', component: GraphComponent },
-    { path: 'ds', component: DatasetComponent },
-    { path: 'unita', component: UnitaComponent}
+    { path: 'ds', component: DatasetComponent }
   ]}
 ];
 

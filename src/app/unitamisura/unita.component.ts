@@ -1,6 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
 import { UnitaService } from 'src/service/unita.service';
+import { CategoriaService } from 'src/service/categoria.service';
+import { CategoriaDTO } from 'src/dto/categoria.dto';
 
 
 @Component({
@@ -10,35 +12,34 @@ import { UnitaService } from 'src/service/unita.service';
 })
 export class UnitaComponent implements OnInit {
 
+  categorie: CategoriaDTO[];
   listUnita: UnitaMisuraDTO[];
   newUnita: UnitaMisuraDTO = new UnitaMisuraDTO();
 
-  constructor(private service: UnitaService) { }
+  constructor(private service: UnitaService, private catService: CategoriaService) { }
 
   ngOnInit(): void {
-    this.getUnitaMisura();
+    this.getunitaMisura();
   }
 
+  getCategoria(){
+    this.catService.getAll().subscribe(categorie => this.categorie = categorie);
+  }
 
-  getUnitaMisura(){
-    this.service.getAll().subscribe(listUnita => this.listUnita = listUnita);
+  getunitaMisura() {
+  this.service.getAll().subscribe(listUnita => this.listUnita = listUnita);
   }
 
   delete(unitamisura: UnitaMisuraDTO){
-    this.service.delete(unitamisura.id).subscribe(() => this.getUnitaMisura());
+    this.service.delete(unitamisura.id).subscribe(() => this.getunitaMisura());
   }
 
   update(unitamisura: UnitaMisuraDTO){
-    this.service.update(unitamisura).subscribe(() => this.getUnitaMisura());
+    this.service.update(unitamisura).subscribe(() => this.getunitaMisura());
   }
 
   insert(unitamisura: UnitaMisuraDTO){
-    let x = this.newUnita.nome.trim();
-    if(x != null){
-      if(x !== ""){
-        this.service.insert(unitamisura).subscribe(() => this.getUnitaMisura());
-      }
-    }
+    this.service.insert(unitamisura).subscribe(() => this.getunitaMisura());
   }
 
 }

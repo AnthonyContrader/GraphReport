@@ -14,7 +14,7 @@ export class CategoriaService extends AbstractService<CategoriaDTO>{
   constructor(http:HttpClient){
     super(http);
     this.microservicesPath = '/categoria/api';
-    this.generic = '/categoria';
+    this.generic = '/categorias';
   }
 
 
