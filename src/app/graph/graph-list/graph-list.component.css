@@ -2,6 +2,7 @@
 	width: min-content;
 	cursor: pointer;
 	font-size: large;
+	margin: 0px 10px;
 }
 
 .red-h:hover{

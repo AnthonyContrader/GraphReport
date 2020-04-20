@@ -1,6 +1,5 @@
 <div style="text-align:center;font-size:x-large;"><strong>Crea nuovo</strong></div>
-<div class="contenitore">
-
+<div class="contenitore" >
     <label >Tipologia Grafico</label>
     <select [(ngModel)]="graph.tipoGrafico"> 
         <option *ngFor="let c of keys(enumTipo)" [value]="c" >{{enumTipo[c] | titlecase}}</option> 
@@ -8,7 +7,7 @@
     <div class="cntOption">
         <div>
             <label for="optTit" class="lblOption" style="margin:0px 3px">Titolo</label>
-            <input type="text" class="inpOption" [(ngModel)]="graph.titolo" style="margin:0px 3px"/>
+            <input [formControl]="form" type="text" class="inpOption" [(ngModel)]="graph.titolo" style="margin:0px 3px" />
             <input id="optTit" type="checkbox" class="inpOption" [(ngModel)]="graph.titoloBool" style="margin:0px 3px;width:max-content"/>
             <label for="optTit" class="lblOption" style="margin:0px 3px">Mostra Titolo</label><br>
             <label style="margin-top:3px">Font</label>
@@ -18,7 +17,7 @@
             <div style="display: flex;">
                 <div style="width:40%;padding:0 1px;">
                     <label style="margin-top:3px">Size</label>
-                    <input [(ngModel)]="graph.fontSize" type="number"  />
+                    <input [(ngModel)]="graph.fontSize" type="number" min="1" (change)="checkn()" />
                 </div>
                 <div style="width:60%;padding:0 1px;">
                     <label style="margin-top:3px;width: 100%;">Position:</label>
@@ -45,5 +44,5 @@
             </select>
         </div>
     </div>
-    <button (click)="crea()" class="menubtn">Crea</button>
+    <button (click)="crea()" [ngClass]="form.invalid ? 'menubtnDis' : 'menubtn'">Crea</button>
 </div>

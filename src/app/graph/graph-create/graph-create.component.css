@@ -11,17 +11,33 @@ input{
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 2px blue;
+    border-bottom: 2px solid grey;
     border-radius: 15px;
     padding: 1px 8px;
     margin: 0 4px;
+}
+
+select:hover, input:hover{
+    border-bottom: 2px solid #8B51CA;
+}
+
+input:focus, select:focus{
+    border-bottom: 2px solid #8B51CA;
+}
+
+.ng-invalid{
+    border-bottom: 2px solid crimson;
+    box-shadow: none !important;
 }
 
 select{
     width: 100%;
     padding: 1px 0 1px 3px ;
     border-radius: 15px;
-    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid grey;
     margin: 0px 4px;
 
     -webkit-appearance: none;
@@ -60,6 +76,17 @@ select{
     border: none;
     padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+    margin:10px 50px 0px;
+}
+
+.menubtnDis{
+    width: 150px;
+    text-align: center;
+    background-color: #353535;
+    color: #919191;
+    border: none;
+    padding: 10px;
     border-radius: 5px;
     margin:10px 50px 0px;
 }

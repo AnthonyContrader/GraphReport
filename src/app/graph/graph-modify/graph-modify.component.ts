@@ -9,6 +9,7 @@ import { DataSetService } from 'src/service/DataSetService';
 import { DataSetDTO } from 'src/dto/dataSet.dto';
 import { TipoGrafico } from 'src/dto/tipoGrafico.enum';
 import { FontStyle } from 'src/dto/fontStyle.enum';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-graph-modify',
@@ -40,15 +41,18 @@ export class GraphModifyComponent implements OnInit {
   assex: mtmDTO[];
   first: boolean = false;
   pane : boolean = false;
+  tit: FormControl;
 
   key = Object.keys; 
   enumFont: string[] = Object.keys(FontStyle).filter(x => isNaN(Number(x)));
   enumTipo: string[] = Object.keys(TipoGrafico).filter(x => isNaN(Number(x)));
   ready: boolean = false;
   assi: mtmDTO[];
-  sc: number = 2;
+  sc: number = 3;
 
-  constructor(private graphService: GraphService,private service: GraphService,private dsService: DataSetService) { }
+  constructor(private graphService: GraphService,private service: GraphService,private dsService: DataSetService) { 
+    this.tit = new FormControl('', Validators.required);
+  }
 
   ngOnInit(): void {
     this.getDsByUser().then(
@@ -298,11 +302,14 @@ export class GraphModifyComponent implements OnInit {
     }
 
     submitOption(){
-      this.graph.modify=new Date();
-      this.mix();
-      this.service.update(this.graph).subscribe( () => 
-        Promise.all( this.assex.map(x => {return this.mtmUpdate(x);})).then(x => this.redraw())
-      );
+      this.graph.titolo=this.graph.titolo.trim();
+      if(this.graph.titolo!=""){
+        this.graph.modify=new Date();
+        this.mix();
+        this.service.update(this.graph).subscribe( () => 
+          Promise.all( this.assex.map(x => {return this.mtmUpdate(x);})).then(x => this.redraw())
+        );
+      }
     }
 
     mtmUpdate(x: mtmDTO){
@@ -317,6 +324,10 @@ export class GraphModifyComponent implements OnInit {
       }else{
         this.assex.forEach(x => x.tipoSet=this.graph.tipoGrafico)
       }
+    }
+
+    checkn(){
+      if(this.graph.fontSize<1) this.graph.fontSize=1;
     }
 
 }
