@@ -118,6 +118,13 @@ public class MtMResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
     
+    @DeleteMapping("/mtsDelete/{id}")
+    public ResponseEntity<Void> deleteByGraph(@PathVariable Long id) {
+        log.debug("REST request to delete MtM by Graph: {}", id);
+        mtMService.deleteByGraph(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
     @GetMapping("/getMtMByGraph/{id}")
     public ResponseEntity<List<MtMDTO>> getAllByGraph(@PathVariable Long id) {
         log.debug("REST request to get all By Graph");

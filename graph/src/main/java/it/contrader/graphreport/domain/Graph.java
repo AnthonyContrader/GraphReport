@@ -63,6 +63,9 @@ public class Graph implements Serializable {
 
     @Column(name = "pareto")
     private Boolean pareto;
+    
+    @Column(name = "mixed")
+    private Boolean mixed;
 
     @Column(name = "created")
     private LocalDate created;
@@ -70,7 +73,7 @@ public class Graph implements Serializable {
     @Column(name = "jhi_modify")
     private LocalDate modify;
 
-    @OneToMany(mappedBy = "graph")
+    @OneToMany(mappedBy = "graph", orphanRemoval=true)
     private Set<MtM> mtMS = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -209,6 +212,14 @@ public class Graph implements Serializable {
 
     public void setPareto(Boolean pareto) {
         this.pareto = pareto;
+    }
+    
+    public void setMixed(Boolean mixed) {
+        this.mixed = mixed;
+    }
+    
+    public Boolean getMixed() {
+        return this.mixed;
     }
 
     public LocalDate getCreated() {

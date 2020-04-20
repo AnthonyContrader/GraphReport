@@ -89,6 +89,11 @@ public class MtMServiceImpl implements MtMService {
         mtMRepository.deleteById(id);
     }
     
+    public void deleteByGraph(Long id) {
+        log.debug("Request to delete MtM : {}", id);
+        mtMRepository.deleteByGraph_Id(id);
+    }
+        
     @Transactional(readOnly = true)
     public List<MtMDTO> getAllByGraph(Long id) {
         log.debug("Request to get all MtMS");

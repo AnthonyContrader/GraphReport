@@ -33,6 +33,8 @@ public class GraphDTO implements Serializable {
     private String posLegenda;
 
     private Boolean pareto;
+    
+    private Boolean mixed;
 
     private LocalDate created;
 
@@ -125,6 +127,14 @@ public class GraphDTO implements Serializable {
 
     public void setPareto(Boolean pareto) {
         this.pareto = pareto;
+    }
+    
+    public void setMixed(Boolean mixed) {
+        this.mixed = mixed;
+    }
+    
+    public Boolean getMixed() {
+        return this.mixed;
     }
 
     public LocalDate getCreated() {

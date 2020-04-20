@@ -64,6 +64,10 @@
             <column name="pareto" type="boolean">
                 <constraints nullable="true" />
             </column>
+            
+            <column name="mixed" type="boolean">
+                <constraints nullable="true" />
+            </column>
 
             <column name="created" type="date">
                 <constraints nullable="true" />
