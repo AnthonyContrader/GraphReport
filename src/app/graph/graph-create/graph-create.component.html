@@ -3,7 +3,7 @@
 
     <label >Tipologia Grafico</label>
     <select [(ngModel)]="graph.tipoGrafico"> 
-        <option *ngFor="let c of keys(enumTipo)" [value]="c">{{enumTipo[c] | titlecase}}</option> 
+        <option *ngFor="let c of keys(enumTipo)" [value]="c" >{{enumTipo[c] | titlecase}}</option> 
     </select>
     <div class="cntOption">
         <div>
@@ -13,7 +13,7 @@
             <label for="optTit" class="lblOption" style="margin:0px 3px">Mostra Titolo</label><br>
             <label style="margin-top:3px">Font</label>
             <select [(ngModel)]="graph.fontStyle"> 
-                <option *ngFor="let c of keys(enumFont)" [value]="c">{{enumFont[c] | titlecase}}</option> 
+                <option *ngFor="let c of keys(enumFont)" [value]="c" >{{enumFont[c] | titlecase}}</option> 
             </select>
             <div style="display: flex;">
                 <div style="width:40%;padding:0 1px;">

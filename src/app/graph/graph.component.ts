@@ -32,18 +32,20 @@ export class GraphComponent implements OnInit {
   }
 
   conf(b:boolean){
-
+    let del=this.whereId;
     if(b){
       switch(this.op){
         case 'del':
-          this.service.delete(this.whereId).subscribe(
-            () => { this.service.mtmDelete(this.whereId).subscribe(
-              () => { this.childList.update() },
-              err => { err = 5},
-              () => {}
-            )},
-            err => { err = 4 },
-            () => {}
+          this.service.delete(this.whereId).subscribe( () =>
+//            () => { this.service.mtmDelete(del).subscribe(
+//              () => { 
+      this.childList.update()
+//                  },
+//              err => { err = 5},
+//              () => {}
+//            )},
+//            err => { err = 4 },
+//            () => {}
             );
           break;
       }

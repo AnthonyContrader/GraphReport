@@ -9,74 +9,80 @@
     </canvas>
 </div>
 <ng-template #noAssi>
-    <div style="width: max-content;margin: auto;left: 0;right: 0;">
+    <div *ngIf="(first)" style="text-align: center;"><h3 style="color: white;"> Aggiungi il primo set di valori </h3></div>
+    <div style="width: max-content;margin: auto;left: 0;right: 0;color:white">
         <fa-icon [icon]="wait" [spin]="true" size="2x"></fa-icon>
     </div>
 </ng-template>
 <div class="settingPane">
     <div>
-        <input id="add" type="radio" name="nav" class="hidden nav" checked/>
-        <label for="add" class="scheda" (click)="sc=1">Aggiungi</label>
-    
-        <input id="tipo" type="radio" name="nav" class="hidden nav" />
+        <input id="tipo" type="radio" name="nav" class="hidden nav" checked/>
         <label for="tipo" class="scheda" (click)="sc=2">Tipologia</label>
     
         <input id="tito" type="radio" name="nav" class="hidden nav" />
         <label for="tito" class="scheda" (click)="sc=3">Titolo</label>
     
         <input id="leg" type="radio" name="nav" class="hidden nav" />
-        <label for="leg" class="scheda" (click)="sc=4">Legenda</label>
-    
+        <label for="leg" class="scheda" (click)="sc=1">Legenda</label>
+
+        <input id="add" type="radio" name="nav" class="hidden nav" />
+        <label for="add" class="scheda" (click)="sc=4">Aggiungi</label>
+
         <input id="esp" type="radio" name="nav" class="hidden nav" />
         <label for="esp" class="scheda" (click)="sc=5">Esporta</label>
 
-        <label class="menubtn" style="width: 100px;float: right;border-radius: 5px;">Salva</label>
+        <label *ngIf="sc<4" class="menubtn" style="width: 100px;float: right;border-radius: 5px;" (click)="submitOption()">Salva</label>
+        <label *ngIf="sc==4" class="menubtn" style="width: 100px;float: right;border-radius: 5px;" (click)="addSet()">Aggiungi</label>
     </div>
     <div class="optCont">
-        <div *ngIf="sc==1">
+        <div *ngIf="sc==4">
             <label style="margin-top:3px">DataSet</label><br>
-            <select style="width: 140px;"> <!-- [(ngModel)]="" [disabled]="!graph.titoloBool" -->
-                <option  > a </option> <!-- *ngFor="let c of key(enumFont)" -->
+            <select style="width: 140px;" (change)="filtra($event.target.value)"> 
+                <option *ngFor="let c of dsDistinct" [value]="c"> {{c}} </option> 
             </select>
             <div>
                 <div class="minicont">
                     <label >Asse X</label>
-                    <select > <!-- [(ngModel)]="" -->
-                        <option> a </option> <!-- *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}} -->
+                    <select [(ngModel)]="newAssi[0]"> 
+                        <option *ngFor="let c of subList" [value]="c.id">{{c.idUnita}} {{c.commento}}</option>
                     </select>
                 </div>
                 <div class="minicont">
                     <label >Asse Y</label>
-                    <select > <!-- [(ngModel)]="" -->
-                        <option> a </option> <!-- *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}} -->
+                    <select [(ngModel)]="newAssi[1]">
+                        <option *ngFor="let c of subList" [value]="c.id">{{c.idUnita}} {{c.commento}}</option>
                     </select>
                 </div>
                 <div class="minicont">
-                    <input id="az" type="checkbox" class="inpOption" style="margin:0px 3px;width:max-content" [(ngModel)]="az"/>
+                    <input id="az" type="checkbox" class="inpOption" style="margin:0px 3px;width:max-content" [(ngModel)]="zToo"/>
                     <label for="az">Asse Z</label>
-                    <select [disabled]="!az"> <!-- [(ngModel)]="" -->
-                        <option> a </option> <!-- *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}} -->
+                    <select [(ngModel)]="newAssi[2]" [disabled]="!zToo"> 
+                        <option *ngFor="let c of subList" [value]="c.id">{{c.idUnita}} {{c.commento}}</option>
                     </select>
                 </div>
             </div>
         </div>
         <div *ngIf="sc==2">
             <div class="minicont">
-                <label >Tipologia Grafico</label>
-                <select [(ngModel)]="graph.tipoGrafico" style="margin-bottom: 5px;"> 
+                <label >Tipo Grafico Base</label>
+                <select [(ngModel)]="graph.tipoGrafico" style="margin-bottom: 5px;" [disabled]="graph.mixed"> 
                     <option *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}}</option>
                 </select>   
                 <input id="pareto" type="checkbox" class="inpOption" [(ngModel)]="graph.pareto" style="margin:0px 3px;width:max-content"/>
                 <label for="pareto" class="lblOption" style="margin:0px 3px">Pareto</label><br>
+                <input id="mixe" type="checkbox" class="inpOption" [(ngModel)]="graph.mixed" style="margin:0px 3px;width:max-content"/>
+                <label for="mixe" class="lblOption" style="margin:0px 3px">Mixed</label><br>
             </div>
             <ng-container *ngIf="ready">
                 <div class="minicont" *ngFor="let x of assex; let i = index">
-                    <label >Asse {{x}}</label>
+                    <label >Set {{i+1}}</label>
                     <div>
-                        <label >Tipologia Grafico</label>
-                        <select [(ngModel)]="assex[i].tipoSet"> 
+                        <label>Tipo</label>
+                        <select [(ngModel)]="assex[i].tipoSet" [disabled]="!graph.mixed"> 
                             <option *ngFor="let c of key(enumTipo)" [value]="enumTipo[c]">{{enumTipo[c] | titlecase}}</option> 
                         </select>
+                        <label class="lblOption" style="margin:0px 3px">Color</label><br>
+                        <input type="color" class="inpOption" [(ngModel)]="assex[i].colore" style="margin:0px 3px" />
                     </div>
                 </div>
             </ng-container>
@@ -114,7 +120,7 @@
                 
             </div>
         </div>
-        <div *ngIf="sc==4">
+        <div *ngIf="sc==1">
             <div class="minicont">
                 <input id="optLeg" type="checkbox" class="inpOption" [(ngModel)]="graph.legenda" style="margin:0px 3px;width:max-content"/>
                 <label class="lblOption" style="margin:0px 3px;" for="optLeg">Mostra Legenda</label><br>

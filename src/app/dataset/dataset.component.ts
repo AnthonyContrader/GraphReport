@@ -32,7 +32,7 @@ export class DatasetComponent implements OnInit {
   public idUnita : UnitaMisuraDTO;
   public categoria : CategoriaDTO;
   public listDataset : DataSetDTO[];
-  public newDataset : DataSetDTO = new DataSetDTO();
+  public newDataset : DataSetDTO = new DataSetDTO(null,null,null,null,null,null);
 
   constructor(private service:DataSetService) {
     // this.createForm = new FormGroup({

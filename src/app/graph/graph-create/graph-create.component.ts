@@ -13,14 +13,16 @@ export class GraphCreateComponent implements OnInit {
 
   @Output('resOp') riuscito = new EventEmitter();
 
-  graph: GraphDTO = new GraphDTO(null,null,true,"Nuovo Titolo",0,null,20,0,"top",true,"bottom",false,null,null);
+  graph: GraphDTO;
   enumFont= Object.keys(FontStyle).filter(x => isNaN(Number(x)));
   enumTipo= Object.keys(TipoGrafico).filter(x => isNaN(Number(x)));
   mix: boolean;
   
   keys=Object.keys;
 
-  constructor(private service: GraphService) { }
+  constructor(private service: GraphService) { 
+    this.graph = new GraphDTO(null,null,true,"Nuovo Titolo",FontStyle.HELVETICANEUE,"#666666",20,TipoGrafico.BAR,"top",true,"bottom",false,false,null,null);
+  }
 
   ngOnInit(): void {
     

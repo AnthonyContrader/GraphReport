@@ -20,36 +20,29 @@ import { SERVER_API_URL } from '../authJWT/app.constants';
         this.generic="/graphs";
       }
 
-      getGraphListByUser(id: number, page: number, size: number, sort: string[]) : Observable<any>{
-        return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getByUt?id="+id+"&page="+page+"&size="+size+"&sort="+sort);
-      }
-
-      getLastModify() : Observable<GraphDTO>{
-        return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/lastModify");
-      }
-
-//      getDsList(id : number) : Observable<DataSetDTO[]>{
-//        return this.http.get<any>("http://localhost:8080/dataset/countDS?id="+id);
-//      }
-
-//      getAssiList(id : number,cat:number) : Observable<DataSetDTO[]>{
-//        return this.http.get<any>("http://localhost:8080/dataset/getUMList?id="+id+"&cat="+cat);
-//      }
-
-//      insertMtM(dto : mtmDTO[]): Observable<boolean>{
-//        return this.http.post<any>("http://localhost:8080/"+this.microservicesPath+"/addset",dto);
-//      }
-
-    mtmDelete(id: number): Observable<any> {
-        return this.http.delete(SERVER_API_URL + this.microservicesPath + "/mt-ms/" + id);
+    getGraphListByUser(id: number, page: number, size: number, sort: string[]) : Observable<any>{
+      return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getByUt?id="+id+"&page="+page+"&size="+size+"&sort="+sort);
     }
 
-      getIdAssi(id : number): Observable<mtmDTO[]>{
-        return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getMtMByGraph/"+id);
-      }
+    getLastModify() : Observable<GraphDTO>{
+      return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/lastModify");
+    }
 
-//      findAll(daCercare: string): Observable<GraphDTO[]> {
-//        return this.http.get<any>('http://localhost:8080/graph/findAll?cerca=' + daCercare);
-//      }
+    mtmDelete(id: number): Observable<any> {
+        return this.http.delete(SERVER_API_URL + this.microservicesPath + "/mtsDelete/" + id);
+    }
+
+    getIdAssi(id : number): Observable<mtmDTO[]>{
+      return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getMtMByGraph/"+id);
+    }
+
+    addSet(dto: mtmDTO): Observable<any>{
+      return this.http.post<any>(SERVER_API_URL+this.microservicesPath+"/mt-ms",dto);
+    }
+
+    mtmUpdate(dto: mtmDTO): Observable<any>{
+      return this.http.put<any>(SERVER_API_URL + this.microservicesPath + "/mt-ms", dto);
+
+    }
 
   }
