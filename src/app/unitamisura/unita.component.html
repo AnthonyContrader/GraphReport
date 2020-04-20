@@ -46,10 +46,8 @@
       </tbody>
     </table>
     <div class="insert">
-      <form>
-        <input type="text" placeholder="Insert Categoria">
-        <input type="submit" (click)="insertCat(newCategoria)" value="Insert">
-      </form>
+        <input type="text" [(ngModel)]="newCategoria.nome" />
+        <label class="submit" (click)="insertCat()"> Salva </label>
     </div>
   </div>
 </div>

@@ -39,6 +39,7 @@ export class GraphModifyComponent implements OnInit {
   colors: { backgroundColor: string, borderColor: string, pointBackgroundColor: string, pointBorderColor: string, pointHoverBackgroundColor: string, pointHoverBorderColor: string }[] = [];
   assex: mtmDTO[];
   first: boolean = false;
+  pane : boolean = false;
 
   key = Object.keys; 
   enumFont: string[] = Object.keys(FontStyle).filter(x => isNaN(Number(x)));
@@ -72,6 +73,19 @@ export class GraphModifyComponent implements OnInit {
   }
 
   ngOnChanges(): void {
+    this.getLast();
+  }
+
+  redraw(){
+    this.service.read(this.graph.id).subscribe(x => {
+      this.graph=x;
+      this.draw();
+    });
+  }
+
+  getLast(){
+    this.pane=false;
+    this.ready=false;
     if(this.graph.id == -1){
       this.graphService.getLastModify().subscribe(x => {
         this.graph=x;
@@ -82,14 +96,8 @@ export class GraphModifyComponent implements OnInit {
     }  
   }
 
-  redraw(){
-    this.service.read(this.graph.id).subscribe(x => {
-      this.graph=x;
-      this.draw();
-    });
-  }
-
   draw(){
+      this.pane=true;
       this.init().then(() => { 
           Promise.all( 
             this.assi.map(x => { return this.getAssi(x).then(y => { x.dataSet=<DataSetDTO>y })})

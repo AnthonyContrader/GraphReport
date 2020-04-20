@@ -1,3 +1,4 @@
+
 <div class="canvas" *ngIf="(ready) else noAssi">
     <canvas #esporta baseChart 
         [datasets]="datasets" 
@@ -14,7 +15,7 @@
         <fa-icon [icon]="wait" [spin]="true" size="2x"></fa-icon>
     </div>
 </ng-template>
-<div class="settingPane">
+<div class="settingPane" *ngIf="pane">
     <div>
         <input id="tipo" type="radio" name="nav" class="hidden nav" checked/>
         <label for="tipo" class="scheda" (click)="sc=2">Tipologia</label>

@@ -5,7 +5,7 @@
 }
 
 .canvas{
-    background: floralwhite;
+    background: white;
     border-radius: 5px;
 }
 
@@ -91,7 +91,7 @@ select{
 .menubtn{
     width: 100%;
     text-align: center;
-    background-color: #263238;
+    background-color: #353535;
     color: #f1f1f1;
     border: none;
     padding: 10px;

@@ -8,7 +8,10 @@ label{
 
 input{
     width: 100%;
-    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px blue;
     border-radius: 15px;
     padding: 1px 8px;
     margin: 0 4px;
@@ -50,13 +53,15 @@ select{
 }
 
 .menubtn{
-    width: 100%;
+    width: 150px;
     text-align: center;
-    background-color: #263238;
+    background-color: #353535;
     color: #f1f1f1;
     border: none;
     padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
+    margin:10px 50px 0px;
 }
 
 .menubtn:focus {

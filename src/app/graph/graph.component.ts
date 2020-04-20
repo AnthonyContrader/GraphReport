@@ -3,6 +3,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { GraphListComponent } from './graph-list/graph-list.component';
 import { GraphDTO } from 'src/dto/graph.dto';
 import { GraphService } from 'src/service/graph.service';
+import { GraphModifyComponent } from './graph-modify/graph-modify.component';
 
 @Component({
   selector: 'app-graph',
@@ -12,6 +13,7 @@ import { GraphService } from 'src/service/graph.service';
 export class GraphComponent implements OnInit {
 
   @ViewChild(GraphListComponent) childList: GraphListComponent;
+  @ViewChild(GraphModifyComponent) childModify: GraphModifyComponent;
 
   userId : number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
   graph: GraphDTO = new GraphDTO(-1);
@@ -36,17 +38,11 @@ export class GraphComponent implements OnInit {
     if(b){
       switch(this.op){
         case 'del':
-          this.service.delete(this.whereId).subscribe( () =>
-//            () => { this.service.mtmDelete(del).subscribe(
-//              () => { 
-      this.childList.update()
-//                  },
-//              err => { err = 5},
-//              () => {}
-//            )},
-//            err => { err = 4 },
-//            () => {}
-            );
+          this.service.delete(this.whereId).subscribe( () => { 
+            this.childList.update(); 
+            this.graph.id=-1;
+            this.childModify.getLast();
+          });
           break;
       }
     }
@@ -61,10 +57,12 @@ export class GraphComponent implements OnInit {
   }
 
   checkOp(result:boolean){
-    if(result)
+    if(result){
       this.childList.update();
-    else
-    this.err=1;
+      this.graph.id=-1;
+      this.childModify.getLast();
+    }else
+      this.err=1;
   }
 
   catch(e:number){

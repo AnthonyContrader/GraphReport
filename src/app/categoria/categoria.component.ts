@@ -10,7 +10,7 @@ import { CategoriaService } from 'src/service/categoria.service';
 export class CategoriaComponent implements OnInit {
 
   categorie: CategoriaDTO[];
-  newCategoria: CategoriaDTO = new CategoriaDTO();
+  newCategoria: CategoriaDTO = new CategoriaDTO(null,null);
 
 
 
