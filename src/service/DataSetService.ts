@@ -28,41 +28,37 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     this.generic="/datasets";
   }
 
-  getAllByUser(id: number): Observable<DataSetDTO[]> {
-    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getAllByUser?id=' + id);
-  }
+  // getAllByUser(id: number): Observable<DataSetDTO[]> {
+  //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getAllByUser?id=' + id);
+  // }
 
-  countDS(id: number): Observable<DataSetDTO[]> {
-    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/countDS?id=' + id);
-  }
+  // countDS(id: number): Observable<DataSetDTO[]> {
+  //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/countDS?id=' + id);
+  // }
 
-  getListCat(): Observable<CategoriaDTO[]> {
-    return this.http.get<any>(SERVER_API_URL +'/unita/api/categorias');
-  }
+  // getListCat(): Observable<CategoriaDTO[]> {
+  //   return this.http.get<any>(SERVER_API_URL +'/unita/api/categorias');
+  // }
 
-  getListUnit(): Observable<UnitaMisuraDTO[]> {
-    return this.http.get<any>(SERVER_API_URL +'/unita/api/unitamisuras');
-  }
+  // getListUnit(): Observable<UnitaMisuraDTO[]> {
+  //   return this.http.get<any>(SERVER_API_URL +'/unita/api/unitamisuras');
+  // }
 
-  getListUser(): Observable<UserDTO[]> {
-    return this.http.get<any>(SERVER_API_URL +'gateway/api/users');
-  }
+  // getListUser(): Observable<UserDTO[]> {
+  //   return this.http.get<any>(SERVER_API_URL +'gateway/api/users');
+  // }
 
-  createDS(dto: DataSetDTO): Observable<number>{
-    return this.http.post<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/createDataset', dto);
-  }
+  // deleteDS(ut: number,cat:number): Observable<boolean>{
+  //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/deletedataset?ut='+ut+'&cat='+cat);
+  // }
 
-  deleteDS(ut: number,cat:number): Observable<boolean>{
-    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/deletedataset?ut='+ut+'&cat='+cat);
-  }
+  // getDataSet(ut: number,cat:number){
+  //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getDataSet?id='+ut+'&cat='+cat);
+  // }
 
-  getDataSet(ut: number,cat:number){
-    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getDataSet?id='+ut+'&cat='+cat);
-  }
-
-  updateDS(dtoList: DataSetDTO[]) : Observable<boolean>{
-    return this.http.post<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/updateDS',dtoList);
-  }
+  // updateDS(dtoList: DataSetDTO[]) : Observable<boolean>{
+  //   return this.http.post<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/updateDS',dtoList);
+  // }
 
   // findAll(daCercare: string): Observable<DataSetDTO[]> {
   //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/findAll?cerca=' + daCercare);
