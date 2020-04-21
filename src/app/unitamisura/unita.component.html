@@ -1,6 +1,29 @@
 <div class="container">
-  <div class="main-right">
-    <table class="table">
+  <div class="main">
+    <table class="table-categoria">
+      <thead>
+        <tr>
+          <th class="text-uppercase">Categorie</th>
+          <th class="text-uppercase">Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of categories">
+          <th>{{c.nome}}</th>
+          <th>
+            <button style="font-family:'Courier New', Courier, monospace" style="background-color: crimson;" (click)="delCategoria(c)">Delete</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insert-left">
+        <input type="text" placeholder="Insert Categoria"[(ngModel)]="newCategoria.nome" />
+        <hr style="color: transparent;">
+        <label class="submit" (click)="insertCat()">Inserisci</label>
+    </div>
+  </div>
+  <div class="main">
+    <table class="table-unita">
       <thead>
         <tr>
           <th class="text-uppercase">Unita di Misura</th>
@@ -17,38 +40,16 @@
         </tr>
       </tbody>
     </table>
-        <div class="insert">
-          <form>
-            <input type="text" placeholder="Insert Unità di Misura">
+        <div class="insert-right">
+            <input type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
+            <hr style="color: transparent;">
             <label for="categoria">Scegli Categoria</label>
-            <select>
-              <option selected="selected" *ngFor="let c of categories">{{c.nome}}</option>
+            <select [(ngModel)]="newUnita.categoriaId">
+              <option selected="selected" [value]="c.id"  *ngFor="let c of categories">{{c.nome}}</option>
             </select>
-            <input type="submit" (click)="insert(newUnita)" value="Insert">
-          </form>
+            <hr style="color: transparent;">
+            <label class="submit" (click)="insert()">Inserisci</label>
         </div>
-  </div>
-  <div class="main-left">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="text-uppercase">Categorie</th>
-          <th class="text-uppercase">Manage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let c of categories">
-          <th>{{c.nome}}</th>
-          <th>
-            <button style="font-family:'Courier New', Courier, monospace" style="background-color: crimson;" (click)="delCategoria(c)">Delete</button>
-          </th>
-        </tr>
-      </tbody>
-    </table>
-    <div class="insert">
-        <input type="text" [(ngModel)]="newCategoria.nome" />
-        <label class="submit" (click)="insertCat()"> Salva </label>
-    </div>
   </div>
 </div>
 

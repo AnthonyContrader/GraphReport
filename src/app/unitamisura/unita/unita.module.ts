@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
-import { UnitaComponent } from '../unitamisura/unita.component';
-import { CategoriaComponent } from '../categoria/categoria.component';
+import { UnitaComponent } from '../unita.component';
+import { CategoriaComponent } from '../../categoria/categoria.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

@@ -8,9 +8,9 @@ import { NavComponent } from './nav/nav.component';
 import { UserRouteAccessService } from 'src/authJWT/user-route-access-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GraphModule } from '../graph/graph.module';
-import { UnitaModule } from '../unita/unita.module';
 import { DatasetComponent } from '../dataset/dataset.component';
 import { FormsModule } from '@angular/forms';
+import { UnitaModule } from '../unitamisura/unita/unita.module';
 
 
 

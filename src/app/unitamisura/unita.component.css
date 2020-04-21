@@ -1,17 +1,50 @@
 
-
-  table, th, td {
+  .table-unita, th, td {
     border: 1px solid white;
     margin-left: 28% ;
     width: 50%;
     color: white;
-    background-color: dimgray;
+    background-color: rebeccapurple;
+    border-radius: 22px;
+    border-collapse: collapse;
   }
 
-  .main-right{
+  .table-categoria{
+    border: 1px solid white;
+    margin-left: 28% ;
     width: 50%;
-    margin-left: 50%;
-    margin-top: 50px;
+    color: white;
+    background-color: rebeccapurple;
+    border-radius: 22px;
+    border-collapse: collapse;
+  }
+
+  .container{
+    width: 100vw;
+    position: fixed;
+    height: calc(100vh - 39px);
+    overflow: auto;
+    display: -webkit-box;
+  }
+
+  @media (max-width:700px){
+    .main{
+      width: 100%;
+    }
+  }
+
+  @media (min-width:700px){
+    .main{
+      width: 50%;
+    }
+  }
+
+
+  .main{
+    height: max-content;
+    box-sizing: border-box;
+    padding: 20px;
+
   }
 
   input[type=text], select {
@@ -25,33 +58,42 @@
   }
 
   .submit {
-    width: 100%;
     background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+    color: black;
+    padding: 8px 40px;
+    margin: auto;
     border: none;
-    border-radius: 4px;
+    border-radius: 14px;
     cursor: pointer;
+    padding-top: 8px;
   }
 
   .submit:hover {
     background-color: #45a049;
   }
 
-  .insert{
+  .insert-right{
     margin-top: 150px;
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: rebeccapurple;
     padding: 20px;
-    width: 60%;
-    margin-left: 20%;
+    width: 45%;
+    margin-left: 28%;
+    display: grid;
   }
 
-  .main-left{
-    width: 50%;
-    margin-right: 50%;
-    margin-top: -534px;
+  .insert-left{
+    margin-top: 150px;
+    border-radius: 5px;
+    background-color: rebeccapurple;
+    padding: 20px;
+    width: 45%;
+    margin-left: 28%;
+    display: grid;
   }
+
+
+
+
 
 

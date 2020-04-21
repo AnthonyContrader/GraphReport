@@ -13,10 +13,10 @@ import { CategoriaDTO } from 'src/dto/categoria.dto';
 export class UnitaComponent implements OnInit {
 
   categories: CategoriaDTO[];
-  newCategoria: CategoriaDTO = new CategoriaDTO(null,'stocazzo');
+  newCategoria: CategoriaDTO = new CategoriaDTO(null, null);
   listUnita: UnitaMisuraDTO[];
-  newUnita: UnitaMisuraDTO = new UnitaMisuraDTO();
-  
+  newUnita: UnitaMisuraDTO = new UnitaMisuraDTO(null, null, null);
+
   constructor(private service: UnitaService, private catService: CategoriaService) { }
 
   ngOnInit(): void {
@@ -44,12 +44,11 @@ export class UnitaComponent implements OnInit {
     this.service.update(unitamisura).subscribe(() => this.getunitaMisura());
   }
 
-  insert(unitamisura: UnitaMisuraDTO){
-    this.service.insert(unitamisura).subscribe(() => this.getunitaMisura());
+  insert(){
+    this.service.insert(this.newUnita).subscribe(() => this.getunitaMisura());
   }
 
   insertCat(){
-    alert(JSON.stringify(this.newCategoria))
     this.service.insertCat(this.newCategoria).subscribe(() => this.getCategoria());
   }
 

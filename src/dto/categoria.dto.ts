@@ -6,9 +6,9 @@ export class CategoriaDTO{
   id: number;
   nome: string;
 
-  constructor(id:number,nome:string){
-    this.id=id;
-    this.nome=nome;
+  constructor(id: number, nome: string){
+    this.id = id;
+    this.nome = nome;
   }
 }
 
