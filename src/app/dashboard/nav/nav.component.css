@@ -1,25 +1,46 @@
-.navbar{
-    position: relative;
-    display: block ruby;
-    padding: 0 20px;
-    max-width: 1000px;
-    margin: auto;
+.full-bar{
+    width:100%;
+    height:39px;
+    background-color: gainsboro;
 }
 
+label{
+    margin-bottom: 0px;
+}
+
+.navibar{
+    max-width:1000px;
+    margin: auto;
+    display: -webkit-box;
+}
+
+.lato{
+    width:20%;
+    box-sizing: border-box;
+}
+
+.centro{
+    width:60%;
+    box-sizing: border-box;
+}
+
+ 
 .logo{
     margin: 9px 20px;
-    float: left;
+    width: 150px;
+    cursor: pointer;
 }
 
-img{
-    width:150px;
-    cursor: pointer;
+.elcont{
+    width: max-content;
+    margin: auto;
+    position: relative;
 }
 
 .el{
     cursor: pointer;
     width: max-content;
-    padding: 9px 15px;
+    padding: 6px 15px;
     border-bottom: 3px solid gainsboro;
     text-align: center;
 }
@@ -32,26 +53,20 @@ img{
     border-bottom: 3px solid #8B51CA;
 }
 
-.elcont{
-    width: max-content;
-    display: flex;
-    margin: auto;
-}
-
 .dropdown-contenitor{
     position: relative;
-    display: inline-block;
+    max-width: max-content;
 }
 
 .personal{
     border: none;
     cursor: pointer;
-    height: 21px;
+    height: 24px;
     overflow: visible;
 }
 
 .dropdown{
-    margin: 13px;
+    margin: 9px 16px;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -66,8 +81,83 @@ img{
     border-bottom: 3px solid gainsboro;
     text-align: center;
     width: 100px;
+    min-width: max-content;
 }
 
 .dropdown-contenitor:hover > .dropdown{
     display: block;
 } 
+
+.btnmenu{
+    height:39px;
+    padding:9px;
+    cursor: pointer;
+    position: fixed;
+    right:0px;
+    top:0px;
+
+}
+
+.menu{
+    height: calc(100vh - 39px);
+    width: 75vw;
+    background-color: gray;
+    position: fixed;
+    right:-75vw;
+    top:39px;
+    transition: right 1s;
+    z-index: 999;
+    padding:10px 30px;
+    color: white;
+}
+
+.show{
+    right:0;
+}
+
+.dettagli{
+    max-width: max-content;
+    margin: auto;
+}
+.nome{
+    display: inline;
+    padding: 12px 0px;
+}
+.nome > label{
+    font-size: 1.25rem;
+    margin:12px 0px;
+}
+.immagine{
+    display: inline-table;
+    border-radius: 20px;
+    background-color: white;
+    overflow: hidden;
+    margin: 0px 15px;
+}
+.immagine > img{
+    width: 40px;
+}
+
+.vert{
+    width: 100%;
+}
+
+@media (max-width:700px){
+    .centro{
+        display: none;
+    }
+    .destra{
+        display: none;
+    }
+    .lato{
+        margin: 0px auto;
+        width:190px;
+    }
+    
+}
+
+@media (min-width:701px){
+    .vertical{
+        display: none;
+    }
+}

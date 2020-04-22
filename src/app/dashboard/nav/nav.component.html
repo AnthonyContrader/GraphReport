@@ -1,35 +1,49 @@
-<div style="background-color: gainsboro;">
-    <div class="navbar">
-        <div class="logo" style="width: 30%;">
-            <img src="../../../assets/ori.png" (click)="apriqualcosa('')" />
+<div class="full-bar">
+    <div class="navibar">
+        <div class="lato">
+            <img src="../../../assets/ori.png" (click)="apriqualcosa('')" class="logo" />
         </div>
-        <div style="width: 40%;">
+        <div class="centro">
             <div class="elcont" >
-                <label class="el" (click)="apriqualcosa('unita')" [ngClass]="(selected=='unita') ? 'el selected' : 'el'">
-                    unita di misura
-                </label>
-                <label class="el" (click)="apriqualcosa('ds')" [ngClass]="(selected=='ds') ? 'el selected' : 'el'">
-                    data set
-                </label>
-                <label class="el" (click)="apriqualcosa('graph')" [ngClass]="(selected=='graph') ? 'el selected' : 'el'">
-                    grafici
-                </label>
+                <label class="el" (click)="apriqualcosa('unita')" [ngClass]="(selected=='unita') ? 'el selected' : 'el'">unita di misura</label>
+                <label class="el" (click)="apriqualcosa('ds')" [ngClass]="(selected=='ds') ? 'el selected' : 'el'">data set</label>
+                <label class="el" (click)="apriqualcosa('graph')" [ngClass]="(selected=='graph') ? 'el selected' : 'el'">grafici</label>
             </div>
         </div>
-        <div class="dropdown-contenitor el" style="float: right;">
-            <label class="personal">
-               {{nome}} <fa-icon [icon]="arrowDown"></fa-icon>
-            </label>
-            <div class="dropdown">
-                <div class="eldrop" [ngClass]="(selected=='pr') ? 'el selected' : 'el'">
-                    profilo
+        <div class="destra">
+            <div class="dropdown-contenitor el" style="float: right;">
+                <label class="personal"> {{nome}} <fa-icon [icon]="arrowDown"></fa-icon></label>
+                <div class="dropdown">
+                    <div class="eldrop" [ngClass]="(selected=='pr') ? 'el selected' : 'el'">
+                        profilo
+                    </div>
+                    <div class="eldrop" *ngIf="isAdmin" [ngClass]="(selected=='lu') ? 'el selected' : 'el'">
+                        lista utenti
+                    </div>
+                    <div (click)="logout()" class="eldrop el">
+                        log out
+                    </div>
                 </div>
-                <div class="eldrop" *ngIf="isAdmin" [ngClass]="(selected=='lu') ? 'el selected' : 'el'">
-                    lista utenti
+            </div>
+        </div>
+    </div>
+    <div class="vertical">
+        <div class="btnmenu" (click)="verticalnav()">
+            <fa-icon style="font-size: larger;" [icon]=menu></fa-icon>
+        </div>
+        <div [ngClass]="(vnav)? 'menu' : 'menu show'">
+            <div class="dettagli">
+                <div class="nome">
+                    <label> {{nome}} </label>
                 </div>
-                <div (click)="logout()" class="eldrop el">
-                    log out
+                <div class="immagine">
+                    <img [src]="image">
                 </div>
+            </div>
+            <div style="margin: 10px 0px">
+                <label class="el vert" (click)="apriqualcosa('unita',true)" [ngClass]="(selected=='unita') ? 'el selected' : 'el'">unita di misura</label>
+                <label class="el vert" (click)="apriqualcosa('ds',true)" [ngClass]="(selected=='ds') ? 'el selected' : 'el'">data set</label>
+                <label class="el vert" (click)="apriqualcosa('graph',true)" [ngClass]="(selected=='graph') ? 'el selected' : 'el'">grafici</label>
             </div>
         </div>
     </div>

@@ -20,19 +20,15 @@
     border-bottom: 2px groove white;
 }
 
-.scheda:hover{
-    border-radius: 5px 5px 0 0;
-    border-top: 1px solid white;
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-    padding: 7px 6px 5px
-}
-
 input.nav:checked + label{
     border-radius: 5px 5px 0 0 !important;
     border: 2px groove white !important;
     border-bottom: 0px !important;
     padding: 7px !important;
+}
+
+input.nav + label{
+    margin: 0px !important;
 }
 
 .hidden{
@@ -82,7 +78,6 @@ select{
   background-repeat: no-repeat;
 
 }
-
 
 select:hover, input:hover{
     border-bottom: 2px solid #8B51CA;

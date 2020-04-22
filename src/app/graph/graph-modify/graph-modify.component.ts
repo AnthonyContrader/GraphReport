@@ -201,7 +201,7 @@ export class GraphModifyComponent implements OnInit {
                     y: Number(assey[j].dataSet.valori.split("_")[i]),
                     r: Number(assez[j].dataSet.valori.split("_")[i])
                 };
-                data={ data: arr[j], label: assez[j].dataSet.commento, type: ti }
+                data={ data: arr[j], label: assez[j].dataSet.commento, type: ti, backgroundColor: 'red', borderColor: 'green' }
                 this.datasets.push(data);
             }
         }else{
@@ -256,6 +256,9 @@ export class GraphModifyComponent implements OnInit {
             colore={ 
               backgroundColor: "rgba("+a[0]+","+a[1]+","+a[2]+","+0.6+")",
               };
+            break;
+          case "scatter":
+
             break;
       }
     return colore;

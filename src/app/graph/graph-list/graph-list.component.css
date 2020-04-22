@@ -18,15 +18,12 @@
 }
 
 .tr{
-    border-bottom: 2px solid #dee2e6;
+	border-bottom: 2px solid #dee2e6;
 }
 
 .tc{
 	text-align: center;
     padding: 8px 10px;
-}
-
-.tc, .tcrud {
 	min-height:18px;
     max-height:40px;
 }
@@ -36,6 +33,7 @@
 	color: #ffffff;
 	position: inherit;
 	width: 100px;
+	border-top: 0px;
 	font-size: large;
 } 
 

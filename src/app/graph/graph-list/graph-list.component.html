@@ -19,8 +19,8 @@
             <td  class="tc"(click)="show(g.id)" > 
                 {{g.tipoGrafico | titlecase}}
             </td>
-            <td class="tcrud" *ngIf="owner" style="padding: 0px;" (click)="del(g.id)">
-                <label ><div class="linkCRUD red-h" ><fa-icon [icon]="elimina"></fa-icon></div></label>
+            <td class="tc" *ngIf="owner" (click)="del(g.id)">
+                <div class="linkCRUD red-h" ><fa-icon [icon]="elimina"></fa-icon></div>
             </td>
         </tr>
     </table>
