@@ -35,22 +35,24 @@ label{
     width: max-content;
     margin: auto;
     position: relative;
+    top:7px;
 }
 
 .el{
     cursor: pointer;
     width: max-content;
     padding: 6px 15px;
-    border-bottom: 3px solid gainsboro;
+    border-bottom: 3px groove gainsboro;
     text-align: center;
+    display: inline;
 }
 
 .el:hover{
-    border-bottom: 3px solid #8B51CA;
+    border-bottom: 3px groove #8B51CA;
 }
 
 .selected{
-    border-bottom: 3px solid #8B51CA;
+    border-bottom: 3px groove #8B51CA;
 }
 
 .dropdown-contenitor{
@@ -78,10 +80,11 @@ label{
 .eldrop{
     cursor: pointer;
     padding: 10px 15px;
-    border-bottom: 3px solid gainsboro;
+    border-bottom: 3px groove gainsboro;
     text-align: center;
     width: 100px;
     min-width: max-content;
+    display: block;
 }
 
 .dropdown-contenitor:hover > .dropdown{
@@ -140,6 +143,18 @@ label{
 
 .vert{
     width: 100%;
+    display: block;
+    text-align: unset;
+    padding-left: 10% !important;
+}
+
+.sub{
+    margin-left:10%;
+    width: 90%;
+    border-bottom: 2px groove gainsboro;
+}
+.sub:hover{
+    border-bottom: 2px groove #8B51CA;
 }
 
 @media (max-width:700px){

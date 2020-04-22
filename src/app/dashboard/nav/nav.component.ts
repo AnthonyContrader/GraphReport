@@ -61,6 +61,10 @@ export class NavComponent implements OnInit {
         this.router.navigate([path+el]);
         break;
 
+      case 'csv':
+        this.router.navigate([path+el]);
+        break;
+
       default:
         this.router.navigate([path]);
         break;
