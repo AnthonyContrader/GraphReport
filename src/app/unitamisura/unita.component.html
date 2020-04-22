@@ -3,13 +3,16 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th class="text-uppercase">Categorie</th>
-          <th class="text-uppercase">Manage</th>
+          <th class="text-uppercase" style="text-align: center;">Categorie</th>
+          <th class="text-uppercase" style="text-align: center;">Manage</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let c of categories">
-          <th>{{c.nome}}</th>
+          <!--<th>{{c.nome}}</th>-->
+          <td>
+            <input class="input" type="text" style="font-weight: bold;" [(ngModel)]="c.nome" />
+          </td>
           <th>
             <fa-icon fa-2x [icon]="cancella" style="font-size: 1.5em;" class="cancButton" (click)="delCategoria(c)"></fa-icon>
             <fa-icon fa-2x [icon]="modifica" style="font-size: 1.5em;" class="modButton" (click)="updateCat(c)"></fa-icon>
@@ -17,24 +20,25 @@
         </tr>
       </tbody>
     </table>
-    <form class="inserimento-left">
       <div class="form-group">
-          <input class="form-control" type="text" placeholder="Insert Categoria"[(ngModel)]="newCategoria.nome" />
+          <input class="input" type="text" placeholder="Insert Categoria" [(ngModel)]="newCategoria.nome" />
           <button class="btn btn-success" (click)="insertCat()">Inserisci</button>
       </div>
-    </form>
   </div>
   <div class="col">
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th class="text-uppercase">Unita di Misura</th>
-          <th class="text-uppercase">Manage</th>
+          <th class="text-uppercase" style="text-align: center;">Unita di Misura</th>
+          <th class="text-uppercase" style="text-align: center;">Manage</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let u of listUnita">
-          <th>{{u.nome}}</th>
+          <!--<th>{{u.nome}}</th>-->
+          <td>
+            <input class="input" type="text" style="font-weight: bold;" [(ngModel)]="u.nome" />
+          </td>
           <th>
             <fa-icon fa-2x [icon]="cancella" style="font-size: 1.5em;" class="cancButton" (click)="delete(u)"></fa-icon>
             <fa-icon fa-2x [icon]="modifica" style="font-size: 1.5em;" class="modButton" (click)="update(u)"></fa-icon>
@@ -42,17 +46,16 @@
         </tr>
       </tbody>
     </table>
-    <form class="inserimento">
       <div class="form-group">
-        <input class="form-control" type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
-        <label for="categoria">Scegli Categoria</label>
-        <select [(ngModel)]="newUnita.categoriaId" class="custom-select">
-        <option selected="selected" placeholder="Scegli Categoria" [value]="c.id"
-        *ngFor="let c of categories">{{c.nome}}</option>
-        </select>
+        <input class="input" type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
+        <br>
+        <label for="categoria" style="font-weight: bold;">Scegli Categoria</label>
+          <select [(ngModel)]="newUnita.categoriaId" class="custom-select">
+            <option selected="selected" placeholder="Scegli Categoria" [value]="c.id"
+            *ngFor="let c of categories">{{c.nome}}</option>
+          </select>
         <button type="button" class="btn btn-success" (click)="insert()">Inserisci</button>
       </div>
-    </form>
   </div>
 </div>
 
