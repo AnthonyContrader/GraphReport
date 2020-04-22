@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="main">
-    <table class="table-categoria">
-      <thead>
+<div class="container-fluid row">
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
           <th class="text-uppercase">Categorie</th>
           <th class="text-uppercase">Manage</th>
@@ -11,20 +11,22 @@
         <tr *ngFor="let c of categories">
           <th>{{c.nome}}</th>
           <th>
-            <button style="font-family:'Courier New', Courier, monospace" style="background-color: crimson;" (click)="delCategoria(c)">Delete</button>
+            <fa-icon fa-2x [icon]="cancella" style="font-size: 1.5em;" class="cancButton" (click)="delCategoria(c)"></fa-icon>
+            <fa-icon fa-2x [icon]="modifica" style="font-size: 1.5em;" class="modButton" (click)="updateCat(c)"></fa-icon>
           </th>
         </tr>
       </tbody>
     </table>
-    <div class="insert-left">
-        <input type="text" placeholder="Insert Categoria"[(ngModel)]="newCategoria.nome" />
-        <hr style="color: transparent;">
-        <label class="submit" (click)="insertCat()">Inserisci</label>
-    </div>
+    <form class="inserimento-left">
+      <div class="form-group">
+          <input class="form-control" type="text" placeholder="Insert Categoria"[(ngModel)]="newCategoria.nome" />
+          <button class="btn btn-success" (click)="insertCat()">Inserisci</button>
+      </div>
+    </form>
   </div>
-  <div class="main">
-    <table class="table-unita">
-      <thead>
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
         <tr>
           <th class="text-uppercase">Unita di Misura</th>
           <th class="text-uppercase">Manage</th>
@@ -34,22 +36,23 @@
         <tr *ngFor="let u of listUnita">
           <th>{{u.nome}}</th>
           <th>
-            <button style="font-family:'Courier New', Courier, monospace"
-            style="background-color: crimson;" (click)="delete(u)">Delete</button>
+            <fa-icon fa-2x [icon]="cancella" style="font-size: 1.5em;" class="cancButton" (click)="delete(u)"></fa-icon>
+            <fa-icon fa-2x [icon]="modifica" style="font-size: 1.5em;" class="modButton" (click)="update(u)"></fa-icon>
           </th>
         </tr>
       </tbody>
     </table>
-        <div class="insert-right">
-            <input type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
-            <hr style="color: transparent;">
-            <label for="categoria">Scegli Categoria</label>
-            <select [(ngModel)]="newUnita.categoriaId">
-              <option selected="selected" [value]="c.id"  *ngFor="let c of categories">{{c.nome}}</option>
-            </select>
-            <hr style="color: transparent;">
-            <label class="submit" (click)="insert()">Inserisci</label>
-        </div>
+    <form class="inserimento">
+      <div class="form-group">
+        <input class="form-control" type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
+        <label for="categoria">Scegli Categoria</label>
+        <select [(ngModel)]="newUnita.categoriaId" class="custom-select">
+        <option selected="selected" placeholder="Scegli Categoria" [value]="c.id"
+        *ngFor="let c of categories">{{c.nome}}</option>
+        </select>
+        <button type="button" class="btn btn-success" (click)="insert()">Inserisci</button>
+      </div>
+    </form>
   </div>
 </div>
 

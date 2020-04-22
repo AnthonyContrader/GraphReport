@@ -3,7 +3,7 @@ import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
 import { UnitaService } from 'src/service/unita.service';
 import { CategoriaService } from 'src/service/categoria.service';
 import { CategoriaDTO } from 'src/dto/categoria.dto';
-
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-unita',
@@ -12,6 +12,8 @@ import { CategoriaDTO } from 'src/dto/categoria.dto';
 })
 export class UnitaComponent implements OnInit {
 
+  cancella = faTrash;
+  modifica = faPencilAlt;
   categories: CategoriaDTO[];
   newCategoria: CategoriaDTO = new CategoriaDTO(null, null);
   listUnita: UnitaMisuraDTO[];
@@ -30,6 +32,10 @@ export class UnitaComponent implements OnInit {
 
   delCategoria(categoria: CategoriaDTO){
     this.service.deleteCategoria(categoria.id).subscribe(() => this.getCategoria());
+  }
+
+  updateCat(categoria: CategoriaDTO){
+    this.service.updateCategoria(categoria).subscribe(() => this.getCategoria());
   }
 
   getunitaMisura() {
