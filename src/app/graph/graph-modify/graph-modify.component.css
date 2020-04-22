@@ -116,6 +116,7 @@ select:disabled{
     padding: 10px;
     cursor: pointer;
     margin: 0px 10px;
+    border-radius: 5px;
 }
 
 .menubtnDis{

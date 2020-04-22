@@ -6,8 +6,10 @@
         <div class="centro">
             <div class="elcont" >
                 <div (click)="apriqualcosa('unita')" [ngClass]="(selected=='unita') ? 'el selected' : 'el'">Unità di Misura</div>
-                <div (click)="apriqualcosa('ds')" [ngClass]="(selected=='ds') ? 'dropdown-contenitor el selected' : 'dropdown-contenitor el'">
-                    DataSet
+                <div  [ngClass]="(selected=='ds') ? 'dropdown-contenitor el selected' : 'dropdown-contenitor el'">
+                    <label (click)="apriqualcosa('ds')">
+                        DataSet
+                    </label>
                     <div class="dropdown">
                         <div class="eldrop" (click)="apriqualcosa('csv')" [ngClass]="(selected=='csv') ? 'el selected' : 'el'">
                             CSV
