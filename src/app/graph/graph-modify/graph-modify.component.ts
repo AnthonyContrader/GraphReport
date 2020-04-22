@@ -268,15 +268,6 @@ export class GraphModifyComponent implements OnInit {
       this.sc=x;
     }
 
-    esporta(ext:string){
-      let canvas : HTMLCanvasElement = <HTMLCanvasElement>this.dom.nativeElement;
-      let img = canvas.toDataURL("image/"+ext+";base64",1.0).replace("image/png", "image/octet-stream");
-      let a = document.createElement('a');
-      a.href = img;
-      a.download = this.graph.titolo+"_graph"+ext;
-      a.click();
-    }
-
     addSet(){
       let pos;
       if(this.assex == undefined)
@@ -331,6 +322,34 @@ export class GraphModifyComponent implements OnInit {
 
     checkn(){
       if(this.graph.fontSize<1) this.graph.fontSize=1;
+    }
+
+    esporta(ext:string){
+      let canvas : HTMLCanvasElement = <HTMLCanvasElement>this.dom.nativeElement;
+      let img = canvas.toDataURL("image/"+ext+";base64",1.0).replace("image/png", "image/octet-stream");
+      let a = document.createElement('a');
+      a.href = img;
+      a.download = this.graph.titolo+"_graph"+ext;
+      a.click();
+    }
+
+    print(){
+      let canvas : HTMLCanvasElement = <HTMLCanvasElement>this.dom.nativeElement;
+      let img = canvas.toDataURL(); //attempt to save base64 string to server using this var  
+      var windowContent = '<!DOCTYPE html>';
+      windowContent += '<html>'
+      windowContent += '<head><title>Print canvas</title></head>';
+      windowContent += '<body>'
+      windowContent += '<img src="' + img + '">';
+      windowContent += '</body>';
+      windowContent += '</html>';
+      var printWin = window.open('','','');
+      printWin.document.open();
+      printWin.document.write(windowContent);
+      printWin.document.close();
+      printWin.focus();
+      printWin.print();
+      printWin.close();
     }
 
 }
