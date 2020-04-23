@@ -12,17 +12,20 @@ import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class UnitaComponent implements OnInit {
 
+
+  isAdmin: boolean;
   cancella = faTrash;
   modifica = faPencilAlt;
   categories: CategoriaDTO[];
   newCategoria: CategoriaDTO = new CategoriaDTO(null, null);
-  listUnita: UnitaMisuraDTO[];
+  UnitaByCategoria: UnitaMisuraDTO[];
   newUnita: UnitaMisuraDTO = new UnitaMisuraDTO(null, null, null);
 
-  constructor(private service: UnitaService, private catService: CategoriaService) { }
+  constructor(private service: UnitaService, private catService: CategoriaService) {
+    this.isAdmin = JSON.parse(sessionStorage.getItem('identity') || localStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
+   }
 
   ngOnInit(): void {
-    this.getunitaMisura();
     this.getCategoria();
   }
 
@@ -38,25 +41,29 @@ export class UnitaComponent implements OnInit {
     this.service.updateCategoria(categoria).subscribe(() => this.getCategoria());
   }
 
-  getunitaMisura() {
-  this.service.getAll().subscribe(listUnita => this.listUnita = listUnita);
+  getunitaByCategoria(idcliccato: number) {
+  //alert(idcliccato);
+  this.service.getAllByCategoria(idcliccato).subscribe(UnitaByCategoria => this.UnitaByCategoria = UnitaByCategoria);
   }
 
   delete(unitamisura: UnitaMisuraDTO){
-    this.service.delete(unitamisura.id).subscribe(() => this.getunitaMisura());
+    this.service.delete(unitamisura.id).subscribe(() => this.getunitaByCategoria(unitamisura.categoriaId));
   }
 
   update(unitamisura: UnitaMisuraDTO){
-    this.service.update(unitamisura).subscribe(() => this.getunitaMisura());
+    this.service.update(unitamisura).subscribe(() => this.getunitaByCategoria(unitamisura.categoriaId));
   }
 
   insert(){
-    this.service.insert(this.newUnita).subscribe(() => this.getunitaMisura());
+    this.service.insert(this.newUnita).subscribe(() => this.getunitaByCategoria(this.newUnita.categoriaId));
   }
 
   insertCat(){
     this.service.insertCat(this.newCategoria).subscribe(() => this.getCategoria());
   }
+
+
+
 
 
 }

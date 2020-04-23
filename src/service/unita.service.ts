@@ -32,6 +32,9 @@ export class UnitaService extends AbstractService<UnitaMisuraDTO>{
 
   updateCategoria(categoria: CategoriaDTO): Observable<CategoriaDTO[]> {
     return this.http.put<any>(SERVER_API_URL + this.microservicesPath + '/categorias', categoria);
+  }
 
-}
+  getAllByCategoria(categoriaId: number): Observable<UnitaMisuraDTO[]>{
+    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + '/unitabycategoria/' + categoriaId);
+  }
 }

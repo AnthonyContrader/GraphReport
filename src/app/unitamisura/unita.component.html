@@ -1,19 +1,22 @@
-<div class="container-fluid row">
+<div class="full">
+<div class="container-fluid row" >
   <div class="col">
     <table class="table">
       <thead class="thead-dark">
         <tr>
           <th class="text-uppercase" style="text-align: center;">Categorie</th>
-          <th class="text-uppercase" style="text-align: center;">Manage</th>
+          <th class="text-uppercase" style="text-align: center;" *ngIf="isAdmin">Manage</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let c of categories">
-          <!--<th>{{c.nome}}</th>-->
-          <td>
+        <tr *ngFor="let c of categories" (click)="getunitaByCategoria(c.id)">
+          <td *ngIf="(isAdmin) else idC">
             <input class="input" type="text" style="font-weight: bold;" [(ngModel)]="c.nome" />
           </td>
-          <th>
+          <ng-template #idC>
+            <td style="text-align: center;" >{{c.nome}}</td>
+          </ng-template>
+          <th *ngIf="isAdmin">
             <fa-icon fa-2x [icon]="cancella" style="font-size: 1.5em;" class="cancButton" (click)="delCategoria(c)"></fa-icon>
             <fa-icon fa-2x [icon]="modifica" style="font-size: 1.5em;" class="modButton" (click)="updateCat(c)"></fa-icon>
           </th>
@@ -21,7 +24,7 @@
       </tbody>
     </table>
       <div class="form-group">
-          <input class="input" type="text" placeholder="Insert Categoria" [(ngModel)]="newCategoria.nome" />
+          <input class="input" type="text" style="width: 50%;" placeholder="Insert Categoria" [(ngModel)]="newCategoria.nome" />
           <button class="btn btn-success" (click)="insertCat()">Inserisci</button>
       </div>
   </div>
@@ -29,17 +32,19 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th class="text-uppercase" style="text-align: center;">Unita di Misura</th>
-          <th class="text-uppercase" style="text-align: center;">Manage</th>
+          <th class="text-uppercase" style="width: 50%;" style="text-align: center;">Unita di Misura</th>
+          <th class="text-uppercase" style="text-align: center;" *ngIf="isAdmin">Manage</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let u of listUnita">
-          <!--<th>{{u.nome}}</th>-->
-          <td>
+        <tr *ngFor="let u of UnitaByCategoria">
+          <td *ngIf="(isAdmin) else idU">
             <input class="input" type="text" style="font-weight: bold;" [(ngModel)]="u.nome" />
           </td>
-          <th>
+          <ng-template #idU>
+            <td style="text-align: center;">{{u.nome}}</td>
+          </ng-template>
+          <th *ngIf="isAdmin">
             <fa-icon fa-2x [icon]="cancella" style="font-size: 1.5em;" class="cancButton" (click)="delete(u)"></fa-icon>
             <fa-icon fa-2x [icon]="modifica" style="font-size: 1.5em;" class="modButton" (click)="update(u)"></fa-icon>
           </th>
@@ -47,10 +52,10 @@
       </tbody>
     </table>
       <div class="form-group">
-        <input class="input" type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
+        <input class="input" style="width: 50%;" type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
         <br>
         <label for="categoria" style="font-weight: bold;">Scegli Categoria</label>
-          <select [(ngModel)]="newUnita.categoriaId" class="custom-select">
+          <select style="width: 50%;" [(ngModel)]="newUnita.categoriaId" class="custom-select">
             <option selected="selected" placeholder="Scegli Categoria" [value]="c.id"
             *ngFor="let c of categories">{{c.nome}}</option>
           </select>
@@ -58,4 +63,6 @@
       </div>
   </div>
 </div>
+</div>
+
 

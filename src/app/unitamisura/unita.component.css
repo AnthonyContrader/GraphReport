@@ -15,16 +15,33 @@
 
 .container-fluid{
   margin-top: 40px;
+  width: 100vw;
+  height: 120vh;
+  overflow: auto;
 }
 
 .form-group{
   margin-top: 60px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .input{
   border-radius: 10px;
+
 }
 
+table{
+  max-width: 400px;
+  margin: auto;
+}
+
+.full{
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
 
 
 
