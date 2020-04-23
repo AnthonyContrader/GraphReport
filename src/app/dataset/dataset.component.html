@@ -1,6 +1,7 @@
 <p>dataset works!</p>
+
 <div class="container-fluid row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="container" style="max-width: 400px;">
 
             <label>Inserire il titolo</label>
@@ -20,12 +21,34 @@
             <button (click)="createDataset()">OK</button>
         </div>
     </div>
+</div>
 
-    <div class="col-md-6">
-        <div class="container">
-
-        </div>
+<div class="col-md-12">
+    <div class="container row">
+        <ng-container *ngFor="let unita of ListaDatasetByUser; let riga=index;">
+            <ng-container *ngIf="riga==0; else StampaTutti"> 
+                <!-- unita['titolo']==ListaDatasetByUser[riga].titolo -->
+                <div class="col-md-1"> 
+                    {{ListaDatasetByUser[riga].titolo}}       
+                    {{unita.idUnita | json}}
+                    <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">
+                        {{valore | json}}
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container #StampaTutti> 
+                <div class="col-md-1">
+                    <!-- *ngIf="unita['titolo']==ListaDatasetByUser[riga-1].titolo" -->
+                    {{ListaDatasetByUser[riga].titolo}}
+                    {{unita.idUnita | json}}
+                </div> 
+            
+                <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">
+                    {{valore | json}}
+                </div>
+            </ng-container> 
+        </ng-container>     
     </div>
+</div>
 
     
-</div>

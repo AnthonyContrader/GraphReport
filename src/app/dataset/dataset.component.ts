@@ -16,8 +16,9 @@ dataset : DataSetDTO = new DataSetDTO(null,null,"","",null,null);
 ListCategoria : CategoriaDTO[];
 ListUnita : UnitaMisuraDTO[];
 ListaFiltrata : UnitaMisuraDTO[];
+ListaDatasetByUser : DataSetDTO[];
 userid: number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
-
+titolouguale: boolean = false;
   
   constructor(private service:DataSetService, private serviceum : UnitaService) {
   }
@@ -26,6 +27,8 @@ userid: number = JSON.parse(localStorage.getItem('identity') || sessionStorage.g
     this.dataset.idUser = this.userid;
     this.serviceum.getCategoria().subscribe(nome => this.ListCategoria=nome);
     this.serviceum.getAll().subscribe(nome => this.ListUnita=nome);
+    //this.service.getAll().subscribe(datasets => this.ListDataset=datasets);
+    this.service.getDatasetByUser(this.dataset.idUser).subscribe(Listavalori => this.ListaDatasetByUser=Listavalori);
   }
 
   createDataset(){
@@ -35,6 +38,12 @@ userid: number = JSON.parse(localStorage.getItem('identity') || sessionStorage.g
 
   filtra(categoriacliccata){
     this.ListaFiltrata = this.ListUnita.filter(x => x.categoriaId == categoriacliccata);
+  }
+
+  confrontaTitolo(titolo : any){
+    let vecchiotitolo : string;
+    if(vecchiotitolo == titolo)
+    this.titolouguale=true;
   }
 
 }

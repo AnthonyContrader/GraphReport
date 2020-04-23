@@ -28,6 +28,10 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     this.generic="/datasets";
   }
 
+  getDatasetByUser(id :number): Observable<DataSetDTO[]>{
+    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/user/' + id)
+  }
+
   // getAllByUser(id: number): Observable<DataSetDTO[]> {
   //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getAllByUser?id=' + id);
   // }
