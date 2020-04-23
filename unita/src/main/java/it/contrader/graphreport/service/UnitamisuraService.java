@@ -27,8 +27,8 @@ public interface UnitamisuraService {
      * @return the list of entities
      */
     Page<UnitamisuraDTO> findAll(Pageable pageable);
-
-
+    
+  
     /**
      * Get the "id" unitamisura.
      *

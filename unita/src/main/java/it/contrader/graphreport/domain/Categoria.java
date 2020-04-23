@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Objects;
 
@@ -27,7 +30,7 @@ public class Categoria implements Serializable {
     private String nome;
 
     @OneToMany(mappedBy = "categoria")
-    private Set<Unitamisura> unitamisuras = new HashSet<>();
+    private List<Unitamisura> unitamisuras;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -51,11 +54,11 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
-    public Set<Unitamisura> getUnitamisuras() {
+    public Collection<Unitamisura> getUnitamisuras() {
         return unitamisuras;
     }
 
-    public Categoria unitamisuras(Set<Unitamisura> unitamisuras) {
+    public Categoria unitamisuras(List<Unitamisura> unitamisuras) {
         this.unitamisuras = unitamisuras;
         return this;
     }
@@ -72,7 +75,7 @@ public class Categoria implements Serializable {
         return this;
     }
 
-    public void setUnitamisuras(Set<Unitamisura> unitamisuras) {
+    public void setUnitamisuras(List<Unitamisura> unitamisuras) {
         this.unitamisuras = unitamisuras;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
