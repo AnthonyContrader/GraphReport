@@ -3,7 +3,7 @@ package it.contrader.graphreport.web.rest;
 import it.contrader.graphreport.service.DatasetService;
 import it.contrader.graphreport.web.rest.errors.BadRequestAlertException;
 import it.contrader.graphreport.service.dto.DatasetDTO;
-
+import it.contrader.graphreport.service.impl.DatasetServiceImpl;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -11,7 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,9 +41,11 @@ public class DatasetResource {
     private String applicationName;
 
     private final DatasetService datasetService;
+    private final DatasetServiceImpl datasetServiceImpl;
 
-    public DatasetResource(DatasetService datasetService) {
+    public DatasetResource(DatasetService datasetService, DatasetServiceImpl datasetServiceImpl) {
         this.datasetService = datasetService;
+        this.datasetServiceImpl = datasetServiceImpl;
     }
 
     /**
@@ -122,5 +126,15 @@ public class DatasetResource {
         log.debug("REST request to delete Dataset : {}", id);
         datasetService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
+    
+    @GetMapping("/datasets/user/{id}")
+    public ResponseEntity<List<DatasetDTO>> getAllDatasetsByUser(@PathVariable Long id) {
+        log.debug("REST request to get a page of Datasets");
+        Pageable paginazione =  PageRequest.of(0, Integer.MAX_VALUE, Sort.by("titolo"));
+        log.debug("PAGINAZIONE E " + paginazione);
+        Page<DatasetDTO> page = datasetServiceImpl.findAllByUserId(id, paginazione);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 }
