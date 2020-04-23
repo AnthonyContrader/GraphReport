@@ -1,0 +1,63 @@
+.container-fluid{
+    padding:15px;
+}
+
+.container{
+    padding: 10px;
+}
+
+.drophere{
+    width: 100%;
+    padding: 50px;
+    border: dashed 1px black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.max-center{
+    max-width: 1000px;
+    margin: auto;
+}
+
+.border{
+    border: 1px groove black;
+    padding:10px;
+    border-radius: 5px;
+}
+
+.scrollable{
+    overflow: auto;
+}
+
+.max-dim{
+    height: calc(100vh - 39px);
+    width: 100vw;
+}
+
+label{
+    margin: 0px;
+}
+
+.form-group{
+    margin: 5px;
+}
+
+th{
+    min-width: 80px;
+}
+
+td, th{
+    text-align: center;
+}
+
+fa-icon{
+    cursor: pointer;
+}
+fa-icon:hover{
+    color: crimson;
+}
+
+.centrato{
+    width: max-content;
+    margin: auto;
+}
