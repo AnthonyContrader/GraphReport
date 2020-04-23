@@ -8,12 +8,9 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Categoria and its DTO CategoriaDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {UnitamisuraMapper.class})
 public interface CategoriaMapper extends EntityMapper<CategoriaDTO, Categoria> {
 
-
-    @Mapping(target = "unitamisuras", ignore = true)
-    Categoria toEntity(CategoriaDTO categoriaDTO);
 
     default Categoria fromId(Long id) {
         if (id == null) {

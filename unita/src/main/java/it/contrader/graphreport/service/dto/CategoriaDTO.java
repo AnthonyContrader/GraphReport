@@ -1,7 +1,14 @@
 package it.contrader.graphreport.service.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+
+import it.contrader.graphreport.domain.Unitamisura;
 
 /**
  * A DTO for the Categoria entity.
@@ -11,6 +18,8 @@ public class CategoriaDTO implements Serializable {
     private Long id;
 
     private String nome;
+    
+    private List<Unitamisura> unitamisuras = new ArrayList<Unitamisura>();
 
     public Long getId() {
         return id;
@@ -27,6 +36,15 @@ public class CategoriaDTO implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    public Collection<Unitamisura> getUnitamisuras() {
+        return unitamisuras;
+    }
+    
+    public void setUnitamisuras(List<Unitamisura> unitamisuras) {
+        this.unitamisuras = unitamisuras;
+    }
+
 
     @Override
     public boolean equals(Object o) {

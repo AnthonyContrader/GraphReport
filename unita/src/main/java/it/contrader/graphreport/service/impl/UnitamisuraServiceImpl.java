@@ -1,6 +1,7 @@
 package it.contrader.graphreport.service.impl;
 
 import it.contrader.graphreport.service.UnitamisuraService;
+import it.contrader.graphreport.domain.Categoria;
 import it.contrader.graphreport.domain.Unitamisura;
 import it.contrader.graphreport.repository.UnitamisuraRepository;
 import it.contrader.graphreport.service.dto.UnitamisuraDTO;
@@ -59,6 +60,19 @@ public class UnitamisuraServiceImpl implements UnitamisuraService {
         log.debug("Request to get all Unitamisuras");
         return unitamisuraRepository.findAll(pageable)
             .map(unitamisuraMapper::toDto);
+    }
+    
+    /**
+     * Get all the unitamisuras by Categoria.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    
+    @Transactional(readOnly = true)
+    public Page<UnitamisuraDTO> findAllByCategoria(Long categoria, Pageable pageable) {
+        log.debug("Request to get all Unitamisuras");
+        return unitamisuraRepository.findAllByCategoria_id(categoria, pageable).map(unitamisuraMapper::toDto);
     }
 
 

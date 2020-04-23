@@ -25,7 +25,7 @@ public class Unitamisura implements Serializable {
     private String nome;
 
     @ManyToOne
-    @JsonIgnoreProperties("unitamisuras")
+    //@JsonIgnoreProperties("unitamisuras")
     private Categoria categoria;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

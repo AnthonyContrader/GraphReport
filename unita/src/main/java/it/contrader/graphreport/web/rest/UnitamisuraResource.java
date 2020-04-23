@@ -6,11 +6,14 @@ import it.contrader.graphreport.web.rest.errors.BadRequestAlertException;
 import it.contrader.graphreport.web.rest.util.HeaderUtil;
 import it.contrader.graphreport.web.rest.util.PaginationUtil;
 import it.contrader.graphreport.service.dto.UnitamisuraDTO;
+import it.contrader.graphreport.service.impl.UnitamisuraServiceImpl;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +36,9 @@ public class UnitamisuraResource {
 
     private static final String ENTITY_NAME = "unitamisura";
 
-    private final UnitamisuraService unitamisuraService;
+    private final UnitamisuraServiceImpl unitamisuraService;
 
-    public UnitamisuraResource(UnitamisuraService unitamisuraService) {
+    public UnitamisuraResource(UnitamisuraServiceImpl unitamisuraService) {
         this.unitamisuraService = unitamisuraService;
     }
 
@@ -93,6 +96,15 @@ public class UnitamisuraResource {
         log.debug("REST request to get a page of Unitamisuras");
         Page<UnitamisuraDTO> page = unitamisuraService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/unitamisuras");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/unitabycategoria/{categoriaId}")
+    public ResponseEntity<List<UnitamisuraDTO>> getAllByCategoria(@PathVariable Long categoriaId) {
+        log.debug("REST request to get a page of Unitamisuras by Categoria: {}", categoriaId);
+        Pageable p = PageRequest.of(0, Integer.MAX_VALUE, Sort.by("nome"));
+        Page<UnitamisuraDTO> page = unitamisuraService.findAllByCategoria(categoriaId,p);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/unitabycategoria");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
