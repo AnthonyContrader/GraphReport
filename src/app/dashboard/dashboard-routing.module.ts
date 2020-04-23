@@ -6,6 +6,7 @@ import { GraphComponent } from '../graph/graph.component';
 import { HomeComponent } from './home/home.component';
 import { DatasetComponent } from '../dataset/dataset.component';
 import { UnitaComponent } from '../unitamisura/unita.component';
+import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'unita', component: UnitaComponent},
     { path: 'graph', component: GraphComponent },
-    { path: 'ds', component: DatasetComponent }
+    { path: 'ds', component: DatasetComponent },
+    { path: 'csv', component: ImportCsvComponent }
   ]}
 ];
 

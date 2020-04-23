@@ -11,6 +11,7 @@ import { GraphModule } from '../graph/graph.module';
 import { DatasetComponent } from '../dataset/dataset.component';
 import { FormsModule } from '@angular/forms';
 import { UnitaModule } from '../unitamisura/unita/unita.module';
+import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
 
 
 
@@ -22,6 +23,7 @@ import { UnitaModule } from '../unitamisura/unita/unita.module';
     HomeComponent,
     NavComponent,
     DatasetComponent,
+    ImportCsvComponent
   ],
   imports: [
     CommonModule,
