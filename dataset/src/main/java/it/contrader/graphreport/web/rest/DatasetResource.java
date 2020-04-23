@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -137,4 +138,15 @@ public class DatasetResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+    
+    @PostMapping("/insertList")
+    public ResponseEntity<List<DatasetDTO>> insertList(@Valid @RequestBody List<DatasetDTO> listDTO) throws URISyntaxException {
+        log.debug("REST request to save List of Dataset : {}", listDTO);
+        
+        List<DatasetDTO> result = new ArrayList<DatasetDTO>();
+        listDTO.forEach(x -> { result.add(datasetService.save(x)); });		
+        
+        return ResponseEntity.created(new URI("/api/insertList/")).body(result);
+    }
+    
 }
