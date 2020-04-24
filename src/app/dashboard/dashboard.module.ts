@@ -12,6 +12,7 @@ import { DatasetComponent } from '../dataset/dataset.component';
 import { FormsModule } from '@angular/forms';
 import { UnitaModule } from '../unitamisura/unita/unita.module';
 import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
+import { DragNdropDirective } from 'src/directive/dragndrop.directive';
 
 
 
@@ -23,7 +24,8 @@ import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
     HomeComponent,
     NavComponent,
     DatasetComponent,
-    ImportCsvComponent
+    ImportCsvComponent,
+    DragNdropDirective
   ],
   imports: [
     CommonModule,

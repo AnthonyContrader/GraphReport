@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { CategoriaDTO } from 'src/dto/categoria.dto';
 import { UnitaService } from 'src/service/unita.service';
@@ -36,12 +36,14 @@ export class ImportCsvComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  readIt($event:any){
-    var files = $event.srcElement.files;
+  toRead($event){
+    this.readIt($event.target.files);
+  }
+
+  readIt(files:any){
     if (files[0].name.endsWith('.csv')) {
-      var input = $event.target;
       var reader = new FileReader();
-      reader.readAsText(input.files[0]);
+      reader.readAsText(files[0]);
       reader.onload = (data) => {
         let csvData = reader.result;
         let csvRecordsArray = (csvData as string).split(/\r\n|\n/);
@@ -82,7 +84,10 @@ export class ImportCsvComponent implements OnInit {
       for(let c=0;c<this.csvRecords[0].length;c++){
         valori="";
         for(let r=0;r<this.csvRecords.length;r++){
-          valori+=this.csvRecords[r][c].toString()+"_";
+          if(this.csvRecords[r][c]!=undefined)
+            valori+=this.csvRecords[r][c].toString()+"_";
+          else
+            valori+="_";
         }
         listdto.push(new DataSetDTO(null,this.titolo,valori.substring(0,valori.length-1),"",this.user,this.umScelte[c]));
       }
@@ -94,9 +99,16 @@ export class ImportCsvComponent implements OnInit {
         listdto.push(new DataSetDTO(null,this.titolo,valori.substring(0,valori.length-1),"",this.user,this.umScelte[i]));
       });
     }
-    
-    alert(JSON.stringify(listdto));
+
     this.dsService.insertList(listdto).subscribe();
+  }
+
+  addClass(n){
+    document.getElementById("col"+n).classList.add("colselected");
+  }
+
+  removeClass(n){
+    document.getElementById("col"+n).classList.remove("colselected");
   }
 
 }

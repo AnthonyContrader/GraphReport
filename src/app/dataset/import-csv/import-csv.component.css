@@ -48,16 +48,35 @@ th{
 
 td, th{
     text-align: center;
+    display: table-cell;
+    vertical-align: middle
 }
 
-fa-icon{
+.tddelrow:hover{
+    background-color: rgb(255, 219, 219) !important;
+    color: crimson;
+}
+.tddelrow:hover ~td{
+    background-color: rgb(255, 219, 219) !important;
+}
+.tddelrow{
     cursor: pointer;
 }
-fa-icon:hover{
+
+.tddelcol:hover{
+    cursor: pointer;
     color: crimson;
+}
+
+.colselected{
+    background-color: rgb(255, 219, 219) !important;
 }
 
 .centrato{
     width: max-content;
     margin: auto;
+}
+
+.fileover{
+    background: lightgray;
 }
