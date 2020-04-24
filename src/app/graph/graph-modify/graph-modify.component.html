@@ -44,20 +44,20 @@
                 <div class="minicont">
                     <label >Asse X</label>
                     <select [(ngModel)]="newAssi[0]"> 
-                        <option *ngFor="let c of subList" [value]="c.id">{{c.idUnita}} {{c.commento}}</option>
+                        <option *ngFor="let c of subList" [value]="c.id">{{findName(c.id)}} {{c.commento}}</option>
                     </select>
                 </div>
                 <div class="minicont">
                     <label >Asse Y</label>
                     <select [(ngModel)]="newAssi[1]">
-                        <option *ngFor="let c of subList" [value]="c.id">{{c.idUnita}} {{c.commento}}</option>
+                        <option *ngFor="let c of subList" [value]="c.id">{{findName(c.id)}} {{c.commento}}</option>
                     </select>
                 </div>
                 <div class="minicont">
                     <input id="az" type="checkbox" class="inpOption" style="margin:0px 3px;width:max-content" [(ngModel)]="zToo"/>
                     <label for="az">Asse Z</label>
                     <select [(ngModel)]="newAssi[2]" [disabled]="!zToo"> 
-                        <option *ngFor="let c of subList" [value]="c.id">{{c.idUnita}} {{c.commento}}</option>
+                        <option *ngFor="let c of subList" [value]="c.id">{{findName(c.id)}} {{c.commento}}</option>
                     </select>
                 </div>
             </div>

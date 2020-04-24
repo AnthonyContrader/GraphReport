@@ -10,6 +10,8 @@ import { DataSetDTO } from 'src/dto/dataSet.dto';
 import { TipoGrafico } from 'src/dto/tipoGrafico.enum';
 import { FontStyle } from 'src/dto/fontStyle.enum';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
+import { UnitaService } from 'src/service/unita.service';
 
 @Component({
   selector: 'app-graph-modify',
@@ -23,6 +25,9 @@ export class GraphModifyComponent implements OnInit {
   @ViewChild("esporta") dom : ElementRef;
   wait = faSpinner;
 
+  findName = (id) => { return this.listU.filter((v,i,a) => {return v.id == id}).map(v => {return v.nome}) };
+
+  listU: UnitaMisuraDTO[] = [];
   dsList: DataSetDTO[];
   subList: DataSetDTO[];
   dsDistinct: string[];
@@ -50,30 +55,25 @@ export class GraphModifyComponent implements OnInit {
   assi: mtmDTO[];
   sc: number = 3;
 
-  constructor(private graphService: GraphService,private service: GraphService,private dsService: DataSetService) { 
+  constructor(private graphService: GraphService,private service: GraphService,private dsService: DataSetService, private uService: UnitaService) { 
     this.tit = new FormControl('', Validators.required);
   }
 
   ngOnInit(): void {
-    this.getDsByUser().then(
+    this.dsService.getDatasetByUser(JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id).subscribe(
       res => {
+        this.dsList=res;
         this.dsDistinct = this.dsList.map(x => x.titolo).filter((value, index, self) => { return self.indexOf(value) === index; }).sort();
         this.filtra(this.dsDistinct[0]);
       }
     );
   }
 
-  getDsByUser(){
-    return new Promise((ok,ops) => {
-      this.dsService.getAll().subscribe( x => {
-        this.dsList=x.filter(y => y.idUser==JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id);
-        return ok();
-      });
-    });
-  }
-
   filtra(ds){
+    this.listU = [];
     this.subList = this.dsList.filter(x => x.titolo==ds);
+    this.subList.filter((value, index, self) => { return self.indexOf(value) === index }).map(x => this.listU.push(new UnitaMisuraDTO(x.idUnita,null,null)));
+    this.uService.getListNomi(this.listU).subscribe(x => this.listU=x);
   }
 
   ngOnChanges(): void {

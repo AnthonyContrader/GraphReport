@@ -27,17 +27,14 @@
             </div>
             <div class="form-group">
                 <label>Unita di misura</label>
-                <select  [(ngModel)]="um" type="text" class="form-control form-control-sm">
+                <select  [(ngModel)]="um" class="form-control form-control-sm">
                     <option value="0">Colonne</option>
                     <option value="1">Righe</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Separatore</label>
-                <select  [(ngModel)]="splitOn" type="text" class="form-control form-control-sm" (change)="readIt()">
-                    <option value=";">;</option>
-                    <option value=",">,</option>
-                </select>
+                <input [(ngModel)]="splitOn" type="text" class="form-control form-control-sm" (change)="readIt()">
             </div>
         </div>
 
