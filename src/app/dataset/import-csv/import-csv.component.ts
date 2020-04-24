@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { CategoriaDTO } from 'src/dto/categoria.dto';
 import { UnitaService } from 'src/service/unita.service';
@@ -36,12 +36,14 @@ export class ImportCsvComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  readIt($event:any){
-    var files = $event.srcElement.files;
+  toRead($event){
+    this.readIt($event.target.files);
+  }
+
+  readIt(files:any){
     if (files[0].name.endsWith('.csv')) {
-      var input = $event.target;
       var reader = new FileReader();
-      reader.readAsText(input.files[0]);
+      reader.readAsText(files[0]);
       reader.onload = (data) => {
         let csvData = reader.result;
         let csvRecordsArray = (csvData as string).split(/\r\n|\n/);
@@ -98,8 +100,15 @@ export class ImportCsvComponent implements OnInit {
       });
     }
 
-    alert(JSON.stringify(listdto));
     this.dsService.insertList(listdto).subscribe();
+  }
+
+  addClass(n){
+    document.getElementById("col"+n).classList.add("colselected");
+  }
+
+  removeClass(n){
+    document.getElementById("col"+n).classList.remove("colselected");
   }
 
 }

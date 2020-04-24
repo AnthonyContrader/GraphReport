@@ -1,7 +1,7 @@
 <div class="container-fluid scrollable max-dim">
     <div class="max-center" *ngIf="!stamp">
-        <input type="file" accept=".csv" id="herecsv" style="display: none;" (change)="readIt($event)">
-        <label for="herecsv" class="drophere">
+        <input type="file" accept=".csv" id="herecsv" style="display: none;" (change)="toRead($event)">
+        <label for="herecsv" class="drophere" dragNdrop (fileDropped)="readIt($event)">
         <div class="container">
             drop or click here
         </div>
@@ -35,7 +35,12 @@
         </div>
 
         <div class="container border scrollable" style="height: 80%;">
-            <table>
+            <table class="table table-striped">
+                <colgroup>
+                    <col *ngIf="um==1">
+                    <col >
+                    <col *ngFor="let a of csvRecords[0]; let i=index" [id]="('col'+i)">
+                  </colgroup>
                 <tr *ngIf="um==0">
                     <th>
                         <label>Categoria</label>
@@ -57,27 +62,29 @@
                         <label>Unità</label>
                     </th>
                     <th></th>
-                    <th *ngFor="let a of csvRecords[0];let c=index">
-                        <fa-icon [icon]="delete" title="Elimina colonna" (click)="elimina((c+1))"></fa-icon>
+                    <th *ngFor="let a of csvRecords[0];let c=index" scope="col" class="tddelcol" (click)="elimina((c+1))" (mouseenter)="addClass(c)" (mouseleave)="removeClass(c)">
+                        <fa-icon [icon]="delete" title="Elimina colonna" ></fa-icon>
                     </th>
                 </tr>
-                <tr *ngFor="let row of csvRecords; let r=index">
-                    <td *ngIf="um==1">
-                        <select class="form-control form-control-sm" (change)="caricaUm(r,$event.target.value)">
-                            <option></option>
-                            <option *ngFor="let x of categorie" [value]="x.id">{{x.nome}}</option>
-                        </select>
-                        <select [(ngModel)]="umScelte[r]" class="form-control form-control-sm">
-                            <option *ngFor="let z of listUm[r]" [value]="z.id">{{z.nome}}</option>
-                        </select>
-                    </td>
-                    <td>
-                        <fa-icon [icon]="delete" title="Elimina riga" (click)="elimina((r+1)*(-1))"></fa-icon>
-                    </td>
-                    <td *ngFor="let col of csvRecords[r]; let c=index">
-                        {{csvRecords[r][c]}}
-                    </td>
-                </tr>
+                <tbody>
+                    <tr *ngFor="let row of csvRecords; let r=index" scope="row">
+                        <td *ngIf="um==1">
+                            <select class="form-control form-control-sm" (change)="caricaUm(r,$event.target.value)">
+                                <option></option>
+                                <option *ngFor="let x of categorie" [value]="x.id">{{x.nome}}</option>
+                            </select>
+                            <select [(ngModel)]="umScelte[r]" class="form-control form-control-sm">
+                                <option *ngFor="let z of listUm[r]" [value]="z.id">{{z.nome}}</option>
+                            </select>
+                        </td>
+                        <td class="tddelrow" (click)="elimina((r+1)*(-1))">
+                            <fa-icon [icon]="delete" title="Elimina riga" ></fa-icon>
+                        </td>
+                        <td *ngFor="let col of csvRecords[r]; let c=index">
+                            {{csvRecords[r][c]}}
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 
