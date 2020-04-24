@@ -23,15 +23,16 @@
       </tbody>
     </table>
       <div class="form-group">
-          <input class="input" type="text" placeholder="Insert Categoria" [(ngModel)]="newCategoria.nome" />
-          <button class="btn btn-success" (click)="insertCat()">Inserisci</button>
+        <label for="categoria" style="font-weight: bold; margin-left: 50px;">Inserisci Nuova Categoria</label>
+        <input [required] class="input" type="text" placeholder="Insert Categoria" [(ngModel)]="newCategoria.nome" />
+        <button class="btn btn-success" (click)="insertCat()">Inserisci</button>
       </div>
   </div>
   <div class="col" *ngIf="showDiv">
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th class="text-uppercase" style="width: 50%;" style="text-align: center;">Unita di Misura</th>
+          <th class="text-uppercase" style="width: 50%; text-align: center;">Unita di Misura</th>
           <th class="text-uppercase" style="text-align: center;" *ngIf="isAdmin">Manage</th>
         </tr>
       </thead>
@@ -49,10 +50,10 @@
       </tbody>
     </table>
       <div class="form-group">
-        <input class="input" type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
+        <input [required] class="input" type="text" placeholder="Insert Unità di Misura" [(ngModel)]="newUnita.nome" />
         <br>
         <label for="categoria" style="font-weight: bold;">Scegli Categoria</label>
-          <select [(ngModel)]="newUnita.categoriaId" class="custom-select">
+          <select [required] [(ngModel)]="newUnita.categoriaId" class="custom-select">
             <option selected="selected" placeholder="Scegli Categoria" [value]="c.id"
             *ngFor="let c of categories">{{c.nome}}</option>
           </select>

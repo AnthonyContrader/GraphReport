@@ -59,11 +59,23 @@ export class UnitaComponent implements OnInit {
   }
 
   insert(){
-    this.service.insert(this.newUnita).subscribe(() => this.getunitaByCategoria(this.newUnita.categoriaId));
+    let x = this.newUnita.nome.trim();
+    if(x != null){
+      if(x != ""){
+        this.service.insert(this.newUnita).subscribe(() => this.getunitaByCategoria(this.newUnita.categoriaId));
+      }
+    }
+    //this.service.insert(this.newUnita).subscribe(() => this.getunitaByCategoria(this.newUnita.categoriaId));
   }
 
   insertCat(){
-    this.service.insertCat(this.newCategoria).subscribe(() => this.getCategoria());
+    let x = this.newCategoria.nome.trim();
+    if(x != null){
+      if(x != ""){
+        this.service.insertCat(this.newCategoria).subscribe(() => this.getCategoria());
+      }
+    }
+    //this.service.insertCat(this.newCategoria).subscribe(() => this.getCategoria());
   }
 
 

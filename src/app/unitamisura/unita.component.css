@@ -17,7 +17,7 @@
   width: 50%;
   display: grid;
   margin-top: 10px;
-  margin-left: 14%;
+  margin-left: 21%;
 
 }
 
@@ -35,15 +35,22 @@
 
 .form-group{
   margin-top: 60px;
-  max-width: 400px;
+  max-width: 364px;
   margin-left: auto;
   margin-right: auto;
+  padding: 25px;
+  border: solid;
+  background-color: rebeccapurple;
+  border-color: rebeccapurple;
+  border-radius: 60px;
+  color: white;
 }
+
 
 .input{
   border-radius: 10px;
   width: 60%;
-  margin-left: 10%;
+  margin-left: 17%;
   text-align: center;
   margin-bottom: 10px;
 }
