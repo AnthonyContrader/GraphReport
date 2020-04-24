@@ -19,5 +19,6 @@ import org.springframework.stereotype.Repository;
 public interface UnitamisuraRepository extends JpaRepository<Unitamisura, Long> {
 	
 	public Page<Unitamisura> findAllByCategoria_id(Long categoria, Pageable pageable);
-
+	
+	
 }

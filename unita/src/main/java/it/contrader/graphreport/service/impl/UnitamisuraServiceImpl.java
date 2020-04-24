@@ -89,7 +89,8 @@ public class UnitamisuraServiceImpl implements UnitamisuraService {
         return unitamisuraRepository.findById(id)
             .map(unitamisuraMapper::toDto);
     }
-
+    
+    
     /**
      * Delete the unitamisura by id.
      *

@@ -13,7 +13,7 @@ public class UnitamisuraDTO implements Serializable {
     private String nome;
 
     private Long categoriaId;
-
+    
     public Long getId() {
         return id;
     }

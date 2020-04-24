@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 /**
  * REST controller for managing Unitamisura.
@@ -121,7 +123,16 @@ public class UnitamisuraResource {
         Optional<UnitamisuraDTO> unitamisuraDTO = unitamisuraService.findOne(id);
         return ResponseUtil.wrapOrNotFound(unitamisuraDTO);
     }
-
+    
+    @PostMapping("/unitamisurabynome")
+    public ResponseEntity<List<UnitamisuraDTO>> getUnitaByNome(@Valid @RequestBody List<UnitamisuraDTO> listId) throws URISyntaxException {
+        log.debug("REST request to save List of Unitamisura : {}", listId);  
+        List<UnitamisuraDTO> listNomi = new ArrayList<UnitamisuraDTO>();
+        listId.forEach(x -> {listNomi.add(unitamisuraService.findOne(x.getId()).get()); });	
+        return ResponseEntity.created(new URI("/api/unitamisurabynome/")).body(listNomi);
+    }
+    
+    
     /**
      * DELETE  /unitamisuras/:id : delete the "id" unitamisura.
      *
