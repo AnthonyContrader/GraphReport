@@ -1,9 +1,9 @@
 <div class="container-fluid scrollable max-dim">
     <div class="max-center" *ngIf="!stamp">
-        <input type="file" accept=".csv" id="herecsv" style="display: none;" (change)="toRead($event)">
-        <label for="herecsv" class="drophere" dragNdrop (fileDropped)="readIt($event)">
+        <input type="file" accept=".csv" id="herecsv" style="display: none;" (change)="toClick($event)">
+        <label for="herecsv" class="drophere" dragNdrop (fileDropped)="toDrop($event)">
         <div class="container">
-            drop or click here
+            Clicca o Trascina qui il file .csv
         </div>
         </label>
     </div>
@@ -30,6 +30,13 @@
                 <select  [(ngModel)]="um" type="text" class="form-control form-control-sm">
                     <option value="0">Colonne</option>
                     <option value="1">Righe</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Separatore</label>
+                <select  [(ngModel)]="splitOn" type="text" class="form-control form-control-sm" (change)="readIt()">
+                    <option value=";">;</option>
+                    <option value=",">,</option>
                 </select>
             </div>
         </div>

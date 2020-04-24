@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { CategoriaDTO } from 'src/dto/categoria.dto';
 import { UnitaService } from 'src/service/unita.service';
 import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
@@ -17,11 +17,12 @@ export class ImportCsvComponent implements OnInit {
 
   stamp: boolean = false;
 
-  delete = faMinus;
+  delete = faTrashAlt;
 
   csvRecords: any[] = [];
   splitOn : string = ";";
 
+  file: any;
   categorie: CategoriaDTO[];
   umScelte : number[] = [];
   listUm : UnitaMisuraDTO[][] = [];
@@ -36,22 +37,30 @@ export class ImportCsvComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toRead($event){
-    this.readIt($event.target.files);
+  toClick($event){
+    this.file=$event.target.files;
+    this.readIt();
   }
 
-  readIt(files:any){
-    if (files[0].name.endsWith('.csv')) {
+  toDrop(file:any){
+    this.file=file;
+    this.readIt();
+  }
+
+  readIt(){
+    this.csvRecords=[];
+    if (this.file[0].name.endsWith('.csv')) {
       var reader = new FileReader();
-      reader.readAsText(files[0]);
+      reader.readAsText(this.file[0]);
       reader.onload = (data) => {
         let csvData = reader.result;
         let csvRecordsArray = (csvData as string).split(/\r\n|\n/);
-        for(let i=0;i<csvRecordsArray.length;i++){
-          let rowdata = csvRecordsArray[i].match(/("[^"]*")|[^,]+/g);
-          if(rowdata!=null)
-            this.csvRecords.push(rowdata[0].split(this.splitOn));
-        }
+        csvRecordsArray.forEach(x => {
+          let row = x.split(this.splitOn);
+          if(row!=undefined && row!=null)
+            if(!(row.length==1 && row[0]==""))
+                this.csvRecords.push(row);
+        });
         this.stamp=true;
       }
     }
