@@ -19,7 +19,7 @@ public class CategoriaDTO implements Serializable {
 
     private String nome;
     
-    private List<Unitamisura> unitamisuras = new ArrayList<Unitamisura>();
+//    private List<Unitamisura> unitamisuras = new ArrayList<Unitamisura>();
 
     public Long getId() {
         return id;
@@ -37,13 +37,13 @@ public class CategoriaDTO implements Serializable {
         this.nome = nome;
     }
     
-    public Collection<Unitamisura> getUnitamisuras() {
-        return unitamisuras;
-    }
-    
-    public void setUnitamisuras(List<Unitamisura> unitamisuras) {
-        this.unitamisuras = unitamisuras;
-    }
+//    public Collection<Unitamisura> getUnitamisuras() {
+//        return unitamisuras;
+//    }
+//    
+//    public void setUnitamisuras(List<Unitamisura> unitamisuras) {
+//        this.unitamisuras = unitamisuras;
+//    }
 
 
     @Override

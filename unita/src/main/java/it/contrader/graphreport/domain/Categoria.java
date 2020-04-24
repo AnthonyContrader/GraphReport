@@ -29,8 +29,8 @@ public class Categoria implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(mappedBy = "categoria")
-    private List<Unitamisura> unitamisuras;
+    //@OneToMany(mappedBy = "categoria")
+    //private List<Unitamisura> unitamisuras;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -54,30 +54,30 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
-    public Collection<Unitamisura> getUnitamisuras() {
-        return unitamisuras;
-    }
-
-    public Categoria unitamisuras(List<Unitamisura> unitamisuras) {
-        this.unitamisuras = unitamisuras;
-        return this;
-    }
-
-    public Categoria addUnitamisura(Unitamisura unitamisura) {
-        this.unitamisuras.add(unitamisura);
-        unitamisura.setCategoria(this);
-        return this;
-    }
-
-    public Categoria removeUnitamisura(Unitamisura unitamisura) {
-        this.unitamisuras.remove(unitamisura);
-        unitamisura.setCategoria(null);
-        return this;
-    }
-
-    public void setUnitamisuras(List<Unitamisura> unitamisuras) {
-        this.unitamisuras = unitamisuras;
-    }
+//    public Collection<Unitamisura> getUnitamisuras() {
+//        return unitamisuras;
+//    }
+//
+//    public Categoria unitamisuras(List<Unitamisura> unitamisuras) {
+//        this.unitamisuras = unitamisuras;
+//        return this;
+//    }
+//
+//    public Categoria addUnitamisura(Unitamisura unitamisura) {
+//        this.unitamisuras.add(unitamisura);
+//        unitamisura.setCategoria(this);
+//        return this;
+//    }
+//
+//    public Categoria removeUnitamisura(Unitamisura unitamisura) {
+//        this.unitamisuras.remove(unitamisura);
+//        unitamisura.setCategoria(null);
+//        return this;
+//    }
+//
+//    public void setUnitamisuras(List<Unitamisura> unitamisuras) {
+//        this.unitamisuras = unitamisuras;
+//    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

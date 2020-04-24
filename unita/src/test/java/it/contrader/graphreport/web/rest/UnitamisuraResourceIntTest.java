@@ -6,6 +6,7 @@ import it.contrader.graphreport.domain.Unitamisura;
 import it.contrader.graphreport.repository.UnitamisuraRepository;
 import it.contrader.graphreport.service.UnitamisuraService;
 import it.contrader.graphreport.service.dto.UnitamisuraDTO;
+import it.contrader.graphreport.service.impl.UnitamisuraServiceImpl;
 import it.contrader.graphreport.service.mapper.UnitamisuraMapper;
 import it.contrader.graphreport.web.rest.errors.ExceptionTranslator;
 
@@ -54,7 +55,7 @@ public class UnitamisuraResourceIntTest {
     
 
     @Autowired
-    private UnitamisuraService unitamisuraService;
+    private UnitamisuraServiceImpl unitamisuraService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
