@@ -72,7 +72,7 @@ export class GraphModifyComponent implements OnInit {
   filtra(ds){
     this.listU = [];
     this.subList = this.dsList.filter(x => x.titolo==ds);
-    this.subList.filter((value, index, self) => { return self.indexOf(value) === index }).map(x => this.listU.push(new UnitaMisuraDTO(x.idUnita,null,null)));
+    this.subList.map(x => x.idUnita).filter((value, index, self) =>  self.indexOf(value) === index ).map(x => this.listU.push(new UnitaMisuraDTO(x,null,null)));
     this.uService.getListNomi(this.listU).subscribe(x => this.listU=x);
   }
 
