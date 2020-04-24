@@ -3,7 +3,7 @@ import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
 import { UnitaService } from 'src/service/unita.service';
 import { CategoriaService } from 'src/service/categoria.service';
 import { CategoriaDTO } from 'src/dto/categoria.dto';
-import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPencilAlt, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-unita',
@@ -12,8 +12,9 @@ import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class UnitaComponent implements OnInit {
 
-
+  showDiv: boolean = false;
   isAdmin: boolean;
+  mostra = faExternalLinkAlt;
   cancella = faTrash;
   modifica = faPencilAlt;
   categories: CategoriaDTO[];
@@ -42,8 +43,11 @@ export class UnitaComponent implements OnInit {
   }
 
   getunitaByCategoria(idcliccato: number) {
-  //alert(idcliccato);
-  this.service.getAllByCategoria(idcliccato).subscribe(UnitaByCategoria => this.UnitaByCategoria = UnitaByCategoria);
+  this.service.getAllByCategoria(idcliccato).subscribe(UnitaByCategoria =>{
+    this.UnitaByCategoria = UnitaByCategoria;
+    this.showDiv = true;
+  });
+
   }
 
   delete(unitamisura: UnitaMisuraDTO){

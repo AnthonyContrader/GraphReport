@@ -7,17 +7,30 @@
   opacity: 0.5;
 }
 
+.mostraButton{
+  float: right;
+  cursor: pointer;
+
+}
+
 .btn{
+  width: 50%;
   display: grid;
   margin-top: 10px;
+  margin-left: 14%;
 
 }
 
 .container-fluid{
   margin-top: 40px;
   width: 100vw;
-  height: 120vh;
+  height: 140vh;
   overflow: auto;
+}
+
+.custom-select{
+  width: 50%;
+  margin-left: 5px;
 }
 
 .form-group{
@@ -29,7 +42,10 @@
 
 .input{
   border-radius: 10px;
-
+  width: 60%;
+  margin-left: 10%;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 table{
