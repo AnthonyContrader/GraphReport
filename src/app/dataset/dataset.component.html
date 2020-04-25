@@ -22,31 +22,33 @@
         </div>
     </div>
 </div>
-
+<hr>
 <div class="col-md-12">
     <div class="container row">
         <ng-container *ngFor="let unita of ListaDatasetByUser; let riga=index;">
-            <ng-container *ngIf="riga==0; else StampaTutti"> 
-                <!-- unita['titolo']==ListaDatasetByUser[riga].titolo -->
-                <div class="col-md-1"> 
-                    {{ListaDatasetByUser[riga].titolo}}       
-                    {{unita.idUnita | json}}
-                    <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">
-                        {{valore | json}}
-                    </div>
-                </div>
-            </ng-container>
-            <ng-container #StampaTutti> 
-                <div class="col-md-1">
-                    <!-- *ngIf="unita['titolo']==ListaDatasetByUser[riga-1].titolo" -->
-                    {{ListaDatasetByUser[riga].titolo}}
-                    {{unita.idUnita | json}}
+            <ng-container *ngIf="(riga==0) else StampaTutti"> 
+                <div class="col-md-2"> 
+                    <div class="col-md-1">{{unita.titolo}}</div>    
+                    <div class="col-md-1">{{unita.idUnita}}</div>  
+                    <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">{{valore}}</div>
                 </div> 
-            
-                <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">
-                    {{valore | json}}
-                </div>
-            </ng-container> 
+            </ng-container>
+            <ng-template #StampaTutti> 
+                <ng-container *ngIf="(unita.titolo==ListaDatasetByUser[(riga-1)].titolo) else StampaAltri">
+                    <div class="col-md-1">
+                        <div class="col-md-1">vuoto</div>
+                        <div class="col-md-1">{{unita.idUnita}}</div>
+                        <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">{{valore}}</div>
+                    </div>
+                </ng-container>
+                <ng-template #StampaAltri> 
+                    <div class="col-md-2"> 
+                        <div class="col-md-1">{{unita.titolo}}</div>      
+                        <div class="col-md-1">{{unita.idUnita}}</div>
+                        <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">{{valore}}</div>
+                    </div>
+                </ng-template> 
+            </ng-template> 
         </ng-container>     
     </div>
 </div>

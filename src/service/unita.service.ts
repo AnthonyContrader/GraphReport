@@ -18,6 +18,10 @@ export class UnitaService extends AbstractService<UnitaMisuraDTO>{
     this.generic = '/unitamisuras';
   }
 
+  getListNomi(list): Observable<UnitaMisuraDTO[]> {
+    return this.http.post<any>(SERVER_API_URL + this.microservicesPath + '/unitamisurabynome', list);
+  }
+
   getCategoria(): Observable<CategoriaDTO[]> {
     return this.http.get<any>(SERVER_API_URL + this.microservicesPath + '/categorias');
   }
