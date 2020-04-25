@@ -1,0 +1,31 @@
+<form>
+  <h1 class="titolo">Benvenuto su GraphReport</h1>
+    <h3 class="sottotitolo">Registration Page</h3>
+    <div class="form-reg">
+      <fa-icon fa-2x [icon]="chiudi" class="chiudi" style="font-size: 1.5em;" (click)="back()"></fa-icon>
+      <div class="form-group col-md-6">
+        <label for="username">Username</label>
+        <input class="form-control" id="username" name="username" [(ngModel)]="newUser.login">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" name="password" [(ngModel)]="newUser.password">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="nome">Nome</label>
+        <input class="form-control" id="nome" name="nome" [(ngModel)]="newUser.firstName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cognome">Cognome</label>
+        <input class="form-control" id="cognome" name="cognome" [(ngModel)]="newUser.lastName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">E-mail</label>
+        <input class="form-control" id="email" name="email" [(ngModel)]="newUser.email">
+      </div>
+      <div class="form-group col-md-6">
+        <fa-icon fa-2x [icon]="inserisci" class="inserisci" (click)="insert()"></fa-icon>
+        <fa-icon fa-2x [icon]="cancella" class="cancella" (click)="clear()"></fa-icon>
+      </div>
+    </div>
+</form>

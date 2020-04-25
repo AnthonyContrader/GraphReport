@@ -14,14 +14,14 @@
             <div class="line">
                 <p class="or">ALTRIMENTI</p>
             </div>
-            <button >Registrati</button>
+            <button (click)="register()">Registrati</button>
         </form>
     </div>
     <div [ngClass]="(authenticationError) ? 'msg-modal error-color' : 'hidden'">
         <div *ngIf="authenticationError===1">
             <strong>Attenzione!</strong> Credenziali d'accesso errate.
         </div>
-        
+
         <div class="msg-modal-close">
             <fa-icon [icon]="faTimes" (click)="resetErr()"></fa-icon>
         </div>

@@ -12,11 +12,13 @@ import { ErrorHandlerInterceptor } from 'src/authJWT/interceptor/errorhandler.in
 import { NotificationInterceptor } from 'src/authJWT/interceptor/notification.interceptor';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,28 @@
+.titolo{
+  text-align: center;
+  color: rebeccapurple;
+}
+
+.sottotitolo{
+  text-align: center;
+}
+
+.form-reg{
+  width: 100%;
+  margin-left: 30%;
+}
+
+.chiudi{
+  font-size: 1.5em;
+  margin-left: 50%;
+}
+
+.inserisci{
+  font-size: 1.5em;
+  margin-left: 20%;
+}
+
+.cancella{
+  font-size: 1.5em;
+  margin-left: 55%;
+}

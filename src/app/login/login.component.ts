@@ -4,6 +4,8 @@ import { LoginService } from 'src/authJWT/login.service';
 import { Router } from '@angular/router';
 import { StateStorageService } from 'src/authJWT/state-storage.service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { UserDTO } from 'src/dto/user.dto';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,7 @@ export class LoginComponent implements OnInit {
   rememberMe: boolean = false;
   username: string;
   credentials: any;
+  newUser: UserDTO;
 
   faTimes = faTimes;
 
@@ -25,7 +28,8 @@ export class LoginComponent implements OnInit {
     private stateStorageService: StateStorageService,
     private loginService: LoginService,
     private router: Router,
-  ) { 
+    private userService: UserService
+  ) {
     this.credentials = {};
    }
 
@@ -41,7 +45,7 @@ export class LoginComponent implements OnInit {
             })
             .then(() => {
                 this.authenticationError = 0;
-                
+
                 this.eventManager.broadcast({
                     name: 'authenticationSuccess',
                     content: 'Sending Authentication Success'
@@ -49,11 +53,11 @@ export class LoginComponent implements OnInit {
                 // previousState was set in the authExpiredInterceptor before being redirected to login modal.
                 // since login is successful, go to stored previousState and clear previousState
                 const redirect = this.stateStorageService.getUrl();
-                
+
                 this.stateStorageService.storeUrl('');
                 console.warn('Login success: redirect to: '+redirect)
                 this.router.navigate([redirect]);
-                
+
             })
             .catch(() => {
                 this.authenticationError = 1;
@@ -62,6 +66,14 @@ export class LoginComponent implements OnInit {
 
   resetErr(){
     this.authenticationError = 0;
+  }
+
+  register(): void {
+    this.newUser = new UserDTO();
+
+    this.userService.create(this.newUser);
+
+    this.router.navigate(['/register']);
   }
 
 }
