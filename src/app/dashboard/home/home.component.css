@@ -1,0 +1,46 @@
+/* Titolo */
+.titolo{
+  max-width: 400px;
+  margin: auto;
+  font-family: 'Courier New', Courier, monospace;
+  color: rebeccapurple;
+  /*text-align: center;*/
+}
+
+
+.row{
+  width: 105vw;
+  height: 115vh;
+  overflow: auto;
+}
+
+
+.grafico{
+  max-width: 500px;
+  margin: auto;
+}
+
+.laptop{
+  width: 380px;
+  margin: auto;
+  margin-top: 80px;
+
+}
+
+.phone{
+  max-width: 400px;
+  margin-top: 70px;
+}
+
+.fraseSx{
+  width: 90%;
+}
+
+.fraseCentro{
+  width: 90%;
+}
+
+.fraseDx{
+  width: 95%;
+  margin-top: 45px;
+}

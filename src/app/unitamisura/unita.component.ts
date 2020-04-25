@@ -4,6 +4,7 @@ import { UnitaService } from 'src/service/unita.service';
 import { CategoriaService } from 'src/service/categoria.service';
 import { CategoriaDTO } from 'src/dto/categoria.dto';
 import { faTrash, faPencilAlt, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-unita',
@@ -65,17 +66,19 @@ export class UnitaComponent implements OnInit {
         this.service.insert(this.newUnita).subscribe(() => this.getunitaByCategoria(this.newUnita.categoriaId));
       }
     }
-    //this.service.insert(this.newUnita).subscribe(() => this.getunitaByCategoria(this.newUnita.categoriaId));
+
   }
 
   insertCat(){
     let x = this.newCategoria.nome.trim();
     if(x != null){
-      if(x != ""){
+      if(x !== ""){
         this.service.insertCat(this.newCategoria).subscribe(() => this.getCategoria());
       }
     }
-    //this.service.insertCat(this.newCategoria).subscribe(() => this.getCategoria());
+
+
+
   }
 
 
