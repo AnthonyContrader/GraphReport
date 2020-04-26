@@ -1,0 +1,75 @@
+<div class="row" *ngIf="loaded">
+    <div class="col-sm" style="padding-top:35px">
+        
+        <div class="centraDiv">
+            
+            <button (click)="salva()" [ngClass]="(needToSave) ? 'btnSave' : 'btnSave disabled'">Salva</button>
+            
+            <h1>{{dataSet[0].titolo}}</h1>
+        </div>
+        <div class="table">
+            <div class="cols" *ngFor="let ds of dataSet;let j = index">
+                <div class="th tc">
+                    {{ds.unitaMisuraN}}
+                    <div class="btnComm toltip" style="cursor: pointer;">
+                        <img src="../../assets/comm.png" (click)="addComm(j)"/>
+                        <span class="toltiptext">
+                            <p> {{ds.commento}} </p>
+                                <div *ngIf="(ds.commento!='')" class="sugg">Clicca per modificare</div>
+                                <div *ngIf="(ds.commento=='')" class="sugg">Clicca per aggiungere</div>
+                        </span>
+                    </div>
+                </div>
+                <div *ngFor="let val of ds.valori.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tc grey' : 'tc white'">
+                    <input type="text" [(ngModel)]="matrice[j][i]" class="tableInput" (change)="needtosave()"/>
+                </div>
+                <div [ngClass]="((dataSet[0].valori.split('_').length)%2 == 0) ? 'tc grey' : 'tc white'" style="height:40px">
+
+                </div>
+            </div>
+            <div class="cols">
+                <div class="th tc" style="height:40px">
+                    
+                </div>
+                <div *ngFor="let val of dataSet[0].valori.split('_');let i = index" [ngClass]="( i%2 == 0) ? 'tc grey' : 'tc white'">
+                    <img class="imgbtn" src="../../assets/del.png" title="Elimina riga" (click)="delrow(i)" />
+                </div>
+                <div [ngClass]="((dataSet[0].valori.split('_').length)%2 == 0) ? 'tc grey' : 'tc white'">
+                    <img class="imgbtn" src="../../assets/add.png" title="Aggiungi riga" (click)="addrow()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm" style="padding-top:35px">
+
+        <div class="centraDiv">
+            <h1>Unita di Misura</h1>
+            <br>
+            <form style="min-width:270px" [formGroup]="addForm" (ngSubmit)="add(addForm.value)"> 
+                <label><strong>Aggiungi nuova:</strong></label>
+                <select formControlName="add" required> 
+                   <option [ngValue]="null" style="color:grey" selected>Seleziona dall'elenco</option>
+                   <option *ngFor="let u of umList" [value]="u.id">{{u.nome}}</option>
+                </select>
+                <button type="submit">Aggiungi</button>
+            </form>
+            <form style="min-width:270px;margin-top: 8px;" [formGroup]="delForm" (ngSubmit)="delete(delForm.value)"> 
+                <label style="margin-top:5px"><strong>Elimina esistente:</strong></label>
+                <select formControlName="del" required> 
+                    <option [ngValue]="null" style="color:grey">Seleziona dall'elenco</option>
+                    <option *ngFor="let u of dataSet" [value]="u.id">{{u.unitaMisuraN}} {{u.commento}}</option>
+                </select>
+                <button type="submit">Elimina</button>
+            </form>
+        </div>
+
+    </div>
+    <div *ngIf="err!=0" class="error">
+        <label class="closerr" (click)="closerror()">[X] Chiudi</label>
+        <container-element [ngSwitch]="err">
+            <p *ngSwitchCase="1">
+                <strong>Impossibile eliminare:</strong> Un DataSet non può avere meno di due set di valori!.
+            </p>
+        </container-element>
+    </div>
+</div>

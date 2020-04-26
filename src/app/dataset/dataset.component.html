@@ -1,56 +1,73 @@
-<p>dataset works!</p>
+<div style="height: calc(100vh - 39px);overflow:auto;">
+    <div class="container-fluid row" style="margin-top: 50px;">
+        <div class="col-md-12">
+            <div class="container" style="max-width: 400px;">
 
-<div class="container-fluid row">
-    <div class="col-md-12">
-        <div class="container" style="max-width: 400px;">
+                <label>Inserire il titolo</label>
+                <input type="text" [(ngModel)]="dataset.titolo"><br>
 
-            <label>Inserire il titolo</label>
-            <input type="text" [(ngModel)]="dataset.titolo"><br>
-
-            <label>Inserire Categoria</label>
-            <select (change)="filtra($event.target.value)">
-                <option>seleziona una categoria</option>
-                <option *ngFor="let categoria of ListCategoria" [value]="categoria.id">{{categoria.nome}}</option>
-            </select><br>
-
-            <label>Inserire Unità Di Misura</label>
-            <select [(ngModel)]="dataset.idUnita">
-                <option *ngFor="let unita of ListaFiltrata" [value]="unita.id">{{unita.nome}}</option>
-            </select><br> 
-
-            <button (click)="createDataset()">OK</button>
+                <label>Inserire PrimoSet</label>
+                <select (change)="filtra($event.target.value)">
+                    <option>seleziona una categoria</option>
+                    <option *ngFor="let categoria of ListCategoria" [value]="categoria.id">{{categoria.nome}}</option>
+                </select><br>
+                <label>Inserire Unità Di Misura</label>
+                <select [(ngModel)]="dataset.idUnita">
+                    <option *ngFor="let unita of ListaFiltrata" [value]="unita.id">{{unita.nome}}</option>
+                </select><br>
+                <button (click)="createDataset()">OK</button>
+            </div>
         </div>
     </div>
-</div>
-<hr>
-<div class="col-md-12">
-    <div class="container row">
-        <ng-container *ngFor="let unita of ListaDatasetByUser; let riga=index;">
-            <ng-container *ngIf="(riga==0) else StampaTutti"> 
-                <div class="col-md-2"> 
-                    <div class="col-md-1">{{unita.titolo}}</div>    
-                    <div class="col-md-1">{{unita.idUnita}}</div>  
-                    <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">{{valore}}</div>
-                </div> 
-            </ng-container>
-            <ng-template #StampaTutti> 
-                <ng-container *ngIf="(unita.titolo==ListaDatasetByUser[(riga-1)].titolo) else StampaAltri">
-                    <div class="col-md-1">
-                        <div class="col-md-1">vuoto</div>
-                        <div class="col-md-1">{{unita.idUnita}}</div>
-                        <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">{{valore}}</div>
-                    </div>
-                </ng-container>
-                <ng-template #StampaAltri> 
-                    <div class="col-md-2"> 
-                        <div class="col-md-1">{{unita.titolo}}</div>      
-                        <div class="col-md-1">{{unita.idUnita}}</div>
-                        <div class="col-md-1" *ngFor="let valore of unita.valori.split('_'); let colonna=index">{{valore}}</div>
-                    </div>
-                </ng-template> 
-            </ng-template> 
-        </ng-container>     
-    </div>
-</div>
+    <div class="col-sm">
+        <div style="padding-top: 25px;">
+            
+            <h1>Crea nuovo DataSet</h1>
+            <br>
+            <form style="min-width:270px" [formGroup]="createForm" (ngSubmit)="createDS(createForm.value)">
+                <label>Inserire il titolo</label>
+                <select formControlName="tit" required>
+                    <option [ngValue]="dataset.titolo"></option>
+                </select>
+                <label><strong>Categoria</strong></label>
+                <!-- <select formControlName="cat" required> -->
+                <select formControlName="cat" (change)="filtra($event.target.value)">
+                    <option [ngValue]="null" style="color:grey" selected>Scegli una categoria</option>
+                    <option *ngFor="let c of ListCategoria" [value]="c.id">{{c.nome}}</option>
+                </select>
+                <label style="margin-top:5px"><strong>Unità di misura:</strong></label>
+                <br>
+                <select formControlName="ump" required>
+                    <option [ngValue]="null" style="color:grey">Primo set di valori</option>
+                    <option *ngFor="let c of ListaFiltrata" [value]="c.id">{{c.nome}}</option>
+                </select>
+                <!-- <select formControlName="ums" required>
+                    <option [ngValue]="null" style="color:grey">Secondo set di valori</option>
+                    <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
+                </select> -->
+                <button type="submit">Crea</button>
+            </form>
 
-    
+        </div>
+    </div>
+    <hr>
+
+    <div class="row col-md-12" *ngFor="let unita of ListaDatasetByUser; let riga=index;">
+        <ng-container *ngIf="((riga==0) || (unita.titolo != ListaDatasetByUser[(riga-1)].titolo))"> 
+                <div style="width: 100%;text-align: center; margin-top: 20px; border-style: double;"><h3>{{unita.titolo}}</h3></div>
+                <div class="newCat" style="margin-top: 24px;">
+                    <div class="divCRUD" style="width:20%;">
+                        <a [routerLink]="[pathModify]" [queryParams]="{id: unita.titolo}"><div class="linkCRUD">Modifica</div></a>
+                        <label (click)="dele(unita.titolo)"><div class="linkCRUD">Elimina</div></label>
+                    </div>
+                </div>
+                <div class="row" style="max-width: max-content;margin:auto">
+                    <div class="col" style="max-width: min-content;padding: 0px !important" *ngFor="let x of Ntitolo(unita.titolo)">
+                        <div style="min-width:50px;text-align:center;box-sizing: border-box;width:min-content; border-style: groove;">{{x.idUnita}}</div>
+                        <div style="min-width:50px;text-align:center;box-sizing: border-box;width:min-content; border-style: dotted;" *ngFor="let valore of x.valori.split('_'); let colonna=index">{{valore}}</div>
+                    </div>
+                </div>
+        </ng-container>
+    </div>
+
+</div>

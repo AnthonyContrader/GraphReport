@@ -21,6 +21,7 @@ import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
   providedIn: 'root'
 })
 export class DataSetService extends AbstractService<DataSetDTO>{
+  
 
   constructor(http: HttpClient) {
     super(http);
@@ -35,6 +36,15 @@ export class DataSetService extends AbstractService<DataSetDTO>{
   insertList(list: DataSetDTO[]) : Observable<any>{
     return this.http.post<any>(SERVER_API_URL + this.microservicesPath + "/insertList", list);
   }
+
+  createDS(dto: DataSetDTO): Observable<number>{
+    return this.http.post<any>(SERVER_API_URL + this.microservicesPath + '/createdataset', dto);
+  }
+  
+  getDataSet(ut: number,cat:number){
+    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getDataSet?id='+ut+'&cat='+cat);
+  }
+
 
   // getAllByUser(id: number): Observable<DataSetDTO[]> {
   //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getAllByUser?id=' + id);
