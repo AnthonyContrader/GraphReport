@@ -14,20 +14,19 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class DatasetComponent implements OnInit {
 dataset : DataSetDTO = new DataSetDTO(null,null,"","",null,null);
-dataset2 : DataSetDTO = new DataSetDTO(null,null,"","",null,null);
 ListaDatasetByUser : DataSetDTO[];
 pathModify : string;
 del : number = 0;
 createForm : FormGroup;
 err : number = 0;
 
-
 ListCategoria : CategoriaDTO[];
 ListUnita : UnitaMisuraDTO[];
 ListaFiltrata : UnitaMisuraDTO[];
+ListaFiltrata2 : UnitaMisuraDTO[];
 
+userid = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
 
-userid: number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
 
 //recuperare il numero di datasets con lo stesso titolo per ogni utente 
 n : [];
@@ -39,6 +38,7 @@ Ntitolo = (titolo)=> {
   constructor(private service:DataSetService, private serviceum : UnitaService) {
     this.createForm = new FormGroup({
       cat : new FormControl(),
+      cat2: new FormControl(),
       ump :  new FormControl(),
       ums :  new FormControl(),
       tit : new FormControl(),
@@ -51,7 +51,7 @@ Ntitolo = (titolo)=> {
     this.serviceum.getAll().subscribe(nome => this.ListUnita=nome);
     //this.service.getAll().subscribe(datasets => this.ListDataset=datasets);
     this.service.getDatasetByUser(this.dataset.idUser).subscribe(Listavalori => this.ListaDatasetByUser=Listavalori);
-    this.pathModify = "/dashboard/datasetmodify";
+    this.pathModify = "./datasetmodify";
   }
 
   createDataset(){
@@ -63,31 +63,35 @@ Ntitolo = (titolo)=> {
     this.ListaFiltrata = this.ListUnita.filter(x => x.categoriaId == categoriacliccata);
   }
 
+  filtra2(categoriacliccata2){
+    this.ListaFiltrata2 = this.ListUnita.filter(y => y.categoriaId == categoriacliccata2);
+  }
+
   dele(d : number){
     this.del=d;
   }
 
   createDS(formValue){
-    let dtop = new DataSetDTO(null,String(formValue.tit),null,null,this.userid,Number(formValue.ump));
+    let dtop = new DataSetDTO(null,String(formValue.tit),"",null,this.dataset.idUser,Number(formValue.ump));
+    let dtop2 = new DataSetDTO(null,String(formValue.tit),"",null,this.dataset.idUser,Number(formValue.ums));
     let nuovo : boolean = true;
     let i : number = 0 ;
-    if(formValue!=null && formValue.cat!=null && formValue.ump!=null && formValue.ums!=null){
-      while(this.Ntitolo.length>0 && this.Ntitolo.length>i && nuovo){
-        if(this.Ntitolo[i].categoria==formValue.cat)
+    if(formValue!=null && formValue.cat!=null && formValue.ump!=null && formValue.tit!=null){
+      while(this.ListaDatasetByUser.length>0 && this.ListaDatasetByUser.length>i && nuovo){
+        if(this.ListaDatasetByUser[i].titolo==formValue.tit)
           nuovo=false;
         i++;
       }
-      // if(nuovo){
-      //   this.service.createDS(dtop).subscribe(x => {
-      //     if(x==0){
-      //       dtop.unitaMisura=formValue.ums;
-      //       this.service.createDS(dtop).subscribe(y => {this.caricaDS(this.utId,y)});
-      //     }else{
-      //       this.err=1;
-      //     }
-      //   });
-      // }else
-      // this.err=2;
+      if(nuovo){
+        this.service.insert(dtop).subscribe();
+        if(formValue.cat2!=null && formValue.ums!=null){
+            this.service.insert(dtop2).subscribe();
+          }else{
+            this.err=1;
+          }
+        
+      }else
+      this.err=2;
     }else
     this.err=3;
     this.createForm.reset();

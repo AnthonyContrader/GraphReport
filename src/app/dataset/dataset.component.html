@@ -1,5 +1,5 @@
 <div style="height: calc(100vh - 39px);overflow:auto;">
-    <div class="container-fluid row" style="margin-top: 50px;">
+    <!-- <div class="container-fluid row" style="margin-top: 50px;">
         <div class="col-md-12">
             <div class="container" style="max-width: 400px;">
 
@@ -18,33 +18,40 @@
                 <button (click)="createDataset()">OK</button>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="col-sm">
         <div style="padding-top: 25px;">
             
             <h1>Crea nuovo DataSet</h1>
             <br>
             <form style="min-width:270px" [formGroup]="createForm" (ngSubmit)="createDS(createForm.value)">
-                <label>Inserire il titolo</label>
-                <select formControlName="tit" required>
-                    <option [ngValue]="dataset.titolo"></option>
-                </select>
+
+                <label><strong>Inserire il titolo</strong></label>
+                <input formControlName="tit" type="text" [value]="dataset.titolo" required>
+
                 <label><strong>Categoria</strong></label>
-                <!-- <select formControlName="cat" required> -->
-                <select formControlName="cat" (change)="filtra($event.target.value)">
+                <select formControlName="cat" (change)="filtra($event.target.value)" required>
                     <option [ngValue]="null" style="color:grey" selected>Scegli una categoria</option>
                     <option *ngFor="let c of ListCategoria" [value]="c.id">{{c.nome}}</option>
                 </select>
                 <label style="margin-top:5px"><strong>Unità di misura:</strong></label>
                 <br>
                 <select formControlName="ump" required>
-                    <option [ngValue]="null" style="color:grey">Primo set di valori</option>
+                    <option [ngValue]="null" style="color:grey">Scegli un'unità di misura</option>
                     <option *ngFor="let c of ListaFiltrata" [value]="c.id">{{c.nome}}</option>
                 </select>
-                <!-- <select formControlName="ums" required>
-                    <option [ngValue]="null" style="color:grey">Secondo set di valori</option>
-                    <option *ngFor="let c of umList" [value]="c.id">{{c.nome}}</option>
-                </select> -->
+
+                <label><strong>Categoria</strong></label>
+                <select formControlName="cat2" (change)="filtra2($event.target.value)">
+                    <option [ngValue]="null" style="color:grey" selected>Scegli una categoria</option>
+                    <option *ngFor="let c of ListCategoria" [value]="c.id">{{c.nome}}</option>
+                </select>
+                <label style="margin-top:5px"><strong>Unità di misura:</strong></label>
+                <br>
+                <select formControlName="ums">
+                    <option [ngValue]="null" style="color:grey">Scegli un'unità di misura</option>
+                    <option *ngFor="let c of ListaFiltrata2" [value]="c.id">{{c.nome}}</option>
+                </select>
                 <button type="submit">Crea</button>
             </form>
 
