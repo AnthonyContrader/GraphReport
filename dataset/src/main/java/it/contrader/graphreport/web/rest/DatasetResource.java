@@ -132,7 +132,7 @@ public class DatasetResource {
     @GetMapping("/datasets/user/{id}")
     public ResponseEntity<List<DatasetDTO>> getAllDatasetsByUser(@PathVariable Long id) {
         log.debug("REST request to get a page of Datasets");
-        Pageable paginazione =  PageRequest.of(0, Integer.MAX_VALUE, Sort.by("titolo"));
+        Pageable paginazione =  PageRequest.of(0, Integer.MAX_VALUE, Sort.by("titolo").ascending());
         log.debug("PAGINAZIONE E " + paginazione);
         Page<DatasetDTO> page = datasetServiceImpl.findAllByUserId(id, paginazione);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
