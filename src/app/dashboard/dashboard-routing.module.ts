@@ -17,9 +17,8 @@ const routes: Routes = [
     { path: 'unita', component: UnitaComponent},
     { path: 'graph', component: GraphComponent },
     { path: 'ds', component: DatasetComponent },
-    { path: 'ds/datasetmodify', component: DataSetModifyComponent },
+    { path: 'datasetmodify', component: DataSetModifyComponent },
     { path: 'csv', component: ImportCsvComponent },
-    { path: 'graphModify/:id/:owner', component: GraphModifyComponent}
   ]}
 ];
 

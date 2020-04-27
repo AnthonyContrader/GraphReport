@@ -15,8 +15,8 @@ import { UnitaService } from 'src/service/unita.service';
 
 export class DataSetModifyComponent implements OnInit{
 
-    public idUt : number;
-    public cat : number;
+    //public idUt : number;
+    public tit : string;
     public umList : UnitaMisuraDTO[];
     public dataSet : DataSetDTO[];
     public delForm : FormGroup;
@@ -25,6 +25,8 @@ export class DataSetModifyComponent implements OnInit{
     public matrice : string[][] = [];
     public needToSave : boolean = false;
     public err : number =0;
+
+    userid : number;
 
     constructor(private route: ActivatedRoute, private service:DataSetService, private serviceum:UnitaService){
         this.delForm = new FormGroup({
@@ -37,14 +39,15 @@ export class DataSetModifyComponent implements OnInit{
 
     ngOnInit(){
         this.loaded=false;
-        this.idUt = Number(localStorage.getItem("idUser"));
-        this.route.queryParams.subscribe(x => this.cat = x["id"]);
+        this.userid = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
+        //this.idUt = Number(localStorage.getItem("idUser"));
+        this.route.queryParams.subscribe(x => this.tit = x["id"]);
         this.serviceum.getAll().subscribe(x => this.umList = x);
-        // this.init().then(x=>{this.loaded=true;});
+        this.init().then(x=>{this.loaded=true;});
     }
 
     init(){
-        return new Promise ((response,rejects)=>{this.service.getDataSet(this.idUt,this.cat).subscribe(x => {
+        return new Promise ((response,rejects)=>{this.service.getDatasetByUserTitolo(this.userid,this.tit).subscribe(x => {
             this.dataSet=x;
             for(let i=0; this.dataSet.length>i; i++)
                 this.matrice[i]=this.dataSet[i].valori.split("_");

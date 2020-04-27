@@ -51,7 +51,7 @@ Ntitolo = (titolo)=> {
     this.serviceum.getAll().subscribe(nome => this.ListUnita=nome);
     //this.service.getAll().subscribe(datasets => this.ListDataset=datasets);
     this.service.getDatasetByUser(this.dataset.idUser).subscribe(Listavalori => this.ListaDatasetByUser=Listavalori);
-    this.pathModify = "./datasetmodify";
+    this.pathModify = "../datasetmodify";
   }
 
   createDataset(){
