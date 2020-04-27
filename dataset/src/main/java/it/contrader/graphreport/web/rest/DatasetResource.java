@@ -161,4 +161,14 @@ public class DatasetResource {
         return ResponseEntity.created(new URI("/api/insertList/")).body(result);
     }
     
+    @PostMapping("/updateDS")
+    public ResponseEntity<List<DatasetDTO>> updateDS(@Valid @RequestBody List<DatasetDTO> listDTO) throws URISyntaxException {
+        log.debug("REST request to save List of Dataset : {}", listDTO);
+        
+        List<DatasetDTO> result = new ArrayList<DatasetDTO>();
+        listDTO.forEach(x -> { result.add(datasetService.save(x)); });		
+        
+        return ResponseEntity.created(new URI("/api/updateDS/")).body(result);
+    }
+    
 }
