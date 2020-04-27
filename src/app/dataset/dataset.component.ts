@@ -16,7 +16,7 @@ export class DatasetComponent implements OnInit {
 dataset : DataSetDTO = new DataSetDTO(null,null,"","",null,null);
 ListaDatasetByUser : DataSetDTO[];
 pathModify : string;
-del : number = 0;
+del : string = '';
 createForm : FormGroup;
 err : number = 0;
 
@@ -67,14 +67,14 @@ Ntitolo = (titolo)=> {
     this.ListaFiltrata2 = this.ListUnita.filter(y => y.categoriaId == categoriacliccata2);
   }
 
-  dele(d : number){
+  dele(d : string){
     this.del=d;
   }
 
-  // deleteDS(d : number){
-  //   this.service.delete(this.utId,this.del).subscribe(() => this.caricaDS(this.utId));
-  //   this.del=0;
-  // }
+  deleteDS(){
+    this.service.deleteDS(this.userid,this.del).subscribe();
+    this.del='';
+  }
 
   createDS(formValue){
     let dtop = new DataSetDTO(null,String(formValue.tit),"",null,this.dataset.idUser,Number(formValue.ump));

@@ -14,10 +14,7 @@ div.text {
 	margin-bottom: 3%;
 }
 
-h1 {
-	position: center;
-	text-align: center;
-	size: 300%;
+h3 {
 	font-family: sans-serif;
     color: #000000;
     margin-bottom: 20px;
@@ -142,14 +139,14 @@ div.center {
 	margin-bottom: 25px;
 }
 
-.table{
+/* .table{
 	margin: auto; 
 	display: flex;
 	width: max-content;
 	border-radius: 10px;
-}
+} */
 
-.th, .tc{
+.tc{
 	text-align: center;
 	padding: 8px;
 	height: 40px;
@@ -165,23 +162,24 @@ div.center {
 	background-color: #00a990;
 	color: #ffffff;
 	position: inherit;
-	width: 100px;
+	/* width: 100px; */
+
 	border-top: none !important;
 }
 
-.table > .cols:first-of-type > .tc:first-of-type{
+.table > .col:first-of-type > .tc:first-of-type{
 	border-radius: 10px 0 0 0;
 }
 
-.table > .cols:first-of-type > .tc:last-of-type{
+.table > .col:first-of-type > .tc:last-of-type{
 	border-radius: 0 0 0 10px; 
 }
 
-.table > .cols:last-of-type > .tc:first-of-type{
+.table > .col:last-of-type > .tc:first-of-type{
 	border-radius: 0 10px 0 0;
 }
 
-.table > .cols:last-of-type > .tc:last-of-type{
+.table > .col:last-of-type > .tc:last-of-type{
 	border-radius: 0 0 10px 0; 
 }
 
@@ -223,13 +221,15 @@ div.center {
   
   .linkCRUD {
 	float: left;
-	width: min-content;
+	width: 76px;
 	cursor: pointer;
-	padding: 8px;
+	padding: 3px 8px;
+	border-bottom: 3px groove gainsboro;
 }
 
 .divCRUD {
 	position: absolute;
+	top: 0px;
 	right: 0px;
 }
 
@@ -274,7 +274,12 @@ div.center {
 	margin: 0 50px;
 }
 
-.closerr:hover, .delbutton:hover, .linkCRUD:hover {
+.closerr:hover, .delbutton:hover {
 	background-color: crimson;
 	border-radius: 10px;
+}
+
+.linkCRUD:hover{
+	border-bottom: 3px groove #8B51CA;
+	
 }
