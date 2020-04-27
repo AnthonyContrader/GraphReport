@@ -1,0 +1,26 @@
+<div class="container fluid row">
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Username</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Email</th>
+          <th>Activated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td>{{u.login}}</td>
+          <td>{{u.firstName}}</td>
+          <td>{{u.lastName}}</td>
+          <td>{{u.email}}</td>
+          <td>
+
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

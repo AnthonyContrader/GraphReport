@@ -5,6 +5,7 @@ export interface IUser {
     lastName?: string;
     email?: string;
     activated?: boolean;
+    activationKey?: string;
     langKey?: string;
     authorities?: any[];
     createdBy?: string;
@@ -22,6 +23,7 @@ export class UserDTO implements IUser {
         public lastName?: string,
         public email?: string,
         public activated?: boolean,
+        public activationKey?: string,
         public langKey?: string,
         public authorities?: any[],
         public createdBy?: string,
@@ -36,6 +38,7 @@ export class UserDTO implements IUser {
         this.lastName = lastName ? lastName : null;
         this.email = email ? email : null;
         this.activated = activated ? activated : false;
+        this.activationKey = activationKey ? activationKey : null;
         this.langKey = langKey ? langKey : null;
         this.authorities = authorities ? authorities : null;
         this.createdBy = createdBy ? createdBy : null;

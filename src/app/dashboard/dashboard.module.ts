@@ -14,6 +14,7 @@ import { UnitaModule } from '../unitamisura/unita/unita.module';
 import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
 import { DragNdropDirective } from 'src/directive/dragndrop.directive';
 import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify.component';
+import { UserComponent } from '../user/user.component';
 
 
 
@@ -27,7 +28,8 @@ import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify
     DatasetComponent,
     ImportCsvComponent,
     DragNdropDirective,
-    DataSetModifyComponent
+    DataSetModifyComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,

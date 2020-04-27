@@ -26,7 +26,7 @@
                     <div class="eldrop" [ngClass]="(selected=='pr') ? 'el selected' : 'el'">
                         profilo
                     </div>
-                    <div class="eldrop" *ngIf="isAdmin" [ngClass]="(selected=='lu') ? 'el selected' : 'el'">
+                    <div (click)="apriqualcosa('user')" class="eldrop" *ngIf="isAdmin" [ngClass]="(selected=='user') ? 'el selected' : 'el'">
                         lista utenti
                     </div>
                     <div (click)="logout()" class="eldrop el">

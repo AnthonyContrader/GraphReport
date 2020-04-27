@@ -10,6 +10,7 @@ import { UserDTO } from 'src/dto/user.dto';
 export class UserService extends AbstractService<UserDTO> {
     public resourceUrl = SERVER_API_URL + 'api/users';
 
+
     constructor(http: HttpClient) {
       super(http);
       this.microservicesPath = '/api';
@@ -28,7 +29,16 @@ export class UserService extends AbstractService<UserDTO> {
         return this.http.get<string[]>(SERVER_API_URL + '/api/users/authorities');
     }
 
-    findAll(daCercare: string): Observable<UserDTO[]> {
-      return this.http.get<any>('http://localhost:8080/user/findAll?cerca=' + daCercare);
+    registration(user: UserDTO): Observable<UserDTO[]>{
+      return this.http.post<any>(SERVER_API_URL +  this.microservicesPath + '/register', user);
     }
+
+    activation(key: string): Observable <UserDTO>{
+      return this.http.get<any>(SERVER_API_URL + this.microservicesPath + '/activate?key=' + key);
+    }
+
+    authentication(user: UserDTO): Observable<UserDTO[]>{
+      return this.http.post<any>(SERVER_API_URL + this.microservicesPath + '/authenticate', user);
+    }
+
 }
