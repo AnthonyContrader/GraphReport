@@ -6,6 +6,7 @@ import it.contrader.graphreport.repository.UserRepository;
 import it.contrader.graphreport.security.AuthoritiesConstants;
 import it.contrader.graphreport.service.MailService;
 import it.contrader.graphreport.service.UserService;
+import it.contrader.graphreport.service.dto.PasswordChangeDTO;
 import it.contrader.graphreport.service.dto.UserDTO;
 import it.contrader.graphreport.web.rest.errors.BadRequestAlertException;
 import it.contrader.graphreport.web.rest.errors.EmailAlreadyUsedException;
@@ -104,7 +105,8 @@ public class UserResource {
                 .body(newUser);
         }
     }
-
+    
+    
     /**
      * PUT /users : Updates an existing User.
      *

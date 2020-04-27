@@ -39,7 +39,7 @@ public class UserDTO {
     private String imageUrl;
 
     private boolean activated = false;
-
+    
     @Size(min = 2, max = 6)
     private String langKey;
 
@@ -130,7 +130,7 @@ public class UserDTO {
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
-
+    
     public String getLangKey() {
         return langKey;
     }
@@ -196,4 +196,6 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
+	
 }
