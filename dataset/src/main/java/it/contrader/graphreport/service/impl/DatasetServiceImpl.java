@@ -90,4 +90,9 @@ public class DatasetServiceImpl implements DatasetService {
     	return datasetRepository.findAllByidUser(id, pageable)
     			.map(datasetMapper::toDto);
     }	
+    
+    public Page<DatasetDTO> findAllByUserIdAndTitolo(Long id, String titolo, Pageable pageable){
+    	return datasetRepository.findAllByidUserAndTitolo(id, titolo, pageable)
+    			.map(datasetMapper::toDto);
+    }	
 }

@@ -139,6 +139,18 @@ public class DatasetResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
     
+    @GetMapping("/datasets/getDatasetByUserTitolo/{id}/{titolo}")
+    public ResponseEntity<List<DatasetDTO>> getDatasetByUserTitolo(@PathVariable Long id, @PathVariable String titolo) {
+        log.debug("REST request to get a page of Datasets by User and Titolo");
+        Pageable paginazione =  PageRequest.of(0, Integer.MAX_VALUE, Sort.by("titolo").ascending());
+        log.debug("PAGINAZIONE E " + paginazione);
+        Page<DatasetDTO> page = datasetServiceImpl.findAllByUserIdAndTitolo(id, titolo, paginazione);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+    
+    
+    
     @PostMapping("/insertList")
     public ResponseEntity<List<DatasetDTO>> insertList(@Valid @RequestBody List<DatasetDTO> listDTO) throws URISyntaxException {
         log.debug("REST request to save List of Dataset : {}", listDTO);
