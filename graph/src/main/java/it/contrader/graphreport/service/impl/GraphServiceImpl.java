@@ -96,9 +96,9 @@ public class GraphServiceImpl implements GraphService {
         graphRepository.deleteById(id);
     }
 
-	public Optional<GraphDTO> findLastModify() {
+	public Optional<GraphDTO> findLastModify(Long user) {
 		log.debug("Request to get Graph by LastModify");
 		Pageable page = PageRequest.of(0, 1, Sort.by("modify").descending());
-		return graphRepository.findAll(page).stream().findFirst().map(graphMapper::toDto);
+		return graphRepository.findAllByUtente(user,page).stream().findFirst().map(graphMapper::toDto);
 	}
 }

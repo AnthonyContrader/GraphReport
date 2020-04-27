@@ -139,10 +139,10 @@ public class GraphResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
     
-    @GetMapping("/lastModify")
-    public ResponseEntity<GraphDTO> getGraphByLastModify() {
+    @GetMapping("/lastModify/{user}")
+    public ResponseEntity<GraphDTO> getGraphByLastModify(@PathVariable Long user) {
         log.debug("REST request to get Last Modify Graph");
-        Optional<GraphDTO> graphDTO = graphService.findLastModify();
+        Optional<GraphDTO> graphDTO = graphService.findLastModify(user);
         return ResponseUtil.wrapOrNotFound(graphDTO);
     }
     
