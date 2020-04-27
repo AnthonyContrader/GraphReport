@@ -1,16 +1,24 @@
 <div class="page">
+    <div class="full" *ngIf="isAdmin">
+        <div clas="cont" style="width: max-content;margin:auto;max-width: 1200px;min-width: 350px;">
+            <label>Visualizza i Grafici dell'utente</label>
+            <select [(ngModel)]="ut" (change)="childUpdate()">
+                <option *ngFor="let u of userList" [value]="u.id">{{u.login}}</option>
+            </select>
+        </div>
+    </div>
     <div class="full">
         <div class="cont" style="width: 100%;max-width: 1200px;min-width: 350px;">
-            <app-graph-modify [show]="graph" (errore)="catch($event)"></app-graph-modify>
+            <app-graph-modify [show]="graph" [user]="ut" (errore)="catch($event)"></app-graph-modify>
         </div>
     </div>
     <div class="full">
         <div class="half">
             <div class="cont">
-                <app-graph-list [search]="userId" (toDelete)="confDel($event)" (toShow)="modify($event)"></app-graph-list>
+                <app-graph-list [search]="ut" (toDelete)="confDel($event)" (toShow)="modify($event)"></app-graph-list>
             </div>
         </div>
-        <div class="half dx">
+        <div class="half dx" *ngIf="ut==userId">
             <div class="cont" style="background-color: #666;color: white;">
                 <app-graph-create (resOp)="checkOp($event)"></app-graph-create>
             </div>

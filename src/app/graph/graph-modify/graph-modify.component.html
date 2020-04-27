@@ -14,7 +14,7 @@
         <fa-icon [icon]="wait" [spin]="true" size="2x"></fa-icon>
     </div>
 </ng-template>
-<div class="settingPane" *ngIf="pane">
+<div class="settingPane" *ngIf="pane && owner">
     <div>
         <input id="tito" type="radio" name="nav" class="hidden nav" checked/>
         <label for="tito" class="scheda" (click)="sc=3">Titolo</label>

@@ -24,12 +24,12 @@ export class GraphListComponent implements OnInit {
   constructor(private service: GraphService) { }
 
   ngOnInit(): void {
-    this.owner=(this.id === JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id);
-    this.update();
+    this.update(this.id);
   }
 
-  update(){
-    this.service.getGraphListByUser(this.id,0,20,['titolo']).subscribe(x => this.listGraph=x);
+  update(ut){
+    this.owner=(ut === JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id);
+    this.service.getGraphListByUser(ut,0,20,['titolo']).subscribe(x => this.listGraph=x);
   }
 
   del(d:number){

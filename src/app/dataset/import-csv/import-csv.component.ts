@@ -5,6 +5,8 @@ import { UnitaService } from 'src/service/unita.service';
 import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
 import { DataSetDTO } from 'src/dto/dataSet.dto';
 import { DataSetService } from 'src/service/DataSetService';
+import { Router } from '@angular/router';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-import-csv',
@@ -14,6 +16,7 @@ import { DataSetService } from 'src/service/DataSetService';
 export class ImportCsvComponent implements OnInit {
 
   user = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem("identity")).id;
+  ann = faTimes; 
 
   stamp: boolean = false;
 
@@ -26,11 +29,11 @@ export class ImportCsvComponent implements OnInit {
   categorie: CategoriaDTO[];
   umScelte : number[] = [];
   listUm : UnitaMisuraDTO[][] = [];
-
+  err : number = 0;
   titolo : string;
   um=0;
 
-  constructor(private catService: UnitaService,private dsService: DataSetService) {
+  constructor(private catService: UnitaService,private dsService: DataSetService, private router: Router) {
     this.catService.getCategoria().subscribe(x => this.categorie = x);
   }
 
@@ -109,7 +112,14 @@ export class ImportCsvComponent implements OnInit {
       });
     }
 
-    this.dsService.insertList(listdto).subscribe();
+    this.dsService.insertList(listdto).subscribe(
+      res => {
+        this.router.navigate(["dashboard/ds"]);
+      },
+      err => {
+        this.err=1;
+      }
+      );
   }
 
   addClass(n){

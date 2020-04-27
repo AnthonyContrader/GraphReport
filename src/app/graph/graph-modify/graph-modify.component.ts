@@ -21,6 +21,7 @@ import { UnitaService } from 'src/service/unita.service';
 export class GraphModifyComponent implements OnInit {
 
   @Input('show') graph : GraphDTO;
+  @Input('user') ut : number;
   @Output('errore') err = new EventEmitter();
   @ViewChild("esporta") dom : ElementRef;
   wait = faSpinner;
@@ -47,6 +48,8 @@ export class GraphModifyComponent implements OnInit {
   first: boolean = false;
   pane : boolean = false;
   tit: FormControl;
+  userLogged: number = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
+  owner : boolean = false;
 
   key = Object.keys; 
   enumFont: string[] = Object.keys(FontStyle).filter(x => isNaN(Number(x)));
@@ -60,13 +63,7 @@ export class GraphModifyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dsService.getDatasetByUser(JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id).subscribe(
-      res => {
-        this.dsList=res;
-        this.dsDistinct = this.dsList.map(x => x.titolo).filter((value, index, self) => { return self.indexOf(value) === index; }).sort();
-        this.filtra(this.dsDistinct[0]);
-      }
-    );
+    
   }
 
   filtra(ds){
@@ -77,6 +74,14 @@ export class GraphModifyComponent implements OnInit {
   }
 
   ngOnChanges(): void {
+    this.owner = this.userLogged == this.ut;
+    this.dsService.getDatasetByUser(this.ut).subscribe(
+      res => {
+        this.dsList=res;
+        this.dsDistinct = this.dsList.map(x => x.titolo).filter((value, index, self) => { return self.indexOf(value) === index; }).sort();
+        this.filtra(this.dsDistinct[0]);
+      }
+    );
     this.getLast();
   }
 
@@ -91,7 +96,7 @@ export class GraphModifyComponent implements OnInit {
     this.pane=false;
     this.ready=false;
     if(this.graph.id == -1){
-      this.graphService.getLastModify().subscribe(x => {
+      this.graphService.getLastModifyByUser(this.ut).subscribe(x => {
         this.graph=x;
         this.draw();
       });

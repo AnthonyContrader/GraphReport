@@ -94,3 +94,13 @@
 
     </div>
 </div>
+
+<div [ngClass]="(err) ? 'msg-modal error-color' : 'hidden'">
+    <div class="msg-modal-close">
+        <fa-icon [icon]="ann" (click)="err=0"></fa-icon>
+    </div>
+    <div *ngIf="err===1">
+        <strong>Impossibile importare!</strong><br>Digitare il titolo.
+    </div>
+    
+</div>

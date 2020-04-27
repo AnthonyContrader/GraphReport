@@ -24,8 +24,8 @@ import { SERVER_API_URL } from '../authJWT/app.constants';
       return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getByUt?id="+id+"&page="+page+"&size="+size+"&sort="+sort);
     }
 
-    getLastModify() : Observable<GraphDTO>{
-      return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/lastModify");
+    getLastModifyByUser(user:number) : Observable<GraphDTO>{
+      return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/lastModify/"+user);
     }
 
     mtmDelete(id: number): Observable<any> {
