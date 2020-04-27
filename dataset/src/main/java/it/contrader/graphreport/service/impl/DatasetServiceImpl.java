@@ -86,6 +86,13 @@ public class DatasetServiceImpl implements DatasetService {
         datasetRepository.deleteById(id);
     }
     
+    public void deleteDS(Long id, String titolo) {
+        log.debug("Request to delete DS : {}", id);
+        datasetRepository.deleteByidUserAndTitolo(id,titolo);
+    }
+    
+    
+    
     public Page<DatasetDTO> findAllByUserId(Long id, Pageable pageable){
     	return datasetRepository.findAllByidUser(id, pageable)
     			.map(datasetMapper::toDto);

@@ -15,7 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+//import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -169,6 +169,13 @@ public class DatasetResource {
         listDTO.forEach(x -> { result.add(datasetService.save(x)); });		
         
         return ResponseEntity.created(new URI("/api/updateDS/")).body(result);
+    }
+    
+    @GetMapping("/deleteDS/{id}/{titolo}")
+    public ResponseEntity<Void> deleteDS(@PathVariable Long id, @PathVariable String titolo) {
+        log.debug("REST request to delete Dataset : {}", id);
+        datasetServiceImpl.deleteDS(id,titolo);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
     
 }
