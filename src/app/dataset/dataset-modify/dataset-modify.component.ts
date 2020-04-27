@@ -58,7 +58,7 @@ export class DataSetModifyComponent implements OnInit{
     delete(form){
         if(form.del!=null){
             if(this.matrice.length>2){
-                // this.service.delete(form.del).subscribe(() => this.init());
+                this.service.delete(form.del).subscribe(() => this.init());
                 this.delForm.reset();
             }else
                 this.err=1;
@@ -67,13 +67,14 @@ export class DataSetModifyComponent implements OnInit{
 
     add(form){
         if(form.add!=null){
-            let valore : string = "";
+            let valori: string = "";
             for(let i=0; this.dataSet[0].valori.split("_").length>i; i++){
-                valore+=" _";
+                valori+=" _";
             }
-            valore = valore.substring(0,valore.length-1);
-            // let dto = new DataSetDTO(null,Number(localStorage.getItem('idUser')),this.cat,null,form.add,null,valori,"");
-            // this.service.insert(dto).subscribe(x => this.init());
+            valori = valori.substring(0,valori.length-1);
+            //let dto = new DataSetDTO(null,Number(localStorage.getItem('idUser')),this.cat,null,form.add,null,valori,"");
+            let dto = new DataSetDTO(null,this.tit,valori,null,this.userid,form.add);
+            this.service.insert(dto).subscribe(x => this.init());
             this.addForm.reset();
         }   
     }
@@ -82,7 +83,7 @@ export class DataSetModifyComponent implements OnInit{
         for(let i =0; this.dataSet.length>i ; i++){
             this.dataSet[i].valori+="_";
         }
-        // this.service.update(this.dataSet).subscribe(()=>this.init());
+         this.service.updateDS(this.dataSet).subscribe(()=>this.init());
     }
 
     delrow(index : number){
@@ -99,7 +100,7 @@ export class DataSetModifyComponent implements OnInit{
             }
             this.dataSet[i].valori=val.substring(0,val.length-1);
         }
-        // this.service.update(this.dataSet).subscribe(()=>this.init());
+         this.service.updateDS(this.dataSet).subscribe(()=>this.init());
         
     }
 
@@ -117,7 +118,7 @@ export class DataSetModifyComponent implements OnInit{
                 }
                 this.dataSet[i].valori=val.substring(0,val.length-1);
             }
-            // this.service.update(this.dataSet).subscribe();
+            this.service.updateDS(this.dataSet).subscribe();
             this.needToSave=false;
         }
     }
@@ -133,6 +134,6 @@ export class DataSetModifyComponent implements OnInit{
     addComm(n : number){
         let x = window.prompt("Digita nuovo commento","");
         this.dataSet[n].commento=x;
-        // this.service.update(this.dataSet[n]).subscribe(()=>this.init());
+        this.service.update(this.dataSet[n]).subscribe(()=>this.init());
     }
 }

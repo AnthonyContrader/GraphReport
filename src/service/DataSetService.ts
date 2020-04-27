@@ -41,6 +41,10 @@ export class DataSetService extends AbstractService<DataSetDTO>{
     return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getDatasetByUserTitolo/'+ut+'/'+tit);
   }
 
+  updateDS(dtoList: DataSetDTO[]) : Observable<boolean>{
+    return this.http.post<any>(SERVER_API_URL + this.microservicesPath + '/updateDS',dtoList);
+  }
+
 
   // getAllByUser(id: number): Observable<DataSetDTO[]> {
   //   return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/getAllByUser?id=' + id);

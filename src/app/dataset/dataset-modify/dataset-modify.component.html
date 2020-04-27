@@ -10,11 +10,11 @@
         <div class="table">
             <div class="cols" *ngFor="let ds of dataSet;let j = index">
                 <div class="th tc">
-                    {{ds.unitaMisuraN}}
+                    {{ds.idUnita}}
                     <div class="btnComm toltip" style="cursor: pointer;">
                         <img src="../../assets/comm.png" (click)="addComm(j)"/>
                         <span class="toltiptext">
-                            <p> {{ds.commento}} </p>
+                            <p>{{ds.commento}} </p>
                                 <div *ngIf="(ds.commento!='')" class="sugg">Clicca per modificare</div>
                                 <div *ngIf="(ds.commento=='')" class="sugg">Clicca per aggiungere</div>
                         </span>

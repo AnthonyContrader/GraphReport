@@ -71,6 +71,11 @@ Ntitolo = (titolo)=> {
     this.del=d;
   }
 
+  // deleteDS(d : number){
+  //   this.service.delete(this.utId,this.del).subscribe(() => this.caricaDS(this.utId));
+  //   this.del=0;
+  // }
+
   createDS(formValue){
     let dtop = new DataSetDTO(null,String(formValue.tit),"",null,this.dataset.idUser,Number(formValue.ump));
     let dtop2 = new DataSetDTO(null,String(formValue.tit),"",null,this.dataset.idUser,Number(formValue.ums));
