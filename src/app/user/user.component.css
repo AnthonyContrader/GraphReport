@@ -5,3 +5,11 @@
 .col{
   margin-top: 15px;
 }
+
+.label{
+  color: green;
+}
+
+.btn{
+  float: right;
+}
