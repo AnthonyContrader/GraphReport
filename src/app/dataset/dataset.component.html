@@ -53,8 +53,18 @@
                         </div>
                     </div>
                     <div class="row table" style="width: max-content;margin:auto; margin-bottom: 20px;">
-                        <div class="col" style="max-width: min-content;padding: 0px !important" *ngFor="let x of Ntitolo(unita.titolo);">
-                            <div class="th tc" style="min-width:50px;text-align:center;box-sizing: border-box; margin-top: 5px;">{{findUmNome(x.idUnita)}}</div>
+                        <div class="col" style="max-width: min-content;padding: 0px !important" *ngFor="let x of Ntitolo(unita.titolo); let j = index">
+                            <div class="th tc" style="min-width:50px;text-align:center;box-sizing: border-box; margin-top: 5px;">
+                                {{findUmNome(x.idUnita)}}
+                                <div class="btnComm toltip" style="cursor: pointer;">
+                                    <img src="../../assets/comm.png" (click)="addComm(j)"/>
+                                    <span class="toltiptext">
+                                        <p>{{x.commento}} </p>
+                                            <div *ngIf="(x.commento!='')" class="sugg">Clicca per modificare</div>
+                                            <div *ngIf="(x.commento=='')" class="sugg">Clicca per aggiungere</div>
+                                    </span>
+                                </div>
+                            </div>
                             <div [ngClass]="(colonna%2==0)? 'tc white':'tc grey'" style="min-width:50px;text-align:center;box-sizing: border-box;" 
                             *ngFor="let valore of x.valori.split('_'); let colonna=index">{{valore}}
                             </div>

@@ -7,6 +7,7 @@ import { UnitaService } from 'src/service/unita.service';
 import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dataset',
@@ -16,10 +17,13 @@ import { UserService } from 'src/service/user.service';
 export class DatasetComponent implements OnInit {
 dataset : DataSetDTO = new DataSetDTO(null,null,"","",null,null);
 ListaDatasetByUser : DataSetDTO[];
+matrice : string[][] = [];
 pathModify : string;
 del : string = '';
 createForm : FormGroup;
 err : number = 0;
+loaded : boolean;
+tit : string;
 isAdmin : boolean = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
 
 ListCategoria : CategoriaDTO[];
@@ -44,7 +48,7 @@ findUmNome = (id)=> {
 
 
 
-  constructor(private service:DataSetService, private serviceum : UnitaService, private serviceut : UserService) {
+  constructor(private route: ActivatedRoute, private service:DataSetService, private serviceum : UnitaService, private serviceut : UserService) {
     this.createForm = new FormGroup({
       cat : new FormControl(),
       cat2: new FormControl(),
@@ -62,7 +66,18 @@ findUmNome = (id)=> {
     //this.service.getAll().subscribe(datasets => this.ListDataset=datasets);
     this.service.getDatasetByUser(this.dataset.idUser).subscribe(Listavalori => this.ListaDatasetByUser=Listavalori);
     this.pathModify = "../datasetmodify";
+    this.route.queryParams.subscribe(x => this.tit = x["id"]);
+    this.init().then(x=>{this.loaded=true;});
   }
+
+  init(){
+    return new Promise ((response,rejects)=>{this.service.getDatasetByUser(this.userid).subscribe(x => {
+        this.ListaDatasetByUser=x;
+        for(let i=0; this.ListaDatasetByUser.length>i; i++)
+            this.matrice[i]=this.ListaDatasetByUser[i].valori.split("_");
+        response(true);
+    })});
+}
 
   createDataset(){
     this.service.insert(this.dataset).subscribe();
@@ -117,5 +132,11 @@ findUmNome = (id)=> {
     this.err=3;
     this.createForm.reset();
   }
+
+  addComm(n : number){
+    let x = window.prompt("Digita nuovo commento","");
+    this.ListaDatasetByUser[n].commento=x;
+    this.service.update(this.ListaDatasetByUser[n]).subscribe(()=>this.init());
+  } 
 
 }
