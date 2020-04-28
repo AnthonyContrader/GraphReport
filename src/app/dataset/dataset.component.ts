@@ -6,6 +6,7 @@ import { CategoriaDTO } from 'src/dto/categoria.dto';
 import { UnitaService } from 'src/service/unita.service';
 import { UnitaMisuraDTO } from 'src/dto/unitamisura.dto';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-dataset',
@@ -19,12 +20,14 @@ pathModify : string;
 del : string = '';
 createForm : FormGroup;
 err : number = 0;
+isAdmin : boolean = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
 
 ListCategoria : CategoriaDTO[];
 ListUnita : UnitaMisuraDTO[];
 ListaFiltrata : UnitaMisuraDTO[];
 ListaFiltrata2 : UnitaMisuraDTO[];
 
+utList : UserDTO[];
 userid = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
 
 
@@ -41,7 +44,7 @@ findUmNome = (id)=> {
 
 
 
-  constructor(private service:DataSetService, private serviceum : UnitaService) {
+  constructor(private service:DataSetService, private serviceum : UnitaService, private serviceut : UserService) {
     this.createForm = new FormGroup({
       cat : new FormControl(),
       cat2: new FormControl(),
@@ -55,6 +58,7 @@ findUmNome = (id)=> {
     this.dataset.idUser = this.userid;
     this.serviceum.getCategoria().subscribe(nome => this.ListCategoria=nome);
     this.serviceum.getAll().subscribe(nome => this.ListUnita=nome);
+    this.serviceut.getAll().subscribe(utente => this.utList= utente);
     //this.service.getAll().subscribe(datasets => this.ListDataset=datasets);
     this.service.getDatasetByUser(this.dataset.idUser).subscribe(Listavalori => this.ListaDatasetByUser=Listavalori);
     this.pathModify = "../datasetmodify";
@@ -63,6 +67,12 @@ findUmNome = (id)=> {
   createDataset(){
     this.service.insert(this.dataset).subscribe();
     //alert(JSON.stringify(this.dataset));
+  }
+
+  caricaDS(id : number, err : number = 0){
+    this.service.getDatasetByUser(id).subscribe(x => this.ListaDatasetByUser = x);
+    this.err = err;
+    this.userid=id;
   }
 
   filtra(categoriacliccata){

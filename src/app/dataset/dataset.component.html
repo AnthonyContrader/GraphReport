@@ -1,46 +1,11 @@
 <div class="row" style="height: calc(100vh - 39px); overflow:auto;">
-    <!-- <div class="container-fluid row" style="margin-top: 50px;">
-        <div class="col-md-12">
-            <div class="container" style="max-width: 400px;">
-
-                <label>Inserire il titolo</label>
-                <input type="text" [(ngModel)]="dataset.titolo"><br>
-
-                <label>Inserire PrimoSet</label>
-                <select (change)="filtra($event.target.value)">
-                    <option>seleziona una categoria</option>
-                    <option *ngFor="let categoria of ListCategoria" [value]="categoria.id">{{categoria.nome}}</option>
-                </select><br>
-                <label>Inserire Unità Di Misura</label>
-                <select [(ngModel)]="dataset.idUnita">
-                    <option *ngFor="let unita of ListaFiltrata" [value]="unita.id">{{unita.nome}}</option>
-                </select><br>
-                <button (click)="createDataset()">OK</button>
-            </div>
-        </div>
-    </div> -->
-    <div class="col">
-        <div class="row col-md-12" *ngFor="let unita of ListaDatasetByUser; let riga=index;">
-            <ng-container *ngIf="((riga==0) || (unita.titolo != ListaDatasetByUser[(riga-1)].titolo))"> 
-                    <div style="width: 100%;text-align: center; margin-top: 20px;"><h3>{{unita.titolo}}</h3></div>
-                    <div class="newCat" style="margin-top: 24px;">
-                        <div class="divCRUD" style="width:20%;">
-                            <a [routerLink]="[pathModify]" [queryParams]="{id: unita.titolo}"><div class="linkCRUD">Modifica</div></a>
-                            <label (click)="dele(unita.titolo)"><div class="linkCRUD">Elimina</div></label>
-                        </div>
-                    </div>
-                    <div class="row table" style="width: max-content;margin:auto; margin-bottom: 20px;">
-                        <div class="col" style="max-width: min-content;padding: 0px !important" *ngFor="let x of Ntitolo(unita.titolo);">
-                            <div class="th tc" style="min-width:50px;text-align:center;box-sizing: border-box; margin-top: 5px;">{{findUmNome(x.idUnita)}}</div>
-                            <div [ngClass]="(colonna%2==0)? 'tc white':'tc grey'" style="min-width:50px;text-align:center;box-sizing: border-box;" 
-                            *ngFor="let valore of x.valori.split('_'); let colonna=index">{{valore}}
-                            </div>
-                        </div>
-                    </div>
-            </ng-container>
-        </div>
-    </div>
-    <div class="col">
+    <div class="col-md-4">
+        <form class="center" *ngIf="isAdmin" style="width:270px; margin-top: 20px;">
+            <label>Visualizza DataSet dell'utente</label>
+            <select [value]="userid" (change)="caricaDS($event.target.value)">
+                <option *ngFor="let u of utList" [value]="u.id" [selected]="u.id==userid">{{u.firstName}}</option>
+            </select>
+        </form>
         <div style="padding-top: 25px;">
             
             <h2 style="text-align: center;">Crea nuovo DataSet</h2>
@@ -77,6 +42,28 @@
 
         </div>
     </div>
+    <div class="col-md-8">
+        <div class="row col-md-12" *ngFor="let unita of ListaDatasetByUser; let riga=index;">
+            <ng-container *ngIf="((riga==0) || (unita.titolo != ListaDatasetByUser[(riga-1)].titolo))"> 
+                    <div style="width: 100%;text-align: center; margin-top: 20px;"><h3>{{unita.titolo}}</h3></div>
+                    <div class="newCat" style="margin-top: 24px;">
+                        <div class="divCRUD" style="width:20%;">
+                            <a [routerLink]="[pathModify]" [queryParams]="{id: unita.titolo}"><div class="linkCRUD">Modifica</div></a>
+                            <label (click)="dele(unita.titolo)"><div class="linkCRUD">Elimina</div></label>
+                        </div>
+                    </div>
+                    <div class="row table" style="width: max-content;margin:auto; margin-bottom: 20px;">
+                        <div class="col" style="max-width: min-content;padding: 0px !important" *ngFor="let x of Ntitolo(unita.titolo);">
+                            <div class="th tc" style="min-width:50px;text-align:center;box-sizing: border-box; margin-top: 5px;">{{findUmNome(x.idUnita)}}</div>
+                            <div [ngClass]="(colonna%2==0)? 'tc white':'tc grey'" style="min-width:50px;text-align:center;box-sizing: border-box;" 
+                            *ngFor="let valore of x.valori.split('_'); let colonna=index">{{valore}}
+                            </div>
+                        </div>
+                    </div>
+            </ng-container>
+        </div>
+    </div>
+    
     <div *ngIf="del!=''" class="error">
     <p>
         <strong>Sei sicuro di voler eliminare questo DataSet?</strong>
