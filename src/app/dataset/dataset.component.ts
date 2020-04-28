@@ -34,6 +34,12 @@ Ntitolo = (titolo)=> {
   this.n=[];
   return this.ListaDatasetByUser.filter(element =>{  return element.titolo == titolo });
 }
+ 
+findUmNome = (id)=> { 
+  return this.ListUnita.find(x => x.id == id).nome;
+}
+
+
 
   constructor(private service:DataSetService, private serviceum : UnitaService) {
     this.createForm = new FormGroup({

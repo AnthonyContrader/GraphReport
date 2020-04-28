@@ -10,7 +10,7 @@
         <div class="table">
             <div class="cols" *ngFor="let ds of dataSet;let j = index">
                 <div class="th tc">
-                    {{ds.idUnita}}
+                    {{findUmNome(ds.idUnita)}}
                     <div class="btnComm toltip" style="cursor: pointer;">
                         <img src="../../assets/comm.png" (click)="addComm(j)"/>
                         <span class="toltiptext">

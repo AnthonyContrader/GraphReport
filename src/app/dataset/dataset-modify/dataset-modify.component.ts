@@ -26,6 +26,10 @@ export class DataSetModifyComponent implements OnInit{
     public needToSave : boolean = false;
     public err : number =0;
 
+    findUmNome = (id)=> { 
+        return this.umList.find(x => x.id == id).nome;
+      }
+
     userid : number;
 
     constructor(private route: ActivatedRoute, private service:DataSetService, private serviceum:UnitaService){

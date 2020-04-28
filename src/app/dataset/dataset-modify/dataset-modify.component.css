@@ -32,3 +32,10 @@
     cursor: unset;
     background-color: darkgrey !important;
 }
+
+.table{
+	margin: auto; 
+	display: flex;
+	width: max-content;
+	border-radius: 10px;
+}
