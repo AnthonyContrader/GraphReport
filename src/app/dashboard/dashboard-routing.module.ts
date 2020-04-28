@@ -7,20 +7,19 @@ import { HomeComponent } from './home/home.component';
 import { DatasetComponent } from '../dataset/dataset.component';
 import { UnitaComponent } from '../unitamisura/unita.component';
 import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
-import { GraphModifyComponent } from '../graph/graph-modify/graph-modify.component';
 import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify.component';
 import { UserComponent } from '../user/user.component';
 
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [ UserRouteAccessService ], children:[
-    { path: '', component: HomeComponent, pathMatch: 'full' },
+    { path: '', component: HomeComponent, pathMatch: 'full'},
     { path: 'unita', component: UnitaComponent},
     { path: 'graph', component: GraphComponent },
     { path: 'ds', component: DatasetComponent },
     { path: 'datasetmodify', component: DataSetModifyComponent },
     { path: 'csv', component: ImportCsvComponent },
-    { path: 'user', component: UserComponent}
+    { path: 'user', component: UserComponent},
   ]}
 ];
 
