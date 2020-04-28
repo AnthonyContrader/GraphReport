@@ -7,7 +7,7 @@
           <th>FirstName</th>
           <th>LastName</th>
           <th>Email</th>
-          <th>Activated</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +17,8 @@
           <td>{{u.lastName}}</td>
           <td>{{u.email}}</td>
           <td>
-
+            <label class="label" *ngIf="u.actived != true">Status: Active</label>
+            <button type="button" class="btn btn-danger" (click)="disactivate(u)">Elimina</button>
         </td>
         </tr>
       </tbody>

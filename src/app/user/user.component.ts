@@ -20,12 +20,14 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-
   }
 
   getUsers(){
     return this.service.getAll().subscribe(users => this.users = users);
   }
 
+  disactivate(user: UserDTO){
+    this.service.deleteByLogin(user.login).subscribe(() => this.getUsers());
+  }
 
 }

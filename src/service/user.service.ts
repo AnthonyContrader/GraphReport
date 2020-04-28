@@ -21,6 +21,10 @@ export class UserService extends AbstractService<UserDTO> {
         return this.http.post<UserDTO>(this.resourceUrl, user, { observe: 'response' });
     }
 
+    deleteByLogin(login: string): Observable<UserDTO> {
+      return this.http.delete<any>(SERVER_API_URL + this.microservicesPath + '/users/' + login);
+    }
+
     find(login: string): Observable<HttpResponse<UserDTO>> {
         return this.http.get<UserDTO>(`${this.resourceUrl}/${login}`, { observe: 'response' });
     }

@@ -34,9 +34,8 @@ export class RegisterComponent implements OnInit {
 
   insert(){
     this.authJwtService.getToken();
-    this.userService.registration(this.newUser).subscribe(() => {
-      this.userService.activation(this.key);
-    });
+    this.userService.registration(this.newUser).subscribe();
+    alert('Check your Email for the Account Activation!');
     this.router.navigate(['/login']);
   }
 

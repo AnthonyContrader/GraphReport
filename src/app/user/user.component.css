@@ -1,3 +1,7 @@
 .container{
   margin: auto;
 }
+
+.col{
+  margin-top: 15px;
+}
