@@ -1,0 +1,17 @@
+<div>
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <h1>Activation</h1>
+
+          <div class="alert alert-success" *ngIf="success">
+              <span><strong>Your user account has been activated.</strong> Please </span>
+              <a class="alert-link" (click)="redirect()">Back To Log In</a>.
+          </div>
+
+          <div class="alert alert-danger" *ngIf="error">
+              <strong>Attention!Link isn't correct.</strong> Your account is already active or URI isn't valid.
+              <a class="alert-link" (click)="redirect()">Back To Log In</a>.
+          </div>
+      </div>
+  </div>
+</div>
