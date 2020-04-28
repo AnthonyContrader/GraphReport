@@ -13,7 +13,6 @@ export class ActivateComponent implements OnInit {
   error: boolean = false;
   success: boolean = false;
 
-
   constructor(private service: UserService, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(x => this.key = x['key']);
     this.service.activation(this.key).subscribe(
