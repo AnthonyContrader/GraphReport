@@ -23,9 +23,7 @@
             <div class="dropdown-contenitor el" style="float: right;">
                 <label class="personal"> {{nome}} <fa-icon [icon]="arrowDown"></fa-icon></label>
                 <div class="dropdown">
-                    <div class="eldrop" [ngClass]="(selected=='pr') ? 'el selected' : 'el'">
-                        profilo
-                    </div>
+                    <app-profilo class="eldrop el"></app-profilo>
                     <div (click)="apriqualcosa('user')" class="eldrop" *ngIf="isAdmin" [ngClass]="(selected=='user') ? 'el selected' : 'el'">
                         lista utenti
                     </div>

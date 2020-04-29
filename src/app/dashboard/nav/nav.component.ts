@@ -3,7 +3,6 @@ import { LoginService } from 'src/authJWT/login.service';
 import { Router } from '@angular/router';
 import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',

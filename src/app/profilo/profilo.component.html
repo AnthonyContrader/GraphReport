@@ -1,0 +1,20 @@
+<ng-template #content let-modal>
+    <div class="modal-header" ngbAutofocus >
+        <div style="width:50px;height:50px;"> img profilo </div>
+        <h4 class="modal-title" id="modal-basic-title">Nome Cognome</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tutti i cazzi
+      </div>
+      <div class="modal-footer">
+          Se sta da mettere bottoni altrimenti ctrl+a => canc
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      </div>
+</ng-template>
+
+<div (click)="open(content)">
+    profilo
+</div>

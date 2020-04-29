@@ -15,7 +15,9 @@ import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
 import { DragNdropDirective } from 'src/directive/dragndrop.directive';
 import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify.component';
 import { UserComponent } from '../user/user.component';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProfiloComponent } from '../profilo/profilo.component';
 
 
 
@@ -29,7 +31,8 @@ import { UserComponent } from '../user/user.component';
     ImportCsvComponent,
     DragNdropDirective,
     DataSetModifyComponent,
-    UserComponent
+    UserComponent,
+    ProfiloComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +41,9 @@ import { UserComponent } from '../user/user.component';
     GraphModule,
     UnitaModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule, 
+    NgbModule
   ],
   providers: [
     UserRouteAccessService
