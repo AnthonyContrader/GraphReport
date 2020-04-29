@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label>Unita di misura</label>
-                <select  [(ngModel)]="um" class="form-control form-control-sm">
+                <select  [(ngModel)]="um" class="form-control form-control-sm custom-select">
                     <option value="0">Colonne</option>
                     <option value="1">Righe</option>
                 </select>
@@ -51,11 +51,11 @@
                         <label>Unità</label>
                     </th>
                     <th *ngFor="let a of csvRecords[0]; let i=index" class="form-group">
-                        <select class="form-control form-control-sm" (change)="caricaUm(i,$event.target.value)">
+                        <select class="form-control form-control-sm custom-select" (change)="caricaUm(i,$event.target.value)">
                             <option></option>
                             <option *ngFor="let x of categorie" [value]="x.id">{{x.nome}}</option>
                         </select>
-                        <select [(ngModel)]="umScelte[i]" class="form-control form-control-sm">
+                        <select [(ngModel)]="umScelte[i]" class="form-control form-control-sm custom-select">
                             <option *ngFor="let z of listUm[i]" [value]="z.id">{{z.nome}}</option>
                         </select>
                     </th>
@@ -73,11 +73,11 @@
                 <tbody>
                     <tr *ngFor="let row of csvRecords; let r=index" scope="row">
                         <td *ngIf="um==1">
-                            <select class="form-control form-control-sm" (change)="caricaUm(r,$event.target.value)">
+                            <select class="form-control form-control-sm custom-select" (change)="caricaUm(r,$event.target.value)">
                                 <option></option>
                                 <option *ngFor="let x of categorie" [value]="x.id">{{x.nome}}</option>
                             </select>
-                            <select [(ngModel)]="umScelte[r]" class="form-control form-control-sm">
+                            <select [(ngModel)]="umScelte[r]" class="form-control form-control-sm custom-select">
                                 <option *ngFor="let z of listUm[r]" [value]="z.id">{{z.nome}}</option>
                             </select>
                         </td>
