@@ -23,8 +23,8 @@ del : string = '';
 createForm : FormGroup;
 err : number = 0;
 loaded : boolean;
-tit : string;
 isAdmin : boolean = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
+tit : string;
 
 ListCategoria : CategoriaDTO[];
 ListUnita : UnitaMisuraDTO[];
@@ -105,6 +105,7 @@ findUmNome = (id)=> {
   deleteDS(){
     this.service.deleteDS(this.userid,this.del).subscribe();
     this.del='';
+    this.service.getDatasetByUser(this.userid).subscribe(x => this.ListaDatasetByUser = x);
   }
 
   createDS(formValue){
@@ -112,7 +113,9 @@ findUmNome = (id)=> {
     let dtop2 = new DataSetDTO(null,String(formValue.tit),"",null,this.dataset.idUser,Number(formValue.ums));
     let nuovo : boolean = true;
     let i : number = 0 ;
-    if(formValue!=null && formValue.cat!=null && formValue.ump!=null && formValue.tit!=null){
+    let z=String(formValue.tit).trim(); 
+    if(z!=null && z!='' && z!='null'){
+    if(formValue!=null && formValue.cat!=null && formValue.ump!=null && formValue.cat2!=null && formValue.ums!=null){
       while(this.ListaDatasetByUser.length>0 && this.ListaDatasetByUser.length>i && nuovo){
         if(this.ListaDatasetByUser[i].titolo==formValue.tit)
           nuovo=false;
@@ -120,11 +123,10 @@ findUmNome = (id)=> {
       }
       if(nuovo){
         this.service.insert(dtop).subscribe();
-        if(formValue.cat2!=null && formValue.ums!=null){
-            this.service.insert(dtop2).subscribe();
-          }else{
-            this.err=1;
-          }
+        this.service.insert(dtop2).subscribe();
+      }else{
+          this.err=1;
+      }
       }else
       this.err=2;
     }else
@@ -137,6 +139,10 @@ findUmNome = (id)=> {
     let x = window.prompt("Digita nuovo commento","");
     this.ListaDatasetByUser[n].commento=x;
     this.service.update(this.ListaDatasetByUser[n]).subscribe(()=>this.init());
-  } 
+  }
+  
+  closerror(){
+    this.err=0;
+}
 
 }
