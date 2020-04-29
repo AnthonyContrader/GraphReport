@@ -116,3 +116,8 @@ td, th{
 .hidden{
     display: none;
 }
+
+.custom-select{
+    height:31px !important;
+    padding: unset !important;
+}

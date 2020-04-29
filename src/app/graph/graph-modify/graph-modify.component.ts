@@ -206,7 +206,7 @@ export class GraphModifyComponent implements OnInit {
                     y: Number(assey[j].dataSet.valori.split("_")[i]),
                     r: Number(assez[j].dataSet.valori.split("_")[i])
                 };
-                data={ data: arr[j], label: assez[j].dataSet.commento, type: ti, backgroundColor: 'red', borderColor: 'green' }
+                data={ data: arr[j], label: (assey[j].dataSet.commento || this.findName(assey[j].dataSet.idUnita)), type: ti, backgroundColor: 'red', borderColor: 'green' }
                 this.datasets.push(data);
             }
         }else{
@@ -217,7 +217,7 @@ export class GraphModifyComponent implements OnInit {
                         y: Number(assey[j].dataSet.valori.split("_")[i])
                     };
                 }
-                data={ data: arr, label: assey[j].dataSet.commento, type: ti  }
+                data={ data: arr, label: (assey[j].dataSet.commento || this.findName(assey[j].dataSet.idUnita)), type: ti  }
                 this.datasets.push(data);
             }else{
                 this.labels = this.assex[j].dataSet.valori.split("_"); 
@@ -229,7 +229,7 @@ export class GraphModifyComponent implements OnInit {
                             arrPar[(k+1)]=arrPar[k];
                     }
                 }
-                data={ data: arr, label: assey[j].dataSet.commento, type: ti };
+                data={ data: arr, label: (assey[j].dataSet.commento || this.findName(assey[j].dataSet.idUnita)), type: ti };
                 this.datasets.push(data);
                 if(this.graph.pareto){
                     pareto={ type: 'line',data: arrPar, label: "Pareto: "+assey[j].dataSet.commento };
