@@ -30,7 +30,8 @@ export class UserDTO implements IUser {
         public createdDate?: Date,
         public lastModifiedBy?: string,
         public lastModifiedDate?: Date,
-        public password?: string
+        public password?: string,
+        public imageUrl?: string
     ) {
         this.id = id ? id : null;
         this.login = login ? login : null;
@@ -46,5 +47,6 @@ export class UserDTO implements IUser {
         this.lastModifiedBy = lastModifiedBy ? lastModifiedBy : null;
         this.lastModifiedDate = lastModifiedDate ? lastModifiedDate : null;
         this.password = password ? password : null;
+        this.imageUrl = imageUrl ? imageUrl : null;
     }
 }

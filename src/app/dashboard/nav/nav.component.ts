@@ -10,6 +10,7 @@ import { faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavComponent implements OnInit {
 
+  id: string;
   nome : string;
   image : string;
   imageDefault = "assets\\imgProf\\imgDef.png";
@@ -29,6 +30,7 @@ export class NavComponent implements OnInit {
       this.image = JSON.parse(sessionStorage.getItem('identity')).imageUrl || this.imageDefault;
     }
     this.isAdmin = JSON.parse(sessionStorage.getItem('identity') || localStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
+    this.id = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).login;
    }
 
   ngOnInit(): void {

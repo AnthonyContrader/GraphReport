@@ -26,7 +26,7 @@ export class UserService extends AbstractService<UserDTO> {
     }
 
     find(login: string): Observable<HttpResponse<UserDTO>> {
-        return this.http.get<UserDTO>(`${this.resourceUrl}/${login}`, { observe: 'response' });
+        return this.http.get<UserDTO>(SERVER_API_URL + this.microservicesPath + '/users/' + login, { observe: 'response' });
     }
 
     authorities(): Observable<string[]> {

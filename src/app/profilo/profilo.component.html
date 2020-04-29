@@ -1,20 +1,58 @@
-<ng-template #content let-modal>
-    <div class="modal-header" ngbAutofocus >
-        <div style="width:50px;height:50px;"> img profilo </div>
-        <h4 class="modal-title" id="modal-basic-title">Nome Cognome</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Tutti i cazzi
-      </div>
-      <div class="modal-footer">
-          Se sta da mettere bottoni altrimenti ctrl+a => canc
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-      </div>
+<ng-template #content let-modal >
+    <form [formGroup]="formTitle">
+        <div class="modal-header" ngbAutofocus *ngIf="stamp" >
+            <div class="immagine">
+                <img [src]="utente.imageUrl">
+            </div>
+            <div class="modal-title row" id="modal-basic-title">
+                <div class="col input-group">
+                    <input formControlName="nome" type="text"  class="form-control form-control-plaintext" style="text-align: center;"/>
+                </div>
+                <div class="col">
+                    <input formControlName="cognome" type="text"  class="form-control form-control-plaintext" style="text-align: center;"/>
+                </div>
+            </div>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <fa-icon [icon]="iconMail" class="input-group-text"></fa-icon>
+                </div>
+                <input formControlName="email" type="email" class="form-control form-control-plaintext" style="margin-left: 3px;width:350px"/>
+            </div>
+            <div class="row">
+                <div class="col input-group mb-3">
+                    <div class="input-group-prepend" style="height:38px">
+                        <fa-icon [icon]="iconLang" class="input-group-text"></fa-icon>
+                    </div>
+                    <select formControlName="lang" class="custom-select form-control-plaintext">
+                        <option value="it">Italiano</option>
+                        <option value="en">English</option>
+                        <option value="ber">Barese</option>
+                    </select>
+                </div>
+                <div class="col input-group-append">
+                    <select multiple class="custom-select form-control-plaintext" style="height:63px;" >
+                        <option *ngFor="let a of utente.authorities" [value]="a">{{a}}</option>
+                    </select>
+                    <div class="input-group-append">
+                        <fa-icon [icon]="iconAuth" class="input-group-text"></fa-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" *ngIf="!modify" (click)="abilita()">Modifica</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="modify" (click)="annulla()">Annulla</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="modify" (click)="update()" [disabled]="!formTitle.valid">Salva</button>
+        </div>
+    </form>
 </ng-template>
 
 <div (click)="open(content)">
     profilo
 </div>
+
