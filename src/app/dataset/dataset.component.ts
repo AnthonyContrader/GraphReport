@@ -125,11 +125,11 @@ findUmNome = (id)=> {
           }else{
             this.err=1;
           }
-        
       }else
       this.err=2;
     }else
     this.err=3;
+    this.service.getDatasetByUser(this.userid).subscribe(x => this.ListaDatasetByUser = x);
     this.createForm.reset();
   }
 
