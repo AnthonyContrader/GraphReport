@@ -57,7 +57,7 @@
                 <label style="margin-top:5px"><strong>Elimina esistente:</strong></label>
                 <select formControlName="del" required> 
                     <option [ngValue]="null" style="color:grey">Seleziona dall'elenco</option>
-                    <option *ngFor="let u of dataSet" [value]="u.id">{{u.unitaMisuraN}} {{u.commento}}</option>
+                    <option *ngFor="let u of dataSet" [value]="u.id">{{findUmNome(u.idUnita)}} {{u.commento}}</option>
                 </select>
                 <button type="submit">Elimina</button>
             </form>
