@@ -74,25 +74,27 @@
         </div>
     </div>
     
-    <div *ngIf="del!=''" class="error">
+    
+</div>
+
+<div *ngIf="del!=''" class="error">
     <p>
         <strong>Sei sicuro di voler eliminare questo DataSet?</strong>
     </p>
     <label class="delbutton" (click)="deleteDS()">Prosegui</label>
     <label class="delbutton" (click)="del=''">Annulla</label>
-    </div>
-    <div *ngIf="err!=0" class="error">
-        <label class="closerr" (click)="closerror()">[X] Chiudi</label>
-        <container-element [ngSwitch]="err">
-            <p *ngSwitchCase="1">
-                <strong>Impossibile creare:</strong><br> Dataset già esistente con lo stesso titolo.
-            </p>
-            <p *ngSwitchCase="2">
-                <strong>Impossibile creare il dataset:</strong><br> Inserire tutti i campi richiesti.
-            </p>
-            <p *ngSwitchCase="3">
-                <strong>Impossibile creare il dataset:</strong><br> Inserire un titolo valido.
-            </p>
-        </container-element>
-    </div>
+</div>
+<div *ngIf="err!=0" class="error">
+    <label class="closerr" (click)="closerror()">[X] Chiudi</label>
+    <container-element [ngSwitch]="err">
+        <p *ngSwitchCase="1">
+            <strong>Impossibile creare:</strong><br> Dataset già esistente con lo stesso titolo.
+        </p>
+        <p *ngSwitchCase="2">
+            <strong>Impossibile creare il dataset:</strong><br> Inserire tutti i campi richiesti.
+        </p>
+        <p *ngSwitchCase="3">
+            <strong>Impossibile creare il dataset:</strong><br> Inserire un titolo valido.
+        </p>
+    </container-element>
 </div>

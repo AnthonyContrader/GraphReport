@@ -331,7 +331,7 @@ export class GraphModifyComponent implements OnInit {
 
     esporta(ext:string){
       let canvas : HTMLCanvasElement = <HTMLCanvasElement>this.dom.nativeElement;
-      let img = canvas.toDataURL("image/"+ext+";base64",1.0).replace("image/png", "image/octet-stream");
+      let img = canvas.toDataURL("image/"+ext+";base64",1.0);
       let a = document.createElement('a');
       a.href = img;
       a.download = this.graph.titolo+"_graph"+ext;

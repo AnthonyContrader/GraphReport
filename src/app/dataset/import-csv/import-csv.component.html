@@ -8,90 +8,91 @@
         </label>
     </div>
     <div class="max-center container" *ngIf="stamp">
-        <div class="row">
-            <div class="col-6">
-                <div class="centrato">
-                    <button  type="button" class="btn btn-outline-secondary" (click)="annulla()">Annulla</button>
+        <form #form="ngForm" (submit)="submit()" class="was-validated"> 
+            <div class="row">
+                <div class="col-6">
+                    <div class="centrato">
+                        <button  type="button" class="btn btn-outline-secondary" (click)="annulla()">Annulla</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="centrato">
+                        <button  type="submit" class="btn btn-outline-secondary" [disabled]="form.invalid">Salva</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="centrato">
-                    <button  type="button" class="btn btn-outline-secondary" (click)="submit()">Salva</button>
+            <div class="row">
+                <div class="form-group">
+                    <label>Titolo</label>
+                    <input required [(ngModel)]="titolo" name="titolo" #tit type="text" class="form-control form-control-sm" placeholder="Digita il titolo" onchange="alert(this.value.invalid)"/>
+                </div>
+                <div class="form-group">
+                    <label>Unita di misura</label>
+                    <select  [(ngModel)]="um" name="um" class="form-control form-control-sm custom-select">
+                        <option value="0">Colonne</option>
+                        <option value="1">Righe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Separatore</label>
+                    <input [(ngModel)]="splitOn" name="separatore" type="text" class="form-control form-control-sm" (change)="readIt()" style="text-align: center;width:75px">
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group">
-                <label>Titolo</label>
-                <input  [(ngModel)]="titolo" type="text" class="form-control form-control-sm" placeholder="Digita il titolo"/>
-            </div>
-            <div class="form-group">
-                <label>Unita di misura</label>
-                <select  [(ngModel)]="um" class="form-control form-control-sm custom-select">
-                    <option value="0">Colonne</option>
-                    <option value="1">Righe</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Separatore</label>
-                <input [(ngModel)]="splitOn" type="text" class="form-control form-control-sm" (change)="readIt()" style="text-align: center;width:75px">
-            </div>
-        </div>
 
-        <div class="container border scrollable" style="height: 80%;">
-            <table class="table table-striped">
-                <colgroup>
-                    <col *ngIf="um==1">
-                    <col >
-                    <col *ngFor="let a of csvRecords[0]; let i=index" [id]="('col'+i)">
-                  </colgroup>
-                <tr *ngIf="um==0">
-                    <th>
-                        <label>Categoria</label>
-                        <label>Unità</label>
-                    </th>
-                    <th *ngFor="let a of csvRecords[0]; let i=index" class="form-group">
-                        <select class="form-control form-control-sm custom-select" (change)="caricaUm(i,$event.target.value)">
-                            <option></option>
-                            <option *ngFor="let x of categorie" [value]="x.id">{{x.nome}}</option>
-                        </select>
-                        <select [(ngModel)]="umScelte[i]" class="form-control form-control-sm custom-select">
-                            <option *ngFor="let z of listUm[i]" [value]="z.id">{{z.nome}}</option>
-                        </select>
-                    </th>
-                </tr>
-                <tr>
-                    <th *ngIf="um==1">
-                        <label>Categiaria</label>
-                        <label>Unità</label>
-                    </th>
-                    <th></th>
-                    <th *ngFor="let a of csvRecords[0];let c=index" scope="col" class="tddelcol" (click)="elimina((c+1))" (mouseenter)="addClass(c)" (mouseleave)="removeClass(c)">
-                        <fa-icon [icon]="delete" title="Elimina colonna" ></fa-icon>
-                    </th>
-                </tr>
-                <tbody>
-                    <tr *ngFor="let row of csvRecords; let r=index" scope="row">
-                        <td *ngIf="um==1">
-                            <select class="form-control form-control-sm custom-select" (change)="caricaUm(r,$event.target.value)">
+            <div class="container border scrollable" style="height: 80%;">
+                <table class="table table-striped">
+                    <colgroup>
+                        <col *ngIf="um==1">
+                        <col >
+                        <col *ngFor="let a of csvRecords[0]; let i=index" [id]="('col'+i)">
+                    </colgroup>
+                    <tr *ngIf="um==0">
+                        <th>
+                            <label>Categoria</label>
+                            <label>Unità</label>
+                        </th>
+                        <th *ngFor="let a of csvRecords[0]; let i=index" class="form-group">
+                            <select class="form-control form-control-sm custom-select" (change)="caricaUm(i,$event.target.value)">
                                 <option></option>
                                 <option *ngFor="let x of categorie" [value]="x.id">{{x.nome}}</option>
                             </select>
-                            <select [(ngModel)]="umScelte[r]" class="form-control form-control-sm custom-select">
-                                <option *ngFor="let z of listUm[r]" [value]="z.id">{{z.nome}}</option>
+                            <select required [(ngModel)]="umScelte[i]" [name]="'umSO'+i" class="form-control form-control-sm custom-select">
+                                <option *ngFor="let z of listUm[i]" [value]="z.id">{{z.nome}}</option>
                             </select>
-                        </td>
-                        <td class="tddelrow" (click)="elimina((r+1)*(-1))">
-                            <fa-icon [icon]="delete" title="Elimina riga" ></fa-icon>
-                        </td>
-                        <td *ngFor="let col of csvRecords[r]; let c=index">
-                            {{csvRecords[r][c]}}
-                        </td>
+                        </th>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-
+                    <tr>
+                        <th *ngIf="um==1">
+                            <label>Categiaria</label>
+                            <label>Unità</label>
+                        </th>
+                        <th></th>
+                        <th *ngFor="let a of csvRecords[0];let c=index" scope="col" class="tddelcol" (click)="elimina((c+1))" (mouseenter)="addClass(c)" (mouseleave)="removeClass(c)">
+                            <fa-icon [icon]="delete" title="Elimina colonna" ></fa-icon>
+                        </th>
+                    </tr>
+                    <tbody>
+                        <tr *ngFor="let row of csvRecords; let r=index" scope="row">
+                            <td *ngIf="um==1">
+                                <select class="form-control form-control-sm custom-select" (change)="caricaUm(r,$event.target.value)">
+                                    <option></option>
+                                    <option *ngFor="let x of categorie" [value]="x.id">{{x.nome}}</option>
+                                </select>
+                                <select required [(ngModel)]="umScelte[r]" [name]="'umSV'+r" class="form-control form-control-sm custom-select">
+                                    <option *ngFor="let z of listUm[r]" [value]="z.id">{{z.nome}}</option>
+                                </select>
+                            </td>
+                            <td class="tddelrow" (click)="elimina((r+1)*(-1))">
+                                <fa-icon [icon]="delete" title="Elimina riga" ></fa-icon>
+                            </td>
+                            <td *ngFor="let col of csvRecords[r]; let c=index">
+                                {{csvRecords[r][c]}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
     </div>
 </div>
 

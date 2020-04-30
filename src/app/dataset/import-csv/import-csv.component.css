@@ -121,3 +121,12 @@ td, th{
     height:31px !important;
     padding: unset !important;
 }
+
+.form-control:valid{
+    border-color: unset !important;
+    padding-right: unset !important;
+    background-image: none !important;
+    background-repeat: none !important;
+    background-position: none !important;
+    background-size: none !important;
+}

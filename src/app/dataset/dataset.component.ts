@@ -103,9 +103,10 @@ findUmNome = (id)=> {
   }
 
   deleteDS(){
-    this.service.deleteDS(this.userid,this.del).subscribe();
+    this.service.deleteDS(this.userid,this.del).subscribe(x => 
+      this.service.getDatasetByUser(this.userid).subscribe(x => this.ListaDatasetByUser = x)
+      );
     this.del='';
-    this.service.getDatasetByUser(this.userid).subscribe(x => this.ListaDatasetByUser = x);
   }
 
   createDS(formValue){
@@ -122,8 +123,12 @@ findUmNome = (id)=> {
         i++;
       }
       if(nuovo){
-        this.service.insert(dtop).subscribe();
-        this.service.insert(dtop2).subscribe();
+        this.service.insert(dtop).subscribe(z => {
+          this.service.insert(dtop2).subscribe(x => {
+            this.service.getDatasetByUser(this.userid).subscribe(x => this.ListaDatasetByUser = x);
+          });
+        });
+        
       }else{
           this.err=1;
       }
@@ -131,7 +136,7 @@ findUmNome = (id)=> {
       this.err=2;
     }else
     this.err=3;
-    this.service.getDatasetByUser(this.userid).subscribe(x => this.ListaDatasetByUser = x);
+    
     this.createForm.reset();
   }
 
