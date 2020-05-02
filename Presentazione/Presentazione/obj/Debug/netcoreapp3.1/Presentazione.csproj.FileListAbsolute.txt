@@ -1,3 +1,4 @@
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -101,7 +102,6 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
@@ -122,3 +122,4 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Debug\netcoreapp3.1\Presentazione.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Debug\netcoreapp3.1\Presentazione.pdb
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Debug\netcoreapp3.1\Presentazione.genruntimeconfig.cache
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Debug\netcoreapp3.1\Presentazione.csprojAssemblyReference.cache

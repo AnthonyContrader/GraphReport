@@ -12,12 +12,13 @@ namespace Presentazione.Repository
 {
     public class DiapositivaRepository : ARepository<DiapositivaDTO, Diapositiva>
     {
-        private static readonly DiapositivaConverter converter;
-        private static readonly AContext<Diapositiva> context;
+        private readonly AConverter<DiapositivaDTO,Diapositiva> _converter;
+        private readonly AContext<Diapositiva> _context;
 
-        public DiapositivaRepository() : base(context, converter)
+        public DiapositivaRepository(AConverter<DiapositivaDTO, Diapositiva> converter, AContext<Diapositiva> context) : base(context, converter)
         {
-            
+            _converter = converter;
+            _context = context;
         } 
 
     }

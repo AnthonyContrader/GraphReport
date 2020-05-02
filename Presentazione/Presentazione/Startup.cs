@@ -32,7 +32,8 @@ namespace Presentazione
         {
             services.AddControllers();
             services.AddDbContext<AContext<Diapositiva>>(z => z.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddScoped<AContext<Diapositiva>,DiapositivaContext>();
+            services.AddScoped<AConverter<DiapositivaDTO,Diapositiva>, DiapositivaConverter>();
             services.AddTransient<ARepository<DiapositivaDTO,Diapositiva>, DiapositivaRepository>();
             
 

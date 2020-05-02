@@ -7,6 +7,7 @@ namespace Presentazione.Models
 {
     public class Colore
     {
+        public Colore() { }
         public Colore(int r, int g, int b) {
             this.red = r;
             this.green = g;

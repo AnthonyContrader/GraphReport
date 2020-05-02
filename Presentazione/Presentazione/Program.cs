@@ -20,7 +20,7 @@ namespace Presentazione
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>().Build();
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }
