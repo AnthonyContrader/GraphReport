@@ -19,10 +19,5 @@ namespace Presentazione.DBContext
             
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Presentazione;Trusted_Connection=True;");
-        }
-
     }
 }
