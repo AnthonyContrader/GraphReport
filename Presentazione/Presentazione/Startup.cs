@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +12,8 @@ using Presentazione.DBContext;
 using Presentazione.DTO;
 using Presentazione.Models;
 using Presentazione.Repository;
+using Steeltoe.Discovery.Client;
+using System;
 
 namespace Presentazione
 {
@@ -42,6 +41,15 @@ namespace Presentazione
                     builder => builder.WithOrigins("http://localhost:4200"));
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+             //    .AddCloudFoundryJwtBearer(Configuration);
+
+            services.AddAuthorization();
+
+            services.AddDiscoveryClient(Configuration);
+
         }
 
         private int AContext<T>(Func<object, object> p)
@@ -50,8 +58,9 @@ namespace Presentazione
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -62,6 +71,8 @@ namespace Presentazione
             app.UseCors();
 
             app.UseAuthorization();
+
+            app.UseDiscoveryClient();
 
             app.UseEndpoints(endpoints =>
             {
