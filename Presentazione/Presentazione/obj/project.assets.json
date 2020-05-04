@@ -8238,19 +8238,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TonioStark\\.nuget\\packages\\": {}
+    "C:\\Users\\piero\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TonioStark\\eclipse-workspace\\GraphReportMicroservice\\backend\\Presentazione\\Presentazione\\Presentazione.csproj",
+      "projectUniqueName": "C:\\Users\\piero\\graphreport-microservices\\Presentazione\\Presentazione\\Presentazione.csproj",
       "projectName": "Presentazione",
-      "projectPath": "C:\\Users\\TonioStark\\eclipse-workspace\\GraphReportMicroservice\\backend\\Presentazione\\Presentazione\\Presentazione.csproj",
-      "packagesPath": "C:\\Users\\TonioStark\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TonioStark\\eclipse-workspace\\GraphReportMicroservice\\backend\\Presentazione\\Presentazione\\obj\\",
+      "projectPath": "C:\\Users\\piero\\graphreport-microservices\\Presentazione\\Presentazione\\Presentazione.csproj",
+      "packagesPath": "C:\\Users\\piero\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\piero\\graphreport-microservices\\Presentazione\\Presentazione\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\TonioStark\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\piero\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
