@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PresentazioneService } from 'src/service/presentazione.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,9 @@ export class HomeComponent implements OnInit {
 
   utente;
 
-  constructor() {
+  constructor(private p : PresentazioneService) {
     this.utente= JSON.parse(localStorage.getItem('identity')) || JSON.parse(sessionStorage.getItem('identity')).login;
+    p.getAll().subscribe();
    }
 
   ngOnInit(): void {
