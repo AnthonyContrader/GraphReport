@@ -38,13 +38,12 @@ namespace Presentazione
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
-                    builder => builder.WithOrigins("http://localhost:4200"));
+                    builder => builder.WithOrigins("http://localhost:8080"));
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
-             //    .AddCloudFoundryJwtBearer(Configuration);
 
             services.AddAuthorization();
 
