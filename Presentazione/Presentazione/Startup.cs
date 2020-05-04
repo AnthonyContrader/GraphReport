@@ -48,6 +48,8 @@ namespace Presentazione
 
             services.AddAuthorization();
 
+            services.AddSwaggerDocument();
+
             services.AddDiscoveryClient(Configuration);
 
         }
@@ -71,6 +73,9 @@ namespace Presentazione
             app.UseCors();
 
             app.UseAuthorization();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseDiscoveryClient();
 

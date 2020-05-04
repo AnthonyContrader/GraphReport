@@ -13,6 +13,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.4.2" />
     <PackageReference Include="Steeltoe.CloudFoundry.Connector.EFCore" Version="2.4.3" />
     <PackageReference Include="Steeltoe.Discovery.ClientCore" Version="2.4.3" />
     <PackageReference Include="Steeltoe.Discovery.EurekaBase" Version="2.4.3" />
