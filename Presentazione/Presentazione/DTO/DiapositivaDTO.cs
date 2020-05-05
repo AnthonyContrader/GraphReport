@@ -11,6 +11,8 @@ namespace Presentazione.DTO
     {
         public long id { get; set; }
 
+        public PresModel presentazione { get; set; }
+
         public Colore sfondo { get; set; }
 
         public int ordine { get; set; }

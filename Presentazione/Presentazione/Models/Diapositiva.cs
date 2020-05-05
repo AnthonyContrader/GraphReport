@@ -18,6 +18,9 @@ namespace Presentazione.Models
         public long id { get; set; }
 
         [Required]
+        public PresModel presentazione { get; set; }
+
+        [Required]
         public string sfondo { get; set; }
 
         [Required]

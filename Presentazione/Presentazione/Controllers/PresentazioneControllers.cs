@@ -14,43 +14,39 @@ namespace Presentazione.Controllers
     [EnableCors("AllowOrigin")]
     [Route("api/[Controller]")]
     [ApiController]
-    public class DiapositivaController : ControllerBase
+    public class SlideController : ControllerBase
     {
 
-        private readonly ARepository<DiapositivaDTO,Diapositiva> _repository;
-        public DiapositivaController(ARepository<DiapositivaDTO, Diapositiva> repository)
+        private readonly ARepository<PresentazioneDTO, PresModel> _repository;
+        public SlideController(ARepository<PresentazioneDTO, PresModel> repository)
         {
             _repository = repository;
         }
-        // GET: api/Diapositiva
+
         [HttpGet]
-        public IEnumerable<DiapositivaDTO> Get()
+        public IEnumerable<PresentazioneDTO> Get()
         {
             return _repository.GetAll();
         }
 
-        // GET: api/Diapositiva/5
         [HttpGet("{id}")]
-        public DiapositivaDTO Read(long id)
+        public PresentazioneDTO Read(long id)
         {
             return _repository.Read(id);
         }
 
-        // POST: api/Diapositiva
         [HttpPut]
-        public void Update([FromBody] DiapositivaDTO dto)
+        public void Update([FromBody] PresentazioneDTO dto)
         {
             _repository.Update(dto);
         }
 
-        // PUT: api/Diapositiva/5
         [HttpPost()]
-        public void Create([FromBody] DiapositivaDTO dto)
+        public void Create([FromBody] PresentazioneDTO dto)
         {
             _repository.Create(dto);
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(long id)
         {
