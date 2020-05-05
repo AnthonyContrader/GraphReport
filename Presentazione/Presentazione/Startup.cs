@@ -53,7 +53,7 @@ namespace Presentazione
                     builder => builder.WithOrigins("http://localhost:8080"));
             });
 
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 
