@@ -30,7 +30,7 @@ namespace Presentazione.Controllers
         }
 
         // GET: api/Diapositiva/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public DiapositivaDTO Get(long id)
         {
             return _repository.Read(id);
@@ -44,7 +44,7 @@ namespace Presentazione.Controllers
         }
 
         // PUT: api/Diapositiva/5
-        [HttpPost()]
+        [HttpPost]
         public void Create([FromBody] DiapositivaDTO dto)
         {
             _repository.Create(dto);
