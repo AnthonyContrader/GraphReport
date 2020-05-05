@@ -166,18 +166,6 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.csprojAssemblyReference.cache
 <<<<<<< HEAD
 =======
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Namotion.Reflection.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NJsonSchema.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Annotations.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.AspNetCore.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Core.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Generation.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Generation.AspNetCore.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.csproj.CoreCompileInputs.cache
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\piero\graphreport-microservices\Presentazione\Presentazione\bin\Release\netcoreapp3.1\appsettings.Development.json
 C:\Users\piero\graphreport-microservices\Presentazione\Presentazione\bin\Release\netcoreapp3.1\appsettings.json
 C:\Users\piero\graphreport-microservices\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Properties\launchSettings.json
