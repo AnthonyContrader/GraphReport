@@ -1,0 +1,39 @@
+
+.full{
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+.container-fluid{
+  width: 100vw;
+  height: 140vh;
+  overflow: auto;
+}
+
+.presentazione{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.table{
+  margin-top: 110px;
+}
+
+.modifica{
+  margin-top: 50px;
+}
+
+.buttonMod{
+  float: left;
+}
+
+
+.diapositiva{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.list-group{
+  margin-top: 20px;
+}

@@ -5,29 +5,17 @@ import { Observable } from 'rxjs';
 
 
 import { SERVER_API_URL } from '../authJWT/app.constants';
-import { GraphDTO } from 'src/dto/graph.dto';
+import { PresentazioneDTO } from 'src/dto/presentazione.dto';
 
 @Injectable({
     providedIn: 'root'
   })
-  export class PresentazioneService extends AbstractService<GraphDTO>{
+  export class PresentazioneService extends AbstractService<PresentazioneDTO>{
 
     constructor(http: HttpClient) {
-        super(http);
-        this.microservicesPath = '/diapositiva/api';
-        this.generic="/Diapositiva";
-      }
-
-    getGraphListByUser(id: number, page: number, size: number, sort: string[]) : Observable<any>{
-      return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/getByUt?id="+id+"&page="+page+"&size="+size+"&sort="+sort);
-    }
-
-    getLastModifyByUser(user:number) : Observable<GraphDTO>{
-      return this.http.get<any>(SERVER_API_URL+this.microservicesPath+"/lastModify/"+user);
-    }
-
-    mtmDelete(id: number): Observable<any> {
-        return this.http.delete(SERVER_API_URL + this.microservicesPath + "/mtsDelete/" + id);
+      super(http);
+      this.microservicesPath = '/presentazione/api';
+      this.generic = '/Presentazione';
     }
 
   }

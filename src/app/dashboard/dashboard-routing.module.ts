@@ -9,6 +9,7 @@ import { UnitaComponent } from '../unitamisura/unita.component';
 import { ImportCsvComponent } from '../dataset/import-csv/import-csv.component';
 import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify.component';
 import { UserComponent } from '../user/user.component';
+import { PresentazioneComponent } from '../presentazione/presentazione.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'datasetmodify', component: DataSetModifyComponent },
     { path: 'csv', component: ImportCsvComponent },
     { path: 'user', component: UserComponent},
+    { path: 'presentazione', component: PresentazioneComponent}
   ]}
 ];
 

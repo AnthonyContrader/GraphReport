@@ -17,6 +17,7 @@
                     </div>
                 </div>
                 <div (click)="apriqualcosa('graph')" [ngClass]="(selected=='graph') ? 'el selected' : 'el'">Grafici</div>
+                <div (click)="apriqualcosa('presentazione')" [ngClass]="(selected=='presentazione') ? 'el selected' : 'el'">Presentazione</div>
             </div>
         </div>
         <div class="destra">
@@ -56,6 +57,7 @@
                     CSV
                 </div>
                 <div class="el vert" (click)="apriqualcosa('graph',true)" [ngClass]="(selected=='graph') ? 'el selected' : 'el'">Grafici</div>
+                <div class="el vert" (click)="apriqualcosa('presentazione',true)" [ngClass]="(selected=='presentazione') ? 'el selected' : 'el'">Presentazione</div>
                 <div class="el vert" (click)="logout()" >Log Out</div>
             </div>
         </div>

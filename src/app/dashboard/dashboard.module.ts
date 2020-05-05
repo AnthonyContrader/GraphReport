@@ -18,6 +18,7 @@ import { UserComponent } from '../user/user.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfiloComponent } from '../profilo/profilo.component';
+import { PresentazioneModule } from '../presentazione/presentazione.module';
 
 
 
@@ -42,8 +43,9 @@ import { ProfiloComponent } from '../profilo/profilo.component';
     UnitaModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule, 
-    NgbModule
+    BrowserModule,
+    NgbModule,
+    PresentazioneModule
   ],
   providers: [
     UserRouteAccessService

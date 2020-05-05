@@ -1,0 +1,11 @@
+export enum fontStyleText{
+  ARIAL,
+  CAMBRIA,
+  COURIER,
+  FRANKLIN,
+  GEORGIA,
+  HELVETICA,
+  HELVETICANEUE,
+  TIMESNEWROMAN,
+  VERDANA
+}

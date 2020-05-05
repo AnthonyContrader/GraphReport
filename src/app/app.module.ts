@@ -22,7 +22,7 @@ import { ActivateComponent } from './activate/activate.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ActivateComponent
+    ActivateComponent,
   ],
   imports: [
     CommonModule,

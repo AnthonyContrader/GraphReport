@@ -54,6 +54,10 @@ export class NavComponent implements OnInit {
         this.router.navigate([path+el]);
         break;
 
+      case 'presentazione':
+        this.router.navigate([path+el]);
+        break;
+
       case 'pr':
         this.router.navigate([path+el]);
         break;
