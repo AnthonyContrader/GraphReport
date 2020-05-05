@@ -34,7 +34,11 @@ namespace Presentazione
             services.AddDbContext<AContext<Diapositiva>>(z => z.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<AConverter<DiapositivaDTO,Diapositiva>, DiapositivaConverter>();
             services.AddTransient<ARepository<DiapositivaDTO,Diapositiva>, DiapositivaRepository>();
-            
+
+            services.AddDbContext<AContext<PresModel>>(z => z.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<AConverter<PresentazioneDTO, PresModel>, PresentazioneConverter>();
+            services.AddTransient<ARepository<PresentazioneDTO, PresModel>, PresentazioneRepository>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
