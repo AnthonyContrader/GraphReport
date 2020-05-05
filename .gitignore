@@ -1,3 +1,4 @@
 ﻿*.dll
 /Presentazione/Presentazione/obj/Release/netcoreapp3.1/Presentazione.MvcApplicationPartsAssemblyInfo.cs
-/Presentazione/Presentazione/Repository/PresentazioneRepository.cs
+/Presentazione/.vs/Presentazione/v16/.suo
+/Presentazione/Presentazione/obj/Release/netcoreapp3.1/Presentazione.assets.cache
