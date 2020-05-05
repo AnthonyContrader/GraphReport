@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Presentazione.Models
 {
-    [Table("diapositiva")]
+    [Table("Diapositiva")]
     [Serializable]
     public class Diapositiva
     {

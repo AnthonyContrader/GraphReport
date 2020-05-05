@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "attività-Presentazione",
+      "appliesTo": "Presentazione/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "attività-Presentazione",
+      "appliesTo": "Presentazione/",
+      "type": "launch"
+    }
+  ]
+}

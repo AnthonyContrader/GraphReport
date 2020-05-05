@@ -12,7 +12,7 @@ using Presentazione.Repository;
 namespace Presentazione.Controllers
 {
     [EnableCors("AllowOrigin")]
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DiapositivaController : ControllerBase
     {
@@ -30,8 +30,8 @@ namespace Presentazione.Controllers
         }
 
         // GET: api/Diapositiva/5
-        [HttpGet("{id}")]
-        public DiapositivaDTO Read(long id)
+        [HttpGet("{id}", Name = "Get")]
+        public DiapositivaDTO Get(long id)
         {
             return _repository.Read(id);
         }
