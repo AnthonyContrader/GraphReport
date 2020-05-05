@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VYzAuw/QbQltSHiE6bx4QRPvGUCcO/n0mk0Zr025X1qBow3WTYpOa/XFkiJDDRZv/yxxDgfCi94+/s4OcYJFPA==",
+  "dgSpecHash": "WTTIO4XmsKV5B+LXfq2vLSaRZPgcPimY4SYoGmchIDHt1eXnJzmjNKxV310gfKnE2cddobrw/bOCwISJwnLrfQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\TonioStark\\eclipse-workspace\\GraphReportMicroservice\\backend\\Presentazione\\Presentazione\\Presentazione.csproj",
   "expectedPackageFiles": [
@@ -99,7 +99,7 @@
     "C:\\Users\\TonioStark\\.nuget\\packages\\microsoft.win32.registry\\4.6.0\\microsoft.win32.registry.4.6.0.nupkg.sha512",
     "C:\\Users\\TonioStark\\.nuget\\packages\\namotion.reflection\\1.0.11\\namotion.reflection.1.0.11.nupkg.sha512",
     "C:\\Users\\TonioStark\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\TonioStark\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\TonioStark\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\TonioStark\\.nuget\\packages\\njsonschema\\10.1.11\\njsonschema.10.1.11.nupkg.sha512",
     "C:\\Users\\TonioStark\\.nuget\\packages\\nswag.annotations\\13.4.2\\nswag.annotations.13.4.2.nupkg.sha512",
     "C:\\Users\\TonioStark\\.nuget\\packages\\nswag.aspnetcore\\13.4.2\\nswag.aspnetcore.13.4.2.nupkg.sha512",

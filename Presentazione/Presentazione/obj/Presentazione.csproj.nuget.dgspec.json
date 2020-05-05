@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[13.4.2, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
             "Steeltoe.CloudFoundry.Connector.EFCore": {
               "target": "Package",
               "version": "[2.4.3, )"

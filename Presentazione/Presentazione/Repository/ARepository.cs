@@ -33,7 +33,7 @@ namespace Presentazione.Repository
         public void Create(D dto)
         {
             M model = _converter.ToModel(dto);
-            _dbContext.Add(model);
+            _dbContext.Entry(model).State= EntityState.Added;
             save();
         }
 

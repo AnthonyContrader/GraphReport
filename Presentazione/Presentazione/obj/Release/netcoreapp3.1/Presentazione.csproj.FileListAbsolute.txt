@@ -9,6 +9,7 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Presentazione.pdb
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Consul.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -35,6 +36,7 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Identity.Client.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -50,7 +52,14 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Namotion.Reflection.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NJsonSchema.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Annotations.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.AspNetCore.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Core.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Generation.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Generation.AspNetCore.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NuGet.Frameworks.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Serilog.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Serilog.AspNetCore.dll
@@ -142,6 +151,9 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.csproj.CoreCompileInputs.cache
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.AssemblyInfoInputs.cache
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.AssemblyInfo.cs
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.RazorTargetAssemblyInfo.cache
@@ -152,15 +164,3 @@ C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazi
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.pdb
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.genruntimeconfig.cache
 C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.csprojAssemblyReference.cache
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\Namotion.Reflection.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NJsonSchema.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Annotations.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.AspNetCore.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Core.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Generation.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\bin\Release\netcoreapp3.1\NSwag.Generation.AspNetCore.dll
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.csproj.CoreCompileInputs.cache
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\TonioStark\eclipse-workspace\GraphReportMicroservice\backend\Presentazione\Presentazione\obj\Release\netcoreapp3.1\Presentazione.MvcApplicationPartsAssemblyInfo.cache

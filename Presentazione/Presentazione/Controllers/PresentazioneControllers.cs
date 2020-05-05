@@ -41,7 +41,7 @@ namespace Presentazione.Controllers
             _repository.Update(dto);
         }
 
-        [HttpPost()]
+        [HttpPost]
         public void Create([FromBody] PresentazioneDTO dto)
         {
             _repository.Create(dto);

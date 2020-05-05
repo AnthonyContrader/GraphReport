@@ -17,7 +17,8 @@ namespace Presentazione.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long id { get; set; }
 
-        [Required]
+        public long presentazioneId { get; set; }
+        
         public PresModel presentazione { get; set; }
 
         [Required]

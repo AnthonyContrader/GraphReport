@@ -15,6 +15,7 @@ namespace Presentazione.Converter
         {
             PresentazioneDTO dto = new PresentazioneDTO();
             dto.id = model.id;
+            dto.nome = model.nome;
             dto.dataCreazione = model.dataCreazione;
             dto.ultimaModifica = model.ultimaModifica;
             
@@ -25,6 +26,7 @@ namespace Presentazione.Converter
         {
             PresModel model = new PresModel();
             model.id = dto.id;
+            model.nome = dto.nome;
             model.dataCreazione = dto.ultimaModifica;
             model.ultimaModifica = dto.ultimaModifica;
 
