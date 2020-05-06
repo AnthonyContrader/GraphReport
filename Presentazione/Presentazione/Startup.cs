@@ -14,6 +14,7 @@ using Presentazione.Models;
 using Presentazione.Repository;
 using Steeltoe.Discovery.Client;
 using System;
+using Presentazione.DBContexts;
 
 namespace Presentazione
 {
@@ -46,6 +47,8 @@ namespace Presentazione
             services.AddDbContext<AContext<Diapograph>>(z => z.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<AConverter<DiapographDTO, Diapograph>, DiapographConverter>();
             services.AddTransient<ARepository<DiapographDTO, Diapograph>, DiapographRepository>();
+
+            services.AddDbContext<IlBelloContext>(z => z.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddCors(options =>
             {
