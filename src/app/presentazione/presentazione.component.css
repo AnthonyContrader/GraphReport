@@ -1,24 +1,8 @@
 
-.full{
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-}
-
 .container-fluid{
-  width: 100vw;
-  height: 140vh;
-  overflow: auto;
+  margin: 15px;
 }
 
-.presentazione{
-  margin: auto;
-  margin-top: 10px;
+.container{
+  max-width: 1000px;
 }
-
-
-.diapositiva{
-  margin: auto;
-  margin-top: 10px;
-}
-

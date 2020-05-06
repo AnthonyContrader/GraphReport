@@ -1,36 +1,62 @@
-<div class="col" class="presentazione">
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Inserisci Titolo">
-    <div class="input-group-append">
-      <button class="btn btn-success" type="submit" (click)="newPresentation">Crea</button>
+<div class="row">
+  <div class="col-9">
+    <div class="container" style="max-width: 350px;margin:auto">
+      <label>Nome Presentazione</label>
+      <input #tit="ngModel" type="text" [(ngModel)]="presentazione.nome" class="form-control" (keyup)="filtraLista()" required>
+    </div>
+    <div class="container">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Titolo</th>
+            <th>Data Creazione</th>
+            <th>Data Ultima Modifica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of listPresentazioniFiltrata; let i = index" [ngClass]="(indice==i)?'selected':''" (click)="selected(i,p.id)">
+            <td>{{p.nome}}</td>
+            <td>{{p.dataCreazione | date:"E dd MMM yyy"}}</td>
+            <td>{{p.ultimaModifica | date:"E dd MMM yyy"}}</td>
+          </tr>
+        </tbody>      
+      </table>
     </div>
   </div>
-  <div class="modifica">
-    <div>
-      <button type="button" class="btn btn-warning" style="float: left;">Modifica</button>
+  <div class="col-3" style="margin-top: 20px;">
+    <div class="divButton">
+      <button class="btn btn-success btnCRUD" (click)="newPresentation()" [disabled]="tit.invalid">Crea</button>
     </div>
-    <div>
-      <button type="button" class="btn btn-danger" style="float: right;">Elimina</button>
+    <div class="divButton">
+      <button class="btn btn-warning btnCRUD" (click)="edit()" [disabled]="indice==-1">Modifica</button>
+    </div>
+    <div class="divButton">
+      <button class="btn btn-danger btnCRUD" (click)="del()" [disabled]="indice==-1">Elimina</button>
     </div>
   </div>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>Titolo</th>
-        <th>Data Creazione</th>
-        <th>Data Ultima Modifica</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let p of presentazioni">
-        <td>{{presentazione.nome}}</td>
-        <td>{{presentazione.dataCreazione}}</td>
-        <td>{{presentazione.ultimaModifica}}</td>
+</div>
 
-      </tr>
 
-    </tbody>
+<div [ngClass]="(error!=0) ? 'alert alert-danger divDel' : 'hidden'">
+  <button class="close" data-dismiss="alert" (click)="error=0">&times;</button>
+  <div *ngIf="error===1">
+      <strong>Impossibile creare!</strong><br>Si è verificato un errore imprevisto.
+  </div>
+  <div *ngIf="error===2">
+    <strong>Impossibile creare!</strong><br>Nome duplicato.
+</div>
+</div>
 
-  </table>
-
+<div [ngClass]="(toDelete!==-1) ? 'alert alert-danger divDel' : 'hidden'">
+  <div style="text-align: center;">
+    <strong>Attenzione!</strong><br> Proseguendo non sarà più possibile recuperare questa presentazione.<br>Si desidera proseguire?
+  </div>
+  <div class="row">
+    <div class="col divButton">
+        <fa-icon [icon]="ann" style="font-size: 1.5em;" class="delbutton" (click)="conf(false)"></fa-icon>
+    </div>
+    <div class="col divButton">
+        <fa-icon fa-2x [icon]="ok" style="font-size: 1.5em;" class="delbutton" (click)="conf(true)"></fa-icon>
+    </div>
+  </div>
 </div>

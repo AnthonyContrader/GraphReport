@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { PresentazioneService } from 'src/service/presentazione.service';
 import { PresentazioneDTO } from 'src/dto/presentazione.dto';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -10,11 +11,22 @@ import { PresentazioneDTO } from 'src/dto/presentazione.dto';
 })
 export class CrudPresentazioneComponent implements OnInit {
 
+  @Output("modify") daModificare = new EventEmitter();
+
+  ann = faTimes;
+  ok = faCheck;
+
+  error : number = 0;
+  indice : number = -1;
+  idSel : number = -1;
+  toDelete : number = -1;
+
   presentazione: PresentazioneDTO;
-  presentazioni: PresentazioneDTO[];
+  listPresentazioniCompleta: PresentazioneDTO[];
+  listPresentazioniFiltrata : PresentazioneDTO[];
 
   constructor(private service: PresentazioneService) {
-    this.presentazione = new PresentazioneDTO(null, null, null, null);
+    this.presentazione = new PresentazioneDTO(0, null, null, null);
   }
 
   ngOnInit(): void {
@@ -23,23 +35,63 @@ export class CrudPresentazioneComponent implements OnInit {
   }
 
   getPresentazioni(){
-    this.service.getAll().subscribe(presentazioni => this.presentazioni = presentazioni);
+    this.service.getAll().subscribe(presentazioni => {
+      this.listPresentazioniCompleta = presentazioni;
+      this.listPresentazioniFiltrata = presentazioni;
+    });
   }
 
 
   newPresentation(){
-    this.presentazione.nome = this.presentazione.nome.trim();
-    if(this.presentazione.nome != ''){
-      this.presentazione.dataCreazione = new Date();
-      this.presentazione.ultimaModifica = new Date();
-      this.service.insert(this.presentazione).subscribe(
-        results => {
-          this.presentazione = new PresentazioneDTO(null, null, null, null);
-
-        },
-        () => {}
-      );
+    if(this.presentazione.nome!=null){
+      if(this.listPresentazioniFiltrata.findIndex(x => this.presentazione.nome == x.nome)!=-1){
+        this.error = 2;
+      }else{
+        this.presentazione.nome = this.presentazione.nome.trim();
+        if(this.presentazione.nome != ''){
+          this.presentazione.dataCreazione = new Date();
+          this.presentazione.ultimaModifica = new Date();
+          this.service.insert(this.presentazione).subscribe(
+            results => {
+              this.presentazione = new PresentazioneDTO(null, null, null, null);
+              this.getPresentazioni();
+            },
+            err => {
+              this.error=1;
+            }
+          );
+        }
+      }
     }
+  }
+
+  selected(i,id){
+    this.indice=i;
+    this.idSel = id;
+  }
+
+  edit(){
+    this.daModificare.emit(this.idSel);
+    this.idSel=-1;
+  }
+
+  del(){
+    this.toDelete=this.idSel;
+  }
+  conf(x){
+    if(x){
+      this.service.delete(this.toDelete).subscribe( 
+        () => {
+          this.getPresentazioni();
+          this.idSel=-1;
+          this.indice=-1;
+        });
+    }
+    this.toDelete = -1;
+  }
+
+  filtraLista(){
+    this.listPresentazioniFiltrata = this.listPresentazioniCompleta.filter(x => x.nome.toLowerCase().startsWith(this.presentazione.nome.toLowerCase()) );
   }
 
 

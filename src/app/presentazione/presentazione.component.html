@@ -1,17 +1,17 @@
-<div class="full">
-<div class="container fluid row">
-  <div class="col" class="presentazione">
-    <app-crud-presentazione>
+<div class="container-fluid">
+
+  <div class="container" *ngIf="stamp">
+    <app-crud-presentazione (modify)="update($event)">
 
     </app-crud-presentazione>
 
   </div>
-  <div class="col" class="diapositiva">
-    <app-crud-diapositiva>
+  <div class="container" *ngIf="!stamp" >
+    <app-crud-diapositiva [id]="daMod">
 
     </app-crud-diapositiva>
 
   </div>
-</div>
+
 </div>
 

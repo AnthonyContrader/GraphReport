@@ -1,7 +1,42 @@
-.table{
-  margin-top: 80px;
+.container{
+  margin: 15px;
 }
 
-.modifica{
-  margin-top: 30px;
+.divButton{
+  margin:15px auto;
+  width:min-content;
+  flex-grow: unset;
+}
+
+.btnCRUD{
+  width:90px;
+  margin:auto;
+}
+
+th, td{
+  text-align: center;
+}
+.selected{
+  background-color: aliceblue;
+}
+
+.hidden{
+  display:none;
+}
+
+.divDel{
+  width: max-content;
+  position: absolute;
+  margin: auto;
+  top: 25%;
+  right: 0;
+  left: 0;
+}
+
+.delbutton{
+  opacity: 0.5;
+  cursor: pointer;
+}
+.delbutton:hover{
+  opacity: 1;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { DiapositivaService } from 'src/service/diapositiva.service';
   styleUrls: ['./crud-diapositiva.component.css']
 })
 export class CrudDiapositivaComponent implements OnInit {
+
+  @Input("id") idMod : number;
 
   constructor(private service: DiapositivaService) { }
 
