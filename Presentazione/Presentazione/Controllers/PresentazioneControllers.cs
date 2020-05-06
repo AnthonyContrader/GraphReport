@@ -12,7 +12,7 @@ using Presentazione.Repository;
 namespace Presentazione.Controllers
 {
     [EnableCors("AllowOrigin")]
-    [Route("api/[Controller]")]
+    [Route("api/presentazione")]
     [ApiController]
     public class SlideController : ControllerBase
     {
