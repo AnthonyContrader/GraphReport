@@ -27,7 +27,7 @@ namespace Presentazione.DBContexts
             //modelBuilder.Entity<Diapositiva>().ToTable("Diapositiva");
             //modelBuilder.Entity<Testo>().ToTable("Testo");
             //modelBuilder.Entity<Diapograph>().ToTable("Diapograph");
-            modelBuilder.Entity<PresModel>().ToTable("presentazione");
+            modelBuilder.Entity<PresModel>().ToTable("Presentazione");
         }
     }
 }
