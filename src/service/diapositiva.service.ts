@@ -13,7 +13,7 @@ export class DiapositivaService extends AbstractService<DiapositivaDTO>{
 
   constructor(http: HttpClient) {
     super(http);
-    this.microservicesPath = '/diapositiva/api';
+    this.microservicesPath = '/presentazione/api';
     this.generic = '/Diapositiva';
   }
 }

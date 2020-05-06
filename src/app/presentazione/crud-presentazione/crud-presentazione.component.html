@@ -1,1 +1,36 @@
-<p>crud-presentazione works!</p>
+<div class="col" class="presentazione">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Inserisci Titolo">
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit" (click)="newPresentation">Crea</button>
+    </div>
+  </div>
+  <div class="modifica">
+    <div>
+      <button type="button" class="btn btn-warning" style="float: left;">Modifica</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-danger" style="float: right;">Elimina</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Titolo</th>
+        <th>Data Creazione</th>
+        <th>Data Ultima Modifica</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of presentazioni">
+        <td>{{presentazione.nome}}</td>
+        <td>{{presentazione.dataCreazione}}</td>
+        <td>{{presentazione.ultimaModifica}}</td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

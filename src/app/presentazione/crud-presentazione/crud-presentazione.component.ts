@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { PresentazioneService } from 'src/service/presentazione.service';
 import { PresentazioneDTO } from 'src/dto/presentazione.dto';
 
@@ -10,15 +10,22 @@ import { PresentazioneDTO } from 'src/dto/presentazione.dto';
 })
 export class CrudPresentazioneComponent implements OnInit {
 
-
   presentazione: PresentazioneDTO;
+  presentazioni: PresentazioneDTO[];
 
   constructor(private service: PresentazioneService) {
     this.presentazione = new PresentazioneDTO(null, null, null, null);
   }
 
   ngOnInit(): void {
+    this.getPresentazioni();
+
   }
+
+  getPresentazioni(){
+    this.service.getAll().subscribe(presentazioni => this.presentazioni = presentazioni);
+  }
+
 
   newPresentation(){
     this.presentazione.nome = this.presentazione.nome.trim();
@@ -34,5 +41,6 @@ export class CrudPresentazioneComponent implements OnInit {
       );
     }
   }
+
 
 }

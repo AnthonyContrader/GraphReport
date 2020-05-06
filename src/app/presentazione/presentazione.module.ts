@@ -4,12 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CrudDiapositivaComponent } from './crud-diapositiva/crud-diapositiva.component';
 import { CrudPresentazioneComponent } from './crud-presentazione/crud-presentazione.component';
+import { PresentazioneComponent } from './presentazione.component';
 
 
 @NgModule({
   declarations : [
     CrudDiapositivaComponent,
-    CrudPresentazioneComponent
+    CrudPresentazioneComponent,
+    PresentazioneComponent
 
   ],
   imports: [
@@ -19,6 +21,6 @@ import { CrudPresentazioneComponent } from './crud-presentazione/crud-presentazi
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [PresentazioneModule]
+  bootstrap: [PresentazioneComponent]
 })
 export class PresentazioneModule { }
