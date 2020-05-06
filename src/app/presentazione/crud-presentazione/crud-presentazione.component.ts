@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { PresentazioneService } from 'src/service/presentazione.service';
 import { PresentazioneDTO } from 'src/dto/presentazione.dto';
-import { EventEmitter } from 'protractor';
+
 
 @Component({
   selector: 'app-crud-presentazione',
@@ -10,7 +10,6 @@ import { EventEmitter } from 'protractor';
 })
 export class CrudPresentazioneComponent implements OnInit {
 
-  @Output('result') sucess =  new EventEmitter();
 
   presentazione: PresentazioneDTO;
 
@@ -29,9 +28,8 @@ export class CrudPresentazioneComponent implements OnInit {
       this.service.insert(this.presentazione).subscribe(
         results => {
           this.presentazione = new PresentazioneDTO(null, null, null, null);
-          this.sucess.emit('true')
+
         },
-        error => {this.sucess.emit('false') },
         () => {}
       );
     }
