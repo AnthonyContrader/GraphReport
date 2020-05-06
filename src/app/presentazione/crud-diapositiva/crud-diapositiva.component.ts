@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DiapositivaService } from 'src/service/diapositiva.service';
 
 @Component({
   selector: 'app-crud-diapositiva',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrudDiapositivaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: DiapositivaService) { }
 
   ngOnInit(): void {
   }
