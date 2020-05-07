@@ -35,7 +35,7 @@ namespace Presentazione.Models
 
         [Required]
         public Diapositiva diapositiva { get; set; }
-
+        public long diapositivaid { get; set; }
 
 
     }

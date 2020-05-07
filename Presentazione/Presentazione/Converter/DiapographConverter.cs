@@ -17,7 +17,7 @@ namespace Presentazione.Converter
             dto.dimensione = model.dimensione;
             dto.posizione = model.posizione;
             dto.diapositiva = new DiapositivaDTO();
-            dto.diapositiva.id = model.diapositiva.id;
+            dto.diapositiva.id = model.diapositivaid;
             dto.idGraph = model.idGraph;
 
             return dto;
