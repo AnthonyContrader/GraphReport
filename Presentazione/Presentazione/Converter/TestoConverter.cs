@@ -15,7 +15,7 @@ namespace Presentazione.Converter
             dto.id = model.id;
             dto.text = model.text;
             dto.posizione = model.posizione;
-            dto.colore = model.colore;
+            dto.colore = new Colore(model.colore);
             dto.dimensione = model.dimensione;
             dto.fontSize = model.fontSize;
             dto.fontStyle = model.fontStyle;
@@ -31,7 +31,7 @@ namespace Presentazione.Converter
             model.id = dto.id;
             model.text = dto.text;
             model.posizione = dto.posizione;
-            model.colore = dto.colore;
+            model.colore = dto.colore.toHEX();
             model.dimensione = dto.dimensione;
             model.fontSize = dto.fontSize;
             model.fontStyle = dto.fontStyle;

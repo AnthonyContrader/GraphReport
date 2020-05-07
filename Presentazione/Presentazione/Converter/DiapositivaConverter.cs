@@ -16,7 +16,10 @@ namespace Presentazione.Converter
             DiapositivaDTO dto = new DiapositivaDTO();
             dto.presentazione = new PresentazioneDTO();
             dto.id = model.id;
-            dto.presentazione.id = model.presentazioneId;
+            dto.presentazione.id = model.presentazioneid;
+            //dto.presentazione.nome = model.presentazione.nome;
+            //dto.presentazione.dataCreazione = model.presentazione.ultimaModifica;
+            //dto.presentazione.ultimaModifica = model.presentazione.ultimaModifica;
             dto.sfondo = new Colore(model.sfondo);
             dto.ordine = model.ordine;
             dto.preset = model.preset;
@@ -35,7 +38,8 @@ namespace Presentazione.Converter
             Diapositiva model = new Diapositiva();
             model.presentazione = new PresModel();
             model.id = dto.id;
-            model.presentazioneId = dto.presentazione.id;
+            model.presentazioneid = dto.presentazione.id;
+            //model.presentazione.id = dto.presentazione.id;
             model.sfondo = dto.sfondo.toHEX();
             model.ordine = dto.ordine;
             model.preset = dto.preset;

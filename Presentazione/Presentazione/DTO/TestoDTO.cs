@@ -18,7 +18,7 @@ namespace Presentazione.DTO
 
         public int fontSize { get; set; }
 
-        public string colore { get; set; }
+        public Colore colore { get; set; }
 
         public int fontStyle { get; set; }
 
