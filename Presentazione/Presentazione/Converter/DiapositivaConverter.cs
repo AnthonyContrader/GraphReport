@@ -24,7 +24,7 @@ namespace Presentazione.Converter
             dto.ordine = model.ordine;
             dto.preset = model.preset;
             dto.ratio = model.ratio;
-            dto.isTitolo = dto.isTitolo;
+            dto.isTitolo = model.isTitolo;
             dto.titolo = model.titolo;
             dto.posizioneT = model.posizioneT;
             dto.dimensioneT = model.dimensioneT;
