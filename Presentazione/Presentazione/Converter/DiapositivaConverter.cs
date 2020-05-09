@@ -29,6 +29,11 @@ namespace Presentazione.Converter
             dto.posizioneT = model.posizioneT;
             dto.dimensioneT = model.dimensioneT;
             dto.coloreT = new Colore(model.coloreT);
+            dto.borderColor = new Colore(model.borderColor);
+            dto.borderSize = model.borderSize;
+            dto.fontFamily = model.fontFamily;
+            dto.fontRotation = model.fontRotation;
+            dto.fontStyle = model.fontStyle;
 
             return dto;
         }

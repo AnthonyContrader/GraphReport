@@ -14,7 +14,7 @@ namespace Presentazione.DTO
         public PresentazioneDTO presentazione { get; set; }
 
         public Colore sfondo { get; set; }
-
+        
         public int ordine { get; set; }
 
         public Boolean preset { get; set; }
@@ -27,8 +27,19 @@ namespace Presentazione.DTO
 
         public string posizioneT { get; set; }
 
-        public string dimensioneT { get; set; }
+        public int dimensioneT { get; set; }
 
         public Colore coloreT { get; set; }
+
+        public int fontFamily { get; set; }
+
+        public string fontStyle { get; set; }
+
+        public int fontRotation { get; set; }
+
+        public int borderSize { get; set; }
+
+        public Colore borderColor { get; set; }
+
     }
 }

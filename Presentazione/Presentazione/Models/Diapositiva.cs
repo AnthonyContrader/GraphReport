@@ -40,9 +40,19 @@ namespace Presentazione.Models
 
         public string posizioneT { get; set; }
 
-        public string dimensioneT { get; set; }
+        public int dimensioneT { get; set; }
 
         public string coloreT { get; set; }
+
+        public int fontFamily { get; set; }
+
+        public string fontStyle { get; set; }
+
+        public int fontRotation { get; set; }
+
+        public int borderSize { get; set; }
+
+        public string borderColor { get; set; }
 
     }
 }
