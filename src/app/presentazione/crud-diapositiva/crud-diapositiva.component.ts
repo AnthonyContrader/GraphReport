@@ -44,7 +44,7 @@ export class CrudDiapositivaComponent implements OnInit {
   }
 
   newDiapo(){
-    this.service.insert(new DiapositivaDTO(0,new Colore(255,255,255,100),this.listDiapo.length,false,"16:9",false,null,null,null,new Colore(255,255,255,100),this.idMod))
+    this.service.insert(new DiapositivaDTO(0,new Colore(255,255,255,100),this.listDiapo.length,false,"16:9",false,"","0_0",50,new Colore(255,255,255,100),this.idMod))
         .subscribe( () => this.service.getAll().subscribe( x => this.listDiapo = x ), () => this.error=1 );
   }
 

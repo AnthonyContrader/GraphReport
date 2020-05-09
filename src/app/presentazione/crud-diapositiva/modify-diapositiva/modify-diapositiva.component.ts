@@ -71,15 +71,15 @@ export class ModifyDiapositivaComponent implements OnInit {
             let ratio = this.diapositiva.ratio.split(':');
             this.stage = new Konva.Stage({
                 container: 'konva',
-                width: this.lavagna.nativeElement.offsetWidth-20, //leggermente meno larga del contenitore
-                height: (((this.lavagna.nativeElement.offsetWidth-20)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])) //mantenendo le proporzioni
+                width: this.lavagna.nativeElement.offsetWidth-40, //leggermente meno larga del contenitore
+                height: (((this.lavagna.nativeElement.offsetWidth-40)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])) //mantenendo le proporzioni
             });
             this.sfondo = new Konva.Layer();
             this.sfondoRect =  new Konva.Rect({ //disegna un rettangolo di sfondo per il colore
                 x:0,
                 y:0,
-                width: this.lavagna.nativeElement.offsetWidth-20, 
-                height: (((this.lavagna.nativeElement.offsetWidth-20)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])),
+                width: this.lavagna.nativeElement.offsetWidth-40, 
+                height: (((this.lavagna.nativeElement.offsetWidth-40)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])),
                 fill: this.toRGB(this.diapositiva.sfondo),
                 opacity: this.diapositiva.sfondo.alpha/100,
                 listening: true
@@ -88,42 +88,42 @@ export class ModifyDiapositivaComponent implements OnInit {
             this.sfondo.add(this.sfondoRect);
             this.sfondo.draw();
 
-            if(this.diapositiva.isTitolo){ //se c'è un titolo stampalo
-                let pos = this.diapositiva.posizioneT.split("_");
-                this.titolo = new Konva.Layer();
-                this.titoloReact = new Konva.Text({
-                    x: (this.stage.width()/100)*Number.parseFloat(pos[0]),
-                    y: (this.stage.height()/100)*Number.parseFloat(pos[1]),
-                    text: this.diapositiva.titolo,
-                    fontSize: this.diapositiva.dimensioneT,
-                    fontFamily: this.fontList[this.diapositiva.fontFamily],
-                    rotation: this.diapositiva.fontRotation,
-                    fontStyle: this.diapositiva.fontStyle,
-                    strokeWidth: this.diapositiva.borderSize,
-                    stroke: this.toRGB(this.diapositiva.borderColor),
-                    fill: this.toRGB(this.diapositiva.coloreT),
-                    draggable: true
+            //stampa del titolo
+            let pos = this.diapositiva.posizioneT.split("_");
+            this.titolo = new Konva.Layer();
+            this.titoloReact = new Konva.Text({
+                x: (this.stage.width()/100)*Number.parseFloat(pos[0]),
+                y: (this.stage.height()/100)*Number.parseFloat(pos[1]),
+                text: this.diapositiva.titolo,
+                fontSize: this.diapositiva.dimensioneT,
+                fontFamily: this.fontList[this.diapositiva.fontFamily],
+                rotation: this.diapositiva.fontRotation,
+                fontStyle: this.diapositiva.fontStyle,
+                strokeWidth: this.diapositiva.borderSize,
+                stroke: this.toRGB(this.diapositiva.borderColor),
+                fill: this.toRGB(this.diapositiva.coloreT),
+                visible: this.diapositiva.isTitolo,
+                draggable: true
+            });
+            this.titoloReact.on('mouseenter', () => {
+                this.stage.container().style.cursor = 'move';
+            });
+            this.titoloReact.on('mouseleave', () => {
+                this.stage.container().style.cursor = 'default';
+            });
+            this.titoloReact.on("dragmove", () => { //mentre lo si sposta verificare i
+                let x = Math.max(0, Math.min(this.stage.width()-this.titoloReact.width(), this.titoloReact.x()));
+                let y = Math.max(0, Math.min(this.stage.height()-this.titoloReact.height(), this.titoloReact.y()));
+                this.titoloReact.x(x);
+                this.titoloReact.y(y);
                 });
-                this.titoloReact.on('mouseenter', () => {
-                    this.stage.container().style.cursor = 'move';
+                this.titoloReact.on("dragend", x => { //quando viene spostato il titolo ne salva la nuova posizione
+                this.diapositiva.posizioneT= ((x.target.attrs.x*100)/this.stage.width()) + "_" + ((x.target.attrs.y*100)/this.stage.height());
                 });
-                this.titoloReact.on('mouseleave', () => {
-                    this.stage.container().style.cursor = 'default';
-                });
-                this.titoloReact.on("dragmove", () => { //mentre lo si sposta verificare i
-                    let x = Math.max(0, Math.min(this.stage.width()-this.titoloReact.width(), this.titoloReact.x()));
-                    let y = Math.max(0, Math.min(this.stage.height()-this.titoloReact.height(), this.titoloReact.y()));
-                    this.titoloReact.x(x);
-                    this.titoloReact.y(y);
-                 });
-                 this.titoloReact.on("dragend", x => { //quando viene spostato il titolo ne salva la nuova posizione
-                    this.diapositiva.posizioneT= ((x.target.attrs.x*100)/this.stage.width()) + "_" + ((x.target.attrs.y*100)/this.stage.height());
-                 });
-                this.stage.add(this.titolo);
-                this.titolo.add(this.titoloReact);
-                this.titolo.draw();
-            }
-
+            this.stage.add(this.titolo);
+            this.titolo.add(this.titoloReact);
+            this.titolo.draw();
+            
         }   
     }
 

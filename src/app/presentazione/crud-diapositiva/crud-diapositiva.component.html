@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div class="container" style="text-align: center;">
-        {{ idMod.nome }}
+        Presentazione: {{ idMod.nome }}
     </div>
-    <div class="row">
+    <div class="row" *ngIf="ready">
         <div class="col" style="max-width: 200px;">
             <div class="row" style="text-align: center;">
                 <div class="container-fluid">
@@ -15,7 +15,7 @@
                     <fa-icon [icon]="add" style="color:green" (click)="newDiapo()"></fa-icon>
                 </div>
             </div>
-            <div class="listaDiapositive" cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="ready">
+            <div class="listaDiapositive" cdkDropList (cdkDropListDropped)="drop($event)" >
                 <div class="order-container" *ngFor="let diapo of listDiapo;let i = index" cdkDrag cdkDragBoundary=".listaDiapositive" [ngClass]="{'selected': (selezionato==i)}" (click)="cambiaDiapo(i)">
                     <div class="order-placeholder" *cdkDragPlaceholder></div>
                     {{diapo.ordine+1}} - id: {{ diapo.id }}
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="col" *ngIf="ready">
+        <div class="col">
             <app-modify-diapositiva [diapo]="acciaf" (awand)="registra($event)"></app-modify-diapositiva>
         </div>
     </div>
