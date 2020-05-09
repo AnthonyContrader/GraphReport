@@ -6,7 +6,6 @@ import { CrudDiapositivaComponent } from './crud-diapositiva/crud-diapositiva.co
 import { CrudPresentazioneComponent } from './crud-presentazione/crud-presentazione.component';
 import { PresentazioneComponent } from './presentazione.component';
 import { ModifyDiapositivaComponent } from './crud-diapositiva/modify-diapositiva/modify-diapositiva.component';
-import { KonvaModule } from "ng2-konva";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -67,7 +66,6 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
     FontAwesomeModule,
     ReactiveFormsModule,
     DragDropModule,
-    KonvaModule,
     BrowserAnimationsModule,
     A11yModule,
     ClipboardModule,

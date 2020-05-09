@@ -9,5 +9,8 @@
 }
 .mat-form-field-appearance-legacy .mat-form-field-wrapper {
     padding-bottom: 1em;
-    width:120px;
+    width:150px;
+}
+.cdk-overlay-connected-position-bounding-box{
+    height: unset !important;
 }

@@ -1,9 +1,10 @@
-<div class="row" style="text-align: center;">
-    <div class="container col lavagna row" #lavagna>
-        <div class="col align-self-center" id="konva">
+<div class="row" style="text-align: center;" (window:resize)="drawPage()">
+    <div class="col lavagna" #lavagna>
+        <div class="align-self-center" id="konva">
             
         </div>
     </div>
+    
     <mat-accordion class="col colpersonal settingPane">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -16,14 +17,14 @@
                     <mat-label>Sfondo e Opacità</mat-label>
                     <input matInput type="color" [value]="toHEX(diapositiva.sfondo)" (change)="cambiaSfondo($event.target.value)">
                 </mat-form-field>
-                <mat-slider min="0" max="100" step="1" thumbLabel tickInterval="1" [value]="diapositiva.sfondo.alpha" (change)="cambiaOpacita($event.value)">Opacità</mat-slider>
+                <mat-slider color="primary" min="0" max="100" step="1" thumbLabel tickInterval="1" [value]="diapositiva.sfondo.alpha" (change)="cambiaOpacita($event.value)">Opacità</mat-slider>
 
                 <mat-form-field appearance="legacy" >
                     <mat-label>Ratio</mat-label>
                     <input matInput [(ngModel)]="diapositiva.ratio" pattern="[0-9]{1,2}:[0-9]{1,2}" (change)="cambiaRatio($event.target.value)">
                 </mat-form-field>
                 
-                <mat-checkbox [ngModel]="diapositiva.preset">Pubblico</mat-checkbox>
+                <mat-checkbox color="primary" [ngModel]="diapositiva.preset">Pubblico</mat-checkbox>
 
         </mat-expansion-panel>
         <mat-expansion-panel>
@@ -33,13 +34,54 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             
-            <mat-slide-toggle [(ngModel)]="diapositiva.isTitolo" style="text-align: unset !important;" (change)="nascondiTitolo()">{{diapositiva.isTitolo ? 'Attivo' : 'Nascosto'}}</mat-slide-toggle>
+            <mat-slide-toggle color="primary" [(ngModel)]="diapositiva.isTitolo" style="text-align: unset !important;" (change)="nascondiTitolo()">{{diapositiva.isTitolo ? 'Attivo' : 'Nascosto'}}</mat-slide-toggle>
 
             <mat-form-field appearance="legacy" style="margin-top:8px">
                 <mat-label>Digita Titolo</mat-label>
                 <input matInput type="text" [(ngModel)]="diapositiva.titolo" [disabled]="!diapositiva.isTitolo" (keyup)="cambiaTitolo()" required/>
             </mat-form-field>
 
+            <mat-form-field appearance="legacy">
+                <mat-label>Font Family</mat-label>
+                <mat-select [(ngModel)]="diapositiva.fontFamily" [disabled]="!diapositiva.isTitolo" (ngModelChange)="cambiaFontFamily()">
+                    <mat-option *ngFor="let font of fontList;let i = index" [value]="i">{{font | titlecase }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        
+            <mat-form-field appearance="legacy">
+                <mat-label>Font Style</mat-label>
+                <mat-select [(ngModel)]="diapositiva.fontStyle" [disabled]="!diapositiva.isTitolo" (ngModelChange)="cambiaFontStyle()">
+                    <mat-option value="normal">Normal</mat-option>
+                    <mat-option value="italic">Italic</mat-option>
+                    <mat-option value="bold">Bold</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Font Size</mat-label>
+                <input matInput type="number" min="1" [(ngModel)]="diapositiva.dimensioneT" [disabled]="!diapositiva.isTitolo" (change)="cambiaSize()" />
+            </mat-form-field>
+
+            <mat-label>Rotation</mat-label>
+            <mat-slider color="primary" min="-180" max="180" step="1" thumbLabel tickInterval="1" [(ngModel)]="diapositiva.fontRotation" (change)="cambiaRotation()" [disabled]="!diapositiva.isTitolo"></mat-slider>
+
+            <mat-form-field appearance="legacy" >
+                <mat-label>Colore e Opacità</mat-label>
+                <input matInput type="color" [value]="toHEX(diapositiva.coloreT)" (change)="cambiaColore($event.target.value)" [disabled]="!diapositiva.isTitolo">
+            </mat-form-field>
+            <mat-slider color="primary" min="0" max="100" step="1" thumbLabel tickInterval="1" [value]="diapositiva.coloreT.alpha" (change)="cambiaOpacitaTitolo($event.value)" [disabled]="!diapositiva.isTitolo">Opacità</mat-slider>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Border Size</mat-label>
+                <input matInput type="number" min="0" [(ngModel)]="diapositiva.borderSize" [disabled]="!diapositiva.isTitolo" (change)="cambiaBorderSize()" />
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy" >
+                <mat-label>Border Color</mat-label>
+                <input matInput type="color" [value]="toHEX(diapositiva.borderColor)" (change)="cambiaBorderColor($event.target.value)" [disabled]="!diapositiva.isTitolo">
+            </mat-form-field>
+                
         </mat-expansion-panel>
     </mat-accordion>
+    
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, AfterViewInit, Input, ViewChild, ElementR
 import { DiapositivaDTO } from 'src/dto/diapositiva.dto';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 import  Konva  from 'Konva';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-modify-diapositiva',
@@ -34,6 +35,18 @@ export class ModifyDiapositivaComponent implements OnInit {
     sfondoRect;
     titolo;
     titoloReact;
+
+    fontList : string[] = [ 
+        'Arial',
+        'Calibri',
+        'Cambria',
+        'Courier',
+        'Franklin',
+        'Georgia',
+        'Helvetica',
+        'Helveticaneue',
+        'Verdana'
+     ]
 
     constructor(private service: DiapositivaService) {
         
@@ -82,10 +95,20 @@ export class ModifyDiapositivaComponent implements OnInit {
                     x: (this.stage.width()/100)*Number.parseFloat(pos[0]),
                     y: (this.stage.height()/100)*Number.parseFloat(pos[1]),
                     text: this.diapositiva.titolo,
-                    fontSize: Number.parseInt(this.diapositiva.dimensioneT),
-                    fontFamily: 'Calibri',
+                    fontSize: this.diapositiva.dimensioneT,
+                    fontFamily: this.fontList[this.diapositiva.fontFamily],
+                    rotation: this.diapositiva.fontRotation,
+                    fontStyle: this.diapositiva.fontStyle,
+                    strokeWidth: this.diapositiva.borderSize,
+                    stroke: this.toRGB(this.diapositiva.borderColor),
                     fill: this.toRGB(this.diapositiva.coloreT),
                     draggable: true
+                });
+                this.titoloReact.on('mouseenter', () => {
+                    this.stage.container().style.cursor = 'move';
+                });
+                this.titoloReact.on('mouseleave', () => {
+                    this.stage.container().style.cursor = 'default';
                 });
                 this.titoloReact.on("dragmove", () => { //mentre lo si sposta verificare i
                     let x = Math.max(0, Math.min(this.stage.width()-this.titoloReact.width(), this.titoloReact.x()));
@@ -133,5 +156,51 @@ export class ModifyDiapositivaComponent implements OnInit {
         this.titoloReact.visible(this.diapositiva.isTitolo);
         this.stage.draw();
     }
+
+    cambiaFontFamily(){
+        this.titoloReact.fontFamily(this.fontList[this.diapositiva.fontFamily]);
+        this.titoloReact.draw();
+        this.titolo.draw();
+    }
+
+    cambiaFontStyle(){
+        this.titoloReact.fontStyle(this.diapositiva.fontStyle);
+        this.titolo.draw();
+    }
+
+    cambiaRotation(){
+        this.titoloReact.rotation(this.diapositiva.fontRotation);
+        this.titolo.draw();
+    }
+
+    cambiaSize(){
+        this.titoloReact.fontSize(this.diapositiva.dimensioneT);
+        this.titolo.draw();
+    }
+
+    cambiaColore(newColore){
+        this.diapositiva.coloreT=this.fromHEX(newColore,this.diapositiva.coloreT.alpha);
+        this.titoloReact.fill(this.toRGB(this.diapositiva.coloreT));
+        this.titolo.draw();
+    }
+
+    cambiaOpacitaTitolo(newOpacita: number){
+        this.diapositiva.coloreT.alpha=newOpacita;
+        this.titoloReact.opacity(newOpacita/100);
+        this.titolo.draw();
+    }
+
+    
+    cambiaBorderSize(){
+        this.titoloReact.strokeWidth(this.diapositiva.borderSize);
+        this.titolo.draw();
+    }
+
+    cambiaBorderColor(newColore){
+        this.diapositiva.borderColor=this.fromHEX(newColore,100);
+        this.titoloReact.stroke(this.toRGB(this.diapositiva.borderColor));
+        this.titolo.draw();
+    }
+
 
 }

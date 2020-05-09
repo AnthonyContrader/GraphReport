@@ -10,13 +10,19 @@ export class DiapositivaDTO{
   isTitolo: boolean;
   titolo: string;
   posizioneT: string;
-  dimensioneT: string;
+  dimensioneT: number;
   coloreT: Colore;
   presentazione: PresentazioneDTO;
+  fontFamily: number;
+  fontStyle: string;
+  fontRotation: number;
+  borderSize: number;
+  borderColor: Colore;
 
   constructor(id: number, sfondo: Colore, ordine: number, preset: boolean, ratio: string,
               isTitolo: boolean, titolo: string, posizioneT: string,
-              dimensioneT: string, coloreT: Colore, presentazione: PresentazioneDTO ){
+              dimensioneT: number, coloreT: Colore, presentazione: PresentazioneDTO,
+              fontFamily?: number, fontStyle?: string, fontRotation?: number, borderSize?: number, borderColor?: Colore ){
     this.id = id;
     this.sfondo = sfondo;
     this.ordine = ordine;
@@ -28,6 +34,11 @@ export class DiapositivaDTO{
     this.dimensioneT = dimensioneT;
     this.coloreT = coloreT;
     this.presentazione = presentazione;
+    this.fontFamily = fontFamily ? fontFamily : 0;
+    this.fontStyle = fontStyle ? fontStyle : 'normal';
+    this.fontRotation = fontRotation ? fontRotation : 0;
+    this.borderSize = borderSize ? borderSize : 0;
+    this.borderColor = borderColor ? borderColor : new Colore(255,0,0,0);
 
   }
 }
