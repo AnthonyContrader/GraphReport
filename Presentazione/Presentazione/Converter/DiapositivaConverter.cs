@@ -54,6 +54,11 @@ namespace Presentazione.Converter
             model.posizioneT = dto.posizioneT;
             model.dimensioneT = dto.dimensioneT;
             model.coloreT = dto.coloreT.toHEX();
+            model.borderColor = dto.borderColor.toHEX();
+            model.borderSize = dto.borderSize;
+            model.fontFamily = dto.fontFamily;
+            model.fontRotation = dto.fontRotation;
+            model.fontStyle = dto.fontStyle;
 
             return model;
         }
