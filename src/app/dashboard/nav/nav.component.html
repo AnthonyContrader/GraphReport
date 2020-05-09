@@ -25,6 +25,12 @@
                 <label class="personal"> {{nome}} <fa-icon [icon]="arrowDown"></fa-icon></label>
                 <div class="dropdown">
                     <app-profilo class="eldrop el" [utente]="id"></app-profilo>
+                    <!-- <div>
+                        <a class="eldrop" routerLink="password" routerLinkActive="active">
+                            <fa-icon icon="clock" fixedWidth="true"></fa-icon>
+                            <span>Password</span>
+                        </a>
+                    </div> -->
                     <div (click)="apriqualcosa('user')" class="eldrop" *ngIf="isAdmin" [ngClass]="(selected=='user') ? 'el selected' : 'el'">
                         lista utenti
                     </div>

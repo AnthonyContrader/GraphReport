@@ -86,7 +86,7 @@ export class ProfiloComponent implements OnInit {
     this.mappaCampi();
   }
 
-  open(content) {
+    open(content) {
     this.modalService.open(content); /* , {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -94,6 +94,9 @@ export class ProfiloComponent implements OnInit {
     }); */
   }
 
+  openLg(content) {
+    this.modalService.open(content, { size: 'lg' });
+  }
   /* private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

@@ -19,6 +19,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfiloComponent } from '../profilo/profilo.component';
 import { PresentazioneModule } from '../presentazione/presentazione.module';
+import { PasswordComponent } from '../password/password.component';
+import { PasswordStrengthBarComponent } from '../password/password-strength-bar.component';
 
 
 
@@ -33,7 +35,9 @@ import { PresentazioneModule } from '../presentazione/presentazione.module';
     DragNdropDirective,
     DataSetModifyComponent,
     UserComponent,
-    ProfiloComponent
+    ProfiloComponent,
+    PasswordComponent,
+    PasswordStrengthBarComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,7 @@ import { PresentazioneModule } from '../presentazione/presentazione.module';
     ReactiveFormsModule,
     BrowserModule,
     NgbModule,
-    PresentazioneModule
+    PresentazioneModule,
   ],
   providers: [
     UserRouteAccessService
