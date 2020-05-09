@@ -8,6 +8,9 @@
     min-height: 500px;
     padding: 20px;
 }
+.dim{
+    width: calc(100% - 210px)
+}
 
 .colpersonal{
     margin: 0px 5px;
