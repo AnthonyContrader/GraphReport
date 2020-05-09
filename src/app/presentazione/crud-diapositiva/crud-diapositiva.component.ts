@@ -39,8 +39,8 @@ export class CrudDiapositivaComponent implements OnInit {
     this.service.getAll().subscribe( x => {
       this.listDiapo = x;
       this.cambiaDiapo(this.selezionato);
-      this.ready=true;} );
-    
+      this.ready=true;} 
+    );
   }
 
   newDiapo(){

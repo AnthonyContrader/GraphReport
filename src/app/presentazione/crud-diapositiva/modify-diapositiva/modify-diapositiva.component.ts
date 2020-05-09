@@ -71,15 +71,15 @@ export class ModifyDiapositivaComponent implements OnInit {
             let ratio = this.diapositiva.ratio.split(':');
             this.stage = new Konva.Stage({
                 container: 'konva',
-                width: this.lavagna.nativeElement.offsetWidth-40, //leggermente meno larga del contenitore
-                height: (((this.lavagna.nativeElement.offsetWidth-40)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])) //mantenendo le proporzioni
+                width: this.lavagna.nativeElement.offsetWidth-70, //leggermente meno larga del contenitore
+                height: (((this.lavagna.nativeElement.offsetWidth-70)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])) //mantenendo le proporzioni
             });
             this.sfondo = new Konva.Layer();
             this.sfondoRect =  new Konva.Rect({ //disegna un rettangolo di sfondo per il colore
                 x:0,
                 y:0,
-                width: this.lavagna.nativeElement.offsetWidth-40, 
-                height: (((this.lavagna.nativeElement.offsetWidth-40)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])),
+                width: this.lavagna.nativeElement.offsetWidth-70, 
+                height: (((this.lavagna.nativeElement.offsetWidth-70)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])),
                 fill: this.toRGB(this.diapositiva.sfondo),
                 opacity: this.diapositiva.sfondo.alpha/100,
                 listening: true
