@@ -18,7 +18,6 @@ export class CrudPresentazioneComponent implements OnInit {
 
   error : number = 0;
   indice : number = -1;
-  idSel : number = -1;
   toDelete : number = -1;
 
   presentazione: PresentazioneDTO;
@@ -65,25 +64,19 @@ export class CrudPresentazioneComponent implements OnInit {
     }
   }
 
-  selected(i,id){
-    this.indice=i;
-    this.idSel = id;
-  }
-
   edit(){
-    this.daModificare.emit(this.idSel);
-    this.idSel=-1;
+    this.daModificare.emit(this.listPresentazioniFiltrata[this.indice]);
+    this.indice=-1;
   }
 
   del(){
-    this.toDelete=this.idSel;
+    this.toDelete=this.listPresentazioniFiltrata[this.indice].id;
   }
   conf(x){
     if(x){
       this.service.delete(this.toDelete).subscribe( 
         () => {
           this.getPresentazioni();
-          this.idSel=-1;
           this.indice=-1;
         });
     }

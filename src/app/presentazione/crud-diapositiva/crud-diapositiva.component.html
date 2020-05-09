@@ -1,1 +1,55 @@
-{{ idMod }}
+<div class="container-fluid">
+    <div class="container" style="text-align: center;">
+        {{ idMod.nome }}
+    </div>
+    <div class="row">
+        <div class="col" style="max-width: 200px;">
+            <div class="row" style="text-align: center;">
+                <div class="container-fluid">
+                    Diapositive
+                </div>
+                <div class="col" style="margin:5px 0px">
+                    <fa-icon [icon]="del" style="color:crimson" (click)="toDel()"></fa-icon>
+                </div>
+                <div class="col" style="margin:5px 0px">
+                    <fa-icon [icon]="add" style="color:green" (click)="newDiapo()"></fa-icon>
+                </div>
+            </div>
+            <div class="listaDiapositive" cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="ready">
+                <div class="order-container" *ngFor="let diapo of listDiapo;let i = index" cdkDrag cdkDragBoundary=".listaDiapositive" [ngClass]="{'selected': (selezionato==i)}" (click)="cambiaDiapo(i)">
+                    <div class="order-placeholder" *cdkDragPlaceholder></div>
+                    {{diapo.ordine+1}} - id: {{ diapo.id }}
+                    <div class="order-handle" cdkDragHandle>
+                        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col" *ngIf="ready">
+            <app-modify-diapositiva [diapo]="acciaf" (awand)="registra($event)"></app-modify-diapositiva>
+        </div>
+    </div>
+</div>
+
+<div [ngClass]="(error!=0) ? 'alert alert-danger divDel' : 'hidden'">
+    <button class="close alertbutton" data-dismiss="alert" (click)="error=0">&times;</button>
+    <div *ngIf="error===1">
+        <strong>Impossibile creare!</strong><br>Si è verificato un errore imprevisto.
+    </div>    
+</div>
+
+<div [ngClass]="(toDelete!==-1) ? 'alert alert-danger divDel' : 'hidden'">
+    <div style="text-align: center;">
+      <strong>Attenzione!</strong><br> Proseguendo non sarà più possibile recuperare questa presentazione.<br>Si desidera proseguire?
+    </div>
+    <div class="row">
+      <div class="col divButton">
+          <fa-icon [icon]="ann" style="font-size: 1.5em;" class="delbutton" (click)="conf(false)"></fa-icon>
+      </div>
+      <div class="col divButton">
+          <fa-icon fa-2x [icon]="ok" style="font-size: 1.5em;" class="delbutton" (click)="conf(true)"></fa-icon>
+      </div>
+    </div>
+  </div>

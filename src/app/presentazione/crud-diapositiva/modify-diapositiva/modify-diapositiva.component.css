@@ -1,0 +1,45 @@
+.settingPane{
+    max-width: 200px;
+    min-width: 100px;
+}
+
+.lavagna{
+    border-radius: 10px;
+    background-color: #363636;
+    width: 100%;
+    min-height: 500px;
+    padding: 20px;
+}
+
+.colpersonal{
+    margin: 0px 5px;
+    padding: unset !important;
+}
+.row{
+    margin-left: unset !important;
+    margin-right: unset !important;
+}
+
+.option-contenitor{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px groove lightgray;
+}
+.option-title{
+    width: 100%;
+    border-radius: 5px;
+    padding:8px 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.option-hidden{
+    overflow: hidden;
+    height: 0px;
+    transition: height 1s;
+}
+.option-show{
+    height:200px;
+}
+.option-selected{
+    background-color: aliceblue;
+}

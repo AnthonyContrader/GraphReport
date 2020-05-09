@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+.mat-expansion-panel-body {
+    padding: 0px 3px !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 1em;
+    width:120px;
+}

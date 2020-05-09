@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 import { PresentazioneService } from 'src/service/presentazione.service';
+import { PresentazioneDTO } from 'src/dto/presentazione.dto';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { PresentazioneService } from 'src/service/presentazione.service';
 export class PresentazioneComponent implements OnInit {
 
   stamp : boolean = true;
-  daMod : number = -1;
+  daMod : PresentazioneDTO;
 
   constructor(private presService: PresentazioneService, private diapService: DiapositivaService) { }
 

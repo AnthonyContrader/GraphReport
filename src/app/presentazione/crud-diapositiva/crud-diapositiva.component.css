@@ -1,0 +1,61 @@
+fa-icon{
+    padding:8px;
+    cursor: pointer;
+}
+.selected{
+    background-color: aliceblue;
+}
+.col{
+    margin: 0px 5px;
+    padding: unset !important;
+}
+.row{
+    margin-left: unset !important;
+    margin-right: unset !important;
+}
+.hidden{
+    display:none;
+}
+.divDel{
+    width: max-content;
+    position: absolute;
+    margin: auto;
+    top: 25%;
+    right: 0;
+    left: 0;
+}
+.alertbutton{
+    opacity: 0.5;
+    cursor: pointer;
+}
+.alertbutton:hover{
+    opacity: 1;
+}
+
+.order-placeholder {
+    background: #ccc;
+    border: dotted 3px #999;
+    min-height: 50px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.order-handle {
+    float: right;
+    color: #ccc;
+    cursor: grab; 
+    width: 24px;
+    height: 24px;
+}
+.order-container {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px groove lightgray;
+    padding:8px 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.divButton{
+    margin:15px auto;
+    width:min-content;
+    flex-grow: unset;
+}

@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let p of listPresentazioniFiltrata; let i = index" [ngClass]="(indice==i)?'selected':''" (click)="selected(i,p.id)">
+          <tr *ngFor="let p of listPresentazioniFiltrata; let i = index" [ngClass]="(indice==i)?'selected':''" (click)="indice=i;">
             <td>{{p.nome}}</td>
             <td>{{p.dataCreazione | date:"E dd MMM yyy"}}</td>
             <td>{{p.ultimaModifica | date:"E dd MMM yyy"}}</td>

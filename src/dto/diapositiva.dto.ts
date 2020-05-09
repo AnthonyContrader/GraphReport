@@ -1,6 +1,9 @@
+import { Colore } from './colore.obj';
+import { PresentazioneDTO } from './presentazione.dto';
+
 export class DiapositivaDTO{
   id: number;
-  sfondo: string;
+  sfondo: Colore;
   ordine: number;
   preset: boolean;
   ratio: string;
@@ -8,14 +11,15 @@ export class DiapositivaDTO{
   titolo: string;
   posizioneT: string;
   dimensioneT: string;
-  coloreT: string;
-  idPresentazione: number;
+  coloreT: Colore;
+  presentazione: PresentazioneDTO;
 
-  constructor(id: number, sfondo: string, preset: boolean, ratio: string,
+  constructor(id: number, sfondo: Colore, ordine: number, preset: boolean, ratio: string,
               isTitolo: boolean, titolo: string, posizioneT: string,
-              dimensioneT: string, coloreT: string, idPresentazione: number){
+              dimensioneT: string, coloreT: Colore, presentazione: PresentazioneDTO ){
     this.id = id;
     this.sfondo = sfondo;
+    this.ordine = ordine;
     this.preset = preset;
     this.ratio = ratio;
     this.isTitolo = isTitolo;
@@ -23,7 +27,7 @@ export class DiapositivaDTO{
     this.posizioneT = posizioneT;
     this.dimensioneT = dimensioneT;
     this.coloreT = coloreT;
-    this.idPresentazione = idPresentazione;
+    this.presentazione = presentazione;
 
   }
 }

@@ -1,0 +1,45 @@
+<div class="row" style="text-align: center;">
+    <div class="container col lavagna row" #lavagna>
+        <div class="col align-self-center" id="konva">
+            
+        </div>
+    </div>
+    <mat-accordion class="col colpersonal settingPane">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                Diapositiva
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+                <mat-form-field appearance="legacy" >
+                    <mat-label>Sfondo e Opacità</mat-label>
+                    <input matInput type="color" [value]="toHEX(diapositiva.sfondo)" (change)="cambiaSfondo($event.target.value)">
+                </mat-form-field>
+                <mat-slider min="0" max="100" step="1" thumbLabel tickInterval="1" [value]="diapositiva.sfondo.alpha" (change)="cambiaOpacita($event.value)">Opacità</mat-slider>
+
+                <mat-form-field appearance="legacy" >
+                    <mat-label>Ratio</mat-label>
+                    <input matInput [(ngModel)]="diapositiva.ratio" pattern="[0-9]{1,2}:[0-9]{1,2}" (change)="cambiaRatio($event.target.value)">
+                </mat-form-field>
+                
+                <mat-checkbox [ngModel]="diapositiva.preset">Pubblico</mat-checkbox>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Titolo
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            
+            <mat-slide-toggle [(ngModel)]="diapositiva.isTitolo" style="text-align: unset !important;" (change)="nascondiTitolo()">{{diapositiva.isTitolo ? 'Attivo' : 'Nascosto'}}</mat-slide-toggle>
+
+            <mat-form-field appearance="legacy" style="margin-top:8px">
+                <mat-label>Digita Titolo</mat-label>
+                <input matInput type="text" [(ngModel)]="diapositiva.titolo" [disabled]="!diapositiva.isTitolo" (keyup)="cambiaTitolo()" required/>
+            </mat-form-field>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
