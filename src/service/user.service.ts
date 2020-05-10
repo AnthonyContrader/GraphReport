@@ -14,7 +14,7 @@ export class UserService extends AbstractService<UserDTO> {
     constructor(http: HttpClient) {
       super(http);
       this.microservicesPath = '/api';
-      this.generic="/users";
+      this.generic = '/users';
     }
 
     create(user: UserDTO): Observable<HttpResponse<UserDTO>> {

@@ -7,18 +7,30 @@
           <th>FirstName</th>
           <th>LastName</th>
           <th>Email</th>
+          <th>Authorities</th>
           <th>Status</th>
+          <th>Manage</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let u of users">
+        <tr *ngFor="let u of users; let i = index">
           <td>{{u.login}}</td>
           <td>{{u.firstName}}</td>
           <td>{{u.lastName}}</td>
           <td>{{u.email}}</td>
           <td>
-            <label class="label" *ngIf="u.actived != true">Status: Active</label>
-            <button type="button" class="btn btn-danger" (click)="disactivate(u)">Elimina</button>
+            Ruolo Attuale: {{u.authorities}}
+            <select [(ngModel)]="listAuthorities[i]" class="custom-select">
+              <option selected="selected" placeholder="Scegli authorities" [value]="a"
+              *ngFor="let a of listAuthorities">{{a}}</option>
+            </select>
+          </td>
+          <td>
+            <label class="label" *ngIf="u.actived != true">Attivo: {{u.activated}}</label>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="disactivate(u)">Elimina</button>
+          <button type="button" class="btn btn-warning" (click)="updateAuth(i)">Modifica</button>
         </td>
         </tr>
       </tbody>

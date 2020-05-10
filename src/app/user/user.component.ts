@@ -12,6 +12,10 @@ export class UserComponent implements OnInit {
 
   users: UserDTO[];
   isAdmin: boolean;
+  listAuthorities: any[];
+  user: UserDTO;
+  selezionato: string;
+
 
 
   constructor(private service: UserService, private accountService: AccountService) {
@@ -20,6 +24,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
+    this.getAuthorities();
   }
 
   getUsers(){
@@ -29,5 +34,22 @@ export class UserComponent implements OnInit {
   disactivate(user: UserDTO){
     this.service.deleteByLogin(user.login).subscribe(() => this.getUsers());
   }
+
+  /*Controllare Array Authorities, errore sull'ID --> Undefined */
+  updateAuth(i){
+    if(this.users[i] != null){
+      this.users[i].authorities.push(this.listAuthorities[i]);
+      //let json = JSON.stringify(this.users[i]);
+      //alert(json);
+      this.service.update(this.users[i]).subscribe(() => this.getUsers());
+    }
+  }
+
+  getAuthorities(){
+    this.service.authorities().subscribe(listAuthorities => {
+      this.listAuthorities = listAuthorities;
+    });
+  }
+
 
 }

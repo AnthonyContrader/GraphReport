@@ -37,6 +37,7 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
     }
 
     update(dto: DTO): Observable<DTO> {
+        console.log(dto);
         return this.http.put<DTO>(SERVER_API_URL + this.microservicesPath + this.generic, dto);
 
     }
