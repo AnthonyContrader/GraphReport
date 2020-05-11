@@ -9,7 +9,7 @@ namespace Presentazione.Repository
     {
 
         public IEnumerable<D> GetAll();
-        public void Create(D dto);
+        public D Create(D dto);
         public D Read(long id);
         public void Update(D dto);
         public void Delete(long id);

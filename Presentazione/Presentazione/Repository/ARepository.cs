@@ -30,11 +30,13 @@ namespace Presentazione.Repository
             return listDTO;
         }
 
-        public void Create(D dto)
+        public D Create(D dto)
         {
             M model = _converter.ToModel(dto);
             _dbContext.Entry(model).State= EntityState.Added;
             save();
+            _dbContext.Entry(model).GetDatabaseValues();
+            return _converter.ToDTO(model);
         }
 
         public D Read(long id)

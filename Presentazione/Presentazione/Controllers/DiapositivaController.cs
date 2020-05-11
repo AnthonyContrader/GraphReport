@@ -45,9 +45,9 @@ namespace Presentazione.Controllers
 
         // PUT: api/Diapositiva/5
         [HttpPost]
-        public void Create([FromBody] DiapositivaDTO dto)
+        public DiapositivaDTO Create([FromBody] DiapositivaDTO dto)
         {
-            _repository.Create(dto);
+            return _repository.Create(dto);
         }
 
         // DELETE: api/ApiWithActions/5
