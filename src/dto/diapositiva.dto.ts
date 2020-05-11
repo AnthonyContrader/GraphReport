@@ -38,7 +38,7 @@ export class DiapositivaDTO{
     this.fontStyle = fontStyle ? fontStyle : 'normal';
     this.fontRotation = fontRotation ? fontRotation : 0;
     this.borderSize = borderSize ? borderSize : 0;
-    this.borderColor = borderColor ? borderColor : new Colore(100,255,255,255);
+    this.borderColor = borderColor ? borderColor : new Colore(255,255,255,100);
 
   }
 }

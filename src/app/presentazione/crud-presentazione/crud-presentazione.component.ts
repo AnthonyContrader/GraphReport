@@ -13,6 +13,8 @@ export class CrudPresentazioneComponent implements OnInit {
 
   @Output("modify") daModificare = new EventEmitter();
 
+  user = JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id;
+
   ann = faTimes;
   ok = faCheck;
 
@@ -25,7 +27,7 @@ export class CrudPresentazioneComponent implements OnInit {
   listPresentazioniFiltrata : PresentazioneDTO[];
 
   constructor(private service: PresentazioneService) {
-    this.presentazione = new PresentazioneDTO(0, null, null, null);
+    this.presentazione = new PresentazioneDTO(0, this.user);
   }
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class CrudPresentazioneComponent implements OnInit {
   }
 
   getPresentazioni(){
-    this.service.getAllByUser(JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id).subscribe(presentazioni => {
+    this.service.getAllByUser(this.user).subscribe(presentazioni => {
       this.listPresentazioniCompleta = presentazioni;
       this.listPresentazioniFiltrata = presentazioni;
     });
@@ -52,7 +54,7 @@ export class CrudPresentazioneComponent implements OnInit {
           this.presentazione.ultimaModifica = new Date();
           this.service.insert(this.presentazione).subscribe(
             results => {
-              this.presentazione = new PresentazioneDTO(null, null, null, null);
+              this.presentazione.nome="";
               this.getPresentazioni();
             },
             err => {

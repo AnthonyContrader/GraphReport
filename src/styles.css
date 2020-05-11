@@ -10,3 +10,8 @@
 .cdk-overlay-connected-position-bounding-box{
     height: unset !important;
 }
+
+simple-snack-bar > span{
+    width: 100%;
+    text-align: center;
+}

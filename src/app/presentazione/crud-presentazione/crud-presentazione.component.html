@@ -3,7 +3,7 @@
     <div class="container" style="max-width: 350px;margin:auto">
       <mat-form-field appearance="legacy">
         <mat-label>Nome Presentazione</mat-label>
-        <input matInput #tit="ngModel" type="text" [(ngModel)]="presentazione.nome" (keyup)="filtraLista()">
+        <input matInput type="text" [(ngModel)]="presentazione.nome" (keyup)="filtraLista()">
       </mat-form-field>
     </div>
     <div class="container">
@@ -27,7 +27,7 @@
   </div>
   <div class="col-3" style="margin-top: 20px;">
     <div class="divButton">
-      <button class="btn btn-outline-success btnCRUD" (click)="newPresentation()" [disabled]="tit.value.trim()==''">Crea</button>
+      <button class="btn btn-outline-success btnCRUD" (click)="newPresentation()" [disabled]="presentazione.nome.trim()==''">Crea</button>
     </div>
     <div class="divButton">
       <button class="btn btn-outline-warning btnCRUD" (click)="edit()" [disabled]="indice==-1">Modifica</button>

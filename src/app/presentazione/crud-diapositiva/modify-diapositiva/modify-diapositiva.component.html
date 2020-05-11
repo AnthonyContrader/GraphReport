@@ -27,7 +27,7 @@
                     <input matInput [(ngModel)]="diapofull.diapositiva.ratio" pattern="[0-9]{1,2}:[0-9]{1,2}" (change)="cambiaRatio($event.target.value)">
                 </mat-form-field>
                 
-                <mat-checkbox color="primary" [ngModel]="diapofull.diapositiva.preset">Pubblico</mat-checkbox>
+                <mat-checkbox color="primary" [(ngModel)]="diapofull.diapositiva.preset">Pubblico</mat-checkbox>
 
         </mat-expansion-panel>
         <mat-expansion-panel>
@@ -84,6 +84,26 @@
                 <input matInput type="color" [value]="toHEX(diapofull.diapositiva.borderColor)" (change)="cambiaBorderColor($event.target.value)" [disabled]="!diapofull.diapositiva.isTitolo">
             </mat-form-field>
                 
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Testo
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            Work in Progress
+
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Grafici
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            Work in Progress
+
         </mat-expansion-panel>
     </mat-accordion>
     

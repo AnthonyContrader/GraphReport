@@ -2,8 +2,8 @@ import { Component, OnInit, OnChanges, AfterViewInit, Input, ViewChild, ElementR
 import { DiapositivaDTO } from 'src/dto/diapositiva.dto';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 import  Konva  from 'Konva';
-import { style } from '@angular/animations';
 import { DiapoFullDTO } from 'src/dto/diapoFull.dto';
+import { Colore } from 'src/dto/colore.obj';
 
 @Component({
   selector: 'app-modify-diapositiva',
@@ -17,19 +17,25 @@ export class ModifyDiapositivaComponent implements OnInit {
     @ViewChild("lavagna") lavagna : ElementRef<HTMLDivElement>;
 
     toRGB = (x:{ red : number, green: number, blue: number, alpha: number}) => {
-        return "rgba(" + x.red + "," + x.green + "," + x.blue +")";
+        return "rgb(" + x.red + "," + x.green + "," + x.blue +")";
     }
 
-    toHEX = (x:{ red : number, green: number, blue: number, alpha: number}) => {
-        return "#"+x.red.toString(16) + x.green.toString(16) + x.blue.toString(16);
+    toHEX = (x: Colore) => {
+        let red= x.red.toString(16);
+        if(red.length<2) red="0"+red;
+        let green= x.green.toString(16);
+        if(green.length<2) green="0"+green;
+        let blue= x.blue.toString(16);
+        if(blue.length<2) blue="0"+blue;
+        return ("#"+ red + green + blue).toLowerCase();
     }
 
     fromHEX = (colore,alpha) => { 
         let a = colore.match(/\w\w/g).map(x => parseInt(x, 16));
-        return {red: a[0], green: a[1], blue: a[2], alpha: alpha };
+        return new Colore(a[0],a[1],a[2],alpha);
     }
     
-    diapofull: DiapoFullDTO = new DiapoFullDTO(new DiapositivaDTO(null,{ red : 255, green: 255, blue: 255, alpha: 255},0,false,"",false,null,null,null,{ red : 255, green: 255, blue: 255, alpha: 255},null));
+    diapofull: DiapoFullDTO = new DiapoFullDTO(new DiapositivaDTO(null,{ red : 255, green: 255, blue: 255, alpha: 100},0,false,"16_9",false,"","1_1",5,{ red : 255, green: 255, blue: 255, alpha: 100},null));
 
     stage;
     sfondo;
@@ -56,14 +62,16 @@ export class ModifyDiapositivaComponent implements OnInit {
     ngOnInit(): void {}
 
     ngOnChanges(){
-        if(this.diapofull!=undefined){
+        if(this.diapofull.diapositiva.id!=null){
             this.mannangil.emit(JSON.stringify(this.diapofull));
-            this.drawPage();
         }
+            this.drawPage();
     }
 
     ngAfterViewInit(){
-        this.drawPage();
+        if(this.diapofull!=undefined){
+            this.drawPage();
+        }
     }
 
     drawPage(){
