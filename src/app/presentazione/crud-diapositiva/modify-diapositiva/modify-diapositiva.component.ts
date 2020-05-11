@@ -3,6 +3,7 @@ import { DiapositivaDTO } from 'src/dto/diapositiva.dto';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 import  Konva  from 'Konva';
 import { style } from '@angular/animations';
+import { DiapoFullDTO } from 'src/dto/diapoFull.dto';
 
 @Component({
   selector: 'app-modify-diapositiva',
@@ -11,7 +12,7 @@ import { style } from '@angular/animations';
 })
 export class ModifyDiapositivaComponent implements OnInit {
 
-    @Input("diapo") diapo : DiapositivaDTO;
+    @Input("diapo") diapo : DiapoFullDTO;
     @Output("awand") mannangil = new EventEmitter();
     @ViewChild("lavagna") lavagna : ElementRef<HTMLDivElement>;
 
@@ -28,7 +29,7 @@ export class ModifyDiapositivaComponent implements OnInit {
         return {red: a[0], green: a[1], blue: a[2], alpha: alpha };
     }
     
-    diapositiva : DiapositivaDTO = new DiapositivaDTO(null,{ red : 255, green: 255, blue: 255, alpha: 255},0,false,"",false,null,null,null,{ red : 255, green: 255, blue: 255, alpha: 255},null);
+    diapofull: DiapoFullDTO = new DiapoFullDTO(new DiapositivaDTO(null,{ red : 255, green: 255, blue: 255, alpha: 255},0,false,"",false,null,null,null,{ red : 255, green: 255, blue: 255, alpha: 255},null));
 
     stage;
     sfondo;
@@ -55,8 +56,8 @@ export class ModifyDiapositivaComponent implements OnInit {
     ngOnInit(): void {}
 
     ngOnChanges(){
-        if(this.diapositiva!=undefined){
-            this.mannangil.emit(JSON.stringify(this.diapositiva));
+        if(this.diapofull!=undefined){
+            this.mannangil.emit(JSON.stringify(this.diapofull));
             this.drawPage();
         }
     }
@@ -66,9 +67,9 @@ export class ModifyDiapositivaComponent implements OnInit {
     }
 
     drawPage(){
-        this.diapositiva = this.diapo;
+        this.diapofull = this.diapo;
         if(this.lavagna!=undefined){ //appena l'html è pronto disegna la slide
-            let ratio = this.diapositiva.ratio.split(':');
+            let ratio = this.diapofull.diapositiva.ratio.split(':');
             this.stage = new Konva.Stage({
                 container: 'konva',
                 width: window.innerWidth-610, //leggermente meno larga del contenitore
@@ -80,8 +81,8 @@ export class ModifyDiapositivaComponent implements OnInit {
                 y:0,
                 width: window.innerWidth-610, 
                 height: (((window.innerWidth-610)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])),
-                fill: this.toRGB(this.diapositiva.sfondo),
-                opacity: this.diapositiva.sfondo.alpha/100,
+                fill: this.toRGB(this.diapofull.diapositiva.sfondo),
+                opacity: this.diapofull.diapositiva.sfondo.alpha/100,
                 listening: true
             })
             this.stage.add(this.sfondo);
@@ -89,20 +90,20 @@ export class ModifyDiapositivaComponent implements OnInit {
             this.sfondo.draw();
 
             //stampa del titolo
-            let pos = this.diapositiva.posizioneT.split("_");
+            let pos = this.diapofull.diapositiva.posizioneT.split("_");
             this.titolo = new Konva.Layer();
             this.titoloReact = new Konva.Text({
                 x: (this.stage.width()/100)*Number.parseFloat(pos[0]),
                 y: (this.stage.height()/100)*Number.parseFloat(pos[1]),
-                text: this.diapositiva.titolo,
-                fontSize: this.diapositiva.dimensioneT,
-                fontFamily: this.fontList[this.diapositiva.fontFamily],
-                rotation: this.diapositiva.fontRotation,
-                fontStyle: this.diapositiva.fontStyle,
-                strokeWidth: this.diapositiva.borderSize,
-                stroke: this.toRGB(this.diapositiva.borderColor),
-                fill: this.toRGB(this.diapositiva.coloreT),
-                visible: this.diapositiva.isTitolo,
+                text: this.diapofull.diapositiva.titolo,
+                fontSize: this.diapofull.diapositiva.dimensioneT,
+                fontFamily: this.fontList[this.diapofull.diapositiva.fontFamily],
+                rotation: this.diapofull.diapositiva.fontRotation,
+                fontStyle: this.diapofull.diapositiva.fontStyle,
+                strokeWidth: this.diapofull.diapositiva.borderSize,
+                stroke: this.toRGB(this.diapofull.diapositiva.borderColor),
+                fill: this.toRGB(this.diapofull.diapositiva.coloreT),
+                visible: this.diapofull.diapositiva.isTitolo,
                 draggable: true
             });
             this.titoloReact.on('mouseenter', () => {
@@ -118,7 +119,7 @@ export class ModifyDiapositivaComponent implements OnInit {
                 this.titoloReact.y(y);
                 });
                 this.titoloReact.on("dragend", x => { //quando viene spostato il titolo ne salva la nuova posizione
-                this.diapositiva.posizioneT= ((x.target.attrs.x*100)/this.stage.width()) + "_" + ((x.target.attrs.y*100)/this.stage.height());
+                this.diapofull.diapositiva.posizioneT= ((x.target.attrs.x*100)/this.stage.width()) + "_" + ((x.target.attrs.y*100)/this.stage.height());
                 });
             this.stage.add(this.titolo);
             this.titolo.add(this.titoloReact);
@@ -128,13 +129,13 @@ export class ModifyDiapositivaComponent implements OnInit {
     }
 
     cambiaSfondo(newColore: string){
-        this.diapositiva.sfondo=this.fromHEX(newColore,this.diapositiva.sfondo.alpha);
-        this.sfondoRect.fill(this.toRGB(this.diapositiva.sfondo));
+        this.diapofull.diapositiva.sfondo=this.fromHEX(newColore,this.diapofull.diapositiva.sfondo.alpha);
+        this.sfondoRect.fill(this.toRGB(this.diapofull.diapositiva.sfondo));
         this.sfondo.draw();
     }
 
     cambiaOpacita(newOpacita: number){
-        this.diapositiva.sfondo.alpha=newOpacita;
+        this.diapofull.diapositiva.sfondo.alpha=newOpacita;
         this.sfondoRect.opacity(newOpacita/100);
         this.sfondo.draw();
     }
@@ -148,57 +149,57 @@ export class ModifyDiapositivaComponent implements OnInit {
     }
 
     cambiaTitolo(){
-        this.titoloReact.text(this.diapositiva.titolo);
+        this.titoloReact.text(this.diapofull.diapositiva.titolo);
         this.stage.draw();
     }
 
     nascondiTitolo(){
-        this.titoloReact.visible(this.diapositiva.isTitolo);
+        this.titoloReact.visible(this.diapofull.diapositiva.isTitolo);
         this.stage.draw();
     }
 
     cambiaFontFamily(){
-        this.titoloReact.fontFamily(this.fontList[this.diapositiva.fontFamily]);
+        this.titoloReact.fontFamily(this.fontList[this.diapofull.diapositiva.fontFamily]);
         this.titoloReact.draw();
         this.titolo.draw();
     }
 
     cambiaFontStyle(){
-        this.titoloReact.fontStyle(this.diapositiva.fontStyle);
+        this.titoloReact.fontStyle(this.diapofull.diapositiva.fontStyle);
         this.titolo.draw();
     }
 
     cambiaRotation(){
-        this.titoloReact.rotation(this.diapositiva.fontRotation);
+        this.titoloReact.rotation(this.diapofull.diapositiva.fontRotation);
         this.titolo.draw();
     }
 
     cambiaSize(){
-        this.titoloReact.fontSize(this.diapositiva.dimensioneT);
+        this.titoloReact.fontSize(this.diapofull.diapositiva.dimensioneT);
         this.titolo.draw();
     }
 
     cambiaColore(newColore){
-        this.diapositiva.coloreT=this.fromHEX(newColore,this.diapositiva.coloreT.alpha);
-        this.titoloReact.fill(this.toRGB(this.diapositiva.coloreT));
+        this.diapofull.diapositiva.coloreT=this.fromHEX(newColore,this.diapofull.diapositiva.coloreT.alpha);
+        this.titoloReact.fill(this.toRGB(this.diapofull.diapositiva.coloreT));
         this.titolo.draw();
     }
 
     cambiaOpacitaTitolo(newOpacita: number){
-        this.diapositiva.coloreT.alpha=newOpacita;
+        this.diapofull.diapositiva.coloreT.alpha=newOpacita;
         this.titoloReact.opacity(newOpacita/100);
         this.titolo.draw();
     }
 
     
     cambiaBorderSize(){
-        this.titoloReact.strokeWidth(this.diapositiva.borderSize);
+        this.titoloReact.strokeWidth(this.diapofull.diapositiva.borderSize);
         this.titolo.draw();
     }
 
     cambiaBorderColor(newColore){
-        this.diapositiva.borderColor=this.fromHEX(newColore,100);
-        this.titoloReact.stroke(this.toRGB(this.diapositiva.borderColor));
+        this.diapofull.diapositiva.borderColor=this.fromHEX(newColore,100);
+        this.titoloReact.stroke(this.toRGB(this.diapofull.diapositiva.borderColor));
         this.titolo.draw();
     }
 

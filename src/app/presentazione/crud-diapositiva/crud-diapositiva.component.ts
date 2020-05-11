@@ -5,6 +5,7 @@ import { faPlus, faMinus, faCheck, faTimes } from '@fortawesome/free-solid-svg-i
 import { DiapositivaDTO } from 'src/dto/diapositiva.dto';
 import { Colore } from 'src/dto/colore.obj';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { DiapoFullDTO } from 'src/dto/diapoFull.dto';
 
 @Component({
   selector: 'app-crud-diapositiva',
@@ -20,8 +21,8 @@ export class CrudDiapositivaComponent implements OnInit {
   ann = faTimes;
   ok = faCheck;
 
-  listDiapo : DiapositivaDTO[];
-  acciaf : DiapositivaDTO;
+  listDiapo : DiapoFullDTO[] = [];
+  acciaf : DiapoFullDTO;
   error : number = 0;
   toDelete : number = -1;
   selezionato = 0;
@@ -29,15 +30,15 @@ export class CrudDiapositivaComponent implements OnInit {
   ready : boolean = false;
 
   constructor(private service: DiapositivaService) { 
-    this.updateList();
   }
 
   ngOnInit(): void {
+    this.updateList();
   }
 
   updateList(){
-    this.service.getAll().subscribe( x => {
-      this.listDiapo = x;
+    this.service.getAllByPresentazione(this.idMod.id).subscribe( x => {
+      x.forEach((x,i,l) => this.listDiapo.push(new DiapoFullDTO(x)));
       this.cambiaDiapo(this.selezionato);
       this.ready=true;} 
     );
@@ -45,22 +46,22 @@ export class CrudDiapositivaComponent implements OnInit {
 
   newDiapo(){
     this.service.insert(new DiapositivaDTO(0,new Colore(255,255,255,100),this.listDiapo.length,false,"16:9",false,"","0_0",50,new Colore(255,255,255,100),this.idMod))
-        .subscribe( () => this.service.getAll().subscribe( x => this.listDiapo = x ), () => this.error=1 );
+        .subscribe( () => this.updateList(), () => this.error=1 );
   }
 
-  drop(event: CdkDragDrop<DiapositivaDTO[]>) {
+  drop(event: CdkDragDrop<DiapoFullDTO[]>) {
     moveItemInArray(this.listDiapo, event.previousIndex, event.currentIndex);
     this.listDiapo.forEach((dto,index,list) => { 
-      dto.ordine = index;
-      if(dto.id == this.acciaf.id){ 
-        this.selezionato=dto.ordine;
+      dto.diapositiva.ordine = index;
+      if(dto.diapositiva.id == this.acciaf.diapositiva.id){ 
+        this.selezionato=dto.diapositiva.ordine;
         this.old = this.selezionato;
       } 
     });
   }
 
   toDel(){
-    this.toDelete = this.listDiapo[this.selezionato].id;
+    this.toDelete = this.listDiapo[this.selezionato].diapositiva.id;
   }
 
   conf(bool){

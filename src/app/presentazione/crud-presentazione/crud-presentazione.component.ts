@@ -34,7 +34,7 @@ export class CrudPresentazioneComponent implements OnInit {
   }
 
   getPresentazioni(){
-    this.service.getAll().subscribe(presentazioni => {
+    this.service.getAllByUser(JSON.parse(localStorage.getItem('identity') || sessionStorage.getItem('identity')).id).subscribe(presentazioni => {
       this.listPresentazioniCompleta = presentazioni;
       this.listPresentazioniFiltrata = presentazioni;
     });
