@@ -19,7 +19,13 @@ namespace Presentazione.Repository
         {
             _converter = converter;
             _context = context;
-        } 
+        }
+
+        public IEnumerable<DiapositivaDTO> GetAllByPresentazione(long id)
+        {
+            return _converter.toListDTO(_context.Query.Where(r => r.presentazioneid == id).OrderBy(r => r.ordine));
+        }
+
 
     }
 }

@@ -26,5 +26,8 @@ namespace Presentazione.Models
         [Required]
         public DateTime ultimaModifica { get; set; }
 
+        [Required]
+        public long utente { get; set; }
+
     }
 }

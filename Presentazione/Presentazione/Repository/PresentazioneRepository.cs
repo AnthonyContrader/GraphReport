@@ -21,5 +21,10 @@ namespace Presentazione.Repository
             _context = context;
         } 
 
+        public IEnumerable<PresentazioneDTO> GetAllByUser(long id)
+        {
+            return _converter.toListDTO(_context.Query.Where(r => r.utente == id).OrderBy(r => r.nome));
+        }
+
     }
 }

@@ -17,10 +17,10 @@ namespace Presentazione.Controllers
     public class SlideController : ControllerBase
     {
 
-        private readonly ARepository<PresentazioneDTO, PresModel> _repository;
+        private readonly PresentazioneRepository _repository;
         public SlideController(ARepository<PresentazioneDTO, PresModel> repository)
         {
-            _repository = repository;
+            _repository = (PresentazioneRepository)repository;
         }
 
         [HttpGet]
@@ -51,6 +51,12 @@ namespace Presentazione.Controllers
         public void Delete(long id)
         {
             _repository.Delete(id);
+        }
+
+        [HttpGet("byUser/{id}")]
+        public IEnumerable<PresentazioneDTO> GetAllByUser(long id)
+        {
+            return _repository.GetAllByUser(id);
         }
     }
 }

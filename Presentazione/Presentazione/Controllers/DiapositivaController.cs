@@ -17,10 +17,10 @@ namespace Presentazione.Controllers
     public class DiapositivaController : ControllerBase
     {
 
-        private readonly ARepository<DiapositivaDTO,Diapositiva> _repository;
+        private readonly DiapositivaRepository _repository;
         public DiapositivaController(ARepository<DiapositivaDTO, Diapositiva> repository)
         {
-            _repository = repository;
+            _repository = (DiapositivaRepository)repository;
         }
         // GET: api/Diapositiva
         [HttpGet]
@@ -55,6 +55,12 @@ namespace Presentazione.Controllers
         public void Delete(long id)
         {
             _repository.Delete(id);
+        }
+
+        [HttpGet("byPresentazione/{id}")]
+        public IEnumerable<DiapositivaDTO> GetByPresentazione(long id)
+        {
+            return _repository.GetAllByPresentazione(id);
         }
     }
 }

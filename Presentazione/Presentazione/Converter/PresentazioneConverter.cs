@@ -18,7 +18,8 @@ namespace Presentazione.Converter
             dto.nome = model.nome;
             dto.dataCreazione = model.dataCreazione;
             dto.ultimaModifica = model.ultimaModifica;
-            
+            dto.utente = model.utente;
+
             return dto;
         }
 
@@ -29,6 +30,7 @@ namespace Presentazione.Converter
             model.nome = dto.nome;
             model.dataCreazione = dto.ultimaModifica;
             model.ultimaModifica = dto.ultimaModifica;
+            model.utente = dto.utente;
 
             return model;
         }
