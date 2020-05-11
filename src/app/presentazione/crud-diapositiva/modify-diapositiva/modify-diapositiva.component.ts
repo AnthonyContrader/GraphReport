@@ -67,20 +67,21 @@ export class ModifyDiapositivaComponent implements OnInit {
     }
 
     drawPage(){
+        let windowWidth = window.innerWidth-560;
         this.diapofull = this.diapo;
         if(this.lavagna!=undefined){ //appena l'html è pronto disegna la slide
             let ratio = this.diapofull.diapositiva.ratio.split(':');
             this.stage = new Konva.Stage({
                 container: 'konva',
-                width: window.innerWidth-610, //leggermente meno larga del contenitore
-                height: (((window.innerWidth-610)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])) //mantenendo le proporzioni
+                width: windowWidth, //leggermente meno larga del contenitore
+                height: ((windowWidth*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])) //mantenendo le proporzioni
             });
             this.sfondo = new Konva.Layer();
             this.sfondoRect =  new Konva.Rect({ //disegna un rettangolo di sfondo per il colore
                 x:0,
                 y:0,
-                width: window.innerWidth-610, 
-                height: (((window.innerWidth-610)*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])),
+                width: windowWidth, 
+                height: ((windowWidth*Number.parseInt(ratio[1]))/Number.parseInt(ratio[0])),
                 fill: this.toRGB(this.diapofull.diapositiva.sfondo),
                 opacity: this.diapofull.diapositiva.sfondo.alpha/100,
                 listening: true

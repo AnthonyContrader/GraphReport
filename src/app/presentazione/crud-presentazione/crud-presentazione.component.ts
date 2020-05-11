@@ -84,6 +84,7 @@ export class CrudPresentazioneComponent implements OnInit {
   }
 
   filtraLista(){
+    this.indice = -1;
     this.listPresentazioniFiltrata = this.listPresentazioniCompleta.filter(x => x.nome.toLowerCase().startsWith(this.presentazione.nome.toLowerCase()) );
   }
 

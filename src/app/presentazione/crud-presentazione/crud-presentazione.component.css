@@ -1,7 +1,3 @@
-.container{
-  margin: 15px;
-}
-
 .divButton{
   margin:15px auto;
   width:min-content;
@@ -13,8 +9,17 @@
   margin:auto;
 }
 
+.btnCRUD:disabled{
+  color: grey !important;
+  border-color: grey;
+  cursor: unset;
+}
+
 th, td{
   text-align: center;
+}
+th{
+  width:33%;
 }
 .selected{
   background-color: aliceblue;
@@ -39,4 +44,15 @@ th, td{
 }
 .delbutton:hover{
   opacity: 1;
+}
+.table th, .table td{
+  padding: 5px !important;
+}
+
+.btn-outline-warning:hover{
+  color:white;
+}
+
+mat-form-field{
+  width:100%;
 }

@@ -20,3 +20,8 @@
     margin-left: unset !important;
     margin-right: unset !important;
 }
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 1em;
+    width:150px;
+}

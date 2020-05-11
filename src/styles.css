@@ -7,10 +7,6 @@
 .mat-expansion-panel-body {
     padding: 0px 3px !important;
 }
-.mat-form-field-appearance-legacy .mat-form-field-wrapper {
-    padding-bottom: 1em;
-    width:150px;
-}
 .cdk-overlay-connected-position-bounding-box{
     height: unset !important;
 }

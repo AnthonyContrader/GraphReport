@@ -1,20 +1,22 @@
-<div class="row">
+<div class="row" style="margin-top: 8px;">
   <div class="col-9">
     <div class="container" style="max-width: 350px;margin:auto">
-      <label>Nome Presentazione</label>
-      <input #tit="ngModel" type="text" [(ngModel)]="presentazione.nome" class="form-control" (keyup)="filtraLista()" required>
+      <mat-form-field appearance="legacy">
+        <mat-label>Nome Presentazione</mat-label>
+        <input matInput #tit="ngModel" type="text" [(ngModel)]="presentazione.nome" (keyup)="filtraLista()">
+      </mat-form-field>
     </div>
     <div class="container">
       <table class="table">
-        <thead class="thead-dark">
+        <thead>
           <tr>
-            <th>Titolo</th>
-            <th>Data Creazione</th>
-            <th>Data Ultima Modifica</th>
+            <th scope="col">Titolo</th>
+            <th scope="col">Data Creazione</th>
+            <th scope="col">Data Ultima Modifica</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let p of listPresentazioniFiltrata; let i = index" [ngClass]="(indice==i)?'selected':''" (click)="indice=i;">
+          <tr *ngFor="let p of listPresentazioniFiltrata; let i = index" [ngClass]="(indice==i)?'selected':''" (click)="indice=i;" style="cursor:pointer">
             <td>{{p.nome}}</td>
             <td>{{p.dataCreazione | date:"E dd MMM yyy"}}</td>
             <td>{{p.ultimaModifica | date:"E dd MMM yyy"}}</td>
@@ -25,13 +27,13 @@
   </div>
   <div class="col-3" style="margin-top: 20px;">
     <div class="divButton">
-      <button class="btn btn-success btnCRUD" (click)="newPresentation()" [disabled]="tit.invalid">Crea</button>
+      <button class="btn btn-outline-success btnCRUD" (click)="newPresentation()" [disabled]="tit.value.trim()==''">Crea</button>
     </div>
     <div class="divButton">
-      <button class="btn btn-warning btnCRUD" (click)="edit()" [disabled]="indice==-1">Modifica</button>
+      <button class="btn btn-outline-warning btnCRUD" (click)="edit()" [disabled]="indice==-1">Modifica</button>
     </div>
     <div class="divButton">
-      <button class="btn btn-danger btnCRUD" (click)="del()" [disabled]="indice==-1">Elimina</button>
+      <button class="btn btn-outline-danger btnCRUD" (click)="del()" [disabled]="indice==-1">Elimina</button>
     </div>
   </div>
 </div>
