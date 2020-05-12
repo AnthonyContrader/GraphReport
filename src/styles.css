@@ -15,3 +15,7 @@ simple-snack-bar > span{
     width: 100%;
     text-align: center;
 }
+
+.mat-menu-panel{
+    height: max-content;
+}

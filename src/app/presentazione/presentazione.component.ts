@@ -24,4 +24,8 @@ export class PresentazioneComponent implements OnInit {
     this.stamp = false;
   }
 
+  goList(){
+    this.stamp = true;
+  }
+
 }

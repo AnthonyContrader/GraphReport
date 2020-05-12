@@ -10,10 +10,12 @@ import { Colore } from 'src/dto/colore.obj';
   templateUrl: './modify-diapositiva.component.html',
   styleUrls: ['./modify-diapositiva.component.css']
 })
-export class ModifyDiapositivaComponent implements OnInit {
+export class ModifyDiapositivaComponent implements OnInit,OnChanges,AfterViewInit {
 
     @Input("diapo") diapo : DiapoFullDTO;
+    @Input("esporta") toExp : boolean;
     @Output("awand") mannangil = new EventEmitter();
+    @Output("image") toImage = new EventEmitter();
     @ViewChild("lavagna") lavagna : ElementRef<HTMLDivElement>;
 
     toRGB = (x:{ red : number, green: number, blue: number, alpha: number}) => {
@@ -65,7 +67,12 @@ export class ModifyDiapositivaComponent implements OnInit {
         if(this.diapofull.diapositiva.id!=null){
             this.mannangil.emit(JSON.stringify(this.diapofull));
         }
-            this.drawPage();
+        this.drawPage();
+            
+        if(this.toExp){
+            this.esportaPNG();
+        }
+        
     }
 
     ngAfterViewInit(){
@@ -75,7 +82,7 @@ export class ModifyDiapositivaComponent implements OnInit {
     }
 
     drawPage(){
-        let windowWidth = window.innerWidth-560;
+        let windowWidth = window.innerWidth-577;
         this.diapofull = this.diapo;
         if(this.lavagna!=undefined){ //appena l'html è pronto disegna la slide
             let ratio = this.diapofull.diapositiva.ratio.split(':');
@@ -210,6 +217,10 @@ export class ModifyDiapositivaComponent implements OnInit {
         this.diapofull.diapositiva.borderColor=this.fromHEX(newColore,100);
         this.titoloReact.stroke(this.toRGB(this.diapofull.diapositiva.borderColor));
         this.titolo.draw();
+    }
+
+    esportaPNG(){
+        this.toImage.emit(this.stage.toDataURL());
     }
 
 

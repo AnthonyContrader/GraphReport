@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="height:calc(100vh - 39px);overflow-y:scroll;">
 
   <div class="container" *ngIf="stamp">
     <app-crud-presentazione (modify)="update($event)">
@@ -7,7 +7,7 @@
 
   </div>
   <div class="container-fluid" *ngIf="!stamp" >
-    <app-crud-diapositiva [id]="daMod">
+    <app-crud-diapositiva [id]="daMod" (back)="goList()">
 
     </app-crud-diapositiva>
 

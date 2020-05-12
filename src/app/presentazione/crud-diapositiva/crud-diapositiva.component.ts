@@ -1,12 +1,16 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter, ViewChild, TemplateRef, ViewContainerRef } from '@angular/core';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 import { PresentazioneDTO } from 'src/dto/presentazione.dto';
-import { faPlus, faMinus, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faCheck, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import { DiapositivaDTO } from 'src/dto/diapositiva.dto';
 import { Colore } from 'src/dto/colore.obj';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { DiapoFullDTO } from 'src/dto/diapoFull.dto';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-crud-diapositiva',
@@ -16,11 +20,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class CrudDiapositivaComponent implements OnInit {
 
   @Input("id") idMod : PresentazioneDTO;
+  @Output("back") goBack = new EventEmitter();
+  @ViewChild("dialogExport") modal : TemplateRef<any>;
 
   add = faPlus;
   del = faMinus;
   ann = faTimes;
   ok = faCheck;
+  btnMenu = faBars;
 
   listDiapo : DiapoFullDTO[] = [];
   acciaf : DiapoFullDTO;
@@ -32,7 +39,28 @@ export class CrudDiapositivaComponent implements OnInit {
   ready : boolean = false;
   lavagna : boolean = false;
 
-  constructor(private service: DiapositivaService,private _snackBar: MatSnackBar) { 
+  wait: boolean = false;
+
+  progress=0;
+  da: number = 1;
+  a: number = 1;
+  current:number = -1;
+  toExp = false;
+  dialogRef;
+  docDefinition = { 
+    content: [],
+    pageSize: {
+      width: 600,
+      height: 'auto'
+    },
+    pageMargins: [0,0,0,0],
+    info: {
+      title: '',
+      author: 'GraphReport',
+      }
+  };
+
+  constructor(private service: DiapositivaService,private _snackBar: MatSnackBar, private dialog: MatDialog) { 
   }
 
   ngOnInit(): void {
@@ -121,6 +149,65 @@ export class CrudDiapositivaComponent implements OnInit {
       snackBarRef.dismiss();
       snackBarRef = this._snackBar.open("Salvataggio Completato!","",{duration: 3000});
     });
+  }
+
+  back(){
+    this.goBack.emit();
+  }
+
+  exportSetting(){
+    this.dialogRef = this.dialog.open(this.modal);
+  }
+
+  toImage(index,next){
+    this.wait = true;
+    if(next!=-1){
+      this.current = index;
+      if(index==next){
+        this.docDefinition.content=[];
+      }
+    }
+    this.toExp=true;
+    this.cambiaDiapo(index-1);
+  }
+
+  toDownload(value){
+    this.dialogRef.close();
+    if(this.current==-1){
+      this.toExp=false;
+      this.da=1;
+      this.a=1;
+      let a = document.createElement('a');
+      a.href = value;
+      a.download = "diapositiva.png";
+      a.click();
+      this.wait=false;
+      this.cambiaDiapo(0);
+    }else{
+      this.progress=(100/(this.a-this.da+1)*this.current);
+      this.docDefinition.content.push({ 
+        margin: 0,
+        image: value,
+        pageBreak: (this.current!=this.da) ? "before" : "",
+        width: 600,
+        height: (600*Number.parseInt(this.listDiapo[this.current-1].diapositiva.ratio.split(":")[1])/Number.parseInt(this.listDiapo[this.current-1].diapositiva.ratio.split(":")[0])),
+        pageOrientation: 'landscape',
+       });
+       this.docDefinition.info.title=this.idMod.nome;
+       if(this.current<this.a){
+         this.cambiaDiapo(this.current++);
+       }else{
+        pdfMake.createPdf(this.docDefinition).download(this.idMod.nome,() => {
+          this.cambiaDiapo(0);
+          this.wait=false;
+          this.toExp=false;
+          this.da=1;
+          this.a=1;
+          this.current=-1;
+        });
+       }
+    }
+    
   }
 
 }

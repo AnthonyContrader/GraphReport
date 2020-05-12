@@ -35,6 +35,7 @@
     "ng-jhipster": "^0.12.0",
     "ng2-charts": "^2.3.0",
     "ng2-konva": "^6.0.0",
+    "pdfmake": "^0.1.65",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "webstomp-client": "^1.2.6",

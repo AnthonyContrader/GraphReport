@@ -1,3 +1,13 @@
+.header{
+    text-align: center;
+    max-width: calc(100vw - 400px);
+    height: 40px;
+}
+.menuBtn{
+    position: absolute;
+    width: min-content;
+}
+
 fa-icon{
     padding:8px;
     cursor: pointer;

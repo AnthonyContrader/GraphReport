@@ -1,6 +1,15 @@
 <div class="container-fluid">
-    <div class="container" style="text-align: center;">
-        Presentazione: <strong>{{ idMod.nome }}</strong>
+    <div class="container header">
+        <div class="menuBtn">
+            <button mat-icon-button color="primary" [matMenuTriggerFor]="appMenu">
+                <fa-icon [icon]="btnMenu" size="lg"></fa-icon>
+            </button>
+            <mat-menu #appMenu="matMenu">
+                <button mat-menu-item (click)="back()">Cambia Presentazione</button>
+                <button mat-menu-item (click)="exportSetting()">Esporta</button>
+              </mat-menu>
+        </div>
+        <label style="margin:8px;">Presentazione: <strong>{{ idMod.nome }}</strong></label>
     </div>
     <div class="row">
         <div class="col" style="max-width: 200px;" *ngIf="ready">
@@ -20,7 +29,7 @@
             <div class="listaDiapositive" cdkDropList (cdkDropListDropped)="drop($event)" >
                 <div class="order-container" *ngFor="let diapo of listDiapo;let i = index" cdkDrag cdkDragBoundary=".listaDiapositive" [ngClass]="{'selected': (selezionato==i)}" (click)="cambiaDiapo(i)">
                     <div class="order-placeholder" *cdkDragPlaceholder></div>
-                    {{i+1}} - {{ (diapo.diapositiva.isTitolo) ? 'titolo: '+diapo.diapositiva.titolo : 'Nessun Titolo'}}
+                    {{i+1}} - {{ (diapo.diapositiva.isTitolo) ? diapo.diapositiva.titolo : 'Nessun Titolo'}}
                     <div class="order-handle" cdkDragHandle>
                         <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
@@ -30,7 +39,7 @@
             </div>
         </div>
         <div class="col" *ngIf="lavagna">
-            <app-modify-diapositiva [diapo]="acciaf" (awand)="registra($event)"></app-modify-diapositiva>
+            <app-modify-diapositiva [diapo]="acciaf" [esporta]="toExp" (awand)="registra($event)" (image)="toDownload($event)"></app-modify-diapositiva>
         </div>
     </div>
 </div>
@@ -55,3 +64,40 @@
       </div>
     </div>
   </div>
+
+  <ng-template #dialogExport>
+    <mat-tab-group style="height:200px;width:368px">
+        <mat-tab label="PDF" >
+            <div style="padding-top:15px">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Da Slide</mat-label>
+                    <input matInput [(ngModel)]="da" type="number" min="1" [max]="listDiapo.length" #daSlide />
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>A Slide</mat-label>
+                    <input matInput [(ngModel)]="a" type="number" [min]="daSlide.value" [max]="listDiapo.length" />
+                </mat-form-field>
+            </div>
+            <hr>
+            <button mat-stroked-button color="primary" style="float: right" (click)="toImage(da,da)"><strong>Esporta</strong></button>
+        </mat-tab>
+        <mat-tab label="Image">
+            <div style="padding-top:15px">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Numero Slide</mat-label>
+                    <input matInput [(ngModel)]="da" type="number" min="1" [max]="listDiapo.length" />
+                </mat-form-field>
+            </div>
+            <hr>
+            <button mat-stroked-button color="primary" style="float: right" (click)="toImage(da,-1)"><strong>Salva</strong></button>
+        </mat-tab>
+    </mat-tab-group>
+</ng-template>
+
+<div *ngIf="wait">
+    <div class="row" style="width:100vw;height:100vh;position: fixed;top:0;left:0; background-color: lightgrey; opacity:0.95;">
+        <div class="col align-self-center" style="opacity:unset;">
+            <mat-progress-bar style="margin: auto;width:50%" mode="determinate" [value]="progress"></mat-progress-bar>
+        </div>
+    </div>
+</div>
