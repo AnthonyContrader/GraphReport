@@ -85,9 +85,12 @@ export class DataSetModifyComponent implements OnInit{
 
     addrow(){
         for(let i =0; this.dataSet.length>i ; i++){
-            this.dataSet[i].valori+="_";
-        }
-         this.service.updateDS(this.dataSet).subscribe(()=>this.init());
+            //alert(JSON.stringify(this.matrice[i]));
+            this.dataSet[i].valori="";
+            this.matrice[i].map(x => this.dataSet[i].valori+=x.trim().replace("_", "") + "_");
+            //this.dataSet[i].valori+="_";
+        } 
+        this.service.updateDS(this.dataSet).subscribe(()=>this.init());
     }
 
     delrow(index : number){
