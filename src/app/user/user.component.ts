@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from 'src/dto/user.dto';
 import { UserService } from 'src/service/user.service';
 import { AccountService } from 'src/authJWT/account.service';
+import { faKey, faMinus, faPlus, faUserMinus} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user',
@@ -15,16 +16,20 @@ export class UserComponent implements OnInit {
   listAuthorities: any[];
   user: UserDTO;
   selezionato: string;
-
+  modify = faKey;
+  plus = faPlus;
+  delRole = faKey;
+  minus = faMinus;
+  cancella = faUserMinus;
 
 
   constructor(private service: UserService, private accountService: AccountService) {
     this.isAdmin = JSON.parse(sessionStorage.getItem('identity') || localStorage.getItem('identity')).authorities.indexOf("ROLE_ADMIN")!=-1;
+    this.getAuthorities();
   }
 
   ngOnInit(): void {
     this.getUsers();
-    this.getAuthorities();
   }
 
   getUsers(){
@@ -35,12 +40,17 @@ export class UserComponent implements OnInit {
     this.service.deleteByLogin(user.login).subscribe(() => this.getUsers());
   }
 
-  /*Controllare Array Authorities, errore sull'ID --> Undefined */
-  updateAuth(i){
-    if(this.users[i] != null){
-      this.users[i].authorities.push(this.listAuthorities[i]);
-      //let json = JSON.stringify(this.users[i]);
-      //alert(json);
+  updateAuth(i, value: string){
+    this.users[i].authorities.push(value);
+    this.service.update(this.users[i]).subscribe(() => this.getUsers());
+  }
+
+  deleteAuth(i, value){
+    const role = this.users[i].authorities.indexOf(value);
+    if (role === -1){
+    }else{
+      this.users[i].authorities.splice(role, 1);
+      const json = JSON.stringify(this.users[i].authorities);
       this.service.update(this.users[i]).subscribe(() => this.getUsers());
     }
   }

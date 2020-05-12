@@ -13,3 +13,22 @@
 .btn{
   float: right;
 }
+
+.custom-select{
+  max-width: 80%;
+}
+
+.modify{
+  cursor: pointer;
+}
+
+.cancella{
+  cursor: pointer;
+  margin-left: 45px;
+}
+
+.rimuovi{
+  cursor: pointer;
+  margin-top: 8px;
+
+}

@@ -20,17 +20,21 @@
           <td>{{u.email}}</td>
           <td>
             Ruolo Attuale: {{u.authorities}}
-            <select [(ngModel)]="listAuthorities[i]" class="custom-select">
-              <option selected="selected" placeholder="Scegli authorities" [value]="a"
-              *ngFor="let a of listAuthorities">{{a}}</option>
+            <select #id class="custom-select">
+              <option selected="selected" [value]="a" *ngFor="let a of listAuthorities">{{a}}</option>
             </select>
           </td>
           <td>
             <label class="label" *ngIf="u.actived != true">Attivo: {{u.activated}}</label>
         </td>
         <td>
-          <button type="button" class="btn btn-danger" (click)="disactivate(u)">Elimina</button>
-          <button type="button" class="btn btn-warning" (click)="updateAuth(i)">Modifica</button>
+          <fa-icon fa-2x  [icon]="modify" class="modify" (click)="updateAuth(i, id.value)"></fa-icon>
+          <fa-icon fa-2x [icon]="plus" class="plus"></fa-icon>
+          <br>
+          <fa-icon fa-2x  [icon]="cancella" class="cancella" (click)="disactivate(u)"></fa-icon>
+          <br>
+          <fa-icon fa-2x  [icon]="delRole"  class="rimuovi" (click)="deleteAuth(i, id.value)"></fa-icon>
+          <fa-icon fa-2x [icon]="minus" class="minus"></fa-icon>
         </td>
         </tr>
       </tbody>
