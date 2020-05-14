@@ -46,7 +46,8 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" *ngIf="!modify" (click)="abilita()">Modifica</button>
-            <button type="button" class="btn btn-outline-dark" *ngIf="modify" (click)="openLg(content1)">Large modal</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="modify" (click)="elimina()">Elimina Account</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="modify" (click)="openLg(content1)">Cambia Password</button>
             <button type="button" class="btn btn-outline-dark" *ngIf="modify" (click)="annulla()">Annulla</button>
             <button type="button" class="btn btn-outline-dark" *ngIf="modify" (click)="update()" [disabled]="!formTitle.valid">Salva</button>
         </div>

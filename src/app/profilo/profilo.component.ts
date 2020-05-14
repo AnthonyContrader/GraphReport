@@ -4,6 +4,7 @@ import { UserService } from 'src/service/user.service';
 import { UserDTO } from 'src/dto/user.dto';
 import { faEnvelopeOpenText, faGlobeAmericas, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profilo',
@@ -26,7 +27,7 @@ export class ProfiloComponent implements OnInit {
   imageDefault = "assets\\imgProf\\imgDef.png";
   utente: UserDTO;
 
-  constructor(private modalService: NgbModal, private userS: UserService,private fb: FormBuilder ) {
+  constructor(private modalService: NgbModal, private userS: UserService,private fb: FormBuilder, private router : Router ) {
 
   }
 
@@ -107,4 +108,15 @@ export class ProfiloComponent implements OnInit {
     } 
   } */
 
+elimina(){
+  let result = confirm("Sei sicuro di voler Eliminare Definitivamente l'account?");
+  if(result){
+  this.userS.deleteByLogin(this.utente.login).subscribe(() =>
+  this.modalService.dismissAll());
+  this.router.navigate(['/login']);
+  }
 }
+
+}
+
+
