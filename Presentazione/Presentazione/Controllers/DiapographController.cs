@@ -15,10 +15,10 @@ namespace Presentazione.Controllers
     [EnableCors("AllowOrigin")]
     public class DiapographController : ControllerBase
     {
-        private readonly ARepository<DiapographDTO, Diapograph> _repository;
+        private readonly DiapographRepository _repository;
         public DiapographController(ARepository<DiapographDTO, Diapograph> repository)
         {
-            _repository = repository;
+            _repository = (DiapographRepository) repository;
         }
 
         [HttpGet]
@@ -49,6 +49,12 @@ namespace Presentazione.Controllers
         public void Delete(long id)
         {
             _repository.Delete(id);
+        }
+
+        [HttpGet("byDiapositiva/{id}")]
+        public IEnumerable<DiapographDTO> getByDiapositiva(long id)
+        {
+            return _repository.getAllByDiapositiva(id);
         }
     }
 }

@@ -20,5 +20,9 @@ namespace Presentazione.Repository
             _context = context;
         }
 
+        public IEnumerable<DiapographDTO> getAllByDiapositiva(long id)
+        {
+            return _converter.toListDTO(_context.Query.Where(r => r.diapositivaid == id));
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace Presentazione.Converter
             model.fontStyle = dto.fontStyle;
             model.diapositiva = new Diapositiva();
             model.diapositiva.id = dto.diapositiva.id;
+            model.diapositivaid = dto.diapositiva.id;
 
             return model;
         }

@@ -15,10 +15,10 @@ namespace Presentazione.Controllers
     [ApiController]
     public class TestoController : ControllerBase
     {
-        private readonly ARepository<TestoDTO, Testo> _repository;
+        private readonly TestoRepository _repository;
         public TestoController(ARepository<TestoDTO, Testo> repository)
         {
-            _repository = repository;
+            _repository = (TestoRepository) repository;
         }
 
         [HttpGet]
@@ -49,6 +49,12 @@ namespace Presentazione.Controllers
         public void Delete(long id)
         {
             _repository.Delete(id);
+        }
+
+        [HttpGet("byDiapositiva/{id}")]
+        public IEnumerable<TestoDTO> getByDiapositiva(long id)
+        {
+            return _repository.getAllByDiapositiva(id);
         }
     }
 }
