@@ -92,7 +92,19 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
-            Work in Progress
+            <mat-form-field appearance="legacy">
+                <mat-label>Seleziona testo</mat-label>
+                <mat-select #txt>
+                    <mat-option value="-1">Crea Nuovo</mat-option>
+                    <mat-option value="1">Esistente</mat-option>
+                </mat-select>
+                <button *ngIf="txt.value>0" mat-icon-button matPrefix onClick="alert('')">
+                    <fa-icon [icon]="trash" size="lg"></fa-icon>
+                </button>
+                <button *ngIf="txt.value<0" mat-icon-button matPrefix onClick="alert('')">
+                    <fa-icon [icon]="new" size="lg"></fa-icon>
+                </button>
+            </mat-form-field>
 
         </mat-expansion-panel>
         <mat-expansion-panel>

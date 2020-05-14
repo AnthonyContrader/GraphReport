@@ -14,8 +14,8 @@
             <div class="line">
                 <p class="or">ALTRIMENTI</p>
             </div>
-            <button (click)="reset()">Password dimenticata</button>
-            <button (click)="register()">Registrati</button>
+            <button (click)="register()">Registrati</button><br>
+            <label (click)="reset()" style="cursor: pointer;text-align: right;width:242px">Ho dimenticato la password</label>
         </form>
     </div>
     <div [ngClass]="(authenticationError) ? 'msg-modal error-color' : 'hidden'">

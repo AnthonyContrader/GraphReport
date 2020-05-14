@@ -5,21 +5,23 @@ import { HttpClient } from '@angular/common/http';
 
 import { SERVER_API_URL } from '../authJWT/app.constants';
 import { Observable } from 'rxjs';
+import { TestoDTO } from 'src/dto/testo.dto';
+import { DiapoGraphDTO } from 'src/dto/diapograph.dto';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class DiapositivaService extends AbstractService<DiapositivaDTO>{
+export class DiapoGraphService extends AbstractService<DiapoGraphDTO>{
 
   constructor(http: HttpClient) {
     super(http);
     this.microservicesPath = '/presentazione/api';
-    this.generic = '/diapositiva';
+    this.generic = '/diapograph';
   }
 
-  getAllByPresentazione(id: number) : Observable<DiapositivaDTO[]> {
-    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/byPresentazione/' + id);
+  getAllByDiapositiva(id: number) : Observable<DiapoGraphDTO[]> {
+    return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/byDiapositiva/' + id);
   }
-
+  
 }

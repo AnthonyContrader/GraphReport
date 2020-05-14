@@ -1,16 +1,19 @@
-import { Component, OnInit, OnChanges, AfterViewInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { DiapositivaDTO } from 'src/dto/diapositiva.dto';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 import  Konva  from 'Konva';
 import { DiapoFullDTO } from 'src/dto/diapoFull.dto';
 import { Colore } from 'src/dto/colore.obj';
+import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { TestoService } from 'src/service/testo.service';
+import { DiapoGraphService } from 'src/service/diapoGraph.service';
 
 @Component({
   selector: 'app-modify-diapositiva',
   templateUrl: './modify-diapositiva.component.html',
   styleUrls: ['./modify-diapositiva.component.css']
 })
-export class ModifyDiapositivaComponent implements OnInit,OnChanges,AfterViewInit {
+export class ModifyDiapositivaComponent implements OnInit,OnChanges {
 
     @Input("diapo") diapo : DiapoFullDTO;
     @Input("esporta") toExp : boolean;
@@ -55,9 +58,12 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges,AfterViewIni
         'Helvetica',
         'Helveticaneue',
         'Verdana'
-     ]
+    ]
 
-    constructor(private service: DiapositivaService) {
+    trash= faTrashAlt;
+    new = faPlus;
+
+    constructor(private service: DiapositivaService, private serviceTesto: TestoService, private serviceGrafico: DiapoGraphService) {
         
     }
 
@@ -67,18 +73,16 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges,AfterViewIni
         if(this.diapofull.diapositiva.id!=null){
             this.mannangil.emit(JSON.stringify(this.diapofull));
         }
-        this.drawPage();
-            
-        if(this.toExp){
-            this.esportaPNG();
-        }
-        
-    }
-
-    ngAfterViewInit(){
-        if(this.diapofull!=undefined){
-            this.drawPage();
-        }
+        this.serviceTesto.getAllByDiapositiva(this.diapo.diapositiva.id).subscribe(x => {
+            this.diapo.testi = x;
+            this.serviceGrafico.getAllByDiapositiva(this.diapo.diapositiva.id).subscribe(y => {
+                this.diapo.grafici = y;
+                this.drawPage();
+                if(this.toExp){
+                    this.esportaPNG();
+                }
+            });
+        });
     }
 
     drawPage(){

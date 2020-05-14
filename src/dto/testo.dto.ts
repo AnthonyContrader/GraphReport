@@ -1,4 +1,5 @@
 import { fontStyleText } from './fontStyleText.enum';
+import { Colore } from './colore.obj';
 
 
 export class TestoDTO{
@@ -7,12 +8,12 @@ export class TestoDTO{
   dimensione: string;
   posizione: string;
   fontSize: number;
-  colore: string;
+  colore: Colore;
   fontStyle: fontStyleText;
   idDiapositiva: number;
 
   constructo(id: number, text: string, dimensione: string, posizione: string,
-             fontSize: number, colore: string, fontStyle: fontStyleText, idDiapositiva: number){
+             fontSize: number, colore: Colore, fontStyle: fontStyleText, idDiapositiva: number){
         this.id = id;
         this.text = text;
         this.dimensione = dimensione;
