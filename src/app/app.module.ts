@@ -15,6 +15,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegisterComponent } from './register/register.component';
 import { ActivateComponent } from './activate/activate.component';
+import { PasswordResetInitComponent } from './password-reset/init/password-reset-init.component';
+import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
+import { PasswordStrengthResetComponent } from './password-reset/password-strength-reset.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { ActivateComponent } from './activate/activate.component';
     LoginComponent,
     RegisterComponent,
     ActivateComponent,
+    PasswordResetInitComponent,
+    PasswordResetFinishComponent,
+    PasswordStrengthResetComponent
   ],
   imports: [
     CommonModule,
