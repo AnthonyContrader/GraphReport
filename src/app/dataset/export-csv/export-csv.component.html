@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Titolo</th>
+          <th>Modify</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of listaFiltrata; let i = index">
+          <td>{{d}}</td>
+          <th>
+            <button class="btn btn-warning" (click)="modifica(i)">Modifica</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row" style="margin-left: 100px;"  *ngIf="toOpen">
+      <div class="modifica" *ngFor="let ds of listModify">
+        {{ds.titolo}}
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>{{ds.idUnita}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ds.value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ <!--  <div>
+    <button (click)="esportaCsv()">Esporta</button>
+  </div> -->
+</div>

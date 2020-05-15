@@ -21,6 +21,8 @@ import { ProfiloComponent } from '../profilo/profilo.component';
 import { PresentazioneModule } from '../presentazione/presentazione.module';
 import { PasswordComponent } from '../password/password.component';
 import { PasswordStrengthBarComponent } from '../password/password-strength-bar.component';
+import { ExportCsvComponent } from '../dataset/export-csv/export-csv.component';
+import { Angular2CsvModule } from 'angular2-csv';
 
 
 
@@ -32,6 +34,7 @@ import { PasswordStrengthBarComponent } from '../password/password-strength-bar.
     NavComponent,
     DatasetComponent,
     ImportCsvComponent,
+    ExportCsvComponent,
     DragNdropDirective,
     DataSetModifyComponent,
     UserComponent,
@@ -50,6 +53,7 @@ import { PasswordStrengthBarComponent } from '../password/password-strength-bar.
     BrowserModule,
     NgbModule,
     PresentazioneModule,
+    Angular2CsvModule
   ],
   providers: [
     UserRouteAccessService

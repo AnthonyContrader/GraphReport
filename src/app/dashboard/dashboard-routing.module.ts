@@ -11,6 +11,7 @@ import { DataSetModifyComponent } from '../dataset/dataset-modify/dataset-modify
 import { UserComponent } from '../user/user.component';
 import { PresentazioneComponent } from '../presentazione/presentazione.component';
 import { PasswordComponent } from '../password/password.component';
+import { ExportCsvComponent } from '../dataset/export-csv/export-csv.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'ds', component: DatasetComponent },
     { path: 'datasetmodify', component: DataSetModifyComponent },
     { path: 'csv', component: ImportCsvComponent },
+    { path: 'exportCsv', component: ExportCsvComponent},
     { path: 'user', component: UserComponent},
     { path: 'presentazione', component: PresentazioneComponent},
     { path: 'password', component : PasswordComponent, data: { authorities: ['ROLE_USER'], pageTitle: 'Password'}}
