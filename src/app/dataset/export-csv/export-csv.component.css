@@ -3,6 +3,47 @@
   text-align: center;
 }
 
+th{
+  padding:5px !important;
+  width: 50%;
+}
+
+.riga{
+  background-color: aliceblue;
+}
+
+.selezione{
+  cursor: pointer;
+}
+
+.selezione:hover{
+  background-color: aliceblue;
+}
+
 .row{
   margin-top: 20px;
+}
+
+.elimina{
+  cursor: pointer;
+  float: right;
+  color: red;
+}
+
+.titolo{
+  width: 100%;
+  text-align: center;
+}
+
+.container{
+  margin-left:0px;
+  margin-right:0px;
+}
+
+.icona{
+  cursor: pointer;
+}
+
+.icona:hover{
+  color: rebeccapurple;
 }
