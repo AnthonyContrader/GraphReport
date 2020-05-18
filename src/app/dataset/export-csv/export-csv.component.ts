@@ -26,6 +26,7 @@ export class ExportCsvComponent implements OnInit {
   elimina = faMinus;
   export = faFileExport;
   selezionato: number = -1;
+  matriceExport: string[][] = [];
 
 
   constructor(private dataService: DataSetService, private umService: UnitaService){
@@ -73,25 +74,30 @@ export class ExportCsvComponent implements OnInit {
   }
 
 
-  options = {
+esportaCsv(){
+ let options = {
     fieldSeparator: ',',
-    quoteStrings: '"',
+    quoteStrings: '',
     decimalseparator: '.',
     showLabels: false,
     headers: [],
     showTitle: true,
-    title: 'asfasf',
+    title: this.listModify[0].titolo,
     useBom: false,
     removeNewLines: true,
     keys: ['approved', 'age','name' ]
   };
+  let csvExporter = new ExportToCsv(options);
+  this.matriceExport = [];
+  this.listModify.forEach(x => {
+    let a = x.valori.split("_");
+    a.splice(0,0,this.getNome(x.idUnita));
+    this.matriceExport.push(a);
 
-
-// tslint:disable-next-line: member-ordering
-csvExporter = new ExportToCsv(this.options);
-
-esportaCsv(){
-  this.csvExporter.generateCsv(this.listModify);
+  });
+  let json = JSON.stringify(this.matriceExport);
+  alert(json);
+  csvExporter.generateCsv(this.matriceExport);
 }
 
 

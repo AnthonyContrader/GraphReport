@@ -26,8 +26,9 @@ th{
 
 .elimina{
   cursor: pointer;
-  float: right;
   color: red;
+  float:right;
+  width: 100%;
 }
 
 .titolo{
