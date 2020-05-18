@@ -45,4 +45,8 @@ import { SERVER_API_URL } from '../authJWT/app.constants';
 
     }
 
+    deleteGraphByUser(ut: number): Observable<boolean>{
+      return this.http.delete<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/user/' +ut);
+    }
+
   }
