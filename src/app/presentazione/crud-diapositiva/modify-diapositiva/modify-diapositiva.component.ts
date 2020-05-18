@@ -7,6 +7,7 @@ import { Colore } from 'src/dto/colore.obj';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { TestoService } from 'src/service/testo.service';
 import { DiapoGraphService } from 'src/service/diapoGraph.service';
+import { TestoDTO } from 'src/dto/testo.dto';
 
 @Component({
   selector: 'app-modify-diapositiva',
@@ -62,6 +63,8 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
 
     trash= faTrashAlt;
     new = faPlus;
+
+    txtSelected:number=-1;
 
     constructor(private service: DiapositivaService, private serviceTesto: TestoService, private serviceGrafico: DiapoGraphService) {
         
@@ -227,5 +230,8 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
         this.toImage.emit(this.stage.toDataURL());
     }
 
+    newText(){
+        this.serviceTesto.insert(new TestoDTO(this.diapofull.diapositiva)).subscribe(x => this.diapofull.testi.push(x));
+    }
 
 }

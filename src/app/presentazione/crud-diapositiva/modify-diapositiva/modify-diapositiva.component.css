@@ -25,3 +25,11 @@
     padding-bottom: 1em;
     width:150px;
 }
+
+.green:hover{
+    color:green;
+}
+
+.red:hover{
+    color:red;
+}

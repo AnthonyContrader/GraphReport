@@ -95,8 +95,6 @@ esportaCsv(){
     this.matriceExport.push(a);
 
   });
-  let json = JSON.stringify(this.matriceExport);
-  alert(json);
   csvExporter.generateCsv(this.matriceExport);
 }
 
