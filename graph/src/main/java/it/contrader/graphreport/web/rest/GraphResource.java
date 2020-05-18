@@ -146,4 +146,11 @@ public class GraphResource {
         return ResponseUtil.wrapOrNotFound(graphDTO);
     }
     
+    @DeleteMapping("/graphs/user/{id}")
+    public ResponseEntity<Void> deleteGraphByUser(@PathVariable Long id) {
+        log.debug("REST request to delete Graph By User : {}", id);
+        graphService.deleteByUser(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
 }

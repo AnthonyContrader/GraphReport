@@ -19,4 +19,7 @@ public interface GraphRepository extends JpaRepository<Graph, Long> {
 
 	public Page<Graph> findAllByUtente(Long utente,Pageable page);
 	
+	@Modifying
+	public void deleteByutente(Long id);
+	
 }

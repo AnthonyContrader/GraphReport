@@ -101,4 +101,9 @@ public class GraphServiceImpl implements GraphService {
 		Pageable page = PageRequest.of(0, 1, Sort.by("modify").descending());
 		return graphRepository.findAllByUtente(user,page).stream().findFirst().map(graphMapper::toDto);
 	}
+	
+	public void deleteByUser(Long id) {
+        log.debug("Request to delete Graph By User : {}", id);
+        graphRepository.deleteByutente(id);
+    }
 }
