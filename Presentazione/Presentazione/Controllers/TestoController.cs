@@ -40,9 +40,9 @@ namespace Presentazione.Controllers
         }
 
         [HttpPost]
-        public void Create([FromBody] TestoDTO dto)
+        public TestoDTO Create([FromBody] TestoDTO dto)
         {
-            _repository.Create(dto);
+           return  _repository.Create(dto);
         }
 
         [HttpDelete("{id}")]

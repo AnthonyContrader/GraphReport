@@ -16,9 +16,7 @@ namespace Presentazione.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Diapositiva>()
-                .HasOne(a => a.presentazione).WithMany()
-                .HasForeignKey(e => e.id);
+            
         }
     }
 }
