@@ -1,17 +1,18 @@
+import { DiapositivaDTO } from './diapositiva.dto';
 
 
 export class  DiapoGraphDTO{
   id: number;
   dimensione: string;
   posizione: string;
-  idDiapositiva: number;
+  diapositiva: DiapositivaDTO;
   idGraph: number;
 
-  constructor(id: number, dimensione: string, posizione: string, idDiapositiva: number, idGraph: number){
-    this.id = id;
-    this.dimensione = dimensione;
-    this.posizione = posizione;
-    this.idDiapositiva = idDiapositiva;
-    this.idGraph = idGraph;
+  constructor(diapositiva: DiapositivaDTO,id?: number, dimensione?: string, posizione?: string,  idGraph?: number){
+    this.id = id ? id:0;
+    this.dimensione = dimensione ? dimensione : "25_25";
+    this.posizione = posizione ? posizione : "1_1";
+    this.diapositiva = diapositiva;
+    this.idGraph = idGraph ? idGraph : 1;
   }
 }

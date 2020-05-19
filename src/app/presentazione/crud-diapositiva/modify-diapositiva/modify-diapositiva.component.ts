@@ -8,6 +8,7 @@ import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { TestoService } from 'src/service/testo.service';
 import { DiapoGraphService } from 'src/service/diapoGraph.service';
 import { TestoDTO } from 'src/dto/testo.dto';
+import { DiapoGraphDTO } from 'src/dto/diapograph.dto';
 
 @Component({
   selector: 'app-modify-diapositiva',
@@ -232,6 +233,10 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
 
     newText(){
         this.serviceTesto.insert(new TestoDTO(this.diapofull.diapositiva)).subscribe(x => this.diapofull.testi.push(x));
+    }
+
+    newGraph(){
+        this.serviceGrafico.insert(new DiapoGraphDTO(this.diapofull.diapositiva)).subscribe(x => this.diapofull.grafici.push(x));
     }
 
 }

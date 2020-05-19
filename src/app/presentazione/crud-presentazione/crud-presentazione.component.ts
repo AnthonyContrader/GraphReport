@@ -23,8 +23,8 @@ export class CrudPresentazioneComponent implements OnInit {
   toDelete : number = -1;
 
   presentazione: PresentazioneDTO;
-  listPresentazioniCompleta: PresentazioneDTO[];
-  listPresentazioniFiltrata : PresentazioneDTO[];
+  listPresentazioniCompleta: PresentazioneDTO[] = [];
+  listPresentazioniFiltrata : PresentazioneDTO[] = [];
 
   constructor(private service: PresentazioneService) {
     this.presentazione = new PresentazioneDTO(0, this.user);
@@ -87,7 +87,8 @@ export class CrudPresentazioneComponent implements OnInit {
 
   filtraLista(){
     this.indice = -1;
-    this.listPresentazioniFiltrata = this.listPresentazioniCompleta.filter(x => x.nome.toLowerCase().startsWith(this.presentazione.nome.toLowerCase()) );
+    if(this.listPresentazioniCompleta.length>0)
+      this.listPresentazioniFiltrata = this.listPresentazioniCompleta.filter(x => x.nome.toLowerCase().startsWith(this.presentazione.nome.toLowerCase()) );
   }
 
 
