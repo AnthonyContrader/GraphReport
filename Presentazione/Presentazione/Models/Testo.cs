@@ -33,8 +33,8 @@ namespace Presentazione.Models
         [Required]
         public int fontStyle { get; set; }
 
-        [Required]
         public Diapositiva diapositiva { get; set; }
+        [Required]
         public long diapositivaid { get; set; }
 
 
