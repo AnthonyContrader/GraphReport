@@ -114,7 +114,7 @@ export class CrudDiapositivaComponent implements OnInit {
           this.lavagna = false;
           this.selezionato = -1;
         }else{
-          this.cambiaDiapo(this.selezionato);
+          this.cambiaDiapo(0);
           this.deleted = true;
         }
       });
