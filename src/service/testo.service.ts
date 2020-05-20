@@ -21,5 +21,13 @@ export class TestoService extends AbstractService<TestoDTO>{
   getAllByDiapositiva(id: number) : Observable<TestoDTO[]> {
     return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/byDiapositiva/' + id);
   }
+
+  updateList(lista: TestoDTO[]) : Observable<any>{
+    return this.http.post<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/updateList', lista);
+  }
+
+  deleteList(lista: number[]) : Observable<any>{
+    return this.http.post<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/deleteList', lista);
+  }
   
 }

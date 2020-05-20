@@ -1,4 +1,5 @@
 import { DiapositivaDTO } from './diapositiva.dto';
+import { GraphDTO } from './graph.dto';
 
 
 export class  DiapoGraphDTO{
@@ -6,13 +7,13 @@ export class  DiapoGraphDTO{
   dimensione: string;
   posizione: string;
   diapositiva: DiapositivaDTO;
-  idGraph: number;
+  graph: GraphDTO;
 
-  constructor(diapositiva: DiapositivaDTO,id?: number, dimensione?: string, posizione?: string,  idGraph?: number){
+  constructor(diapositiva: DiapositivaDTO,id?: number, dimensione?: string, posizione?: string,  graph?: GraphDTO){
     this.id = id ? id:0;
     this.dimensione = dimensione ? dimensione : "25_25";
     this.posizione = posizione ? posizione : "1_1";
     this.diapositiva = diapositiva;
-    this.idGraph = idGraph ? idGraph : 1;
+    this.graph = graph ? graph : new GraphDTO(null);
   }
 }

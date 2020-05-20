@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ViewChild, ElementRef, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { DiapositivaDTO } from 'src/dto/diapositiva.dto';
 import { DiapositivaService } from 'src/service/diapositiva.service';
 import  Konva  from 'Konva';
@@ -9,6 +9,9 @@ import { TestoService } from 'src/service/testo.service';
 import { DiapoGraphService } from 'src/service/diapoGraph.service';
 import { TestoDTO } from 'src/dto/testo.dto';
 import { DiapoGraphDTO } from 'src/dto/diapograph.dto';
+import { MatDialog } from '@angular/material/dialog';
+import { GraphDTO } from 'src/dto/graph.dto';
+import { GraphService } from 'src/service/graph.service';
 
 @Component({
   selector: 'app-modify-diapositiva',
@@ -22,6 +25,7 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
     @Output("awand") mannangil = new EventEmitter();
     @Output("image") toImage = new EventEmitter();
     @ViewChild("lavagna") lavagna : ElementRef<HTMLDivElement>;
+    @ViewChild("dialogImport") modal : TemplateRef<any>;
 
     toRGB = (x:{ red : number, green: number, blue: number, alpha: number}) => {
         return "rgb(" + x.red + "," + x.green + "," + x.blue +")";
@@ -49,6 +53,8 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
     sfondoRect;
     titolo;
     titoloReact;
+    testoLayer = new Konva.Layer();
+
 
     fontList : string[] = [ 
         'Arial',
@@ -67,32 +73,29 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
 
     txtSelected:number=-1;
 
-    constructor(private service: DiapositivaService, private serviceTesto: TestoService, private serviceGrafico: DiapoGraphService) {
+    dialogImportGraph;
+
+    constructor(private dialog: MatDialog) {
         
     }
 
     ngOnInit(): void {}
 
     ngOnChanges(){
+        this.txtSelected = -1;
         if(this.diapofull.diapositiva.id!=null){
             this.mannangil.emit(JSON.stringify(this.diapofull));
         }
-        this.serviceTesto.getAllByDiapositiva(this.diapo.diapositiva.id).subscribe(x => {
-            this.diapo.testi = x;
-            this.serviceGrafico.getAllByDiapositiva(this.diapo.diapositiva.id).subscribe(y => {
-                this.diapo.grafici = y;
-                this.drawPage();
-                if(this.toExp){
-                    this.esportaPNG();
-                }
-            });
-        });
+        this.drawPage();
+        if(this.toExp){
+            this.esportaPNG();
+        }
     }
 
     drawPage(){
         let windowWidth = window.innerWidth-577;
         this.diapofull = this.diapo;
-        if(this.lavagna!=undefined){ //appena l'html è pronto disegna la slide
+        //if(this.lavagna!=undefined){ //appena l'html è pronto disegna la slide
             let ratio = this.diapofull.diapositiva.ratio.split(':');
             this.stage = new Konva.Stage({
                 container: 'konva',
@@ -141,15 +144,54 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
                 let y = Math.max(0, Math.min(this.stage.height()-this.titoloReact.height(), this.titoloReact.y()));
                 this.titoloReact.x(x);
                 this.titoloReact.y(y);
-                });
-                this.titoloReact.on("dragend", x => { //quando viene spostato il titolo ne salva la nuova posizione
+            });
+            this.titoloReact.on("dragend", x => { //quando viene spostato il titolo ne salva la nuova posizione
                 this.diapofull.diapositiva.posizioneT= ((x.target.attrs.x*100)/this.stage.width()) + "_" + ((x.target.attrs.y*100)/this.stage.height());
-                });
+            });
             this.stage.add(this.titolo);
             this.titolo.add(this.titoloReact);
             this.titolo.draw();
-            
-        }   
+
+            this.drawText();
+             
+    }
+
+    drawText(){
+        this.testoLayer.destroy();
+        this.testoLayer = new Konva.Layer();
+        if(this.diapofull.testi.length>0){
+            this.diapofull.testi.forEach((txt,i) => {
+                let pos = txt.posizione.split("_");
+                let testoReact = new Konva.Text({
+                    id: i.toString(),
+                    x: (this.stage.width()/100)*Number.parseFloat(pos[0]),
+                    y: (this.stage.height()/100)*Number.parseFloat(pos[1]),
+                    text: txt.text,
+                    fontSize: txt.fontSize,
+                    fontFamily: this.fontList[txt.fontStyle],
+                    fill: this.toRGB(txt.colore),
+                    draggable: true 
+                });
+                testoReact.on('mouseenter', () => {
+                    this.stage.container().style.cursor = 'move';
+                });
+                testoReact.on('mouseleave', () => {
+                    this.stage.container().style.cursor = 'default';
+                });
+                testoReact.on("dragmove", evt => { //mentre lo si sposta verificare i
+                    let x = Math.max(0, Math.min(this.stage.width()-evt.target.width(), evt.target.x()));
+                    let y = Math.max(0, Math.min(this.stage.height()-evt.target.height(), evt.target.y()));
+                    evt.target.x(x);
+                    evt.target.y(y);
+                });
+                testoReact.on("dragend", evt => { //quando viene spostato il titolo ne salva la nuova posizione
+                    this.diapofull.testi[Number.parseInt(evt.target.attrs.id)].posizione= ((evt.target.attrs.x*100)/this.stage.width()) + "_" + ((evt.target.attrs.y*100)/this.stage.height());
+                });
+                this.testoLayer.add(testoReact);                
+            });
+        }
+        this.stage.add(this.testoLayer);
+        this.testoLayer.draw();
     }
 
     cambiaSfondo(newColore: string){
@@ -232,11 +274,56 @@ export class ModifyDiapositivaComponent implements OnInit,OnChanges {
     }
 
     newText(){
-        this.serviceTesto.insert(new TestoDTO(this.diapofull.diapositiva)).subscribe(x => this.diapofull.testi.push(x));
+        this.diapofull.testi.push(new TestoDTO(this.diapofull.diapositiva));
+        this.txtSelected=this.diapofull.testi.length-1;       
+        this.drawText();
+    }
+
+    delText(){
+        this.diapofull.testiDel.push(this.diapofull.testi[this.txtSelected].id);
+        this.diapofull.testi.splice(this.txtSelected,1);
+        this.txtSelected=-1;
+        this.drawText();
     }
 
     newGraph(){
-        this.serviceGrafico.insert(new DiapoGraphDTO(this.diapofull.diapositiva)).subscribe(x => this.diapofull.grafici.push(x));
+        this.diapofull.grafici.push(new DiapoGraphDTO(this.diapofull.diapositiva));
+    }
+
+    updateTesto(){
+        this.testoLayer.find('#'+this.txtSelected)[0].setAttr('text',this.diapofull.testi[this.txtSelected].text);
+        this.testoLayer.draw();
+    }
+
+    cambiaColoreTesto(newColore){
+        this.diapofull.testi[this.txtSelected].colore=this.fromHEX(newColore,this.diapofull.testi[this.txtSelected].colore.alpha);
+        this.testoLayer.find('#'+this.txtSelected)[0].setAttr("fill",this.toRGB(this.diapofull.testi[this.txtSelected].colore));
+        this.testoLayer.draw();
+    }
+
+    cambiaOpacitaTesto(newOpacita: number){
+        this.diapofull.testi[this.txtSelected].colore.alpha=newOpacita;
+        this.testoLayer.find('#'+this.txtSelected)[0].setAttr("opacity",newOpacita/100);
+        this.testoLayer.draw();
+    }
+    cambiaFontStyleTesto(){
+        this.testoLayer.find('#'+this.txtSelected)[0].setAttr("fontFamily",this.fontList[this.diapofull.testi[this.txtSelected].fontStyle]);
+        this.testoLayer.draw();
+    }
+
+    cambiaSizeTesto(){
+        this.testoLayer.find('#'+this.txtSelected)[0].setAttr("fontSize",this.diapofull.testi[this.txtSelected].fontSize);
+        this.testoLayer.draw();
+    }
+
+    openModalImportGraph(){
+        this.dialogImportGraph = this.dialog.open(this.modal);
+    }
+
+    addGraph(id){
+        this.dialogImportGraph.close();
+        alert(id)
+
     }
 
 }

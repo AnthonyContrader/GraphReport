@@ -10,6 +10,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { TestoService } from 'src/service/testo.service';
+import { DiapoGraphService } from 'src/service/diapoGraph.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -60,7 +62,7 @@ export class CrudDiapositivaComponent implements OnInit {
       }
   };
 
-  constructor(private service: DiapositivaService,private _snackBar: MatSnackBar, private dialog: MatDialog) { 
+  constructor(private service: DiapositivaService,private _snackBar: MatSnackBar, private dialog: MatDialog, private serviceTesto: TestoService, private serviceGrafico: DiapoGraphService) { 
   }
 
   ngOnInit(): void {
@@ -71,10 +73,24 @@ export class CrudDiapositivaComponent implements OnInit {
     this.service.getAllByPresentazione(this.idMod.id).subscribe( x => {
       this.listDiapo = [];
       if(x.length>0){
-        x.forEach((y,i,l) => this.listDiapo.push(new DiapoFullDTO(y)));
-        let sel = (this.selezionato==-1) ? 0 : this.selezionato;
-        this.cambiaDiapo(sel);
-        this.lavagna = true;
+        Promise.all(
+          x.map((y,i,l) =>{ 
+            this.listDiapo.push(new DiapoFullDTO(y));
+            return new Promise((ok,no) =>{
+              this.serviceTesto.getAllByDiapositiva(this.listDiapo[i].diapositiva.id).subscribe(x => {
+                this.listDiapo[i].testi = x;
+                this.serviceGrafico.getAllByDiapositiva(this.listDiapo[i].diapositiva.id).subscribe(y => {
+                  this.listDiapo[i].grafici = y;
+                  return ok();
+                });
+              })
+            });
+          })
+        ).then(() => {
+          let sel = (this.selezionato==-1) ? 0 : this.selezionato;
+          this.cambiaDiapo(sel);
+          this.lavagna = true;
+        });
       }else{
         this.lavagna = false;
       }
@@ -143,7 +159,11 @@ export class CrudDiapositivaComponent implements OnInit {
     let snackBarRef = this._snackBar.open('Salvataggio in corso');
     Promise.all( this.listDiapo.map( x => {
       return new Promise((ok,err) => {
-        this.service.update(x.diapositiva).subscribe(y => {return ok('ok');});
+        this.service.update(x.diapositiva).subscribe(y => {
+          this.serviceTesto.updateList(x.testi).subscribe();
+          this.serviceTesto.deleteList(x.testiDel).subscribe();
+          return ok('ok');
+        });
       });
     })).then( x => {
       snackBarRef.dismiss();

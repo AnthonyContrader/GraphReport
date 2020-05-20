@@ -94,17 +94,43 @@
 
             <mat-form-field appearance="legacy" style="width:160px">
                 <mat-label>Seleziona testo</mat-label>
-                <mat-select #txt [(ngModel)]="txtSelected">
+                <mat-select [(ngModel)]="txtSelected">
                     <mat-option [value]="-1">Crea Nuovo</mat-option>
-                    <mat-option *ngFor="let t of diapofull.testi; let n = index" [value]="n+1">{{ (t.text.length>10) ? (t.text | slice:0:8)+'...' : t.text }}</mat-option>
+                    <mat-option *ngFor="let t of diapofull.testi; let n = index" [value]="n">{{ (t.text.length>10) ? (t.text | slice:0:8)+'...' : t.text }}</mat-option>
                 </mat-select>
-                <button *ngIf="txtSelected>0" class="red" mat-icon-button matPrefix >
+                <button *ngIf="txtSelected>-1" class="red" mat-icon-button matPrefix (click)="delText()">
                     <fa-icon [icon]="trash" size="lg"></fa-icon>
                 </button>
-                <button *ngIf="txtSelected<0" class="green" mat-icon-button matPrefix (click)="newText()">
+                <button *ngIf="txtSelected==-1" class="green" mat-icon-button matPrefix (click)="newText()">
                     <fa-icon [icon]="new" size="lg"></fa-icon>
                 </button>
             </mat-form-field>
+
+            <ng-container *ngIf="txtSelected>-1">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Testo</mat-label>
+                    <textarea matInput [(ngModel)]="diapofull.testi[txtSelected].text" (keyup)="updateTesto()"></textarea>
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy">
+                    <mat-label>Font Family</mat-label>
+                    <mat-select [(ngModel)]="diapofull.testi[txtSelected].fontStyle" (ngModelChange)="cambiaFontStyleTesto()">
+                        <mat-option *ngFor="let font of fontList;let i = index" [value]="i">{{font | titlecase }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field appearance="legacy">
+                    <mat-label>Font Size</mat-label>
+                    <input matInput type="number" min="1" [(ngModel)]="diapofull.testi[txtSelected].fontSize" (change)="cambiaSizeTesto()" />
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy" >
+                    <mat-label>Colore e Opacità</mat-label>
+                    <input matInput type="color" [value]="toHEX(diapofull.testi[txtSelected].colore)" (change)="cambiaColoreTesto($event.target.value)">
+                </mat-form-field>
+                <mat-slider color="primary" min="0" max="100" step="1" thumbLabel tickInterval="1" [value]="diapofull.testi[txtSelected].colore.alpha" (change)="cambiaOpacitaTesto($event.value)">Opacità</mat-slider>
+
+            </ng-container>
 
         </mat-expansion-panel>
         <mat-expansion-panel>
@@ -114,7 +140,18 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <label (click)="newGraph()">Work in Progress</label>
+            <div  style="width: 180px;height:35px;margin:auto">
+                <button mat-stroked-button color="primary" style="width: 100%;height:35px" (click)="openModalImportGraph()"><strong>Importa</strong></button>
+            </div>
+
+            <mat-form-field appearance="legacy" style="width:150px">
+                <mat-label>Grafico</mat-label>
+                <mat-select >
+                    <mat-option *ngFor="let x of diapofull.grafici" [value]="x.graph">{{x.graph.titolo}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
 
         </mat-expansion-panel>
     </mat-accordion>
@@ -122,3 +159,17 @@
     
 
 </div>
+
+<ng-template #dialogImport>
+    <mat-form-field appearance="legacy">
+        <mat-label>Grafico</mat-label>
+        <mat-select #importGraph>
+            <mat-option value="1">grafico 1</mat-option>
+            <mat-option value="2">grafico 2</mat-option>
+            <mat-option value="33">grafico 33</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div  style="width: 180px;height:35px;margin:auto">
+        <button mat-stroked-button color="primary" style="width: 100%;height:35px" (click)="addGraph(importGraph.value)"><strong>Importa</strong></button>
+    </div>
+</ng-template>
