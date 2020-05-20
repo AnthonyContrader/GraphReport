@@ -1,10 +1,13 @@
 ﻿using Microsoft.JSInterop.Infrastructure;
 using Presentazione.DTO;
 using Presentazione.Models;
+using Steeltoe.Common.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
 
 namespace Presentazione.Converter
 {
@@ -18,7 +21,8 @@ namespace Presentazione.Converter
             dto.posizione = model.posizione;
             dto.diapositiva = new DiapositivaDTO();
             dto.diapositiva.id = model.diapositivaid;
-            dto.idGraph = model.idGraph;
+            dto.graph = new GraphDTO();
+            dto.graph.id = model.idGraph;
 
             return dto;
         }
@@ -31,9 +35,10 @@ namespace Presentazione.Converter
             model.posizione = dto.posizione;
             model.diapositiva = new Diapositiva();
             model.diapositiva.id = dto.diapositiva.id;
-            model.idGraph = dto.idGraph;
+            model.idGraph = dto.graph.id;
 
             return model;
         }
+
     }
 }

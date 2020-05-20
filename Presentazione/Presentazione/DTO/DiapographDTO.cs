@@ -16,6 +16,6 @@ namespace Presentazione.DTO
 
         public DiapositivaDTO diapositiva { get; set; }
 
-        public long idGraph { get; set; }
+        public GraphDTO graph { get; set; }
     }
 }

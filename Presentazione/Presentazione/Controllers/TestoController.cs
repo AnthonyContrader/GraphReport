@@ -56,5 +56,19 @@ namespace Presentazione.Controllers
         {
             return _repository.getAllByDiapositiva(id);
         }
+
+        [HttpPost("updateList")]
+        public void updateList([FromBody] IEnumerable<TestoDTO> lista)
+        {
+            _repository.updateList(lista);
+        }
+
+        [HttpPost("deleteList")]
+        public void deleteList([FromBody] IEnumerable<long> lista)
+        {
+            _repository.deleteList(lista);
+        }
+
+
     }
 }

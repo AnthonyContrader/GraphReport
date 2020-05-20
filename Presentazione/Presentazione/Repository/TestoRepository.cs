@@ -25,5 +25,27 @@ namespace Presentazione.Repository
             return _converter.toListDTO(_context.Query.Where(r => r.diapositivaid == id));
         }
 
+        public void  updateList(IEnumerable<TestoDTO> lista)
+        {
+            foreach(TestoDTO dto in lista)
+            {
+                if (dto.id == 0)
+                {
+                    this.Create(dto);
+                }
+                else
+                {
+                    this.Update(dto);
+                }
+            }
+        }
+
+        public void deleteList(IEnumerable<long> lista)
+        {
+            foreach (long id in lista)
+            {
+                this.Delete(id);
+            }
+        }
     }
 }

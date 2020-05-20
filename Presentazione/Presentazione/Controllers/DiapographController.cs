@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Presentazione.DTO;
 using Presentazione.Models;
 using Presentazione.Repository;
+using Steeltoe.Common.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Presentazione.Controllers
@@ -54,7 +57,32 @@ namespace Presentazione.Controllers
         [HttpGet("byDiapositiva/{id}")]
         public IEnumerable<DiapographDTO> getByDiapositiva(long id)
         {
-            return _repository.getAllByDiapositiva(id);
+            String jwt = Request.Headers["Authorization"].ToString().Replace("Bearer ","");
+            IEnumerable<DiapographDTO> list = _repository.getAllByDiapositiva(id);
+            foreach (DiapographDTO dto in list)
+            {
+                dto.graph = GetGraph(dto.graph.id,jwt).Result;
+            }
+            return list;
+        }
+
+        static async Task<GraphDTO> GetGraph(long id, String jwt )
+        {
+            GraphDTO graph = null;
+            HttpClient client = new HttpClient();
+
+            client.BaseAddress = new Uri("http://localhost:8080/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", jwt );
+
+            HttpResponseMessage response = await client.GetAsync("graph/api/graphs/" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                graph = await response.Content.ReadAsJsonAsync<GraphDTO>();
+            }
+            return graph;
         }
     }
 }
