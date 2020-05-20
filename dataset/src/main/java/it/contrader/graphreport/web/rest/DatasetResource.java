@@ -178,4 +178,10 @@ public class DatasetResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
     
+    @DeleteMapping("/datasets/user/{id}")
+    public ResponseEntity<Void> deleteDatasetByUser(@PathVariable Long id) {
+        log.debug("REST request to delete Dataset By User: {}", id);
+        datasetServiceImpl.deleteByUser(id);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+    }
 }

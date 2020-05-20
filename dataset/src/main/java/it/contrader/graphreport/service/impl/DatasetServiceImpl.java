@@ -101,5 +101,10 @@ public class DatasetServiceImpl implements DatasetService {
     public Page<DatasetDTO> findAllByUserIdAndTitolo(Long id, String titolo, Pageable pageable){
     	return datasetRepository.findAllByidUserAndTitolo(id, titolo, pageable)
     			.map(datasetMapper::toDto);
-    }	
+    }
+    
+    public void deleteByUser(Long id) {
+        log.debug("Request to delete Dataset By User: {}", id);
+        datasetRepository.deleteByidUser(id);
+    }
 }

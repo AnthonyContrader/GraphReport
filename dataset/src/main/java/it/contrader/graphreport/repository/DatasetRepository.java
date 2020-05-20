@@ -22,6 +22,9 @@ public interface DatasetRepository extends JpaRepository<Dataset, Long> {
 	@Modifying
 	public void deleteByidUserAndTitolo(Long id, String titolo);
 	
+	@Modifying
+	public void deleteByidUser(Long id);
+	
 	//HQL --- aggiungere @Modifying in caso di una query update --- d e' il tipo di ritorno, in questo caso un dataset
 	@Query("Select d from Dataset d where d.idUser=:id")
 	public Page<Dataset> cicciocercamiquesto(Long id, Pageable pageable);
