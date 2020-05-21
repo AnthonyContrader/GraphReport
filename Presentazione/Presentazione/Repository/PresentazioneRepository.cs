@@ -26,5 +26,20 @@ namespace Presentazione.Repository
             return _converter.toListDTO(_context.Query.Where(r => r.utente == id).OrderBy(r => r.nome));
         }
 
+        public void DeleteByUtente(long id)
+        {
+            var Z = _context.Query.Where(x => x.utente == id);
+            foreach (var element in Z) {
+                _context.Query.Remove(_context.Query.Find(element.id));
+            }
+   
+            save();
+        }
+
+        void save()
+        {
+            _context.SaveChanges();
+        }
+
     }
 }

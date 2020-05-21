@@ -58,5 +58,12 @@ namespace Presentazione.Controllers
         {
             return _repository.GetAllByUser(id);
         }
+
+        [HttpDelete("byUtente/{id}")]
+        public void DeleteByUser(long id)
+        {
+            _repository.DeleteByUtente(id);
+        }
+
     }
 }
