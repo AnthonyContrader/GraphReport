@@ -22,4 +22,8 @@ import { PresentazioneDTO } from 'src/dto/presentazione.dto';
       return this.http.get<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/byUser/' + id);
     }
 
+    deletePresentazioneByUser(id: number): Observable<boolean>{
+      return this.http.delete<any>(SERVER_API_URL + this.microservicesPath + this.generic + '/byUtente/' +id);
+    }
+
   }
