@@ -1,11 +1,2 @@
-id;titolo;valori;commento;id_user;id_unita
-1;Berkshire;SQL convergence;Chicken;84224;36786
-2;Towels 24/7;Security New York;Bike incentivize;9930;89014
-3;ubiquitous transmitting Home Loan Account;Borders system-worthy;Metal Mobility Technician;76723;40618
-4;needs-based Planner;Licensed Frozen Shoes vortals value-added;auxiliary;47449;73492
-5;program;invoice Rustic Steel Ball deposit;cutting-edge;78966;4194
-6;Investment Account Branding;Books transparent;Cambridgeshire;54200;43700
-7;Car;Nevada Accounts;XML Soft;36482;29698
-8;user-centric SMTP virtual;black Intelligent ADP;open-source next generation;39204;5231
-9;Customer;California Jamaica Product;Savings Account;57051;43127
-10;Street;payment;Dynamic schemas function;83610;9537
+id,titolo,valori,commento,id_user,id_unita
+1,Berkshire,10_20_30,Chicken,3,1001
